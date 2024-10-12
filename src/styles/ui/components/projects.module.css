@@ -3,14 +3,23 @@
     flex-direction: row;
 
     align-items: center;
-    justify-content: center;
 
     padding: 10px 20px;
 
     height: 100px;
-    width: 100%;
 
     gap: 20px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.projects::-webkit-scrollbar {
+    height: 1px;
+}
+
+.projects::-webkit-scrollbar-thumb {
+    border: 1px solid var(--shadow-color);
 }
 
 .project {
@@ -21,7 +30,7 @@
     align-items: center;
     justify-content: center;
 
-    height: 75px;
+    height: 85px;
     width: 75px;
 
 	filter: brightness(0.3);
@@ -49,7 +58,7 @@
     text-align: center;
     text-wrap: pretty;
 
-    top: -10px;
+    top: 80px;
     rotate: 180deg;
     
     transition: 0.5s;
@@ -58,7 +67,7 @@
 .project:hover > span {
     rotate: 0deg;
     font-size: 12px;
-    top: 75px;
+    top: -10px;
 }
 
 .project:hover {
