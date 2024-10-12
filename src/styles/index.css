@@ -137,4 +137,8 @@ code {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    }
+}
+
+.page {
+    height: 100%;
+}
