@@ -1,7 +1,7 @@
 import React from "react";
 
-import LogoComponent from './logo.component';
-import SwitchComponent from './switch.component';
+import LogoComponent from './components/logo.component';
+import SwitchComponent from './components/switch.component';
 
 import styles from '../styles/ui/header.module.css';
 

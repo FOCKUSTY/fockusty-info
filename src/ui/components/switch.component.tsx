@@ -1,6 +1,6 @@
 import React from "react";
 
-import Handler from '../handlers/switch-theme.handler';
+import Handler from '../../handlers/switch-theme.handler';
 
 type Props = {
     className: string;

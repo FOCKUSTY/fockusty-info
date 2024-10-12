@@ -1,6 +1,6 @@
 import React from "react";
 
-import LinksComponent from './links.component';
+import LinksComponent from './components/links.component';
 
 import styles from '../styles/ui/footer.module.css';
 

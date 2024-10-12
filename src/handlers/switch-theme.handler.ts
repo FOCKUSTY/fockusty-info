@@ -4,7 +4,7 @@ class SwitchThemeHandler {
     private _vars: any = {
         '--text-color': { dark: '#ffffff', light:'#000000' },
         '--bg-color': { dark: '#000000', light: '#ffffff' },
-        '--main-color': { dark: '#161616', light: '#ffffff' },
+        '--main-color': { dark: '#161616', light: '#e6e6e6' },
      
         '--section-color': { dark: '#000000', light: '#ffffff' },
         '--component-color': { dark: '#131313', light: '#e9e9e9' },

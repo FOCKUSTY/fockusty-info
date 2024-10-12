@@ -1,0 +1,17 @@
+.page {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#main {
+    background-color: var(--main-color);
+    
+    padding: 10px 20px;
+
+    width: 1000px;
+    height: 500px;
+
+    border-radius: 20px;
+}

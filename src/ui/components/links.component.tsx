@@ -6,8 +6,6 @@ import {
     FaTelegramPlane
 } from 'react-icons/fa'; 
 
-import styles from '../styles/ui/logo.module.css';
-
 type Props = {
     className: string
     text?: boolean;

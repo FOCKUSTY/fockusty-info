@@ -2,7 +2,7 @@ import React from "react";
 
 import LinksComponent from './links.component';
 
-import styles from '../styles/ui/logo.module.css';
+import styles from '../../styles/ui/components/logo.module.css';
 
 class Component extends React.Component {
     public constructor(props: any) {

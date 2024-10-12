@@ -1,0 +1,91 @@
+.projects {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 20px;
+
+    height: 100px;
+    width: 100%;
+
+    gap: 20px;
+}
+
+.project {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    height: 75px;
+    width: 75px;
+
+	filter: brightness(0.3);
+    transition: 0.75s;
+}
+
+.project img {
+    z-index: 2;
+
+    cursor: pointer;
+
+    border-radius: 25%;
+
+    height: 75px;
+    width: 75px;
+}
+
+.project span {
+    position: absolute;
+    z-index: 1;
+
+    font-size: 6px;
+    width: 75px;
+
+    text-align: center;
+    text-wrap: pretty;
+
+    top: -10px;
+    rotate: 180deg;
+    
+    transition: 0.5s;
+}
+
+.project:hover > span {
+    rotate: 0deg;
+    font-size: 12px;
+    top: 75px;
+}
+
+.project:hover {
+	filter: brightness(1);
+}
+
+.project:has(+ .project:hover) {
+	transform: rotate3d(0, 1, 0, 45deg);
+	filter: brightness(0.5);
+}
+
+.project:hover + * {
+	transform: rotate3d(0, 1, 0, -45deg);
+	filter: brightness(0.5);
+}
+
+.project:hover + * + * {
+	transform: rotate3d(0, 1, 0, -70deg);
+	filter: brightness(0.5);
+}
+
+.project:has(+ * + .project:hover) {
+	transform: rotate3d(0, 1, 0, 70deg);
+	filter: brightness(0.5);
+}
+
+.project:has(+ .project:hover) {
+	transform: rotate3d(0, 1, 0, 45deg);
+	filter: brightness(0.5);
+}
