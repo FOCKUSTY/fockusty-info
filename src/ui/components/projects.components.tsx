@@ -7,7 +7,7 @@ import styles from '../../styles/ui/components/projects.module.css';
 class Component extends React.Component {
     private readonly Project = (name: string, iconUrl: string, link: string) => {
         return (
-            <a href={link} className={styles.project} target="_blank">
+            <a href={link} className={styles.project} target="_blank" rel="noreferrer">
                 <img src={iconUrl} alt={name} />
                 <span>{name}</span>
             </a>

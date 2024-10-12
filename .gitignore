@@ -12,6 +12,7 @@ config.json
 hasing.ts
 *.log
 log/
+build
 
 # Logs
 logs
