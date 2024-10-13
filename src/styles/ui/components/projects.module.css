@@ -98,3 +98,17 @@
 	transform: rotate3d(0, 1, 0, 45deg);
 	filter: brightness(0.5);
 }
+
+@media screen and (width < 1000px) {
+    .projects {
+        height: 100px;
+        max-height: 100px;
+        min-height: 50px;
+    
+        width: 100%;
+        max-width: fit-content;
+        min-width: 250px;
+
+        gap: 10px;
+    }
+}

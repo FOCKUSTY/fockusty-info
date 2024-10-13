@@ -49,7 +49,7 @@ body {
     }
     
     *::-webkit-scrollbar-track {
-        background: #121212;
+        background: #656565;
     }
     
     *::-webkit-scrollbar-thumb {
@@ -98,7 +98,7 @@ code {
     text-indent: -9999px;
     width: 60px;
     height: 30px;
-    background: rgb(224 224 224);
+    background: var(--shadow-color);
     display: block;
     border-radius: 100px;
     position: relative;
@@ -117,17 +117,17 @@ code {
 }
 
 .input-switch:checked + .label-switch {
-    background: #000000;
+    background: var(--bg-color);
 }
 
 .input-switch:checked + .label-switch:after {
-    background: #fff;
+    background: var(--text-color);
     left: calc(100% - 5px);
     transform: translateX(-100%);
 }
 
 .label-switch:active:after {
-    width: 50px;
+    width: 20px;
 }
 
 .noselect {
@@ -141,4 +141,38 @@ code {
 
 .page {
     height: 100%;
+}
+
+@media screen and (width < 600px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    * {
+        font-size: 12px;
+    }
+}
+
+@media screen and (width < 425px) {
+    .label-switch {
+        width: 40px;
+        height: 20px;
+    }
+    
+    .label-switch:after {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .label-switch:active:after {
+        width: 10px;
+    }
 }

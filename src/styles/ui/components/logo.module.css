@@ -10,8 +10,11 @@
 }
 
 .logo img {
-    height: 100px;
-    width: 100px;
+    width: 100%;
+    max-width: 75px;
+    min-width: 50px;
+
+    aspect-ratio: 1/1;
 
     border-radius: 50%;
 }
@@ -43,4 +46,10 @@
 
 .links * {
     gap: 5px;
+}
+
+@media screen and (width < 425px) {
+    .logo img {
+        width: 0;
+    }
 }

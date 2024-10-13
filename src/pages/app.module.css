@@ -10,8 +10,13 @@
     
     padding: 10px 20px;
 
-    width: 1000px;
-    height: 500px;
+    width: 100%;
+    min-width: 300px;
+    max-width: 1000px;
+
+    height: 100%;
+    min-height: 200px;
+    max-height: 400px;
 
     border-radius: 20px;
 }
@@ -21,4 +26,10 @@
     flex-direction: column;
     align-items: center;
     justify-items: center;
+}
+
+@media screen and (width < 1000px) {
+    #main {
+        width: 70%;
+    }
 }
