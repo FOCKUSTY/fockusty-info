@@ -21,7 +21,11 @@
     border-radius: 20px;
 }
 
-.projects {
+#main img {
+    position: relative;
+}
+
+#projects {
     display: flex;
     flex-direction: column;
     align-items: center;

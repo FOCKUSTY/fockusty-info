@@ -1,4 +1,4 @@
-.projects {
+#projects {
     display: flex;
     flex-direction: row;
 
@@ -14,11 +14,11 @@
     overflow-y: hidden;
 }
 
-.projects::-webkit-scrollbar {
+#projects::-webkit-scrollbar {
     height: 1px;
 }
 
-.projects::-webkit-scrollbar-thumb {
+#projects::-webkit-scrollbar-thumb {
     border: 1px solid var(--shadow-color);
 }
 
@@ -64,6 +64,20 @@
     transition: 0.5s;
 }
 
+.description {
+    display: flex;
+
+    height: 100%;
+    width: 100%;
+
+    word-wrap: break-word;
+    white-space: pre-wrap;
+
+    text-overflow: clip;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
 .project:hover > span {
     rotate: 0deg;
     font-size: 12px;
@@ -100,7 +114,7 @@
 }
 
 @media screen and (width < 1000px) {
-    .projects {
+    #projects {
         height: 100px;
         max-height: 100px;
         min-height: 50px;

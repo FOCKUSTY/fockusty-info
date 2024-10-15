@@ -4,19 +4,23 @@ import projects from "../../projects";
 
 import styles from "../../styles/ui/components/projects.module.css";
 
+import ProjectHandler from "../../handlers/project.handler";
+
+const projectHandler = new ProjectHandler();
+
 class Component extends React.Component {
 	private readonly Project = (name: string, iconUrl: string, link: string) => {
 		return (
-			<a href={link} className={styles.project} target="_blank" rel="noreferrer">
+			<div id={`${styles.project}_${name}`} className={styles.project} onClick={(e) => projectHandler.Handler(e, name)}>
 				<img src={iconUrl} alt={name} />
-				<span>{name}</span>
-			</a>
+				<span id={`${styles.project}_${name}_name`}>{name}</span>
+			</div>
 		);
 	};
 
 	private readonly Component = () => {
 		return (
-			<div className={styles.projects}>
+			<div id={styles.projects}>
 				{projects.map((project) =>
 					this.Project(
 						project.name,

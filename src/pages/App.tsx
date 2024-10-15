@@ -10,8 +10,8 @@ class Page extends Layout {
 		return (
 			<div className={`page ${styles.page}`}>
 				<main id={styles.main}>
-					<div className={styles.projects}>
-						<h2>Мои проеты</h2>
+					<div id={styles.projects}>
+						<h2 id={`${styles.projects}_h2`}>Мои проеты</h2>
 						<Projects />
 					</div>
 				</main>
