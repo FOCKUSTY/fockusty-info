@@ -37,12 +37,11 @@ class SwitchThemeHandler {
 
     public OnLoad = (id: string) => {
         const document = window.document;
-        const html = document.querySelector('html');
-        const inputElement: any = document.querySelector(`#${id}`);
+        const inputElement = document.querySelector(`#${id}`) as HTMLInputElement;
 
-        if(!html || !inputElement) return;
-        
-        if(html.style.colorScheme === 'dark')
+        const isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+        if(isLight)
             inputElement.checked = false;
         else
             inputElement.checked = true;
