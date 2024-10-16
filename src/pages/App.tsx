@@ -13,9 +13,7 @@ class Page extends Layout {
 					<div id={styles.projects}>
 						<h2 id={`${styles.projects}_h2`}>Мои проеты</h2>
 						<Projects />
-						<div id={styles.stats}>
-
-						</div>
+						<div id={styles.stats}></div>
 					</div>
 				</main>
 			</div>
