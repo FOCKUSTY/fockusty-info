@@ -5,6 +5,7 @@ import HeaderStyles from '../styles/ui/header.module.css';
 import FooterStyles from '../styles/ui/footer.module.css';
 
 import AppStyles from '../pages/app.module.css';
+import PhoneHandler from './phone.handler';
 
 const filters = [
     /!.*/g,
@@ -108,6 +109,7 @@ class Service {
         const main = document.getElementById(AppStyles.main) as HTMLElement;
         const projects = document.getElementById(AppStyles.projects) as HTMLElement;
         const stats = document.getElementById(AppStyles.stats) as HTMLElement;
+        const dropdown = document.getElementById(AppStyles.dropdown) as HTMLElement;
 
         main.style.width = '80%';
         main.style.height = '100%';
@@ -127,6 +129,7 @@ class Service {
         setTimeout(() => {
             main.style.display = 'flex';
             stats.style.display = 'flex';
+            dropdown.style.opacity = '1';
 
             setTimeout(async () => {
                 const description = document.createElement('div');
@@ -139,6 +142,14 @@ class Service {
                     .replace(filters[1], '\n');
 
                 description.textContent = text;
+
+                const isPhone = window.matchMedia('screen and (width < 600px)').matches;
+
+                if(isPhone) {
+                    new PhoneHandler().Handler({
+                        main, description, stats
+                    });
+                };
 
                 main.appendChild(description);
             }, 100);

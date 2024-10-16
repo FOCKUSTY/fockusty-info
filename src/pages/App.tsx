@@ -4,6 +4,9 @@ import React from "react";
 
 import Layout from "../ui/layout.ui";
 import Projects from "../ui/components/projects.components";
+import Dropdown from "../ui/components/dropdown.component";
+
+import Content from "../ui/content/dropdown-files.content";
 
 class Page extends Layout {
 	private readonly Page = () => {
@@ -15,6 +18,12 @@ class Page extends Layout {
 						<Projects />
 						<div id={styles.stats}></div>
 					</div>
+
+					<Dropdown
+						id={styles.dropdown}
+						content={new Content().getContent()}
+						name="files"	
+					/>
 				</main>
 			</div>
 		);

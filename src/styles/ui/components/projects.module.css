@@ -67,7 +67,9 @@
 .description {
     display: flex;
 
-    height: 100%;
+    align-self: flex-end;
+
+    height: 95%;
     width: 100%;
 
     word-wrap: break-word;
