@@ -17,8 +17,6 @@ class Component extends React.Component {
 			>
 				<img src={iconUrl} alt={name} />
 				<span id={`${styles.project}_${name}_name`}>{name}</span>
-
-				<div className={styles.author}></div>
 			</div>
 		);
 	};

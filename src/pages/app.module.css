@@ -32,6 +32,13 @@
     justify-items: center;
 }
 
+#stats {
+    display: none;
+
+    flex-direction: column;
+    gap: 5px;
+}
+
 @media screen and (width < 1000px) {
     #main {
         width: 70%;

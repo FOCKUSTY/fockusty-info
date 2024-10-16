@@ -11,8 +11,26 @@ const filters = [
     /[\n\r]+/g
 ];
 
+type Stats =
+	'badge' |
+	'languages/top' |
+	"license" |
+	"stars" |
+	"issues";
+
 class Service {
     private isClicked = false;
+
+    public readonly Stats = (name: string, type: Stats) => {
+		const protocol = 'https://img.shields.io/';
+		const end = '/fockusty/' + name;
+
+		if(type === 'badge') {
+			return protocol + 'badge/' + `fockusty-${name}-${name}`;
+		} else {
+			return protocol + 'github/' + type + end;
+		};
+	}
 
     public UIRemove(element: HTMLElement|HTMLElement[]) {
         function remove(el: HTMLElement) {
@@ -50,7 +68,7 @@ class Service {
         const projects = element.querySelector('#' + ProjectStyles.projects) as HTMLElement;
         const h2 = element.querySelector('#' + AppStyles.projects + '_h2') as HTMLElement;
         const name = element.querySelector('#' + projectId + '_name') as HTMLElement;
-        
+
         const children: HTMLElement[] = projects.children as any;
 
         projects.style.gap = '0px';
@@ -89,7 +107,8 @@ class Service {
     public UpdatePage(document: Document, name: string) {
         const main = document.getElementById(AppStyles.main) as HTMLElement;
         const projects = document.getElementById(AppStyles.projects) as HTMLElement;
-        
+        const stats = document.getElementById(AppStyles.stats) as HTMLElement;
+
         main.style.width = '80%';
         main.style.height = '100%';
 
@@ -107,6 +126,7 @@ class Service {
 
         setTimeout(() => {
             main.style.display = 'flex';
+            stats.style.display = 'flex';
 
             setTimeout(async () => {
                 const description = document.createElement('div');
@@ -122,6 +142,26 @@ class Service {
 
                 main.appendChild(description);
             }, 100);
+
+            const statsComponents: Stats[] = [
+                'badge',
+                'languages/top',
+                "license",
+                "issues",
+                "stars"
+            ]
+
+            for(const component of statsComponents) {
+                const img = document.createElement('img');
+
+                img.src = this.Stats(name, component);
+
+                img.style.width = '100px';
+                img.style.minHeight = '20px';
+
+                stats.appendChild(img);
+            };
+
         }, 700);
     }
 
