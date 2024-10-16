@@ -1,0 +1,7 @@
+[
+    "README.md",
+    "package.json",
+    ".env.example",
+    ".prettierc",
+    ".gitignore"
+]
