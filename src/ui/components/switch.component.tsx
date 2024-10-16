@@ -10,7 +10,7 @@ type Props = {
 const handler = new Handler();
 
 class Component extends React.Component<Props> {
-	componentDidMount = () => handler.OnLoad(this.props.id);
+	componentDidCatch = () => handler.OnLoad(this.props.id);
 
 	public render(): React.ReactNode {
 		return (

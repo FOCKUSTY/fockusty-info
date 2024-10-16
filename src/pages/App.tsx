@@ -4,7 +4,6 @@ import React from "react";
 
 import Layout from "../ui/layout.ui";
 import Projects from "../ui/components/projects.components";
-
 import Dropdown from "../ui/components/dropdown.component";
 
 class Page extends Layout {
