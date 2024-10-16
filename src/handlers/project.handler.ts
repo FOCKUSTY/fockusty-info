@@ -26,7 +26,7 @@ class Service {
 		const end = '/fockusty/' + name;
 
 		if(type === 'badge') {
-			return protocol + 'badge/' + `fockusty-${name}-${name}`;
+			return protocol + type + `${end}-${name}-${name}`;
 		} else {
 			return protocol + 'github/' + type + end;
 		};
