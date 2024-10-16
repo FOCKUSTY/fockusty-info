@@ -11,7 +11,11 @@ const projectHandler = new ProjectHandler();
 class Component extends React.Component {
 	private readonly Project = (name: string, iconUrl: string, link: string) => {
 		return (
-			<div id={`${styles.project}_${name}`} className={styles.project} onClick={(e) => projectHandler.Handler(e, name)}>
+			<div
+				id={`${styles.project}_${name}`}
+				className={styles.project}
+				onClick={(e) => projectHandler.Handler(e, name)}
+			>
 				<img src={iconUrl} alt={name} />
 				<span id={`${styles.project}_${name}_name`}>{name}</span>
 			</div>
