@@ -46,6 +46,7 @@ class Service {
     }
 
     public ProjectsRemove(element: HTMLElement, projectId: string) {
+        const appProjects = element.ownerDocument.getElementById(AppStyles.projects) as HTMLElement;
         const projects = element.querySelector('#' + ProjectStyles.projects) as HTMLElement;
         const h2 = element.querySelector('#' + AppStyles.projects + '_h2') as HTMLElement;
         const name = element.querySelector('#' + projectId + '_name') as HTMLElement;
@@ -76,6 +77,10 @@ class Service {
             projects.style.justifyContent = 'center';
 
             setTimeout(() => {
+                appProjects.style.minWidth = '75px';
+                appProjects.style.maxWidth = '150px';
+                appProjects.style.width = '100%';
+
                 projects.removeChild(child);
             }, 800);
         };
@@ -139,6 +144,7 @@ class ProjectHandler {
         if(service.Click()) return;
 
         const project = event.currentTarget;
+
         const projects = document.getElementById(AppStyles.projects) as HTMLElement;
         const header = document.getElementById(HeaderStyles.header) as HTMLElement;
         const footer = document.getElementById(FooterStyles.footer) as HTMLElement;

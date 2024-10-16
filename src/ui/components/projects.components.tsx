@@ -1,9 +1,8 @@
+import styles from "../../styles/ui/components/projects.module.css";
+
 import React from "react";
 
 import projects from "../../projects";
-
-import styles from "../../styles/ui/components/projects.module.css";
-
 import ProjectHandler from "../../handlers/project.handler";
 
 const projectHandler = new ProjectHandler();
@@ -18,6 +17,10 @@ class Component extends React.Component {
 			>
 				<img src={iconUrl} alt={name} />
 				<span id={`${styles.project}_${name}_name`}>{name}</span>
+				
+				<div className={styles.author}>
+
+				</div>
 			</div>
 		);
 	};

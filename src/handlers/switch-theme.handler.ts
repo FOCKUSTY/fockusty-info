@@ -1,7 +1,11 @@
 import { ChangeEvent } from "react";
 
+let currentTheme: 'dark'|'light';
+
 class SwitchThemeHandler {
-    private _vars: any = {
+    private readonly _vars: {
+        [key: string]: { dark: string, light: string }
+    } = {
         '--text-color': { dark: '#ffffff', light:'#000000' },
         '--bg-color': { dark: '#000000', light: '#ffffff' },
         '--main-color': { dark: '#161616', light: '#e6e6e6' },
@@ -27,6 +31,7 @@ class SwitchThemeHandler {
             };
     
             html.style.colorScheme = theme;
+            currentTheme = theme;
         };
     
         if(!event.target.checked || html.style.colorScheme === 'dark')
@@ -41,11 +46,18 @@ class SwitchThemeHandler {
 
         const isLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-        if(isLight)
+        if(isLight) {
             inputElement.checked = false;
-        else
+            currentTheme = 'light';
+        } else {
             inputElement.checked = true;
+            currentTheme = 'dark';
+        };
     };
+
+    public static getTheme() {
+        return currentTheme;
+    }
 };
 
 export default SwitchThemeHandler;
