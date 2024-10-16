@@ -22,7 +22,7 @@ class Page extends Layout {
 					<Dropdown
 						id={styles.dropdown}
 						content={new Content().getContent()}
-						name="files"	
+						name="files"
 					/>
 				</main>
 			</div>

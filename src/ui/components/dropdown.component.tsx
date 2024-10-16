@@ -16,14 +16,20 @@ class Component extends React.Component<Props> {
 	}
 
 	public componentDidMount(): void {
-		const windowHeight = window.document.getElementsByTagName('html')[0].getBoundingClientRect().height;
-		const dropdown = window.document.getElementById(`${styles.dropdown}_${this.props.name}`) as HTMLElement;
-		const content = window.document.getElementById(`${styles.dropdown_content}_${this.props.name}`) as HTMLElement;
+		const windowHeight = window.document
+			.getElementsByTagName("html")[0]
+			.getBoundingClientRect().height;
+		const dropdown = window.document.getElementById(
+			`${styles.dropdown}_${this.props.name}`
+		) as HTMLElement;
+		const content = window.document.getElementById(
+			`${styles.dropdown_content}_${this.props.name}`
+		) as HTMLElement;
 		const position = dropdown.getBoundingClientRect();
 
-		if(position.top > windowHeight/2) {
-			content.style.bottom = '29px';
-		};
+		if (position.top > windowHeight / 2) {
+			content.style.bottom = "29px";
+		}
 	}
 
 	private Component() {
@@ -34,10 +40,7 @@ class Component extends React.Component<Props> {
 		};
 
 		return (
-			<div
-				id={this.props.id}
-				className={this.props.className}
-			>
+			<div id={this.props.id} className={this.props.className}>
 				<div
 					id={`${styles.dropdown}_${this.props.name}`}
 					className={getStyles("dropdown")}

@@ -1,212 +1,210 @@
-import type { MouseEvent } from 'react';
+import type { MouseEvent } from "react";
 
-import ProjectStyles from '../styles/ui/components/projects.module.css';
-import HeaderStyles from '../styles/ui/header.module.css';
-import FooterStyles from '../styles/ui/footer.module.css';
+import ProjectStyles from "../styles/ui/components/projects.module.css";
+import HeaderStyles from "../styles/ui/header.module.css";
+import FooterStyles from "../styles/ui/footer.module.css";
 
-import AppStyles from '../pages/app.module.css';
-import PhoneHandler from './phone.handler';
+import AppStyles from "../pages/app.module.css";
+import PhoneHandler from "./phone.handler";
 
-const filters = [
-    /!.*/g,
-    /[\n\r]+/g
-];
+const filters = [/!.*/g, /[\n\r]+/g];
 
-type Stats =
-	'badge' |
-	'languages/top' |
-	"license" |
-	"stars" |
-	"issues";
+type Stats = "badge" | "languages/top" | "license" | "stars" | "issues";
 
 class Service {
-    private isClicked = false;
+	private isClicked = false;
 
-    public readonly Stats = (name: string, type: Stats) => {
-		const protocol = 'https://img.shields.io/';
-		const end = '/fockusty/' + name;
+	public readonly Stats = (name: string, type: Stats) => {
+		const protocol = "https://img.shields.io/";
+		const end = "/fockusty/" + name;
 
-		if(type === 'badge') {
+		if (type === "badge") {
 			return protocol + type + `${end}-${name}-${name}`;
 		} else {
-			return protocol + 'github/' + type + end;
-		};
+			return protocol + "github/" + type + end;
+		}
+	};
+
+	public UIRemove(element: HTMLElement | HTMLElement[]) {
+		function remove(el: HTMLElement) {
+			el.style.transition = "2s";
+			el.style.height = "150px";
+
+			setTimeout(() => {
+				el.style.height = "0px";
+				el.style.margin = "0px";
+				el.style.padding = "0px";
+			}, 100);
+
+			const children: HTMLElement[] = el.children as any;
+
+			setTimeout(() => {
+				for (const child of children) {
+					child.style.opacity = "0";
+
+					setTimeout(() => {
+						child.style.display = "none";
+					}, 500);
+				}
+			}, 200);
+		}
+
+		if (Array.isArray(element)) for (const el of element) remove(el);
+		else remove(element);
 	}
 
-    public UIRemove(element: HTMLElement|HTMLElement[]) {
-        function remove(el: HTMLElement) {
-            el.style.transition = '2s';
-            el.style.height = '150px';
-    
-            setTimeout(() => {
-                el.style.height = '0px';
-                el.style.margin = '0px';
-                el.style.padding = '0px';
-            }, 100);
-    
-            const children: HTMLElement[] = el.children as any;
-    
-            setTimeout(() => {
-                for (const child of children) {
-                    child.style.opacity = '0';
-    
-                    setTimeout(() => {
-                        child.style.display = 'none';
-                    }, 500);
-                }
-            }, 200);
-        };
+	public ProjectsRemove(element: HTMLElement, projectId: string) {
+		const appProjects = element.ownerDocument.getElementById(
+			AppStyles.projects
+		) as HTMLElement;
+		const projects = element.querySelector(
+			"#" + ProjectStyles.projects
+		) as HTMLElement;
+		const h2 = element.querySelector("#" + AppStyles.projects + "_h2") as HTMLElement;
+		const name = element.querySelector("#" + projectId + "_name") as HTMLElement;
 
-        if(Array.isArray(element))
-            for(const el of element)
-                remove(el);
-        else
-            remove(element);
-    }
+		const children: HTMLElement[] = projects.children as any;
 
-    public ProjectsRemove(element: HTMLElement, projectId: string) {
-        const appProjects = element.ownerDocument.getElementById(AppStyles.projects) as HTMLElement;
-        const projects = element.querySelector('#' + ProjectStyles.projects) as HTMLElement;
-        const h2 = element.querySelector('#' + AppStyles.projects + '_h2') as HTMLElement;
-        const name = element.querySelector('#' + projectId + '_name') as HTMLElement;
+		projects.style.gap = "0px";
+		projects.style.overflow = "hidden";
 
-        const children: HTMLElement[] = projects.children as any;
+		for (const child of children) {
+			if (child.id === projectId) {
+				child.style.filter = "brightness(1)";
+				name.style.opacity = "0";
 
-        projects.style.gap = '0px';
-        projects.style.overflow = 'hidden';
+				setTimeout(() => {
+					name.style.display = "none";
+				}, 300);
 
-        for (const child of children) {
-            if(child.id === projectId) {
-                child.style.filter = 'brightness(1)';
-                name.style.opacity = '0';
+				h2.textContent = name.textContent;
 
-                setTimeout(() => {
-                    name.style.display = 'none';
-                }, 300);
+				continue;
+			}
 
-                h2.textContent = name.textContent;
+			child.style.opacity = "0";
+			child.style.height = "0px";
+			child.style.width = "0px";
 
-                continue;
-            };
+			projects.style.justifyContent = "center";
 
-            child.style.opacity = '0';
-            child.style.height = '0px';
-            child.style.width = '0px';
+			setTimeout(() => {
+				appProjects.style.minWidth = "75px";
+				appProjects.style.maxWidth = "150px";
+				appProjects.style.width = "100%";
 
-            projects.style.justifyContent = 'center';
+				projects.removeChild(child);
+			}, 800);
+		}
+	}
 
-            setTimeout(() => {
-                appProjects.style.minWidth = '75px';
-                appProjects.style.maxWidth = '150px';
-                appProjects.style.width = '100%';
+	public UpdatePage(document: Document, name: string) {
+		const main = document.getElementById(AppStyles.main) as HTMLElement;
+		const projects = document.getElementById(AppStyles.projects) as HTMLElement;
+		const stats = document.getElementById(AppStyles.stats) as HTMLElement;
+		const dropdown = document.getElementById(AppStyles.dropdown) as HTMLElement;
 
-                projects.removeChild(child);
-            }, 800);
-        };
-    }
+		main.style.width = "80%";
+		main.style.height = "100%";
 
-    public UpdatePage(document: Document, name: string) {
-        const main = document.getElementById(AppStyles.main) as HTMLElement;
-        const projects = document.getElementById(AppStyles.projects) as HTMLElement;
-        const stats = document.getElementById(AppStyles.stats) as HTMLElement;
-        const dropdown = document.getElementById(AppStyles.dropdown) as HTMLElement;
+		main.style.maxHeight = "600px";
 
-        main.style.width = '80%';
-        main.style.height = '100%';
+		for (const child of projects.children as any as HTMLElement[]) {
+			child.style.position = "relative";
+			child.style.opacity = "0";
+			child.style.transition = "0.5s";
 
-        main.style.maxHeight = '600px';
+			setTimeout(() => {
+				child.style.opacity = "1";
+			}, 800);
+		}
 
-        for (const child of (projects.children as any) as HTMLElement[]) {
-            child.style.position = 'relative';
-            child.style.opacity = '0';
-            child.style.transition = '0.5s';
+		setTimeout(() => {
+			main.style.display = "flex";
+			stats.style.display = "flex";
+			dropdown.style.opacity = "1";
 
-            setTimeout(() => {
-                child.style.opacity = '1';
-            }, 800);
-        };
+			setTimeout(async () => {
+				const description = document.createElement("div");
+				description.className = ProjectStyles.description;
 
-        setTimeout(() => {
-            main.style.display = 'flex';
-            stats.style.display = 'flex';
-            dropdown.style.opacity = '1';
+				const text = (
+					await (
+						await fetch(
+							`https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/main/README.md`
+						)
+					).text()
+				)
+					.replaceAll("#", "")
+					.replaceAll(filters[0], "")
+					.replace(filters[1], "\n");
 
-            setTimeout(async () => {
-                const description = document.createElement('div');
-                description.className = ProjectStyles.description;
+				description.textContent = text;
 
-                const text = (await (await fetch(`https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/main/README.md`))
-                    .text())
-                    .replaceAll('#', '')
-                    .replaceAll(filters[0], '')
-                    .replace(filters[1], '\n');
+				const isPhone = window.matchMedia("screen and (width < 600px)").matches;
 
-                description.textContent = text;
+				if (isPhone) {
+					new PhoneHandler().Handler({
+						main,
+						description,
+						stats
+					});
+				}
 
-                const isPhone = window.matchMedia('screen and (width < 600px)').matches;
+				main.appendChild(description);
+			}, 100);
 
-                if(isPhone) {
-                    new PhoneHandler().Handler({
-                        main, description, stats
-                    });
-                };
+			const statsComponents: Stats[] = [
+				"badge",
+				"languages/top",
+				"license",
+				"issues",
+				"stars"
+			];
 
-                main.appendChild(description);
-            }, 100);
+			for (const component of statsComponents) {
+				const img = document.createElement("img");
 
-            const statsComponents: Stats[] = [
-                'badge',
-                'languages/top',
-                "license",
-                "issues",
-                "stars"
-            ]
+				img.src = this.Stats(name, component);
 
-            for(const component of statsComponents) {
-                const img = document.createElement('img');
+				img.style.width = "100px";
+				img.style.minHeight = "20px";
 
-                img.src = this.Stats(name, component);
+				stats.appendChild(img);
+			}
+		}, 700);
+	}
 
-                img.style.width = '100px';
-                img.style.minHeight = '20px';
+	public Click() {
+		if (this.isClicked) return true;
 
-                stats.appendChild(img);
-            };
+		this.isClicked = true;
 
-        }, 700);
-    }
-
-    public Click() {
-        if(this.isClicked)
-            return true;
-
-        this.isClicked = true;
-
-        return false;
-    }
-};
+		return false;
+	}
+}
 
 const service = new Service();
 
 class ProjectHandler {
-    public Handler(event: MouseEvent<HTMLElement>, name: string) {
-        const document = event.currentTarget.ownerDocument;
-        
-        if(service.Click()) return;
+	public Handler(event: MouseEvent<HTMLElement>, name: string) {
+		const document = event.currentTarget.ownerDocument;
 
-        const project = event.currentTarget;
+		if (service.Click()) return;
 
-        const projects = document.getElementById(AppStyles.projects) as HTMLElement;
-        const header = document.getElementById(HeaderStyles.header) as HTMLElement;
-        const footer = document.getElementById(FooterStyles.footer) as HTMLElement;
+		const project = event.currentTarget;
 
-        service.UIRemove([header, footer]);
-        service.ProjectsRemove(projects, project.id);
+		const projects = document.getElementById(AppStyles.projects) as HTMLElement;
+		const header = document.getElementById(HeaderStyles.header) as HTMLElement;
+		const footer = document.getElementById(FooterStyles.footer) as HTMLElement;
 
-        setTimeout(() => {
-            service.UpdatePage(document, name);
-        }, 300);
-    };
-};
+		service.UIRemove([header, footer]);
+		service.ProjectsRemove(projects, project.id);
+
+		setTimeout(() => {
+			service.UpdatePage(document, name);
+		}, 300);
+	}
+}
 
 export default ProjectHandler;
