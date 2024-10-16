@@ -11,8 +11,11 @@ type Props = {
 };
 
 class Component extends React.Component<Props> {
+	private readonly offset;
+
 	constructor(props: Props) {
 		super(props);
+		this.offset = '29px';
 	}
 
 	public componentDidMount(): void {
@@ -28,7 +31,7 @@ class Component extends React.Component<Props> {
 		const position = dropdown.getBoundingClientRect();
 
 		if (position.top > windowHeight / 2) {
-			content.style.bottom = "29px";
+			content.style.bottom = this.offset;
 		}
 	}
 
