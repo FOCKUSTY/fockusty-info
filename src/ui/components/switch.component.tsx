@@ -11,6 +11,7 @@ const handler = new Handler();
 
 class Component extends React.Component<Props> {
 	componentDidCatch = () => handler.OnLoad(this.props.id);
+	componentDidUpdate = () => handler.OnLoad(this.props.id);
 
 	public render(): React.ReactNode {
 		return (
