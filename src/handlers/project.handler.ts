@@ -1,6 +1,6 @@
 import type { MouseEvent } from "react";
 
-import DropdownStyles from '../styles/ui/components/dropdown.module.css';
+import DropdownStyles from "../styles/ui/components/dropdown.module.css";
 import ProjectStyles from "../styles/ui/components/projects.module.css";
 import HeaderStyles from "../styles/ui/header.module.css";
 import FooterStyles from "../styles/ui/footer.module.css";
@@ -18,10 +18,12 @@ class Service {
 	private isClicked = false;
 
 	private readonly AppendDropdownContent = (document: Document) => {
-		const dropdownContent = document.getElementById(DropdownStyles.dropdown_content + '_files') as HTMLElement;
-		const content = new DropdownContent<'node'>('node').getContent();
+		const dropdownContent = document.getElementById(
+			DropdownStyles.dropdown_content + "_files"
+		) as HTMLElement;
+		const content = new DropdownContent<"node">("node").getContent();
 
-		content.forEach(el => dropdownContent.appendChild(el as Node));
+		content.forEach((el) => dropdownContent.appendChild(el as Node));
 	};
 
 	public readonly Stats = (name: string, type: Stats) => {
@@ -133,7 +135,7 @@ class Service {
 			main.style.display = "flex";
 			stats.style.display = "flex";
 			dropdown.style.opacity = "1";
-			
+
 			setTimeout(async () => {
 				const description = document.createElement("div");
 				description.className = ProjectStyles.description;

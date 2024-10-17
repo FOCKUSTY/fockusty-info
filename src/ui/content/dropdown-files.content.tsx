@@ -1,14 +1,14 @@
-import styles from './dropdown-files.module.css';
+import styles from "./dropdown-files.module.css";
 
 import React from "react";
 
 import files from "../../files.json";
 
-class Content<T extends 'node' | 'react'> {
+class Content<T extends "node" | "react"> {
 	private readonly _content: {
-		react: React.ReactElement[],
-		node: Node[]
-	} = {node: [], react: []};
+		react: React.ReactElement[];
+		node: Node[];
+	} = { node: [], react: [] };
 
 	private readonly _type: T;
 
@@ -20,27 +20,25 @@ class Content<T extends 'node' | 'react'> {
 		const document = window.document;
 		const type: T = this._type;
 
-		const element = type === 'react'
-			? (
-				<button
-					className={styles.content}
-					id={`${styles.content}_${content}`}
-				>{content}</button>
-			)
-			: document.createElement('button');
+		const element =
+			type === "react" ? (
+				<button className={styles.content} id={`${styles.content}_${content}`}>
+					{content}
+				</button>
+			) : (
+				document.createElement("button")
+			);
 
-		if(type === 'node') {
-			const el = (element as HTMLButtonElement);
+		if (type === "node") {
+			const el = element as HTMLButtonElement;
 
 			el.textContent = content;
 			el.className = styles.content;
 			el.id = `${styles.content}_${content}`;
-		};
+		}
 
-		if(type === 'react')
-			this._content.react.push(element as React.ReactElement);
-		else
-			this._content.node.push(element as Node);
+		if (type === "react") this._content.react.push(element as React.ReactElement);
+		else this._content.node.push(element as Node);
 	};
 
 	private readonly init = () => {
@@ -54,10 +52,8 @@ class Content<T extends 'node' | 'react'> {
 	public getContent() {
 		if (this._content[this._type].length === 0) this.init();
 
-		if(this._type === 'react')
-			return this._content.react;
-		else
-			return this._content.node;
+		if (this._type === "react") return this._content.react;
+		else return this._content.node;
 	}
 }
 
