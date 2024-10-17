@@ -1,6 +1,6 @@
 import type { MouseEvent } from "react";
 
-import DropdownStyles from '../styles/ui/components/dropdown.module.css';
+import DropdownStyles from "../styles/ui/components/dropdown.module.css";
 import ProjectStyles from "../styles/ui/components/projects.module.css";
 import HeaderStyles from "../styles/ui/header.module.css";
 import FooterStyles from "../styles/ui/footer.module.css";
@@ -143,7 +143,7 @@ class Service {
 			main.style.display = "flex";
 			stats.style.display = "flex";
 			dropdown.style.opacity = "1";
-			
+
 			setTimeout(async () => {
 				const description = document.createElement("div");
 				description.className = ProjectStyles.description;
