@@ -1,3 +1,5 @@
+import styles from './dropdown-files.module.css';
+
 import React from "react";
 
 import files from "../../files.json";
@@ -6,7 +8,12 @@ class Content {
 	private readonly content: React.ReactElement[] = [];
 
 	private readonly addContent = (content: string) => {
-		const element = <button>{content}</button>;
+		const element = (
+			<button
+				className={styles.content}
+				id={`${styles.content}_${content}`}
+			>{content}</button>
+		);
 
 		this.content.push(element);
 	};
