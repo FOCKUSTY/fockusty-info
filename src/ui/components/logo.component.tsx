@@ -5,11 +5,7 @@ import LinksComponent from "./links.component";
 import styles from "../../styles/ui/components/logo.module.css";
 
 class Component extends React.Component {
-	public constructor(props: any) {
-		super(props);
-	}
-
-	private readonly Component = () => {
+	private readonly Component = (): React.ReactNode => {
 		return (
 			<>
 				<div className={styles.logo}>

@@ -5,11 +5,7 @@ import LinksComponent from "./components/links.component";
 import styles from "../styles/ui/footer.module.css";
 
 class Component extends React.Component {
-	public constructor(props: any) {
-		super(props);
-	}
-
-	private readonly Component = () => {
+	private readonly Component = (): React.ReactNode => {
 		return (
 			<>
 				<footer id={styles.footer}>

@@ -8,7 +8,7 @@ import ProjectHandler from "../../handlers/project.handler";
 const projectHandler = new ProjectHandler();
 
 class Component extends React.Component {
-	private readonly Project = (name: string, iconUrl: string, link: string) => {
+	private readonly Project = (name: string, iconUrl: string): React.ReactNode => {
 		return (
 			<div
 				id={`${styles.project}_${name}`}
@@ -21,14 +21,13 @@ class Component extends React.Component {
 		);
 	};
 
-	private readonly Component = () => {
+	private readonly Component = (): React.ReactNode => {
 		return (
 			<div id={styles.projects}>
 				{projects.map((project) =>
 					this.Project(
 						project.name,
-						project.icon_url || "/logo.png",
-						project.link || "https://github.com/FOCKUSTY/" + project.name
+						project.icon_url || "/logo.png"
 					)
 				)}
 			</div>

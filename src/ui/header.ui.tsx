@@ -6,11 +6,7 @@ import SwitchComponent from "./components/switch.component";
 import styles from "../styles/ui/header.module.css";
 
 class Component extends React.Component {
-	public constructor(props: any) {
-		super(props);
-	}
-
-	private readonly Component = () => {
+	private readonly Component = (): React.ReactNode => {
 		return (
 			<>
 				<header id={styles.header}>

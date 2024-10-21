@@ -18,13 +18,15 @@ class Service {
 	private isClicked = false;
 
 	private readonly AppendDropdownContent = (document: Document) => {
-		const dropdownContent = document.getElementById(DropdownStyles.dropdown_content + '_files') as HTMLElement;
-		const content = new DropdownContent<'node'>('node').getContent();
+		const dropdownContent = document.getElementById(
+			DropdownStyles.dropdown_content + "_files"
+		) as HTMLElement;
+		const content = new DropdownContent<"node">("node").getContent();
 
-		content.forEach(el => dropdownContent.appendChild(el as Node));
+		content.forEach((el) => dropdownContent.appendChild(el as Node));
 	};
 
-	public readonly Stats = (name: string, type: Stats) => {
+	public readonly Stats = (name: string, type: Stats): string => {
 		const protocol = "https://img.shields.io/";
 		const end = "/fockusty/" + name;
 
@@ -35,7 +37,7 @@ class Service {
 		}
 	};
 
-	public UIRemove(element: HTMLElement | HTMLElement[]) {
+	public UIRemove(element: HTMLElement | HTMLElement[]): void {
 		function remove(el: HTMLElement) {
 			el.style.transition = "2s";
 			el.style.height = "150px";
@@ -46,16 +48,18 @@ class Service {
 				el.style.padding = "0px";
 			}, 100);
 
-			const children: HTMLElement[] = el.children as any;
+			const children: HTMLCollection = el.children;
 
 			setTimeout(() => {
-				for (const child of children) {
+				for (let i=0; i<children.length; i++) {
+					const child = children.item(i) as HTMLElement;
+
 					child.style.opacity = "0";
 
 					setTimeout(() => {
 						child.style.display = "none";
 					}, 500);
-				}
+				};
 			}, 200);
 		}
 
@@ -63,7 +67,7 @@ class Service {
 		else remove(element);
 	}
 
-	public ProjectsRemove(element: HTMLElement, projectId: string) {
+	public ProjectsRemove(element: HTMLElement, projectId: string): void {
 		const appProjects = element.ownerDocument.getElementById(
 			AppStyles.projects
 		) as HTMLElement;
@@ -73,12 +77,14 @@ class Service {
 		const h2 = element.querySelector("#" + AppStyles.projects + "_h2") as HTMLElement;
 		const name = element.querySelector("#" + projectId + "_name") as HTMLElement;
 
-		const children: HTMLElement[] = projects.children as any;
+		const children: HTMLCollection = projects.children;
 
 		projects.style.gap = "0px";
 		projects.style.overflow = "hidden";
 
-		for (const child of children) {
+		for (let i=0; i<children.length; i++) {
+			const child = children.item(i) as HTMLElement;
+
 			if (child.id === projectId) {
 				child.style.filter = "brightness(1)";
 				name.style.opacity = "0";
@@ -108,7 +114,7 @@ class Service {
 		}
 	}
 
-	public UpdatePage(document: Document, name: string) {
+	public UpdatePage(document: Document, name: string): void {
 		const main = document.getElementById(AppStyles.main) as HTMLElement;
 		const projects = document.getElementById(AppStyles.projects) as HTMLElement;
 		const stats = document.getElementById(AppStyles.stats) as HTMLElement;
@@ -119,7 +125,11 @@ class Service {
 
 		main.style.maxHeight = "600px";
 
-		for (const child of projects.children as any as HTMLElement[]) {
+		const children: HTMLCollection = projects.children;
+
+		for (let i=0; i<children.length; i++) {
+			const child = children.item(i) as HTMLElement;
+			
 			child.style.position = "relative";
 			child.style.opacity = "0";
 			child.style.transition = "0.5s";
@@ -127,7 +137,7 @@ class Service {
 			setTimeout(() => {
 				child.style.opacity = "1";
 			}, 800);
-		}
+		};
 
 		setTimeout(() => {
 			main.style.display = "flex";
@@ -185,7 +195,7 @@ class Service {
 		}, 700);
 	}
 
-	public Click() {
+	public Click(): boolean {
 		if (this.isClicked) return true;
 
 		this.isClicked = true;
@@ -197,7 +207,7 @@ class Service {
 const service = new Service();
 
 class ProjectHandler {
-	public Handler(event: MouseEvent<HTMLElement>, name: string) {
+	public Handler(event: MouseEvent<HTMLElement>, name: string): void {
 		const document = event.currentTarget.ownerDocument;
 
 		if (service.Click()) return;
