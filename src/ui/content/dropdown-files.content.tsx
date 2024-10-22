@@ -17,11 +17,8 @@ class Content<T extends "node" | "react"> {
 	}
 
 	private readonly addContent = (content: string) => {
-		const document = window.document;
-		const type: T = this._type;
-
 		const element =
-			type === "react" ? (
+			this._type === "react" ? (
 				<button className={styles.content} id={`${styles.content}_${content}`}>
 					{content}
 				</button>
@@ -29,7 +26,7 @@ class Content<T extends "node" | "react"> {
 				document.createElement("button")
 			);
 
-		if (type === "node") {
+		if (this._type === "node") {
 			const el = element as HTMLButtonElement;
 
 			el.textContent = content;
@@ -37,7 +34,7 @@ class Content<T extends "node" | "react"> {
 			el.id = `${styles.content}_${content}`;
 		}
 
-		if (type === "react") this._content.react.push(element as React.ReactElement);
+		if (this._type === "react") this._content.react.push(element as React.ReactElement);
 		else this._content.node.push(element as Node);
 	};
 

@@ -60,7 +60,9 @@ class Component extends React.Component<Props> {
 					<div
 						id={`${styles.dropdown_content}_${this.props.name}`}
 						className={getStyles("dropdown_content")}
-					></div>
+					>
+						{this.props.content.map((el) => el)}
+					</div>
 				</div>
 			</div>
 		);

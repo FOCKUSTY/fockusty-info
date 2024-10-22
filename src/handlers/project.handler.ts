@@ -5,10 +5,10 @@ import ProjectStyles from "../styles/ui/components/projects.module.css";
 import HeaderStyles from "../styles/ui/header.module.css";
 import FooterStyles from "../styles/ui/footer.module.css";
 
-import DropdownContent from "../ui/content/dropdown-files.content";
-
 import AppStyles from "../pages/app.module.css";
 import PhoneHandler from "./phone.handler";
+
+import DropdownContent from '../ui/content/dropdown-files.content';
 
 const filters = [/!.*/g, /[\n\r]+/g];
 
