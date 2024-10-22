@@ -21,7 +21,7 @@ class Page extends Layout {
 
 					<Dropdown
 						id={styles.dropdown}
-						content={new Content().getContent()}
+						content={new Content('react').getContent() as React.ReactNode[]}
 						name="files"
 					/>
 				</main>

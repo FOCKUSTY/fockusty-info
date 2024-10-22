@@ -4,7 +4,7 @@ import React from "react";
 
 type Props = {
 	name: string;
-	content: React.ReactElement[];
+	content: React.ReactNode[];
 	styles?: { [key: string]: string };
 	className?: string;
 	id?: string;
