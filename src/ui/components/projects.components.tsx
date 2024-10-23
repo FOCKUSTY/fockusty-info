@@ -25,10 +25,7 @@ class Component extends React.Component {
 		return (
 			<div id={styles.projects}>
 				{projects.map((project) =>
-					this.Project(
-						project.name,
-						project.icon_url || "/logo.png"
-					)
+					this.Project(project.name, project.icon_url || "/logo.png")
 				)}
 			</div>
 		);

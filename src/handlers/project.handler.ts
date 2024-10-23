@@ -1,6 +1,6 @@
 import type { MouseEvent } from "react";
 
-import DropdownFilesStyles from '../ui/content/dropdown-files.module.css';
+import DropdownFilesStyles from "../ui/content/dropdown-files.module.css";
 import DropdownStyles from "../styles/ui/components/dropdown.module.css";
 import ProjectStyles from "../styles/ui/components/projects.module.css";
 import HeaderStyles from "../styles/ui/header.module.css";
@@ -9,7 +9,7 @@ import FooterStyles from "../styles/ui/footer.module.css";
 import AppStyles from "../pages/app.module.css";
 import PhoneHandler from "./phone.handler";
 
-import DropdownContent from '../ui/content/dropdown-files.content';
+import DropdownContent from "../ui/content/dropdown-files.content";
 
 const filters = [/!.*/g, /[\n\r]+/g];
 
@@ -18,82 +18,89 @@ type Stats = "badge" | "languages/top" | "license" | "stars" | "issues";
 class Service {
 	private isClicked = false;
 
-	private readonly AddContentClickListener = (element: Node, type: 'stats'|'other', text: string|Node) => {		
-		element.addEventListener('click', () => {
-			const description = document.getElementById(ProjectStyles.description) as HTMLElement;
+	private readonly AddContentClickListener = (
+		element: Node,
+		type: "stats" | "other",
+		text: string | Node
+	) => {
+		element.addEventListener("click", () => {
+			const description = document.getElementById(
+				ProjectStyles.description
+			) as HTMLElement;
 
 			if (description.textContent === text) return;
 
-			description.style.width = '0%';
+			description.style.width = "0%";
 
 			setTimeout(() => {
-				description.style.width = '100%';
+				description.style.width = "100%";
 
-				description.textContent = '';
+				description.textContent = "";
 
-				if (type === 'stats' && (text as HTMLElement).style.display !== 'flex') {
+				if (type === "stats" && (text as HTMLElement).style.display !== "flex") {
 					const stats = text as HTMLElement;
-					stats.style.display = 'flex';
-					stats.style.width = '100%';
-					stats.style.alignItems = 'center';
+					stats.style.display = "flex";
+					stats.style.width = "100%";
+					stats.style.alignItems = "center";
 				}
 
-				if(type === 'stats')
-					description.appendChild(text as Node);
-				else
-					description.textContent = text as string;
+				if (type === "stats") description.appendChild(text as Node);
+				else description.textContent = text as string;
 			}, 1000);
 		});
 	};
 
 	private readonly AppendDropdownContent = (document: Document, name: string) => {
 		(async () => {
-			const defaultBranch = (await (await fetch('https://api.github.com/repos/fockusty/' + name)).json()).default_branch;
+			const defaultBranch = (
+				await (
+					await fetch("https://api.github.com/repos/fockusty/" + name)
+				).json()
+			).default_branch;
 			const url = `https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/${defaultBranch}/`;
 
 			const dropdownContent = document.getElementById(
 				DropdownStyles.dropdown_content + "_files"
 			) as HTMLElement;
 			const content = new DropdownContent<"node">("node").getContent() as Node[];
-	
+
 			const isPhone = window.matchMedia("screen and (width < 600px)").matches;
 
-			if (isPhone)
-				content.push(document.getElementById(AppStyles.stats) as Node);
+			if (isPhone) content.push(document.getElementById(AppStyles.stats) as Node);
 
 			for (const element of content) {
 				const el = element as Node;
 				const fileName = el.textContent;
-				
+
 				try {
 					console.log((el as HTMLElement).id === AppStyles.stats);
 
 					if ((el as HTMLElement).id === AppStyles.stats) {
-						const btn = document.createElement('button');
+						const btn = document.createElement("button");
 
 						btn.className = DropdownFilesStyles.content;
-						btn.id = DropdownFilesStyles.content + '_stats';
-						btn.textContent = 'stats';
+						btn.id = DropdownFilesStyles.content + "_stats";
+						btn.textContent = "stats";
 
-						this.AddContentClickListener(btn, 'stats', el);
+						this.AddContentClickListener(btn, "stats", el);
 						dropdownContent.appendChild(btn as Node);
 
 						continue;
-					};
+					}
 
 					const data = await fetch(url + fileName).catch();
 					const text = (await data.text())
 						.replaceAll("#", "")
 						.replaceAll(filters[0], "")
 						.replace(filters[1], "\n");
-	
+
 					if (data.status !== 200) continue;
 
-					this.AddContentClickListener(el, 'other', text);
+					this.AddContentClickListener(el, "other", text);
 
 					dropdownContent.appendChild(el as Node);
-				} catch {};
-			};
+				} catch {}
+			}
 		})();
 	};
 
@@ -122,7 +129,7 @@ class Service {
 			const children: HTMLCollection = el.children;
 
 			setTimeout(() => {
-				for (let i=0; i<children.length; i++) {
+				for (let i = 0; i < children.length; i++) {
 					const child = children.item(i) as HTMLElement;
 
 					child.style.opacity = "0";
@@ -130,7 +137,7 @@ class Service {
 					setTimeout(() => {
 						child.style.display = "none";
 					}, 500);
-				};
+				}
 			}, 200);
 		}
 
@@ -153,7 +160,7 @@ class Service {
 		projects.style.gap = "0px";
 		projects.style.overflow = "hidden";
 
-		for (let i=0; i<children.length; i++) {
+		for (let i = 0; i < children.length; i++) {
 			const child = children.item(i) as HTMLElement;
 
 			if (child.id === projectId) {
@@ -200,9 +207,9 @@ class Service {
 
 		const children: HTMLCollection = projects.children;
 
-		for (let i=0; i<children.length; i++) {
+		for (let i = 0; i < children.length; i++) {
 			const child = children.item(i) as HTMLElement;
-			
+
 			child.style.position = "relative";
 			child.style.opacity = "0";
 			child.style.transition = "0.5s";
@@ -210,7 +217,7 @@ class Service {
 			setTimeout(() => {
 				child.style.opacity = "1";
 			}, 800);
-		};
+		}
 
 		setTimeout(() => {
 			main.style.display = "flex";

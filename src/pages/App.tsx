@@ -17,11 +17,7 @@ class Page extends Layout {
 						<div id={styles.stats}></div>
 					</div>
 
-					<Dropdown
-						id={styles.dropdown}
-						content={[]}
-						name="files"
-					/>
+					<Dropdown id={styles.dropdown} content={[]} name="files" />
 				</main>
 			</div>
 		);
