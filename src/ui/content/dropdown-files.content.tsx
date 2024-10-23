@@ -19,7 +19,7 @@ class Content<T extends "node" | "react"> {
 	private readonly addContent = (content: string) => {
 		const element =
 			this._type === "react" ? (
-				<button className={styles.content} id={`${styles.content}_${content}`}>
+				<button key={content} className={styles.content} id={`${styles.content}_${content}`}>
 					{content}
 				</button>
 			) : (

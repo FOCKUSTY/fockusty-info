@@ -64,7 +64,7 @@
     transition: 0.5s;
 }
 
-.description {
+#description {
     display: flex;
 
     align-self: flex-end;

@@ -1,5 +1,6 @@
 import type { MouseEvent } from "react";
 
+import DropdownFilesStyles from '../ui/content/dropdown-files.module.css';
 import DropdownStyles from "../styles/ui/components/dropdown.module.css";
 import ProjectStyles from "../styles/ui/components/projects.module.css";
 import HeaderStyles from "../styles/ui/header.module.css";
@@ -17,13 +18,83 @@ type Stats = "badge" | "languages/top" | "license" | "stars" | "issues";
 class Service {
 	private isClicked = false;
 
-	private readonly AppendDropdownContent = (document: Document) => {
-		const dropdownContent = document.getElementById(
-			DropdownStyles.dropdown_content + "_files"
-		) as HTMLElement;
-		const content = new DropdownContent<"node">("node").getContent();
+	private readonly AddContentClickListener = (element: Node, type: 'stats'|'other', text: string|Node) => {		
+		element.addEventListener('click', () => {
+			const description = document.getElementById(ProjectStyles.description) as HTMLElement;
 
-		content.forEach((el) => dropdownContent.appendChild(el as Node));
+			if (description.textContent === text) return;
+
+			description.style.width = '0%';
+
+			setTimeout(() => {
+				description.style.width = '100%';
+
+				description.textContent = '';
+
+				if (type === 'stats' && (text as HTMLElement).style.display !== 'flex') {
+					const stats = text as HTMLElement;
+					stats.style.display = 'flex';
+					stats.style.width = '100%';
+					stats.style.alignItems = 'center';
+				}
+
+				if(type === 'stats')
+					description.appendChild(text as Node);
+				else
+					description.textContent = text as string;
+			}, 1000);
+		});
+	};
+
+	private readonly AppendDropdownContent = (document: Document, name: string) => {
+		(async () => {
+			const defaultBranch = (await (await fetch('https://api.github.com/repos/fockusty/' + name)).json()).default_branch;
+			const url = `https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/${defaultBranch}/`;
+
+			const dropdownContent = document.getElementById(
+				DropdownStyles.dropdown_content + "_files"
+			) as HTMLElement;
+			const content = new DropdownContent<"node">("node").getContent() as Node[];
+	
+			const isPhone = window.matchMedia("screen and (width < 600px)").matches;
+
+			if (isPhone)
+				content.push(document.getElementById(AppStyles.stats) as Node);
+
+			for (const element of content) {
+				const el = element as Node;
+				const fileName = el.textContent;
+				
+				try {
+					console.log((el as HTMLElement).id === AppStyles.stats);
+
+					if ((el as HTMLElement).id === AppStyles.stats) {
+						const btn = document.createElement('button');
+
+						btn.className = DropdownFilesStyles.content;
+						btn.id = DropdownFilesStyles.content + '_stats';
+						btn.textContent = 'stats';
+
+						this.AddContentClickListener(btn, 'stats', el);
+						dropdownContent.appendChild(btn as Node);
+
+						continue;
+					};
+
+					const data = await fetch(url + fileName).catch();
+					const text = (await data.text())
+						.replaceAll("#", "")
+						.replaceAll(filters[0], "")
+						.replace(filters[1], "\n");
+	
+					if (data.status !== 200) continue;
+
+					this.AddContentClickListener(el, 'other', text);
+
+					dropdownContent.appendChild(el as Node);
+				} catch {};
+			};
+		})();
 	};
 
 	public readonly Stats = (name: string, type: Stats): string => {
@@ -31,7 +102,7 @@ class Service {
 		const end = "/fockusty/" + name;
 
 		if (type === "badge") {
-			return protocol + type + `${end}-${name}-${name}`;
+			return protocol + type + `${end}-gray`;
 		} else {
 			return protocol + "github/" + type + end;
 		}
@@ -120,6 +191,8 @@ class Service {
 		const stats = document.getElementById(AppStyles.stats) as HTMLElement;
 		const dropdown = document.getElementById(AppStyles.dropdown) as HTMLElement;
 
+		this.AppendDropdownContent(document, name);
+
 		main.style.width = "80%";
 		main.style.height = "100%";
 
@@ -146,7 +219,7 @@ class Service {
 
 			setTimeout(async () => {
 				const description = document.createElement("div");
-				description.className = ProjectStyles.description;
+				description.id = ProjectStyles.description;
 
 				const text = (
 					await (
