@@ -232,11 +232,17 @@ class Service {
 			returnButton.disabled = false;
 
 			setTimeout(async () => {
+				const defaultBranch = (
+					await (
+						await fetch("https://api.github.com/repos/fockusty/" + name)
+					).json()
+				).default_branch;
+
 				const description = document.createElement("div");
 				description.id = ProjectStyles.description;
 
 				const data =
-					await fetch(`https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/main/README.md`)
+					await fetch(`https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/${defaultBranch}/README.md`)
 
 				const text = (await data.text())
 					.replaceAll("#", "")
