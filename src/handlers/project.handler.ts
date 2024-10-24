@@ -36,7 +36,7 @@ class Service {
 
 			setTimeout(() => {
 				description.style.width = "100%";
-				description.style.opacity = '1';
+				description.style.opacity = "1";
 				description.textContent = "";
 
 				if (type === "stats" && (text as HTMLElement).style.display !== "flex") {
@@ -44,7 +44,7 @@ class Service {
 					stats.style.display = "flex";
 					stats.style.width = "100%";
 					stats.style.alignItems = "center";
-					stats.style.opacity = '1';
+					stats.style.opacity = "1";
 				}
 
 				if (type === "stats") description.appendChild(text as Node);
@@ -72,7 +72,7 @@ class Service {
 			if (isPhone) content.push(document.getElementById(AppStyles.stats) as Node);
 
 			for (const element of content) {
-				if(!element) continue;
+				if (!element) continue;
 
 				const el = element as Node;
 				const fileName = el.textContent;
@@ -112,7 +112,7 @@ class Service {
 		const end = "/fockusty/" + name;
 
 		if (type === "badge") {
-			return protocol + type + `${end.replaceAll(/[-_]/g, '')}-gray`;
+			return protocol + type + `${end.replaceAll(/[-_]/g, "")}-gray`;
 		} else {
 			return protocol + "github/" + type + end;
 		}
@@ -199,7 +199,9 @@ class Service {
 		const main = document.getElementById(AppStyles.main) as HTMLElement;
 		const projects = document.getElementById(AppStyles.projects) as HTMLElement;
 		const dropdown = document.getElementById(AppStyles.dropdown) as HTMLButtonElement;
-		const returnButton = document.getElementById(AppStyles.return) as HTMLButtonElement;
+		const returnButton = document.getElementById(
+			AppStyles.return
+		) as HTMLButtonElement;
 		const stats = document.getElementById(AppStyles.stats) as HTMLElement;
 
 		this.AppendDropdownContent(document, name);
@@ -246,17 +248,19 @@ class Service {
 				const description = document.createElement("div");
 				description.id = ProjectStyles.description;
 
-				const data =
-					await fetch(`https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/${defaultBranch}/README.md`)
+				const data = await fetch(
+					`https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/${defaultBranch}/README.md`
+				);
 
 				const text = (await data.text())
 					.replaceAll("#", "")
 					.replaceAll(filters[0], "")
 					.replace(filters[1], "\n");
 
-				description.textContent = data.status === 200
-					? text
-					: "Главный файл был не найден, посмотрите, какие файлы сущесвует с помощью кнопки!";
+				description.textContent =
+					data.status === 200
+						? text
+						: "Главный файл был не найден, посмотрите, какие файлы сущесвует с помощью кнопки!";
 
 				if (isPhone) {
 					new PhoneHandler().Handler({
@@ -279,11 +283,11 @@ class Service {
 
 			for (const component of statsComponents) {
 				const img = document.createElement("img");
-				
+
 				img.src = this.Stats(name, component);
 				img.style.width = "100px";
 				img.style.minHeight = "20px";
-				
+
 				stats.appendChild(img);
 			}
 		}, 700);
@@ -291,7 +295,7 @@ class Service {
 
 	public ClearClick() {
 		this.isClicked = false;
-	};
+	}
 
 	public Click(): boolean {
 		if (this.isClicked) return true;
@@ -307,7 +311,10 @@ class Service {
 const service = new Service();
 
 class ProjectHandler {
-	public Handler(event: MouseEvent | { currentTarget: HTMLElement }, name: string): void {
+	public Handler(
+		event: MouseEvent | { currentTarget: HTMLElement },
+		name: string
+	): void {
 		const document = event.currentTarget.ownerDocument;
 
 		if (service.Click()) return;
@@ -327,8 +334,6 @@ class ProjectHandler {
 	}
 }
 
-export {
-	service
-};
+export { service };
 
 export default ProjectHandler;

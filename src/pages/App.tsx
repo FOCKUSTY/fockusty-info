@@ -23,7 +23,12 @@ class Page extends Layout {
 						<div id={styles.return}>
 							<button onClick={new BackHandler().Handler}>Return</button>
 						</div>
-						<Dropdown className="noselect" id={styles.dropdown} content={[]} name="files" />
+						<Dropdown
+							className="noselect"
+							id={styles.dropdown}
+							content={[]}
+							name="files"
+						/>
 					</div>
 				</main>
 			</div>
