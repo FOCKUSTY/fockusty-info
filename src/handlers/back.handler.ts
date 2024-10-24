@@ -126,7 +126,7 @@ class BackService {
 		const children: HTMLCollection = projects.children;
 
         for (let i = 0; i < children.length; i++) {
-			const child = children.item(i) as HTMLElement;
+            const child = children.item(i) as HTMLElement;
 
 			child.style.opacity = "0";
 			child.style.height = "0px";
@@ -180,7 +180,11 @@ class BackService {
         setTimeout(() => {
             stats.style.display = 'none';
 
-            description.remove();
+            if(description.textContent !== '') description.remove();
+            else {
+                (document.getElementById(AppStyles.main) as HTMLElement).appendChild(stats);
+                description.remove();
+            }
 
             this.ClearButtons();
             this.ClearDropdown();

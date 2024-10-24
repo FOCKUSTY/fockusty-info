@@ -36,7 +36,7 @@ class Service {
 
 			setTimeout(() => {
 				description.style.width = "100%";
-
+				description.style.opacity = '1';
 				description.textContent = "";
 
 				if (type === "stats" && (text as HTMLElement).style.display !== "flex") {
@@ -44,6 +44,7 @@ class Service {
 					stats.style.display = "flex";
 					stats.style.width = "100%";
 					stats.style.alignItems = "center";
+					stats.style.opacity = '1';
 				}
 
 				if (type === "stats") description.appendChild(text as Node);
@@ -71,6 +72,8 @@ class Service {
 			if (isPhone) content.push(document.getElementById(AppStyles.stats) as Node);
 
 			for (const element of content) {
+				if(!element) continue;
+
 				const el = element as Node;
 				const fileName = el.textContent;
 
@@ -195,11 +198,13 @@ class Service {
 	public UpdatePage(document: Document, name: string): void {
 		const main = document.getElementById(AppStyles.main) as HTMLElement;
 		const projects = document.getElementById(AppStyles.projects) as HTMLElement;
-		const stats = document.getElementById(AppStyles.stats) as HTMLElement;
 		const dropdown = document.getElementById(AppStyles.dropdown) as HTMLButtonElement;
 		const returnButton = document.getElementById(AppStyles.return) as HTMLButtonElement;
+		const stats = document.getElementById(AppStyles.stats) as HTMLElement;
 
 		this.AppendDropdownContent(document, name);
+
+		const isPhone = window.matchMedia("screen and (width < 600px)").matches;
 
 		main.style.width = "80%";
 		main.style.height = "100%";
@@ -253,8 +258,6 @@ class Service {
 					? text
 					: "Главный файл был не найден, посмотрите, какие файлы сущесвует с помощью кнопки!";
 
-				const isPhone = window.matchMedia("screen and (width < 600px)").matches;
-
 				if (isPhone) {
 					new PhoneHandler().Handler({
 						main,
@@ -276,12 +279,11 @@ class Service {
 
 			for (const component of statsComponents) {
 				const img = document.createElement("img");
-
+				
 				img.src = this.Stats(name, component);
-
 				img.style.width = "100px";
 				img.style.minHeight = "20px";
-
+				
 				stats.appendChild(img);
 			}
 		}, 700);
