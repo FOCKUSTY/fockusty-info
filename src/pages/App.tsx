@@ -2,6 +2,8 @@ import styles from "./app.module.css";
 
 import React from "react";
 
+import BackHandler from "../handlers/back.handler";
+
 import Layout from "../ui/layout.ui";
 import Projects from "../ui/components/projects.components";
 import Dropdown from "../ui/components/dropdown.component";
@@ -17,7 +19,12 @@ class Page extends Layout {
 						<div id={styles.stats}></div>
 					</div>
 
-					<Dropdown id={styles.dropdown} content={[]} name="files" />
+					<div className={styles.buttons}>
+						<div id={styles.return}>
+							<button onClick={new BackHandler().Handler}>Return</button>
+						</div>
+						<Dropdown id={styles.dropdown} content={[]} name="files" />
+					</div>
 				</main>
 			</div>
 		);

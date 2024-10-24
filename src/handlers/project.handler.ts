@@ -7,9 +7,11 @@ import HeaderStyles from "../styles/ui/header.module.css";
 import FooterStyles from "../styles/ui/footer.module.css";
 
 import AppStyles from "../pages/app.module.css";
-import PhoneHandler from "./phone.handler";
 
+import PhoneHandler from "./phone.handler";
 import DropdownContent from "../ui/content/dropdown-files.content";
+
+import { service as BackService } from "./back.handler";
 
 const filters = [/!.*/g, /[\n\r]+/g];
 
@@ -73,8 +75,6 @@ class Service {
 				const fileName = el.textContent;
 
 				try {
-					console.log((el as HTMLElement).id === AppStyles.stats);
-
 					if ((el as HTMLElement).id === AppStyles.stats) {
 						const btn = document.createElement("button");
 
@@ -196,7 +196,8 @@ class Service {
 		const main = document.getElementById(AppStyles.main) as HTMLElement;
 		const projects = document.getElementById(AppStyles.projects) as HTMLElement;
 		const stats = document.getElementById(AppStyles.stats) as HTMLElement;
-		const dropdown = document.getElementById(AppStyles.dropdown) as HTMLElement;
+		const dropdown = document.getElementById(AppStyles.dropdown) as HTMLButtonElement;
+		const returnButton = document.getElementById(AppStyles.return) as HTMLButtonElement;
 
 		this.AppendDropdownContent(document, name);
 
@@ -222,7 +223,13 @@ class Service {
 		setTimeout(() => {
 			main.style.display = "flex";
 			stats.style.display = "flex";
+
 			dropdown.style.opacity = "1";
+			returnButton.style.opacity = "1";
+			dropdown.style.cursor = "pointer";
+			returnButton.style.cursor = "pointer";
+			dropdown.disabled = false;
+			returnButton.disabled = false;
 
 			setTimeout(async () => {
 				const description = document.createElement("div");
@@ -275,10 +282,16 @@ class Service {
 		}, 700);
 	}
 
+	public ClearClick() {
+		this.isClicked = false;
+	};
+
 	public Click(): boolean {
 		if (this.isClicked) return true;
 
 		this.isClicked = true;
+
+		BackService.ClearClick();
 
 		return false;
 	}
@@ -287,7 +300,7 @@ class Service {
 const service = new Service();
 
 class ProjectHandler {
-	public Handler(event: MouseEvent<HTMLElement>, name: string): void {
+	public Handler(event: MouseEvent | { currentTarget: HTMLElement }, name: string): void {
 		const document = event.currentTarget.ownerDocument;
 
 		if (service.Click()) return;
@@ -306,5 +319,9 @@ class ProjectHandler {
 		}, 300);
 	}
 }
+
+export {
+	service
+};
 
 export default ProjectHandler;
