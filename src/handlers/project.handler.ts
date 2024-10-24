@@ -109,7 +109,7 @@ class Service {
 		const end = "/fockusty/" + name;
 
 		if (type === "badge") {
-			return protocol + type + `${end}-gray`;
+			return protocol + type + `${end.replaceAll(/[-_]/g, '')}-gray`;
 		} else {
 			return protocol + "github/" + type + end;
 		}
@@ -235,18 +235,17 @@ class Service {
 				const description = document.createElement("div");
 				description.id = ProjectStyles.description;
 
-				const text = (
-					await (
-						await fetch(
-							`https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/main/README.md`
-						)
-					).text()
-				)
+				const data =
+					await fetch(`https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/main/README.md`)
+
+				const text = (await data.text())
 					.replaceAll("#", "")
 					.replaceAll(filters[0], "")
 					.replace(filters[1], "\n");
 
-				description.textContent = text;
+				description.textContent = data.status === 200
+					? text
+					: "Главный файл был не найден, посмотрите, какие файлы сущесвует с помощью кнопки!";
 
 				const isPhone = window.matchMedia("screen and (width < 600px)").matches;
 
