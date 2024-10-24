@@ -50,7 +50,7 @@
 
 .project span {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
 
     font-size: 6px;
     width: 75px;

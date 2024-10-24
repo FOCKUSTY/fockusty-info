@@ -23,7 +23,7 @@ class Component extends React.Component {
 
 	private readonly Component = (): React.ReactNode => {
 		return (
-			<div id={styles.projects}>
+			<div id={styles.projects} className="noselect">
 				{projects.map((project) =>
 					this.Project(project.name, project.icon_url || "/logo.png")
 				)}

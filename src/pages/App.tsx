@@ -13,7 +13,7 @@ class Page extends Layout {
 		return (
 			<div className={`page ${styles.page}`}>
 				<main id={styles.main}>
-					<div id={styles.projects}>
+					<div id={styles.projects} className="noselect">
 						<h2 id={`${styles.projects}_h2`}>Мои проеты</h2>
 						<Projects />
 						<div id={styles.stats}></div>
@@ -23,7 +23,7 @@ class Page extends Layout {
 						<div id={styles.return}>
 							<button onClick={new BackHandler().Handler}>Return</button>
 						</div>
-						<Dropdown id={styles.dropdown} content={[]} name="files" />
+						<Dropdown className="noselect" id={styles.dropdown} content={[]} name="files" />
 					</div>
 				</main>
 			</div>
