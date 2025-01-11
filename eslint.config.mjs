@@ -10,11 +10,11 @@ export default [
   {languageOptions: { globals: globals.browser }},
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  {
-    rules: {
-      "no-unused-vars": "warn",
-      "no-undef": "warn"
+  pluginReact.configs.flat.recommended, {
+    settings: {
+      react: {
+        version: "detect"
+      }
     }
-}
+  }
 ];

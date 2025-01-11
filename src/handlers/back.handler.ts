@@ -13,7 +13,7 @@ import { service as projectService } from "./project.handler";
 const projectHandler = new ProjectHandler();
 
 class BackService {
-	private isClicked: boolean = false;
+	private clicked: boolean = false;
 
 	private readonly HideApp = () => {
 		const appProjects = document.getElementById(AppStyles.projects) as HTMLElement;
@@ -57,7 +57,7 @@ class BackService {
 		project.appendChild(img);
 		project.appendChild(span);
 
-		project.addEventListener("click", (e) =>
+		project.addEventListener("click", () =>
 			projectHandler.Handler({ currentTarget: project }, name)
 		);
 
@@ -213,13 +213,13 @@ class BackService {
 	}
 
 	public ClearClick() {
-		this.isClicked = false;
+		this.clicked = false;
 	}
 
 	public Click(): boolean {
-		if (this.isClicked) return true;
+		if (this.clicked) return true;
 
-		this.isClicked = true;
+		this.clicked = true;
 
 		projectService.ClearClick();
 

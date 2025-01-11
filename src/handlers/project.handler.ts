@@ -102,7 +102,9 @@ class Service {
 					this.AddContentClickListener(el, "other", text);
 
 					dropdownContent.appendChild(el as Node);
-				} catch {}
+				} catch (err) {
+					console.error(err);
+				}
 			}
 		})();
 	};
