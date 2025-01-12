@@ -1,23 +1,30 @@
-const projects: { name: string; link?: string; icon_url?: string }[] = [
+const projects: {
+	name: string;
+	link?: string;
+	icon_url?: string
+}[] = [
 	{
-		name: "dashboard"
+	  name: "dashboard"
 	},
 	{
-		name: "VoidType"
+	  name: "VoidType"
 	},
 	{
-		name: "wordie",
-		icon_url: "https://github.com/FOCKUSTY/wordie/blob/main/docs/Logo.png?raw=true"
+	  name: "wordie",
+	  icon_url: "https://github.com/FOCKUSTY/wordie/blob/main/docs/Logo.png?raw=true"
 	},
 	{
-		name: "formatter"
+	  name: "updater"
 	},
 	{
-		name: "game-words"
+	  name: "builder"
 	},
 	{
-		name: "logger"
+	  name: "bottomless-hat"
+	},
+	{
+	  name: "logger"
 	}
 ];
-
+  
 export default projects;
