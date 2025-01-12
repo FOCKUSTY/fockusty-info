@@ -4,6 +4,9 @@
 }
 
 :root {
+    --bg-modal-color: #12121263;
+    --content-modal-color: #0b0b0b;
+
     --text-color: #ffffff;
     --bg-color: #000000;
 

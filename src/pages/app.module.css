@@ -70,6 +70,13 @@
     opacity: 1;
 }
 
+.modals {
+    position: absolute;
+    
+    height: 100%;
+    width: 100%;
+}
+
 @media screen and (width < 1000px) {
     #main {
         width: 70%;

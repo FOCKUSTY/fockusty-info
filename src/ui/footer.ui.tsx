@@ -11,7 +11,7 @@ class Component extends React.Component {
 				<footer id={styles.footer}>
 					<div>
 						<h2>FOCKUSTY</h2>
-						<h2>© 2024</h2>
+						<h2>© 2025</h2>
 					</div>
 
 					<LinksComponent className={styles.links} text={true} />
