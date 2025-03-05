@@ -4,19 +4,19 @@ import Header from "./header.ui";
 import Footer from "./footer.ui";
 
 abstract class Layout extends React.Component {
-	protected readonly Layout = (Page: () => JSX.Element): React.ReactNode => {
-		return (
-			<div id="main-page">
-				<Header />
+  protected readonly Layout = (Page: () => JSX.Element): React.ReactNode => {
+    return (
+      <div id="main-page">
+        <Header />
 
-				<Page />
+        <Page />
 
-				<Footer />
-			</div>
-		);
-	};
+        <Footer />
+      </div>
+    );
+  };
 
-	public abstract render(): React.ReactNode;
+  public abstract render(): React.ReactNode;
 }
 
 export default Layout;
