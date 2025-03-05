@@ -8,23 +8,34 @@ import ProjectHandler from "../../handlers/project.handler";
 const projectHandler = new ProjectHandler();
 
 class Component extends React.Component {
-  private readonly Project = (name: string, iconUrl: string): React.ReactNode => {
+  private readonly Project = (name: string, iconUrl: string, addictionStyles: [string[], string[], string[]] = [[], [], []]): React.ReactNode => {
     return (
       <div
         id={`${styles.project}_${name}`}
-        className={styles.project}
+        className={styles.project + " " + addictionStyles[0].join(" ")}
         onClick={(e) => projectHandler.Handler(e, name)}
       >
-        <img src={iconUrl} alt={name} />
-        <span id={`${styles.project}_${name}_name`}>{name}</span>
+        <img src={iconUrl} alt={name} className={addictionStyles[1].join(" ")} />
+        <span id={`${styles.project}_${name}_name`} className={addictionStyles[2].join(" ")}>{name}</span>
       </div>
     );
   };
 
   private readonly Component = (): React.ReactNode => {
+    const names = Object.keys(Object.groupBy(projects, (i) => i.name));
+
     return (
       <div id={styles.projects} className="noselect">
-        {projects.map((project) => this.Project(project.name, project.icon_url || "/logo.png"))}
+        {
+          projects.map((project) =>
+            this.Project(project.name, project.icon_url || "/logo.png", [
+              [
+                names.indexOf(project.name) % 2
+                  ? [styles.right, styles.row_reverse].join(" ")
+                  : styles.left
+              ], [], []
+            ]))
+        }
       </div>
     );
   };

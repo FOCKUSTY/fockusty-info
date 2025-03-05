@@ -18,7 +18,7 @@ class Page extends Layout {
           <Modal id="projects_modal">
             <>
               <div id={styles.projects} className="noselect">
-                <h2 id={`${styles.projects}_h2`}>Мои проеты</h2>
+                <h2 id={`${styles.projects}_h2`}>Мои проекты</h2>
                 <Projects />
                 <div id={styles.stats}></div>
               </div>

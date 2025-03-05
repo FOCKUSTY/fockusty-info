@@ -1,17 +1,16 @@
 #projects {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   align-items: center;
 
+  width: 100%;
+
   padding: 10px 20px;
-
-  height: 100px;
-
   gap: 20px;
 
-  overflow-x: auto;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 #projects::-webkit-scrollbar {
@@ -22,16 +21,29 @@
   border: 1px solid var(--shadow-color);
 }
 
+.row_reverse {
+  flex-direction: row-reverse;
+}
+
+.right {
+  align-self: flex-end;
+}
+
+.left {
+  align-self: flex-start;
+}
+
 .project {
   position: relative;
+  cursor: pointer;
 
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
   height: 85px;
-  width: 75px;
+
+  gap: 10px;
 
   filter: brightness(0.3);
   transition: 0.75s;
@@ -40,8 +52,6 @@
 .project img {
   z-index: 2;
 
-  cursor: pointer;
-
   border-radius: 25%;
 
   height: 75px;
@@ -49,18 +59,13 @@
 }
 
 .project span {
-  position: absolute;
   z-index: 2;
-
-  font-size: 6px;
   width: 75px;
 
   text-align: center;
   text-wrap: pretty;
 
   top: 80px;
-  rotate: 180deg;
-
   transition: 0.5s;
 }
 

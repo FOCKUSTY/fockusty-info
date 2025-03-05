@@ -28,10 +28,15 @@
 }
 
 #projects {
-  display: flex;
-  flex-direction: column;
+  padding: 10px 20px;
+
+  height: 100%;
+
   align-items: center;
   justify-items: center;
+
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #stats {
