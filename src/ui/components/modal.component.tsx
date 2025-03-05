@@ -20,8 +20,8 @@ class Component extends React.Component<Props> {
 
     this.state = {
       styles: {
-        display: "flex",
-        opacity: 1
+        display: "none",
+        opacity: 0
       }
     };
   }
