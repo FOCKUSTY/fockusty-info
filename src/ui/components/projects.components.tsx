@@ -6,6 +6,7 @@ import projects from "../../projects";
 import ProjectHandler from "../../handlers/project.handler";
 
 const projectHandler = new ProjectHandler();
+const names = Object.keys(Object.groupBy(projects, (i) => i.name));
 
 class Component extends React.Component {
   private readonly Project = (name: string, iconUrl: string, addictionStyles: [string[], string[], string[]] = [[], [], []]): React.ReactNode => {
@@ -22,8 +23,6 @@ class Component extends React.Component {
   };
 
   private readonly Component = (): React.ReactNode => {
-    const names = Object.keys(Object.groupBy(projects, (i) => i.name));
-
     return (
       <div id={styles.projects} className="noselect">
         {
