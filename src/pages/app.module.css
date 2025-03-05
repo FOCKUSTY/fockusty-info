@@ -8,6 +8,9 @@
 #main {
   position: relative;
 
+  flex-direction: column-reverse;
+  gap: 20px;
+
   background-color: var(--main-color);
 
   padding: 10px 20px;
@@ -61,7 +64,6 @@
   position: relative;
   bottom: 0;
 
-  margin: 10px 0;
   gap: 10px;
 
   opacity: 0;
@@ -71,7 +73,7 @@
 .buttons {
   transition: 0.5s;
 
-  position: absolute;
+  position: relative;
   opacity: 1;
 }
 

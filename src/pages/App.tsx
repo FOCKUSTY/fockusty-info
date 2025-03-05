@@ -22,19 +22,19 @@ class Page extends Layout {
                 <Projects />
                 <div id={styles.stats}></div>
               </div>
-
-              <div className={styles.buttons}>
-                <div id={styles.return}>
-                  <button onClick={new BackHandler().Handler}>Return</button>
-                </div>
-                <Dropdown className="noselect" id={styles.dropdown} content={[]} name="files" />
-              </div>
             </>
           </Modal>
         </div>
 
         <div className={`page ${styles.page}`}>
-          <main id={styles.main}></main>
+          <main id={styles.main}>
+            <div className={styles.buttons}>
+              <div id={styles.return}>
+                <button onClick={new BackHandler().Handler}>Return</button>
+              </div>
+              <Dropdown className="noselect" id={styles.dropdown} content={[]} name="files" />
+            </div>
+          </main>
         </div>
       </>
     );
