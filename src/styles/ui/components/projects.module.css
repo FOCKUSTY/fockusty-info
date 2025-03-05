@@ -1,130 +1,130 @@
 #projects {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-    align-items: center;
+  align-items: center;
 
-    padding: 10px 20px;
+  padding: 10px 20px;
 
-    height: 100px;
+  height: 100px;
 
-    gap: 20px;
+  gap: 20px;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 #projects::-webkit-scrollbar {
-    height: 1px;
+  height: 1px;
 }
 
 #projects::-webkit-scrollbar-thumb {
-    border: 1px solid var(--shadow-color);
+  border: 1px solid var(--shadow-color);
 }
 
 .project {
-    position: relative;
+  position: relative;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-    height: 85px;
-    width: 75px;
+  height: 85px;
+  width: 75px;
 
-	filter: brightness(0.3);
-    transition: 0.75s;
+  filter: brightness(0.3);
+  transition: 0.75s;
 }
 
 .project img {
-    z-index: 2;
+  z-index: 2;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    border-radius: 25%;
+  border-radius: 25%;
 
-    height: 75px;
-    width: 75px;
+  height: 75px;
+  width: 75px;
 }
 
 .project span {
-    position: absolute;
-    z-index: 2;
+  position: absolute;
+  z-index: 2;
 
-    font-size: 6px;
-    width: 75px;
+  font-size: 6px;
+  width: 75px;
 
-    text-align: center;
-    text-wrap: pretty;
+  text-align: center;
+  text-wrap: pretty;
 
-    top: 80px;
-    rotate: 180deg;
-    
-    transition: 0.5s;
+  top: 80px;
+  rotate: 180deg;
+
+  transition: 0.5s;
 }
 
 #description {
-    display: flex;
+  display: flex;
 
-    align-self: flex-end;
+  align-self: flex-end;
 
-    height: 95%;
-    width: 100%;
+  height: 95%;
+  width: 100%;
 
-    word-wrap: break-word;
-    white-space: pre-wrap;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 
-    text-overflow: clip;
-    overflow: hidden;
-    overflow-y: auto;
+  text-overflow: clip;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 .project:hover > span {
-    rotate: 0deg;
-    font-size: 12px;
-    top: -10px;
+  rotate: 0deg;
+  font-size: 12px;
+  top: -10px;
 }
 
 .project:hover {
-	filter: brightness(1);
+  filter: brightness(1);
 }
 
 .project:has(+ .project:hover) {
-	transform: rotate3d(0, 1, 0, 45deg);
-	filter: brightness(0.5);
+  transform: rotate3d(0, 1, 0, 45deg);
+  filter: brightness(0.5);
 }
 
 .project:hover + * {
-	transform: rotate3d(0, 1, 0, -45deg);
-	filter: brightness(0.5);
+  transform: rotate3d(0, 1, 0, -45deg);
+  filter: brightness(0.5);
 }
 
 .project:hover + * + * {
-	transform: rotate3d(0, 1, 0, -70deg);
-	filter: brightness(0.5);
+  transform: rotate3d(0, 1, 0, -70deg);
+  filter: brightness(0.5);
 }
 
 .project:has(+ * + .project:hover) {
-	transform: rotate3d(0, 1, 0, 70deg);
-	filter: brightness(0.5);
+  transform: rotate3d(0, 1, 0, 70deg);
+  filter: brightness(0.5);
 }
 
 .project:has(+ .project:hover) {
-	transform: rotate3d(0, 1, 0, 45deg);
-	filter: brightness(0.5);
+  transform: rotate3d(0, 1, 0, 45deg);
+  filter: brightness(0.5);
 }
 
 @media screen and (width < 1000px) {
-    #projects {
-        height: 100px;
-        max-height: 100px;
-        min-height: 50px;
-    
-        width: 100%;
-        max-width: fit-content;
-        min-width: 250px;
+  #projects {
+    height: 100px;
+    max-height: 100px;
+    min-height: 50px;
 
-        gap: 10px;
-    }
+    width: 100%;
+    max-width: fit-content;
+    min-width: 250px;
+
+    gap: 10px;
+  }
 }

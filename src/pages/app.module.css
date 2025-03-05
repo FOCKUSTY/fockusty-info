@@ -1,84 +1,84 @@
 .page {
-    display: flex;
+  display: flex;
 
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 #main {
-    position: relative;
-    
-    background-color: var(--main-color);
-    
-    padding: 10px 20px;
+  position: relative;
 
-    width: 100%;
-    min-width: 300px;
-    max-width: 1000px;
+  background-color: var(--main-color);
 
-    height: 100%;
-    min-height: 200px;
-    max-height: 400px;
+  padding: 10px 20px;
 
-    border-radius: 20px;
+  width: 100%;
+  min-width: 300px;
+  max-width: 1000px;
+
+  height: 100%;
+  min-height: 200px;
+  max-height: 400px;
+
+  border-radius: 20px;
 }
 
 #main img {
-    position: relative;
+  position: relative;
 }
 
 #projects {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 
 #stats {
-    display: none;
+  display: none;
 
-    flex-direction: column;
-    gap: 5px;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .buttons button {
-    border: 0;
+  border: 0;
 
-    padding: 5px 15px;
-    border-radius: 10px;
+  padding: 5px 15px;
+  border-radius: 10px;
 
-    background-color: var(--bg-color);
+  background-color: var(--bg-color);
 }
 
 .buttons,
 #return,
 #dropdown {
-    position: relative;
-    bottom: 0;
+  position: relative;
+  bottom: 0;
 
-    margin: 10px 0;
-    gap: 10px;
+  margin: 10px 0;
+  gap: 10px;
 
-    opacity: 0;
-    display: flex;
+  opacity: 0;
+  display: flex;
 }
 
 .buttons {
-    transition: 0.5s;
+  transition: 0.5s;
 
-    position: absolute;
-    opacity: 1;
+  position: absolute;
+  opacity: 1;
 }
 
 .modals {
-    position: absolute;
-    
-    height: 100%;
-    width: 100%;
+  position: absolute;
+
+  height: 100%;
+  width: 100%;
 }
 
 @media screen and (width < 1000px) {
-    #main {
-        width: 70%;
-    }
+  #main {
+    width: 70%;
+  }
 }
