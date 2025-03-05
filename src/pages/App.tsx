@@ -5,10 +5,11 @@ import React from "react";
 import BackHandler from "../handlers/back.handler";
 
 import Layout from "../ui/layout.ui";
+
 import Projects from "../ui/components/projects.components";
 import Dropdown from "../ui/components/dropdown.component";
-
 import Modal from "../ui/components/modal.component";
+import Info from "../ui/components/info.component";
 
 class Page extends Layout {
   private readonly Page = () => {
@@ -28,6 +29,8 @@ class Page extends Layout {
 
         <div className={`page ${styles.page}`}>
           <main id={styles.main}>
+            <Info projects_modal_id="projects_modal"/>
+
             <div className={styles.buttons}>
               <div id={styles.return}>
                 <button onClick={new BackHandler().Handler}>Return</button>
