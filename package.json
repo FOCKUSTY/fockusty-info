@@ -7,7 +7,7 @@
     "build": "pnpm run eslint && react-scripts build",
     "eslint": "pnpm dlx eslint src/**",
     "test": "react-scripts test",
-    "format": "prettier --write \"./**.ts\" \"./**.tsx\"",
+    "format": "prettier --write \"./**.ts\" \"./**.tsx\" \"./**.css\" \"./**.json\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
