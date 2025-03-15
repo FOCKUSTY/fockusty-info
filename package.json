@@ -5,7 +5,7 @@
   "scripts": {
     "start": "pnpm run eslint && react-scripts start",
     "build": "pnpm run eslint && react-scripts build",
-    "eslint": "pnpm dlx eslint src/**",
+    "eslint": "pnpm dlx eslint ./**/*.{ts,tsx}",
     "test": "react-scripts test",
     "format": "prettier --write \"./**.ts\" \"./**.tsx\" \"./**.css\" \"./**.json\"",
     "eject": "react-scripts eject"
