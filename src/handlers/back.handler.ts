@@ -38,13 +38,17 @@ class BackService {
     appProjects.style.opacity = "1";
   };
 
-  private readonly Project = (name: string, iconUrl: string) => {
+  private readonly Project = (name: string, iconUrl: string, indexOfProect: number = 0) => {
     const project = document.createElement("div");
     const img = document.createElement("img");
     const span = document.createElement("span");
 
+    const directionStyle = indexOfProect % 2
+      ? [ProjectStyles.right, ProjectStyles.row_reverse].join(" ")
+      : ProjectStyles.left;
+
     project.id = ProjectStyles.project + "_" + name;
-    project.className = ProjectStyles.project;
+    project.className = `${ProjectStyles.project} ${directionStyle}`;
 
     img.src = iconUrl;
     img.alt = name;
@@ -68,8 +72,9 @@ class BackService {
     this.HideApp();
 
     setTimeout(() => {
-      for (const data of projects) {
-        const project = this.Project(data.name, data.icon_url || "/logo.png");
+      for (const index in projects) {
+        const data = projects[index];
+        const project = this.Project(data.name, data.icon_url || "/logo.png", Number(index));
 
         myProjects.appendChild(project);
       }

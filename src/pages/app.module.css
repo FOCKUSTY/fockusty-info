@@ -6,6 +6,7 @@
 }
 
 #main {
+  display: flex;
   position: relative;
 
   flex-direction: column-reverse;

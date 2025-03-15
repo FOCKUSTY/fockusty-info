@@ -70,7 +70,7 @@ body {
   padding: 0;
 
   color: var(--text-color);
-  transition: 1s;
+  transition: 0.75s;
 }
 
 a {
