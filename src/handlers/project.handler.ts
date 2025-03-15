@@ -49,9 +49,10 @@ class Service {
 
         if (type === "stats") description.appendChild(text as Node);
         else {
-          if (element.textContent?.endsWith(".md")) description.innerHTML = mdConverter.makeHtml(text as string);
-          else description.innerHTML = `<pre><code>${text}</code></pre>`
-        };
+          if (element.textContent?.endsWith(".md"))
+            description.innerHTML = mdConverter.makeHtml(text as string);
+          else description.innerHTML = `<pre><code>${text}</code></pre>`;
+        }
       }, 1000);
     });
   };
@@ -93,7 +94,7 @@ class Service {
           }
 
           const data = await fetch(url + fileName).catch();
-          const text = (await data.text());
+          const text = await data.text();
 
           if (data.status !== 200) continue;
 
@@ -181,7 +182,7 @@ class Service {
       projects.style.alignContent = "center";
       projects.style.height = "fit-content";
       projects.style.flexWrap = "wrap";
-      
+
       setTimeout(() => {
         appProjects.style.width = "100%";
 
@@ -243,7 +244,7 @@ class Service {
           `https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/${defaultBranch}/README.md`
         );
 
-        const text = (await data.text());
+        const text = await data.text();
 
         description.innerHTML =
           data.status === 200

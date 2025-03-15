@@ -43,9 +43,10 @@ class BackService {
     const img = document.createElement("img");
     const span = document.createElement("span");
 
-    const directionStyle = indexOfProect % 2
-      ? [ProjectStyles.right, ProjectStyles.row_reverse].join(" ")
-      : ProjectStyles.left;
+    const directionStyle =
+      indexOfProect % 2
+        ? [ProjectStyles.right, ProjectStyles.row_reverse].join(" ")
+        : ProjectStyles.left;
 
     project.id = ProjectStyles.project + "_" + name;
     project.className = `${ProjectStyles.project} ${directionStyle}`;
@@ -154,7 +155,7 @@ class BackService {
       el.style.padding = "20px 10px";
 
       const children: HTMLCollection = el.children;
-      
+
       for (let i = 0; i < children.length; i++) {
         setTimeout(() => {
           for (let i = 0; i < children.length; i++) {
