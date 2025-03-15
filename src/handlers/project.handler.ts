@@ -1,5 +1,7 @@
 import type { MouseEvent } from "react";
 
+import showdown from "showdown";
+
 import DropdownFilesStyles from "../ui/content/dropdown-files.module.css";
 import DropdownStyles from "../styles/ui/components/dropdown.module.css";
 import ProjectStyles from "../styles/ui/components/projects.module.css";
@@ -14,6 +16,7 @@ import DropdownContent from "../ui/content/dropdown-files.content";
 import { service as BackService } from "./back.handler";
 
 const filters = [/!.*/g, /[\n\r]+/g];
+const mdConverter = new showdown.Converter();
 
 type Stats = "badge" | "languages/top" | "license" | "stars" | "issues";
 
@@ -118,14 +121,13 @@ class Service {
 
   public UIRemove(element: HTMLElement | HTMLElement[]): void {
     function remove(el: HTMLElement) {
-      el.style.transition = "2s";
+      el.style.transition = "0s";
       el.style.height = "150px";
+      el.style.transition = "1s";
 
-      setTimeout(() => {
-        el.style.height = "0px";
-        el.style.margin = "0px";
-        el.style.padding = "0px";
-      }, 100);
+      el.style.height = "0px";
+      el.style.margin = "0px";
+      el.style.padding = "0px";
 
       const children: HTMLCollection = el.children;
 
@@ -133,13 +135,14 @@ class Service {
         for (let i = 0; i < children.length; i++) {
           const child = children.item(i) as HTMLElement;
 
+          child.style.transition = "0.3s";
           child.style.opacity = "0";
 
           setTimeout(() => {
             child.style.display = "none";
-          }, 500);
+          }, 300);
         }
-      }, 200);
+      }, 100);
     }
 
     if (Array.isArray(element)) for (const el of element) remove(el);
@@ -155,7 +158,6 @@ class Service {
     const children: HTMLCollection = projects.children;
 
     projects.style.gap = "0px";
-    projects.style.overflow = "hidden";
 
     for (let i = 0; i < children.length; i++) {
       const child = children.item(i) as HTMLElement;
@@ -177,11 +179,11 @@ class Service {
       child.style.height = "0px";
       child.style.width = "0px";
 
-      projects.style.justifyContent = "center";
-
+      projects.style.alignContent = "center";
+      projects.style.height = "fit-content";
+      projects.style.flexWrap = "wrap";
+      
       setTimeout(() => {
-        appProjects.style.minWidth = "75px";
-        appProjects.style.maxWidth = "150px";
         appProjects.style.width = "100%";
 
         projects.removeChild(child);
@@ -202,8 +204,7 @@ class Service {
 
     main.style.width = "80%";
     main.style.height = "100%";
-
-    main.style.maxHeight = "600px";
+    main.style.maxHeight = "calc(100% - 100px)";
 
     const children: HTMLCollection = projects.children;
 
@@ -237,20 +238,18 @@ class Service {
 
         const description = document.createElement("div");
         description.id = ProjectStyles.description;
+        description.style.display = "block";
 
         const data = await fetch(
           `https://raw.githubusercontent.com/FOCKUSTY/${name}/refs/heads/${defaultBranch}/README.md`
         );
 
-        const text = (await data.text())
-          .replaceAll("#", "")
-          .replaceAll(filters[0], "")
-          .replace(filters[1], "\n");
+        const text = (await data.text());
 
-        description.textContent =
+        description.innerHTML =
           data.status === 200
-            ? text
-            : "Главный файл был не найден, посмотрите, какие файлы сущесвует с помощью кнопки!";
+            ? mdConverter.makeHtml(text)
+            : "Главный README файл был не найден, посмотрите, какие файлы сущесвует с помощью кнопки!";
 
         if (isPhone) {
           new PhoneHandler().Handler({

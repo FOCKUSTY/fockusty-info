@@ -133,11 +133,12 @@ class BackService {
       child.style.height = "0px";
       child.style.width = "0px";
 
-      projects.style.justifyContent = "center";
+      projects.style.flexWrap = "nowrap";
+      projects.style.height = "90%";
 
       setTimeout(() => {
         projects.removeChild(child);
-      }, 1000);
+      }, 700);
     }
 
     this.AppendProjects();
@@ -148,26 +149,35 @@ class BackService {
     const footer = document.getElementById(FooterStyles.footer) as HTMLElement;
 
     function show(el: HTMLElement) {
+      el.style.transition = "2s";
       el.style.height = "150px";
       el.style.padding = "20px 10px";
 
       const children: HTMLCollection = el.children;
+      
+      for (let i = 0; i < children.length; i++) {
+        setTimeout(() => {
+          for (let i = 0; i < children.length; i++) {
+            const child = children.item(i) as HTMLElement;
+
+            child.style.transition = "0s";
+            child.style.opacity = "0";
+            child.style.display = "block";
+          }
+        }, 200);
+      }
 
       setTimeout(() => {
         for (let i = 0; i < children.length; i++) {
           const child = children.item(i) as HTMLElement;
-
+          child.style.transition = "2s";
           child.style.opacity = "1";
-
-          setTimeout(() => {
-            child.style.display = "block";
-          }, 500);
         }
-      }, 200);
+      }, 800);
     }
 
     for (const el of [header, footer]) {
-      show(el);
+      setTimeout(() => show(el), 600);
     }
   };
 
@@ -191,7 +201,7 @@ class BackService {
       this.ClearDropdown();
       this.ClearProjects();
       this.ClearStats();
-    }, 1000);
+    }, 700);
   };
 
   public UpdatePage() {
@@ -200,11 +210,9 @@ class BackService {
 
     main.style.height = "100%";
     main.style.maxHeight = "400px";
-
     main.style.minWidth = "300px";
 
     projects.style.gap = "10px";
-    projects.style.overflowX = "auto";
 
     this.ShowUI();
   }

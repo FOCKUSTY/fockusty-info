@@ -36,11 +36,11 @@
 
   height: 100%;
 
+  background-color: var(--main-color);
+  border-radius: 20px;
+
   align-items: center;
   justify-items: center;
-
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 #stats {

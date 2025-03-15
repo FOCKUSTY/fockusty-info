@@ -4,12 +4,13 @@
 
   align-items: center;
 
+  height: 90%;
   width: 100%;
 
   padding: 10px 20px;
   gap: 20px;
 
-  overflow-y: hidden;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -83,6 +84,10 @@
   text-overflow: clip;
   overflow: hidden;
   overflow-y: auto;
+
+  * {
+    line-height: 1.2;
+  }
 }
 
 .project:hover > span {
@@ -122,12 +127,10 @@
 
 @media screen and (width < 1000px) {
   #projects {
-    height: 100px;
-    max-height: 100px;
+    max-height: 90%;
     min-height: 50px;
 
     width: 100%;
-    max-width: fit-content;
     min-width: 250px;
 
     gap: 10px;

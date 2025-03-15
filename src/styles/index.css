@@ -17,7 +17,7 @@
   --shadow-color: #1f1f1f;
 
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
-  --code-font: source-code-pro, Monaco, "Courier New", monospace;
+  --code-font: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
 }
 
 @media (prefers-color-scheme: light) {
@@ -78,7 +78,13 @@ a {
   text-decoration: none;
 }
 
-code {
+pre {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+pre, code {
+  background-color: var(--shadow-color);
   font-family: var(--code-font);
 }
 

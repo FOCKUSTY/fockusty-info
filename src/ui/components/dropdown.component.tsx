@@ -15,7 +15,7 @@ class Component extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-    this.offset = "29px";
+    this.offset = "25px";
   }
 
   public componentDidMount(): void {
