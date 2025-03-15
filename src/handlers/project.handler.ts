@@ -27,7 +27,7 @@ class Service {
     type: "stats" | "other",
     text: string | Node
   ) => {
-    element.addEventListener("click", (e) => {
+    element.addEventListener("click", () => {
       const description = document.getElementById(ProjectStyles.description) as HTMLElement;
 
       if (description.innerHTML === text) return;
