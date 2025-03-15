@@ -15,7 +15,6 @@ import DropdownContent from "../ui/content/dropdown-files.content";
 
 import { service as BackService } from "./back.handler";
 
-const filters = [/!.*/g, /[\n\r]+/g];
 const mdConverter = new showdown.Converter();
 
 type Stats = "badge" | "languages/top" | "license" | "stars" | "issues";
@@ -28,10 +27,10 @@ class Service {
     type: "stats" | "other",
     text: string | Node
   ) => {
-    element.addEventListener("click", () => {
+    element.addEventListener("click", (e) => {
       const description = document.getElementById(ProjectStyles.description) as HTMLElement;
 
-      if (description.textContent === text) return;
+      if (description.innerHTML === text) return;
 
       description.style.width = "0%";
 
@@ -49,7 +48,10 @@ class Service {
         }
 
         if (type === "stats") description.appendChild(text as Node);
-        else description.textContent = text as string;
+        else {
+          if (element.textContent?.endsWith(".md")) description.innerHTML = mdConverter.makeHtml(text as string);
+          else description.innerHTML = `<pre><code>${text}</code></pre>`
+        };
       }, 1000);
     });
   };
@@ -73,11 +75,11 @@ class Service {
       for (const element of content) {
         if (!element) continue;
 
-        const el = element as Node;
+        const el = element as HTMLElement;
         const fileName = el.textContent;
 
         try {
-          if ((el as HTMLElement).id === AppStyles.stats) {
+          if (el.id === AppStyles.stats) {
             const btn = document.createElement("button");
 
             btn.className = DropdownFilesStyles.content;
@@ -91,16 +93,13 @@ class Service {
           }
 
           const data = await fetch(url + fileName).catch();
-          const text = (await data.text())
-            .replaceAll("#", "")
-            .replaceAll(filters[0], "")
-            .replace(filters[1], "\n");
+          const text = (await data.text());
 
           if (data.status !== 200) continue;
 
           this.AddContentClickListener(el, "other", text);
 
-          dropdownContent.appendChild(el as Node);
+          dropdownContent.appendChild(el);
         } catch (err) {
           console.error(err);
         }
