@@ -122,13 +122,19 @@ class Service {
 
   public UIRemove(element: HTMLElement | HTMLElement[]): void {
     function remove(el: HTMLElement) {
-      el.style.transition = "0s";
-      el.style.height = "150px";
-      el.style.transition = "1s";
+      el.style.position = "absolute";
 
-      el.style.height = "0px";
-      el.style.margin = "0px";
-      el.style.padding = "0px";
+      setTimeout(() => {
+        el.style.transition = "1s";
+
+        el.style.height = "0px";
+        el.style.margin = "0px";
+        el.style.padding = "0px";
+
+        setTimeout(() => {
+          el.style.position = "relative";
+        }, 1000);
+      }, 500);
 
       const children: HTMLCollection = el.children;
 
