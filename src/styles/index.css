@@ -48,17 +48,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   *::-webkit-scrollbar {
-    width: 12px;
+    width: 6px;
   }
 
   *::-webkit-scrollbar-track {
     background: #353535;
-    border-radius: 20px;
+    border-radius: 10px;
   }
 
   *::-webkit-scrollbar-thumb {
     background-color: #1d1d1d;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 3px solid #121212;
   }
 }
@@ -79,12 +79,22 @@ a {
 }
 
 pre {
+  display: block;
   border-radius: 5px;
-  padding: 5px;
+  padding: 0.5em;
+
+  width: calc(100% - 1em);
+}
+
+code {
+  overflow-x: auto;
+  border-radius: 10px;
+  padding: 0.1em 0.4em;
 }
 
 pre, code {
-  background-color: var(--shadow-color);
+  position: relative;
+  background-color: var(--section-color);
   font-family: var(--code-font);
 }
 
