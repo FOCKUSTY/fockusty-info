@@ -3,7 +3,7 @@ import React from "react";
 import Handler from "../../handlers/switch-theme.handler";
 
 type Props = {
-  className: string;
+  className?: string;
   id: string;
 };
 
@@ -14,7 +14,7 @@ class Component extends React.Component<Props> {
 
   public render(): React.ReactNode {
     return (
-      <div className={`${this.props.className} noselect`}>
+      <div className={`${this.props.className || ""} noselect`}>
         <input
           className="input-switch"
           type="checkbox"

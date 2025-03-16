@@ -17,7 +17,8 @@ import { service as BackService } from "./back.handler";
 
 const mdConverter = new showdown.Converter();
 
-type Stats = "badge" | "languages/top" | "license" | "stars" | "issues";
+const statsComponents = ["badge", "languages/top", "license", "issues", "stars"] as const;
+type Stats = (typeof statsComponents)[number];
 
 class Service {
   private isClicked = false;
@@ -261,8 +262,6 @@ class Service {
 
         main.appendChild(description);
       }, 100);
-
-      const statsComponents: Stats[] = ["badge", "languages/top", "license", "issues", "stars"];
 
       for (const component of statsComponents) {
         const img = document.createElement("img");

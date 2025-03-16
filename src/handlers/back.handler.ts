@@ -12,6 +12,15 @@ import { service as projectService } from "./project.handler";
 
 const projectHandler = new ProjectHandler();
 
+const displays = {
+  layout: {
+    [HeaderStyles.logo]: "flex"
+  }
+} as const;
+
+const getDisplay = (type: keyof typeof displays, element: HTMLElement) =>
+  displays[type][element.id] || displays[type][element.className] || "block";
+
 class BackService {
   private clicked: boolean = false;
 
@@ -163,7 +172,7 @@ class BackService {
 
             child.style.transition = "0s";
             child.style.opacity = "0";
-            child.style.display = "block";
+            child.style.display = getDisplay("layout", child);
           }
         }, 200);
       }

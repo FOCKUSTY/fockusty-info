@@ -13,7 +13,7 @@ class Component extends React.Component {
           <LogoComponent />
 
           <div className={styles.logo}>
-            <SwitchComponent className={styles.switcher} id="switch" />
+            <SwitchComponent id="switch" />
             <h2>The Void</h2>
           </div>
         </header>
