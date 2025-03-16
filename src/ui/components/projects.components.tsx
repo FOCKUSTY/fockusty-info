@@ -13,6 +13,7 @@ class Component extends React.Component {
     return (
       <div
         id={`${styles.project}_${name}`}
+        key={`${styles.project}_${name}`}
         className={styles.project + " " + addictionStyles[0].join(" ")}
         onClick={(e) => projectHandler.Handler(e, name)}
       >
