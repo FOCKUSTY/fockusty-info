@@ -15,7 +15,7 @@ class Component extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-    this.offset = "25px";
+    this.offset = window.matchMedia("screen and (width < 600px)").matches ? "" : "25px";
   }
 
   public componentDidMount(): void {
