@@ -16,15 +16,15 @@ class Component extends React.Component<Props> {
     return (
       <>
         <div className={this.props.className}>
-          <a href="https://discord.gg/pw8HgBs2yE">
+          <a href="https://discord.gg/pw8HgBs2yE" target="_blank">
             <FaDiscord />
             {this.props.text ? <span>Discord</span> : <></>}
           </a>
-          <a href="https://t.me/BottomlessHat">
+          <a href="https://t.me/BottomlessHat" target="_blank">
             <FaTelegramPlane />
             {this.props.text ? <span>Telegram</span> : <></>}
           </a>
-          <a href="https://vk.com/bottomlesshat">
+          <a href="https://vk.com/bottomlesshat" target="_blank">
             <FaVk />
             {this.props.text ? <span>Vkontakte</span> : <></>}
           </a>
