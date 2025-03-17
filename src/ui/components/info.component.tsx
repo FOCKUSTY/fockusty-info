@@ -26,25 +26,28 @@ class Component extends React.Component<Props> {
         this.modals = data;
     }
 
-    public Links(): React.ReactNode {
+    public Links(data: {id: string}): React.ReactNode {
         return (
-            <div>
+            <div key={data.id + "_info"}>
                 Links
             </div>
         );
     };
 
-    public Biography(): React.ReactNode {
+    public Biography(data: {id: string}): React.ReactNode {
         return (
-            <div>
+            <div key={data.id + "_info"}>
                 Biography
             </div>
         );
     };
 
-    public Projects(): React.ReactNode {
+    public Projects(data: {id: string}): React.ReactNode {
         return (
-            <div onClick={() => handler.ShowModal(this.modals.projects_modal_id)}>
+            <div
+                key={data.id + "_info"}
+                onClick={() => handler.ShowModal(data.id)}
+            >
                 Projects
             </div>
         );
@@ -53,9 +56,9 @@ class Component extends React.Component<Props> {
     public render(): React.ReactNode {
         return (
             <div id={styles.info}>
-                <this.Projects />
-                <this.Biography />
-                <this.Links />
+                <this.Projects id={this.modals.projects_modal_id} />
+                <this.Biography id={this.modals.biography_modal_id} />
+                <this.Links id={this.modals.liks_modal_id} />
             </div>
         );
     }

@@ -122,6 +122,11 @@ class BackService {
   private readonly ClearButtons = () => {
     const dropdown = document.getElementById(AppStyles.dropdown) as HTMLElement;
     const returnButton = document.getElementById(AppStyles.return) as HTMLElement;
+    const buttons = document.getElementById(AppStyles.project_buttons) as HTMLElement;
+
+    setTimeout(() => {
+      buttons.style.position = "absolute";
+    }, 800);
 
     dropdown.style.opacity = "0";
     returnButton.style.opacity = "0";

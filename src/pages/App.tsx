@@ -31,7 +31,7 @@ class Page extends Layout {
           <main id={styles.main}>
             <Info projects_modal_id="projects_modal" />
 
-            <div className={styles.buttons}>
+            <div className={styles.buttons} id={styles.project_buttons}>
               <div id={styles.return}>
                 <button onClick={new BackHandler().Handler}>Return</button>
               </div>

@@ -78,6 +78,10 @@
   opacity: 1;
 }
 
+#project_buttons {
+  position: absolute;
+}
+
 .modals {
   display: none;
 

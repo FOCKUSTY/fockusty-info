@@ -203,11 +203,14 @@ class Service {
     const projects = document.getElementById(AppStyles.projects) as HTMLElement;
     const dropdown = document.getElementById(AppStyles.dropdown) as HTMLButtonElement;
     const returnButton = document.getElementById(AppStyles.return) as HTMLButtonElement;
+    const buttons = document.getElementById(AppStyles.project_buttons) as HTMLElement;
     const stats = document.getElementById(AppStyles.stats) as HTMLElement;
 
     this.AppendDropdownContent(document, name);
 
     const isPhone = window.matchMedia("screen and (width < 600px)").matches;
+
+    buttons.style.position = "relative";
 
     main.style.width = "80%";
     main.style.height = "100%";
