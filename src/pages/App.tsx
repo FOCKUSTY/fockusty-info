@@ -29,7 +29,7 @@ class Page extends Layout {
 
         <div className={`page ${styles.page}`}>
           <main id={styles.main}>
-            <Info projects_modal_id="projects_modal"/>
+            <Info projects_modal_id="projects_modal" />
 
             <div className={styles.buttons}>
               <div id={styles.return}>

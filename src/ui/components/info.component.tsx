@@ -6,12 +6,24 @@ import React from "react";
 const handler = new Handler();
 
 type Props = {
-    projects_modal_id: string
+    projects_modal_id?: string;
+    biography_modal_id?: string;
+    liks_modal_id?: string;
 }
 
 class Component extends React.Component<Props> {
+    private readonly modals: Required<Props>;
+
     public constructor(props: Props) {
-        super(props);
+        const data = {
+            projects_modal_id: "projects_modal_id",
+            biography_modal_id: "biography_modal_id",
+            liks_modal_id: "liks_modal_id",
+            ...props
+        };
+
+        super(data);
+        this.modals = data;
     }
 
     public Links(): React.ReactNode {
@@ -30,9 +42,9 @@ class Component extends React.Component<Props> {
         );
     };
 
-    public Projects(props: {modalId: string}): React.ReactNode {
+    public Projects(): React.ReactNode {
         return (
-            <div onClick={() => handler.ShowModal(props.modalId)}>
+            <div onClick={() => handler.ShowModal(this.modals.projects_modal_id)}>
                 Projects
             </div>
         );
@@ -41,7 +53,7 @@ class Component extends React.Component<Props> {
     public render(): React.ReactNode {
         return (
             <div id={styles.info}>
-                <this.Projects modalId={this.props.projects_modal_id} />
+                <this.Projects />
                 <this.Biography />
                 <this.Links />
             </div>
