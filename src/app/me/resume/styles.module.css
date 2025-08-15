@@ -11,7 +11,6 @@
   border-radius: 20px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--component-color);
-
 }
 
 .resumeContainer {
@@ -19,7 +18,7 @@
   padding: 2rem;
   background-color: var(--card-color);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
+  border-radius: 1rem;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--component-color);
 }
@@ -27,7 +26,6 @@
 .resumeHeader {
   text-align: center;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--component-color);
 }
 
 .resumeHeader h1 {
@@ -59,7 +57,6 @@
   background: var(--smooth-background-color);
   padding: 1.5rem;
   border-radius: 12px;
-  border: 1px solid var(--component-color);
 }
 
 .contactList {
