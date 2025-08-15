@@ -1,5 +1,8 @@
 import { Api } from "api";
+
 import { useEffect, useState } from "react";
+
+import Link from "next/link";
 
 const pixelToNumber = (pixels: string) => +pixels.split("px")[0];
 
@@ -50,11 +53,11 @@ export const Items = ({
   return (
     <>
     <div className={className} id="animation">
-      <span onClick={() => window.location.href = "/introduction"}>Вступление</span>
-      <span onClick={() => window.location.href = "/my/projects"}>Мои проекты</span>
-      <span onClick={() => window.location.href = "/my/socials"}>Мои соцсети</span>
-      <span onClick={() => window.location.href = "/me/info"}>Немного обо мне</span>
-      <span onClick={() => window.location.href = "/me/resume"}>Резюме</span>
+      <Link href={"/introduction"}>Вступление</Link>
+      <Link href={"/my/projects"}>Мои проекты</Link>
+      <Link href={"/my/socials"}>Мои соцсети</Link>
+      <Link href={"/me/info"}>Немного обо мне</Link>
+      <Link href={"/me/resume"}>Резюме</Link>
       {
         animationsEnabled
           ? <></>
