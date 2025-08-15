@@ -3,7 +3,11 @@ export class GithubApi {
   
   public static fetchRepositories = (type: "orgs"|"users", name: string) => {
     return fetch(GithubApi.url + type + "/" + name + "/repos", {
-      method: "GET"
+      method: "GET",
+      next: {
+        revalidate: 1200,
+      },
+      cache: "force-cache"
     });
   }
 }

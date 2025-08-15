@@ -12,7 +12,7 @@ import styles from './styles.module.css';
 
 const Page = () => {
   return (
-    <div className="page-center" style={{justifySelf: "flex-end"}}>
+    <div className="page-center">
       <div className={styles.page}>
         <div className={styles.resumeHeader}>
           <h2>{PERSONAL_INFO.name}</h2>

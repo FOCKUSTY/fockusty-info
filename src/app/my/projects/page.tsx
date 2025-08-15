@@ -31,7 +31,7 @@ const Page = () => {
   }
 
   return (
-    <div className="page-center" style={{justifySelf: "flex-end"}}>
+    <div className="page-center">
       <div className={styles.projectsContainer}>
         <h1 className={styles.title}>Мои проекты</h1>
         
