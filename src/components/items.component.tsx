@@ -50,11 +50,11 @@ export const Items = ({
   return (
     <>
     <div className={className} id="animation">
-      <span>Вступление</span>
-      <span>Мои проекты</span>
-      <span>Мои соцсети</span>
-      <span>Немного обо мне</span>
-      <span>Резюме</span>
+      <span onClick={() => window.location.href = "/intoduction"}>Вступление</span>
+      <span onClick={() => window.location.href = "/my/projects"}>Мои проекты</span>
+      <span onClick={() => window.location.href = "/my/socials"}>Мои соцсети</span>
+      <span onClick={() => window.location.href = "/me/info"}>Немного обо мне</span>
+      <span onClick={() => window.location.href = "/me/resume"}>Резюме</span>
       {
         animationsEnabled
           ? <></>

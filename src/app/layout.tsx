@@ -23,7 +23,10 @@ export const metadata: Metadata = {
   description: "site-portfolio",
 };
 
-const date = "2025-" + new Date().getFullYear();
+const now = `${new Date().getFullYear()}`;
+const date = "2025" === now
+  ? now
+  : "2025-" + now;
 
 const RootLayout = ({
   children,
