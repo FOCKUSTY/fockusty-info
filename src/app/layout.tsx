@@ -52,7 +52,7 @@ const RootLayout = ({
 
         <header>
           <Logo head={<h1 id="main-logo">FOCKUSTY</h1>} links={Api.fockusty} />
-          </header>
+        </header>
 
         <main>
           {children}

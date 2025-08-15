@@ -1,12 +1,16 @@
-import Image from "next/image";
+'use client'
 
 import styles from "./page.module.css";
+import { Items } from "components/items.component";
 
 const Page = () => {
+
   return (
-    <div className="page-center">
-      Hello
-    </div>
+    <>
+      <div className="page-center">
+        <Items className={styles.animation} />
+      </div>
+    </>
   )
 };
 
