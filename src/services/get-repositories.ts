@@ -9,7 +9,7 @@ export const getRepositories = cache(async () => {
     const data = await GithubApi.fetchRepositories("users", "fockusty");
     
     return data.json() as Promise<Project[]>;
-  } catch (error) {
+  } catch {
     return null;
   }
 })
