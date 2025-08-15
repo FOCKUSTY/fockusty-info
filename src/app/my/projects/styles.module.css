@@ -1,0 +1,111 @@
+.projectsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2rem;
+  max-width: 900px;
+  height: 100%;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--foreground);
+  text-align: center;
+}
+
+.projectsFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.projectCard {
+  background: var(--card-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  gap: 10px;
+  border: 1px solid var(--component-color);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+  flex: 1 1 300px;
+  max-width: 100%;
+}
+
+.projectCard:hover {
+  transform: translateY(-5px);
+}
+
+.projectHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projectLink {
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.projectLink:hover {
+  text-decoration: underline;
+}
+
+.demoLink {
+  background: var(--component-color);
+  color: var(--foreground);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.demoLink:hover {
+  background: var(--smooth-background-color);
+}
+
+.description {
+  color: var(--mini-text-color);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--mini-text-color);
+}
+
+.language {
+  background: rgba(100, 100, 100, 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.footer {
+  font-size: 0.8rem;
+  color: var(--mini-text-color);
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .projectsFlex {
+    flex-direction: column;
+  }
+  
+  .projectCard {
+    flex: 1 1 auto;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}
