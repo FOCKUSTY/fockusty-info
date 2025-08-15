@@ -12,16 +12,16 @@ import styles from './styles.module.css';
 
 const Page = () => {
   return (
-    <div className={styles.page}>
-      <div className={styles.resumeContainer}>
+    <div className={`page-center`}>
+      <div className={styles.page}>
         <div className={styles.resumeHeader}>
-          <h1>{PERSONAL_INFO.name}</h1>
+          <h2>{PERSONAL_INFO.name}</h2>
           <p>{PERSONAL_INFO.position}</p>
         </div>
         
         <div className={styles.resumeContent}>
           <section className={styles.resumeSection}>
-            <h2>Контактная информация</h2>
+            <h3>Контактная информация</h3>
             <ul className={styles.contactList}>
               {CONTACT_INFO.map((info, index) => (
                 <li key={info.name + index}><span>{info.name}:</span> {info.content}</li>
@@ -30,7 +30,7 @@ const Page = () => {
           </section>
           
           <section className={styles.resumeSection}>
-            <h2>Навыки</h2>
+            <h3>Навыки</h3>
             <div className={styles.skillsGrid}>
               {SKILLS.map((category: SkillCategory) => (
                 <div key={category.id} className={styles.skillCategory}>
@@ -46,7 +46,7 @@ const Page = () => {
           </section>
           
           <section className={styles.resumeSection}>
-            <h2>Опыт работы</h2>
+            <h3>Опыт работы</h3>
             <div className={styles.experienceList}>
               {EXPERIENCE.map((job, index) => (
                 <div key={index} className={styles.job}>

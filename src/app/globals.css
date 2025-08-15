@@ -259,12 +259,23 @@ main {
 }
 
 @media screen and (width < 768px) {
-  footer {
+  footer,
+  header {
     align-items: center;
     justify-content: center;
   }
 
   .human {
     display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 16px;
   }
 }
