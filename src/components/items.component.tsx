@@ -50,7 +50,7 @@ export const Items = ({
   return (
     <>
     <div className={className} id="animation">
-      <span onClick={() => window.location.href = "/intoduction"}>Вступление</span>
+      <span onClick={() => window.location.href = "/introduction"}>Вступление</span>
       <span onClick={() => window.location.href = "/my/projects"}>Мои проекты</span>
       <span onClick={() => window.location.href = "/my/socials"}>Мои соцсети</span>
       <span onClick={() => window.location.href = "/me/info"}>Немного обо мне</span>
