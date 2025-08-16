@@ -9,17 +9,11 @@
 
   height: 100%;
   width: 100%;
-
-  z-index: 100;
 }
 
 .animation * {
   cursor: pointer;
   position: relative;
-
-  transition: 1.2s cubic-bezier(0.33, 1, 0.68, 1) 0s;
-
-  z-index: 101;
 
   top: 0;
   left: 0;

@@ -124,7 +124,9 @@ export const EXPERIENCE: {
         Разработка своей бэкенд-архитектуры
         <a href="https://github.com/Lazy-And-Focused/BAD-template" target="_blank" rel="noopener noreferrer"> BAD</a>
       </span>,
-      "INDEV"
+      "Описание проектов и создание документаций",
+      "Разработка REST API с использованием MongoDB и кэширования",
+      "Разработка системы аутентификации через отдельный сервис"
     ]
   },
 ];

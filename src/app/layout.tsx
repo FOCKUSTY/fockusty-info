@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+'use client'
 
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -7,6 +7,8 @@ import { Logo } from "components/logo/thevoid";
 import { Api } from "api";
 
 import "./globals.css";
+import SpaceAnimation from "@/components/space";
+import { useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +20,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "FOCKUSTY info",
-  description: "site-portfolio",
-};
-
 const now = `${new Date().getFullYear()}`;
 const date = "2025" === now
   ? now
@@ -33,6 +30,8 @@ const RootLayout = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const [ animationEnabled, setAnimationEnabled ] = useState<boolean>(false);
+
   return (
     <html lang="ru">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
@@ -43,24 +42,28 @@ const RootLayout = ({
           src={"/background.png"}
           alt="background"
         />
-        <div className="human-container">
-          <Image
-            width={597}
-            height={935}
-            className="human noselect"
-            src="/human.png"
-            alt="human"
-          />
-        </div>
 
         <header>
           <Logo head={<h1 id="main-logo">FOCKUSTY</h1>} links={Api.fockusty} />
+  
+          <button onClick={() => setAnimationEnabled(!animationEnabled)}>В{animationEnabled ? "ы" : ""}ключить анимации?</button>
         </header>
 
-        <main>
-          {children}
-        </main>
-
+        <SpaceAnimation enabled={animationEnabled}>
+          <div className="human-container">
+            <Image
+              width={597}
+              height={935}
+              className="human noselect"
+              src="/human.png"
+              alt="human"
+              />
+          </div>
+          
+          <main>
+            {children}
+          </main>
+        </SpaceAnimation>
         <footer>
           <Logo head={<h2>© {date} The Void</h2>} links={Api.the_void} />
         </footer>
