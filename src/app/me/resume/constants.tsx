@@ -114,9 +114,17 @@ export const EXPERIENCE: {
   responsibilities: React.ReactNode[]
 }[] = [
   {
-    position: "INDEV",
-    company: "INDEV",
-    period: "INDEV",
-    responsibilities: ["INDEV"]
+    position: "CEO, Backend developer",
+    company: "Lazy And Focused",
+    period: "2024-now",
+    responsibilities: [
+      "Управление командой",
+      "Ревью кода",
+      <span>
+        Разработка своей бэкенд-архитектуры
+        <a href="https://github.com/Lazy-And-Focused/BAD-template" target="_blank" rel="noopener noreferrer"> BAD</a>
+      </span>,
+      "INDEV"
+    ]
   },
 ];

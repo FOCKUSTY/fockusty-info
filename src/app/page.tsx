@@ -6,7 +6,7 @@ import { Items } from "components/items.component";
 const Page = () => {
   return (
     <>
-      <div className="page-center">
+      <div className="page-center" style={{justifySelf: "center"}}>
         <Items className={styles.animation} />
       </div>
     </>
