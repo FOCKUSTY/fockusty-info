@@ -79,7 +79,10 @@ button {
 button {
   cursor: pointer;
   border: 0;
-  background-color: inherit;
+
+  padding: 0.25em 0.5em;
+  border-radius: 0.5em;
+  background-color: var(--card-color);
 }
 
 input,

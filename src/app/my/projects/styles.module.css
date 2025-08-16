@@ -94,6 +94,25 @@
   color: var(--mini-text-color);
 }
 
+.sort {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort_by {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+@media (max-width: 1440px) {
+  .sort {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;

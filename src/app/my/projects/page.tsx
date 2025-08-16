@@ -7,24 +7,24 @@ import React, { useEffect, useState } from 'react';
 import { getRepositories } from '@/services/get-repositories';
 
 import styles from './styles.module.css';
+import { ProjectComponent } from '@/components/project.component';
 
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('ru-RU', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+const sortToKey: Record<"stars"|"date"|"forks"|"name", keyof Project> = {
+  stars: "stargazers_count",
+  date: "updated_at",
+  forks: "forks_count",
+  name: "name"
 };
 
 const Page = () => {
-  const [ projects, setProjects ] = useState<Project[]|null>(null);
+  const [ projects, setProjects ] = useState<Project[]>([]);
+  const [ sorting, setSorting ] = useState<"stars"|"date"|"forks"|"name">("date");
 
   useEffect(() => {
     (async () => {
-      setProjects(await getRepositories());
+      setProjects(await getRepositories() || []);
     })();
-  });
+  }, []);
 
   if (!projects) {
     return <></>;
@@ -34,62 +34,38 @@ const Page = () => {
     <div className="page-center">
       <div className={styles.projectsContainer}>
         <h1 className={styles.title}>Мои проекты</h1>
+        <div className={styles.sort}>
+          <span>Сортировать по:</span>
+          <div className={styles.sort_by}>
+            { sorting === "name" ? <></> : <button onClick={() => setSorting("name")}>Имя</button>}
+            { sorting === "date" ? <></> : <button onClick={() => setSorting("date")}>Дата</button>}
+            { sorting === "forks" ? <></> : <button onClick={() => setSorting("forks")}>Форки</button>}
+            { sorting === "stars" ? <></> : <button onClick={() => setSorting("stars")}>Звезды</button>}
+          </div>
+        </div>
         
         <div className={styles.projectsFlex}>
-          {projects.map((project) => (
-            <div key={project.id} className={styles.projectCard}>
-              <div className={styles.projectHeader}>
-                <h2>
-                  <a 
-                    href={project.html_url} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={styles.projectLink}
-                  >
-                    {project.name}
-                  </a>
-                </h2>
+          {
+            projects.sort((p1, p2) => {
+              const [ v1, v2 ] = [p1[sortToKey[sorting]], p2[sortToKey[sorting]]];
 
-                {project.homepage && (
-                  <a 
-                    href={project.homepage} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className={styles.demoLink}
-                  >
-                    Демо
-                  </a>
-                )}
+              if (v1 === null || v2 === null) {
+                return 0;
+              }
 
-                {project.is_template && (
-                  <span className={styles.demoLink}> 
-                    Шаблон
-                  </span>
-                )}
+              if (sorting === "name") {
+                return p1.name.localeCompare(p2.name);
+              } else if (sorting === "date") {
+                return new Date(v2.toString()).getTime() - new Date(v1.toString()).getTime();
+              } else {
+                const output = +v2 - +v1;
 
-              </div>
-              
-              {project.description && (
-                <p className={styles.description}>{project.description}</p>
-              )}
-              
-              <div className={styles.meta}>
-                {project.language && (
-                  <span className={styles.language}>{project.language}</span>
-                )}
-                <span className={styles.stars}>
-                  ⭐ {project.stargazers_count}
-                </span>
-                <span className={styles.forks}>
-                  🍴 {project.forks_count}
-                </span>
-              </div>
-              
-              <div className={styles.footer}>
-                Обновлено: {formatDate(project.updated_at)}
-              </div>
-            </div>
-          ))}
+                return output === 0
+                  ? p1.name.localeCompare(p2.name)
+                  : output;
+              }
+            }).map((project) => <ProjectComponent key={project.id} project={project} styles={styles} />)
+          }
         </div>
       </div>
     </div>
