@@ -120,7 +120,7 @@ export const EXPERIENCE: {
     responsibilities: [
       "Управление командой",
       "Ревью кода",
-      <span>
+      <span key={"exp-10"}>
         Разработка своей бэкенд-архитектуры
         <a href="https://github.com/Lazy-And-Focused/BAD-template" target="_blank" rel="noopener noreferrer"> BAD</a>
       </span>,

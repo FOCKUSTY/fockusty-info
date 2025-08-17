@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 function getRandomColor() {
-  let letters = '0123456789ABCDEF';
+  const letters = '0123456789ABCDEF';
   let color = '#';
   
   for (let i = 0; i < 6; i++) {
