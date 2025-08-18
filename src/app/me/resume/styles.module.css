@@ -132,6 +132,23 @@
   margin-bottom: 0.5rem;
 }
 
+.data_list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.data_list * {
+  position: relative;
+  padding: 0 0 0 10px;
+}
+
+.data_list *::before {
+  content: "▪";
+  position: absolute;
+  left: 0;
+}
+
 @media (max-width: 768px) {
   .resumeContainer {
     padding: 1rem;

@@ -1,5 +1,7 @@
 import { Api } from "@/api";
 
+import styles from "./styles.module.css";
+
 export interface SkillCategory {
   id: string
   title: React.ReactNode;
@@ -109,24 +111,71 @@ export const SKILLS: SkillCategory[] = [
 
 export const EXPERIENCE: {
   position: React.ReactNode,
-  company: React.ReactNode,
-  period: React.ReactNode,
+  company?: React.ReactNode,
+  period?: React.ReactNode,
   responsibilities: React.ReactNode[]
 }[] = [
   {
-    position: "CEO, Backend developer",
-    company: "Lazy And Focused",
+    company:
+      <a href="https://github.com/Lazy-And-Focused" target="_blank" rel="noopener noreferrer" style={{animation: "0"}}>
+        Lazy And Focused (my command)
+      </a>,
     period: "2024-now",
+    position: "CEO, Backend developer",
     responsibilities: [
       "Управление командой",
       "Ревью кода",
       <span key={"exp-10"}>
         Разработка своей бэкенд-архитектуры
-        <a href="https://github.com/Lazy-And-Focused/BAD-template" target="_blank" rel="noopener noreferrer"> BAD</a>
+        <a href="https://github.com/Lazy-And-Focused/BAD-template" target="_blank" rel="noopener noreferrer"> BAD </a>
+        А также библиотеки для неё:
+        <a href="https://www.npmjs.com/package/bad-fockarch" target="_blank" rel="noopener noreferrer"> bad-fockarch</a>
       </span>,
       "Описание проектов и создание документаций",
-      "Разработка REST API с использованием MongoDB и кэширования",
+      <div style={{display: "flex", flexDirection: "column", gap: "7.5px"}}>
+        <span>Разработка REST API (CRUD) с использованием</span>
+        <div className={styles.data_list}>
+          <a href="https://www.mongodb.com/" target="_blank" rel="noopener noreferrer">MongoDB</a>
+          <span>Кэширования</span>
+          <a href="https://www.npmjs.com/package/@nestjs/swagger" target="_blank" rel="noopener noreferrer">@nestjs/swagger</a>
+          <a href="https://www.npmjs.com/package/@nestjs/testing" target="_blank" rel="noopener noreferrer">@nestjs/testing</a>
+          <a href="https://www.npmjs.com/package/@nestjs/schematics" target="_blank" rel="noopener noreferrer">@nestjs/schematics</a>
+          <a href="https://www.npmjs.com/package/cache-manager" target="_blank" rel="noopener noreferrer">cache-manager</a>
+          <a href="https://www.npmjs.com/package/cors" target="_blank" rel="noopener noreferrer">сors (настройка)</a>
+        </div>
+      </div>,
       "Разработка системы аутентификации через отдельный сервис"
+    ]
+  },
+  {
+    company: "The Void (my command)",
+    period: "2023-now",
+    position: "CEO",
+    responsibilities: [
+      <span>
+        Разработка единой системы базы данных (ЕСБД)
+        (<a href="https://www.npmjs.com/package/@thevoidcommunity/the-void-database" target="_blank" rel="noopener noreferrer">npm-пакет</a>)
+      </span>,
+      "Разработка бота, используя ЕСБД, discord.js, telegraf",
+      "Разработка панели управления для Discord бота на Next.js, Nest.js",
+      "Использование OpenAi и Ollama для создания чат-ботов"
+    ]
+  },
+  {
+    position: "Личные достижения",
+    responsibilities: [
+      "Управление своей командой: Lazy And Focused",
+      <div style={{display: "flex", flexDirection: "column", gap: "7.5px"}}>
+        <span>Создание библиотек для упрощения работы:</span>
+        <div className={styles.data_list}>
+          <a href="https://www.npmjs.com/package/f-formatter" target="_blank" rel="noopener noreferrer">f-formatter</a>
+          <a href="https://www.npmjs.com/package/fbit-field" target="_blank" rel="noopener noreferrer">fbit-field</a>
+          <a href="https://www.npmjs.com/package/fock-logger" target="_blank" rel="noopener noreferrer">fock-logger</a>
+          <a href="https://www.npmjs.com/package/fock-builder" target="_blank" rel="noopener noreferrer">fock-builder</a>
+          <a href="https://www.npmjs.com/package/fouter" target="_blank" rel="noopener noreferrer">fouter</a>
+          <a href="https://www.npmjs.com/package/bad-fockarch" target="_blank" rel="noopener noreferrer">bad-fockarch</a>
+        </div>
+      </div>
     ]
   },
 ];

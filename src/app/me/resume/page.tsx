@@ -48,17 +48,23 @@ const Page = () => {
           <section className={styles.resumeSection}>
             <h3>Опыт работы</h3>
             <div className={styles.experienceList}>
-              {EXPERIENCE.map((job, index) => (
-                <div key={index} className={styles.job}>
-                  <h3>{job.position}</h3>
-                  <p className={styles.company}>{job.company} · {job.period}</p>
-                  <ul className={styles.responsibilities}>
-                    {job.responsibilities.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+              {
+                EXPERIENCE.map((job, index) => (
+                  <div key={index} className={styles.job}>
+                    <h3>{job.position}</h3>
+                    {
+                      job.company
+                        ? <p className={styles.company}>{job.company} {job.period ? <>· {job.period}</> : <></>}</p>
+                        : <></>
+                    }
+                    <ul className={styles.responsibilities}>
+                      {job.responsibilities.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              }
             </div>
           </section>
         </div>
