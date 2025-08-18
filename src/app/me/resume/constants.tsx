@@ -125,14 +125,14 @@ export const EXPERIENCE: {
     responsibilities: [
       "Управление командой",
       "Ревью кода",
-      <span key={"exp-10"}>
+      <span key={"exp-laf-1"}>
         Разработка своей бэкенд-архитектуры
         <a href="https://github.com/Lazy-And-Focused/BAD-template" target="_blank" rel="noopener noreferrer"> BAD </a>
         А также библиотеки для неё:
         <a href="https://www.npmjs.com/package/bad-fockarch" target="_blank" rel="noopener noreferrer"> bad-fockarch</a>
       </span>,
       "Описание проектов и создание документаций",
-      <div style={{display: "flex", flexDirection: "column", gap: "7.5px"}}>
+      <div key={"exp-laf-2"} style={{display: "flex", flexDirection: "column", gap: "7.5px"}}>
         <span>Разработка REST API (CRUD) с использованием</span>
         <div className={styles.data_list}>
           <a href="https://www.mongodb.com/" target="_blank" rel="noopener noreferrer">MongoDB</a>
@@ -152,7 +152,7 @@ export const EXPERIENCE: {
     period: "2023-now",
     position: "CEO",
     responsibilities: [
-      <span>
+      <span key={"exp-tvc-1"}>
         Разработка единой системы базы данных (ЕСБД)
         (<a href="https://www.npmjs.com/package/@thevoidcommunity/the-void-database" target="_blank" rel="noopener noreferrer">npm-пакет</a>)
       </span>,
@@ -165,7 +165,7 @@ export const EXPERIENCE: {
     position: "Личные достижения",
     responsibilities: [
       "Управление своей командой: Lazy And Focused",
-      <div style={{display: "flex", flexDirection: "column", gap: "7.5px"}}>
+      <div key={"exp-my-1"} style={{display: "flex", flexDirection: "column", gap: "7.5px"}}>
         <span>Создание библиотек для упрощения работы:</span>
         <div className={styles.data_list}>
           <a href="https://www.npmjs.com/package/f-formatter" target="_blank" rel="noopener noreferrer">f-formatter</a>
