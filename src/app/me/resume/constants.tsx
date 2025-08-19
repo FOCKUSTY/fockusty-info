@@ -78,67 +78,67 @@ export const SKILLS: SkillCategory[] = [
     id: "Frontend",
     title: <h3>Frontend</h3>,
     items: [
-      <Link href="https://nextra.site/" name="Nextra"/>,
-      <Link href="https://nextjs.org/" name="Next.js"/>,
-      <Link href="https://react.dev/" name="React.js"/>,
-      <Link href="https://developer.mozilla.org/en-US/docs/Web/HTML" name="HTML"/>,
-      <Link href="https://developer.mozilla.org/en-US/docs/Web/CSS" name="CSS"/>
+      <Link key={"f1"} href="https://nextra.site/" name="Nextra"/>,
+      <Link key={"f2"} href="https://nextjs.org/" name="Next.js"/>,
+      <Link key={"f3"} href="https://react.dev/" name="React.js"/>,
+      <Link key={"f4"} href="https://developer.mozilla.org/en-US/docs/Web/HTML" name="HTML"/>,
+      <Link key={"f5"} href="https://developer.mozilla.org/en-US/docs/Web/CSS" name="CSS"/>
     ]
   },
   {
     id: "Backend",
     title: <h3>Backend</h3>,
     items: [
-      <Link href="https://www.passportjs.org/" name="Passport.js" />,
-      <Link href="https://nestjs.com/" name="Nest.js" />,
-      <Link href="https://expressjs.com/" name="Express.js" />,
-      <Link href="https://www.redhat.com/en/topics/api/what-is-a-rest-api" name="REST API" />,
-      <Link href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" name="Websocket" />,
-      <Link href="https://socket.io/docs/v4/" name="Socket.io" />,
+      <Link key={"b1"} href="https://www.passportjs.org/" name="Passport.js" />,
+      <Link key={"b2"} href="https://nestjs.com/" name="Nest.js" />,
+      <Link key={"b3"} href="https://expressjs.com/" name="Express.js" />,
+      <Link key={"b4"} href="https://www.redhat.com/en/topics/api/what-is-a-rest-api" name="REST API" />,
+      <Link key={"b5"} href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" name="Websocket" />,
+      <Link key={"b6"} href="https://socket.io/docs/v4/" name="Socket.io" />,
     ]
   },
   {
     id: "Общее",
     title: <h3>Общее</h3>,
     items: [
-      <Link href="https://nodejs.org/" name="Node.js" />,
-      <Link href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Regular_expressions" name="Регулярные выражения (MDN)" />,
-      <Link href="https://regex101.com" name="RegExp101" />,
-      <Link href="https://mochajs.org" name="Mocha.js" />
+      <Link key={"m1"} href="https://nodejs.org/" name="Node.js" />,
+      <Link key={"m2"} href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Regular_expressions" name="Регулярные выражения (MDN)" />,
+      <Link key={"m3"} href="https://regex101.com" name="RegExp101" />,
+      <Link key={"m4"} href="https://mochajs.org" name="Mocha.js" />
     ]
   },
   {
     id: "Базы данных",
     title: <h3>Базы данных</h3>,
     items: [
-      <Link href="https://www.mongodb.com/" name="MongoDB" />,
-      <Link href="https://www.sqlite.org/index.html" name="SQLite" />
+      <Link key={"db1"} href="https://www.mongodb.com/" name="MongoDB" />,
+      <Link key={"db2"} href="https://www.sqlite.org/index.html" name="SQLite" />
     ]
   },
   {
     id: "Инструменты",
     title: <h3>Инструменты</h3>,
     items: [
-      <Link href="https://code.visualstudio.com/" name="Visual Studio Code" />,
-      <Link href="https://visualstudio.microsoft.com/" name="Visual Studio" />,
-      <Link href="https://www.adobe.com/products/photoshop.html" name="Photoshop" />,
-      <Link href="https://desktop.github.com/" name="GitHub Desktop" />,
-      <Link href="https://about.gitlab.com/" name="GitLab" />,
-      <Link href="https://github.com/" name="GitHub" />,
-      <Link href="https://git-scm.com/" name="Git" />,
-      <Link href="https://www.figma.com/" name="Figma" />,
-      <Link href="https://www.docker.com/" name="Docker" />
+      <Link key={"i1"} href="https://code.visualstudio.com/" name="Visual Studio Code" />,
+      <Link key={"i2"} href="https://visualstudio.microsoft.com/" name="Visual Studio" />,
+      <Link key={"i3"} href="https://www.adobe.com/products/photoshop.html" name="Photoshop" />,
+      <Link key={"i4"} href="https://desktop.github.com/" name="GitHub Desktop" />,
+      <Link key={"i5"} href="https://about.gitlab.com/" name="GitLab" />,
+      <Link key={"i6"} href="https://github.com/" name="GitHub" />,
+      <Link key={"i7"} href="https://git-scm.com/" name="Git" />,
+      <Link key={"i8"} href="https://www.figma.com/" name="Figma" />,
+      <Link key={"i9"} href="https://www.docker.com/" name="Docker" />
     ]
   },
   {
     id: "Языки программирования",
     title: <h3>Языки программирования</h3>,
     items: [
-      <Link href="https://javascript.info/" name="JavaScript" />,
-      <Link href="https://www.typescriptlang.org/docs/" name="TypeScript" />,
-      <Link href="https://docs.python.org/3/tutorial/" name="Python" />,
-      <Link href="https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/" name="C#" />,
-      <Link href="https://go.dev/learn/" name="GoLang" />
+      <Link key={"pl1"} href="https://javascript.info/" name="JavaScript" />,
+      <Link key={"pl2"} href="https://www.typescriptlang.org/docs/" name="TypeScript" />,
+      <Link key={"pl3"} href="https://docs.python.org/3/tutorial/" name="Python" />,
+      <Link key={"pl4"} href="https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/" name="C#" />,
+      <Link key={"pl5"} href="https://go.dev/learn/" name="GoLang" />
     ]
   }
 ];

@@ -51,7 +51,7 @@ const Page = () => {
           <Content contentClassName={styles.content__skils} summary="Навыки">
             {
               SKILLS.map((category) => (
-                <div className={styles.skills}>
+                <div key={category.id} className={styles.skills}>
                   <span className={styles.skills__title}>{category.title}</span>
                   <div className={`${styles.skills__content} ${styles.data_list}`}>
                     {
