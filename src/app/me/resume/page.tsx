@@ -4,69 +4,90 @@ import {
   PERSONAL_INFO,
   CONTACT_INFO,
   SKILLS,
-  EXPERIENCE,
-  SkillCategory
+  EXPERIENCE
 } from './constants';
 
 import styles from './styles.module.css';
+
+const Content = ({
+  children,
+  summary,
+  contentClassName
+}: {
+  summary: React.ReactNode,
+  children: React.ReactNode,
+  contentClassName?: string
+}) => {
+  return (
+    <section className={styles.content}>
+      <h3 className={styles.content__summary}>{summary}</h3>
+      <div className={`${contentClassName} ${styles.content__children}`}>
+        {children}
+      </div>
+    </section>
+  )
+}
 
 const Page = () => {
   return (
     <div className="page-center">
       <div className={styles.page}>
-        <div className={styles.resumeHeader}>
-          <h2>{PERSONAL_INFO.name}</h2>
-          <p>{PERSONAL_INFO.position}</p>
+        <div className={styles.header}>
+          <h2 className={styles.header__name}>{PERSONAL_INFO.name}</h2>
+          <p className={styles.header__position}>{PERSONAL_INFO.position}</p>
         </div>
         
-        <div className={styles.resumeContent}>
-          <section className={styles.resumeSection}>
-            <h3>Контактная информация</h3>
-            <ul className={styles.contactList}>
-              {CONTACT_INFO.map((info, index) => (
-                <li key={info.name + index}><span>{info.name}:</span> {info.content}</li>
-              ))}
-            </ul>
-          </section>
-          
-          <section className={styles.resumeSection}>
-            <h3>Навыки</h3>
-            <div className={styles.skillsGrid}>
-              {SKILLS.map((category: SkillCategory) => (
-                <div key={category.id} className={styles.skillCategory}>
-                  {category.title}
-                  <ul>
-                    {category.items.map((skill, index) => (
-                      <li key={index}>{skill}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </section>
-          
-          <section className={styles.resumeSection}>
-            <h3>Опыт работы</h3>
-            <div className={styles.experienceList}>
-              {
-                EXPERIENCE.map((job, index) => (
-                  <div key={index} className={styles.job}>
-                    <h3>{job.position}</h3>
+        <div className={styles.container}>
+          <Content summary="Контактная информация">
+            {
+              CONTACT_INFO.map((info, index) => (
+                <span key={info.name+index}>{info.name}: {info.content}</span>
+              ))
+            }
+          </Content>
+
+          <hr />
+
+          <Content contentClassName={styles.content__skils} summary="Навыки">
+            {
+              SKILLS.map((category) => (
+                <div className={styles.skills}>
+                  <span className={styles.skills__title}>{category.title}</span>
+                  <div className={`${styles.skills__content} ${styles.data_list}`}>
                     {
-                      job.company
-                        ? <p className={styles.company}>{job.company} {job.period ? <>· {job.period}</> : <></>}</p>
-                        : <></>
+                      category.items.map((skill, index) => (
+                        <span className={styles.data_list__item} key={index}>{skill}</span>
+                      ))
                     }
-                    <ul className={styles.responsibilities}>
-                      {job.responsibilities.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
                   </div>
-                ))
-              }
-            </div>
-          </section>
+                </div>
+              ))
+            }
+          </Content>
+
+          <hr />
+
+          <Content contentClassName={styles.content__job} summary="Опыт">
+            {
+              EXPERIENCE.map((job, index) => (
+                <div key={index} className={styles.job}>
+                  <h4 className={styles.job__position}>{job.position}</h4>
+                  {
+                    job.company
+                      ? <p className={styles.job__company}>{job.company} {job.period ? <>· {job.period}</> : <></>}</p>
+                      : <></>
+                  }
+                  <div className={styles.job__responsibilities}>
+                    {
+                      job.responsibilities.map((item, index) => (
+                        <span key={index}>{item}</span>
+                      ))
+                    }
+                  </div>
+                </div>
+              ))
+            }
+          </Content>
         </div>
       </div>
     </div>

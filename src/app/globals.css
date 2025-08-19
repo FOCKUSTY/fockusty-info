@@ -294,6 +294,10 @@ main {
     justify-content: center;
   }
 
+  #animation-button {
+    display: none;
+  }
+
   .human {
     display: none;
   }

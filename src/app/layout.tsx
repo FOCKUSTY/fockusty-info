@@ -46,7 +46,7 @@ const RootLayout = ({
         <header>
           <Logo head={<h1 id="main-logo">FOCKUSTY</h1>} links={Api.fockusty} />
   
-          <button onClick={() => setAnimationEnabled(!animationEnabled)}>В{animationEnabled ? "ы" : ""}ключить анимации?</button>
+          <button id="animation-button" onClick={() => setAnimationEnabled(!animationEnabled)}>В{animationEnabled ? "ы" : ""}ключить анимации?</button>
         </header>
 
         <SpaceAnimation enabled={animationEnabled}>

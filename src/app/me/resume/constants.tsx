@@ -1,11 +1,45 @@
 import { Api } from "@/api";
-
 import styles from "./styles.module.css";
+import React from "react";
 
 export interface SkillCategory {
   id: string
   title: React.ReactNode;
   items: React.ReactNode[];
+};
+
+const PackageLinks = ({ packages }: { packages: string[]}) => {
+  return packages.map(name => (
+    <a
+      key={name + packages.length}
+      className={styles.data_list__item}
+      href={`https://www.npmjs.com/package/${name}`}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {name}
+    </a>
+  ))
+}
+
+type LinkProps = ({
+  children?: undefined,
+  name: string
+} | {
+  children: React.ReactNode,
+  name?: undefined
+}) & {
+  href: string,
+  className?: string
+}
+
+const Link = ({
+  children,
+  className,
+  href,
+  name
+}: LinkProps) => {
+  return <a className={className} key={href} href={href} target="_blank" rel="noopener noreferrer">{children ?? name}</a>;
 }
 
 export const PERSONAL_INFO = {
@@ -27,15 +61,15 @@ export const CONTACT_INFO: {
   },
   {
     name: "GitHub",
-    content: <a href={Api.fockusty.github_url} target="_blank">FOCKUSTY</a>
+    content: <Link href={Api.fockusty.github_url} name="FOCKUSTY" />
   },
   {
     name: "Telegram",
-    content: <a href={Api.fockusty.telegram_url} target="_blank">FOCKUSTY</a>
+    content: <Link href={Api.fockusty.telegram_url} name="FOCKUSTY" />
   },
   {
     name: "Discord",
-    content: <a href={Api.fockusty.discord_url} target="_blank">The Void</a>
+    content: <Link href={Api.fockusty.discord_url} name="The Void" />
   }
 ];
 
@@ -44,67 +78,67 @@ export const SKILLS: SkillCategory[] = [
     id: "Frontend",
     title: <h3>Frontend</h3>,
     items: [
-      <a key={"Frontend-1"} href="https://nextra.site/" target="_blank" rel="noopener noreferrer">Nextra</a>,
-      <a key={"Frontend-2"} href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">Next.js</a>,
-      <a key={"Frontend-3"} href="https://react.dev/" target="_blank" rel="noopener noreferrer">React.js</a>,
-      <a key={"Frontend-4"} href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer">HTML</a>,
-      <a key={"Frontend-5"} href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer">CSS</a>
+      <Link href="https://nextra.site/" name="Nextra"/>,
+      <Link href="https://nextjs.org/" name="Next.js"/>,
+      <Link href="https://react.dev/" name="React.js"/>,
+      <Link href="https://developer.mozilla.org/en-US/docs/Web/HTML" name="HTML"/>,
+      <Link href="https://developer.mozilla.org/en-US/docs/Web/CSS" name="CSS"/>
     ]
   },
   {
     id: "Backend",
     title: <h3>Backend</h3>,
     items: [
-      <a key={"Backend-1"} href="https://www.passportjs.org/" target="_blank" rel="noopener noreferrer">Passport.js</a>,
-      <a key={"Backend-2"} href="https://nestjs.com/" target="_blank" rel="noopener noreferrer">Nest.js</a>,
-      <a key={"Backend-3"} href="https://expressjs.com/" target="_blank" rel="noopener noreferrer">Express.js</a>,
-      <a key={"Backend-4"} href="https://www.redhat.com/en/topics/api/what-is-a-rest-api" target="_blank" rel="noopener noreferrer">REST API</a>,
-      <a key={"Backend-5"} href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" target="_blank" rel="noopener noreferrer">Websocket</a>,
-      <a key={"Backend-6"} href="https://socket.io/docs/v4/" target="_blank" rel="noopener noreferrer">Socket.io</a>
+      <Link href="https://www.passportjs.org/" name="Passport.js" />,
+      <Link href="https://nestjs.com/" name="Nest.js" />,
+      <Link href="https://expressjs.com/" name="Express.js" />,
+      <Link href="https://www.redhat.com/en/topics/api/what-is-a-rest-api" name="REST API" />,
+      <Link href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API" name="Websocket" />,
+      <Link href="https://socket.io/docs/v4/" name="Socket.io" />,
     ]
   },
   {
     id: "Общее",
     title: <h3>Общее</h3>,
     items: [
-      <a key={"Общее-1"} href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">Node.js</a>,
-      <a key={"Общее-2"} href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Regular_expressions" target="_blank" rel="noopener noreferrer">Регулярные выражения (MDN)</a>,
-      <a key={"Общее-3"} href="https://regex101.com" target="_blank" rel="noopener noreferrer">RegExp101 (Интерактивный тренажёр)</a>,
-      <a key={"Общее-4"} href="https://mochajs.org" target="_blank" rel="noopener noreferrer">Mocha.js</a>
+      <Link href="https://nodejs.org/" name="Node.js" />,
+      <Link href="https://developer.mozilla.org/ru/docs/Web/JavaScript/Guide/Regular_expressions" name="Регулярные выражения (MDN)" />,
+      <Link href="https://regex101.com" name="RegExp101" />,
+      <Link href="https://mochajs.org" name="Mocha.js" />
     ]
   },
   {
     id: "Базы данных",
     title: <h3>Базы данных</h3>,
     items: [
-      <a key={"Базы данных-1"} href="https://www.mongodb.com/" target="_blank" rel="noopener noreferrer">MongoDB</a>,
-      <a key={"Базы данных-2"} href="https://www.sqlite.org/index.html" target="_blank" rel="noopener noreferrer">SQLite</a>
+      <Link href="https://www.mongodb.com/" name="MongoDB" />,
+      <Link href="https://www.sqlite.org/index.html" name="SQLite" />
     ]
   },
   {
     id: "Инструменты",
     title: <h3>Инструменты</h3>,
     items: [
-      <a key={"Инструменты-1"} href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">Visual Studio Code</a>,
-      <a key={"Инструменты-2"} href="https://visualstudio.microsoft.com/" target="_blank" rel="noopener noreferrer">Visual Studio</a>,
-      <a key={"Инструменты-3"} href="https://www.adobe.com/products/photoshop.html" target="_blank" rel="noopener noreferrer">Photoshop</a>,
-      <a key={"Инструменты-4"} href="https://desktop.github.com/" target="_blank" rel="noopener noreferrer">GitHub Desktop</a>,
-      <a key={"Инструменты-5"} href="https://about.gitlab.com/" target="_blank" rel="noopener noreferrer">GitLab</a>,
-      <a key={"Инструменты-6"} href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>,
-      <a key={"Инструменты-7"} href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a>,
-      <a key={"Инструменты-8"} href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">Figma</a>,
-      <a key={"Инструменты-9"} href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a>
+      <Link href="https://code.visualstudio.com/" name="Visual Studio Code" />,
+      <Link href="https://visualstudio.microsoft.com/" name="Visual Studio" />,
+      <Link href="https://www.adobe.com/products/photoshop.html" name="Photoshop" />,
+      <Link href="https://desktop.github.com/" name="GitHub Desktop" />,
+      <Link href="https://about.gitlab.com/" name="GitLab" />,
+      <Link href="https://github.com/" name="GitHub" />,
+      <Link href="https://git-scm.com/" name="Git" />,
+      <Link href="https://www.figma.com/" name="Figma" />,
+      <Link href="https://www.docker.com/" name="Docker" />
     ]
   },
   {
     id: "Языки программирования",
     title: <h3>Языки программирования</h3>,
     items: [
-      <a key={"Языки программирования-1"} href="https://javascript.info/" target="_blank" rel="noopener noreferrer">JavaScript</a>,
-      <a key={"Языки программирования-2"} href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener noreferrer">TypeScript</a>,
-      <a key={"Языки программирования-3"} href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener noreferrer">Python</a>,
-      <a key={"Языки программирования-4"} href="https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/" target="_blank" rel="noopener noreferrer">C#</a>,
-      <a key={"Языки программирования-5"} href="https://go.dev/learn/" target="_blank" rel="noopener noreferrer">GoLang</a>
+      <Link href="https://javascript.info/" name="JavaScript" />,
+      <Link href="https://www.typescriptlang.org/docs/" name="TypeScript" />,
+      <Link href="https://docs.python.org/3/tutorial/" name="Python" />,
+      <Link href="https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/" name="C#" />,
+      <Link href="https://go.dev/learn/" name="GoLang" />
     ]
   }
 ];
@@ -126,22 +160,21 @@ export const EXPERIENCE: {
       "Управление командой",
       "Ревью кода",
       <span key={"exp-laf-1"}>
-        Разработка своей бэкенд-архитектуры
-        <a href="https://github.com/Lazy-And-Focused/BAD-template" target="_blank" rel="noopener noreferrer"> BAD </a>
-        А также библиотеки для неё:
-        <a href="https://www.npmjs.com/package/bad-fockarch" target="_blank" rel="noopener noreferrer"> bad-fockarch</a>
+        Разработка своей бэкенд-архитектуры <PackageLinks packages={["BAD"]}/> А также библиотеки для неё: <PackageLinks packages={["bad-fockarch"]} />
       </span>,
       "Описание проектов и создание документаций",
-      <div key={"exp-laf-2"} style={{display: "flex", flexDirection: "column", gap: "7.5px"}}>
+      <div key={"exp-laf-2"} style={{display: "flex", flexDirection: "column"}}>
         <span>Разработка REST API (CRUD) с использованием</span>
         <div className={styles.data_list}>
-          <a href="https://www.mongodb.com/" target="_blank" rel="noopener noreferrer">MongoDB</a>
-          <span>Кэширования</span>
-          <a href="https://www.npmjs.com/package/@nestjs/swagger" target="_blank" rel="noopener noreferrer">@nestjs/swagger</a>
-          <a href="https://www.npmjs.com/package/@nestjs/testing" target="_blank" rel="noopener noreferrer">@nestjs/testing</a>
-          <a href="https://www.npmjs.com/package/@nestjs/schematics" target="_blank" rel="noopener noreferrer">@nestjs/schematics</a>
-          <a href="https://www.npmjs.com/package/cache-manager" target="_blank" rel="noopener noreferrer">cache-manager</a>
-          <a href="https://www.npmjs.com/package/cors" target="_blank" rel="noopener noreferrer">сors (настройка)</a>
+          <PackageLinks packages={[
+            "@nestjs/swagger",
+            "@nestjs/testing",
+            "@nestjs/schematics",
+            "cache-manager",
+            "cors"
+          ]}/>
+          <Link className={styles.data_list__item} href="https://www.mongodb.com/" name="MongoDB"/>
+          <span className={styles.data_list__item}>Кэширования</span>
         </div>
       </div>,
       "Разработка системы аутентификации через отдельный сервис"
@@ -154,7 +187,7 @@ export const EXPERIENCE: {
     responsibilities: [
       <span key={"exp-tvc-1"}>
         Разработка единой системы базы данных (ЕСБД)
-        (<a href="https://www.npmjs.com/package/@thevoidcommunity/the-void-database" target="_blank" rel="noopener noreferrer">npm-пакет</a>)
+        (<Link href="https://www.npmjs.com/package/@thevoidcommunity/the-void-database" name="npm-пакет" />)
       </span>,
       "Разработка бота, используя ЕСБД, discord.js, telegraf",
       "Разработка панели управления для Discord бота на Next.js, Nest.js",
@@ -168,12 +201,16 @@ export const EXPERIENCE: {
       <div key={"exp-my-1"} style={{display: "flex", flexDirection: "column", gap: "7.5px"}}>
         <span>Создание библиотек для упрощения работы:</span>
         <div className={styles.data_list}>
-          <a href="https://www.npmjs.com/package/f-formatter" target="_blank" rel="noopener noreferrer">f-formatter</a>
-          <a href="https://www.npmjs.com/package/fbit-field" target="_blank" rel="noopener noreferrer">fbit-field</a>
-          <a href="https://www.npmjs.com/package/fock-logger" target="_blank" rel="noopener noreferrer">fock-logger</a>
-          <a href="https://www.npmjs.com/package/fock-builder" target="_blank" rel="noopener noreferrer">fock-builder</a>
-          <a href="https://www.npmjs.com/package/fouter" target="_blank" rel="noopener noreferrer">fouter</a>
-          <a href="https://www.npmjs.com/package/bad-fockarch" target="_blank" rel="noopener noreferrer">bad-fockarch</a>
+          {
+            <PackageLinks packages={[
+              "f-formatter",
+              "fbit-field",
+              "fock-logger",
+              "fock-builder",
+              "fouter",
+              "bad-fockarch"
+            ]} />
+          }
         </div>
       </div>
     ]
