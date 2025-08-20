@@ -62,6 +62,11 @@ const SpaceAnimation = ({
 
       scene.add(star);
       stars.push(star);
+      
+      if (!enabled) {
+        starsGeometry.dispose();
+        starsMaterial.dispose();
+      }
     }
 
     const asteroids: any[] = [];
@@ -83,14 +88,19 @@ const SpaceAnimation = ({
       
       scene.add(asteroid);
       asteroids.push(asteroid);
+      
+      if (!enabled) {
+        asteroidGeometry.dispose();
+        asteroidMaterial.dispose();
+      }
     }
 
     camera.position.z = 5;
 
     const animate = () => {
-      requestAnimationFrame(animate);
-      
       if (!enabled) return;
+
+      requestAnimationFrame(animate);
 
       stars.forEach(star => {
         star.position.add(star.userData.velocity);
@@ -115,6 +125,10 @@ const SpaceAnimation = ({
       renderer.render(scene, camera);
     };
 
+    if (!enabled) {
+      renderer.dispose();
+    }
+
     animate();
 
     const handleResize = () => {
@@ -135,8 +149,10 @@ const SpaceAnimation = ({
       childrenRef.current.style.transform = `translate(-50%, -50%) translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)`;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('resize', handleResize);
+    if (enabled) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('resize', handleResize);
+    }
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
