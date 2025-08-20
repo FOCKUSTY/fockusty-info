@@ -53,7 +53,7 @@ export const CONTACT_INFO: {
 }[] = [
   {
     name: "Email",
-    content: "viserd.yt@gmail.com"
+    content: <Link href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRwQMMBlzQSnzWdPtXTfZprQXsBjhtMhvDktgcZrbNnMpLdzTJrKjSfQqmVfwRDmfrRHdvzg" name="viserd.yt@gmail.com"/>
   },
   {
     name: "Телефон",
