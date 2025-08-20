@@ -8,7 +8,7 @@ import { Api } from "api";
 
 import "./globals.css";
 import SpaceAnimation from "@/components/space";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,7 +46,25 @@ const RootLayout = ({
         <header>
           <Logo head={<h1 id="main-logo">FOCKUSTY</h1>} links={Api.fockusty} />
   
-          <button id="animation-button" onClick={() => setAnimationEnabled(!animationEnabled)}>В{animationEnabled ? "ы" : ""}ключить анимации?</button>
+          <button
+            id="animation-button"
+            onClick={(event) => {
+              setAnimationEnabled(!animationEnabled);
+
+              if (event.currentTarget.disabled) {
+                return;
+              };
+
+              const button = event.currentTarget;
+
+              button.disabled = true;
+              setTimeout(() => {
+                button.disabled = false;
+              }, 10000);
+            }}
+          >
+            В{animationEnabled ? "ы" : ""}ключить анимации?
+          </button>
         </header>
 
         <SpaceAnimation enabled={animationEnabled}>

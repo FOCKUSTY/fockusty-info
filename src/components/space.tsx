@@ -59,13 +59,13 @@ const SpaceAnimation = ({
         (Math.random() - 0.5) * 0.005,
         (Math.random() - 0.5) * 0.001
       );
-
-      scene.add(star);
-      stars.push(star);
       
       if (!enabled) {
         starsGeometry.dispose();
         starsMaterial.dispose();
+      } else {
+        scene.add(star);
+        stars.push(star);
       }
     }
 
@@ -86,21 +86,23 @@ const SpaceAnimation = ({
         (Math.random() - 0.5) * 0.1
       );
       
-      scene.add(asteroid);
-      asteroids.push(asteroid);
-      
       if (!enabled) {
         asteroidGeometry.dispose();
         asteroidMaterial.dispose();
+      } else {
+        scene.add(asteroid);
+        asteroids.push(asteroid);
       }
     }
 
     camera.position.z = 5;
 
+    let animationFrame = 0;
+
     const animate = () => {
       if (!enabled) return;
 
-      requestAnimationFrame(animate);
+      animationFrame = requestAnimationFrame(animate);
 
       stars.forEach(star => {
         star.position.add(star.userData.velocity);
@@ -149,7 +151,11 @@ const SpaceAnimation = ({
       childrenRef.current.style.transform = `translate(-50%, -50%) translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)`;
     };
 
-    if (enabled) {
+    if (!enabled) {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrame);
+    } else {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('resize', handleResize);
     }
@@ -157,6 +163,7 @@ const SpaceAnimation = ({
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrame);
       mountRef.current?.removeChild(renderer.domElement);
     };
   }, [enabled, mountRef, childrenRef]);
