@@ -304,6 +304,10 @@ main {
 }
 
 @media (max-width: 425px) {
+  .page-center {
+    justify-self: center;
+  }
+
   h2 {
     font-size: 24px;
   }

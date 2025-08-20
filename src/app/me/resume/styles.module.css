@@ -39,6 +39,10 @@
   gap: 10px;
 }
 
+.content div {
+  padding: 0 0 0 0.33em;
+}
+
 .content__children,
 .skills__content,
 .data_list,
@@ -52,7 +56,7 @@
 }
 
 .skills {
-  min-width: 200px;
+  min-width: 250px;
   max-width: 250px;
 }
 
@@ -73,23 +77,30 @@
   left: 0;
 }
 
+.container {
+  padding: 0.5em 1em;
+}
+
+.header h2 {
+  font-size: 2em;
+}
+
 @media (max-width: 768px) {
-  .resumeContainer {
-    padding: 1rem;
+  .container {
+    padding: 0.25em 0.5em;
   }
-  
-  .resumeHeader h1 {
-    font-size: 2rem;
+
+  .header h2 {
+    font-size: 1.5em;
   }
 }
 
 @media (max-width: 425px) {
-  .resumeSection {
+  .content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-
+    
     max-width: 80%;
-    padding: 0.1em 0.2em;
+    padding: 0;
   }
 }
