@@ -1,6 +1,7 @@
 import { Api } from "@/api";
 import styles from "./styles.module.css";
 import React from "react";
+import { Link } from "@/components/link";
 
 export interface SkillCategory {
   id: string
@@ -20,26 +21,6 @@ const PackageLinks = ({ packages }: { packages: string[]}) => {
       {name}
     </a>
   ))
-}
-
-type LinkProps = ({
-  children?: undefined,
-  name: string
-} | {
-  children: React.ReactNode,
-  name?: undefined
-}) & {
-  href: string,
-  className?: string
-}
-
-const Link = ({
-  children,
-  className,
-  href,
-  name
-}: LinkProps) => {
-  return <a className={className} key={href} href={href} target="_blank" rel="noopener noreferrer">{children ?? name}</a>;
 }
 
 export const PERSONAL_INFO = {
