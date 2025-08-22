@@ -6,7 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { useState } from "react";
 
 import { Logo } from "components/logo/thevoid";
-// import SpaceAnimation from "components/space";
+import SpaceAnimation from "components/space";
 
 import { Api } from "api";
 
@@ -77,6 +77,7 @@ const RootLayout = ({
           </button>
         </header>
 
+        <SpaceAnimation enabled={animationEnabled}>
           <div className="human-container">
             <Image
               width={597}
@@ -90,8 +91,7 @@ const RootLayout = ({
           <main>
             {children}
           </main>
-        {/* <SpaceAnimation enabled={animationEnabled}> */}
-        {/* </SpaceAnimation> */}
+        </SpaceAnimation>
         <footer>
           <Logo head={<h2>© {date} The Void</h2>} links={Api.the_void} />
         </footer>
