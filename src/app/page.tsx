@@ -1,12 +1,12 @@
 'use client'
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { getPathWithoutGroupPrefix, GROUPS, INFO, Russian } from "@/api/paths";
+import { Dropdown } from "@/components/dropdown";
 
 import styles from "./page.module.css";
-import { Dropdown } from "@/components/dropdown";
 
 const InfoLink = ({
   group,

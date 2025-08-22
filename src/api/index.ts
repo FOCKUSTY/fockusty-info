@@ -1,5 +1,3 @@
-import { PATHS } from "./paths";
-
 export class Api {
   public static readonly the_void = {
     github_url: "https://github.com/The-Void-Community",
@@ -14,8 +12,6 @@ export class Api {
     telegram_url: "https://t.me/fockusty",
     site: "https://fockusty.netlify.app"
   } as const;
-
-  public static readonly paths: {[key: string]: string} = PATHS;
 
   public static random = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);

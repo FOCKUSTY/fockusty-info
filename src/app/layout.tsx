@@ -6,15 +6,16 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 
-import { Logo } from "components/logo/thevoid";
 import SpaceAnimation from "components/space";
+import useMediaQuery from "@/hooks/media.hook";
+import { Logo } from "components/logo/thevoid";
+import { PATHS } from "@/api/paths";
 
 import { Api } from "api";
 
 import { usePathname } from "next/navigation";
 
 import "./globals.css";
-import useMediaQuery from "@/hooks/media.hook";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,7 +57,7 @@ const RootLayout = ({
           <Logo head={<Link href={"/"}><h1 id="main-logo">FOCKUSTY</h1></Link>} links={Api.fockusty} />
   
           <h2 className="path">
-            {Api.paths[path] || "404"}
+            {PATHS[path] || "404"}
           </h2>
 
           <button
