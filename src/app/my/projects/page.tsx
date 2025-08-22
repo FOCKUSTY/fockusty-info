@@ -33,7 +33,6 @@ const Page = () => {
   return (
     <div className="page-center">
       <div className={styles.projectsContainer}>
-        <h1 className={styles.title}>Мои проекты</h1>
         <div className={styles.sort}>
           <span>Сортировать по:</span>
           <div className={styles.sort_by}>

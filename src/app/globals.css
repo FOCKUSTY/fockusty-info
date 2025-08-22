@@ -154,12 +154,18 @@ header {
 
 header {
   top: 0;
-
-  -webkit-box-shadow: 0 10px 100px 0 rgba(0, 0, 0, 0.9);
-  -moz-box-shadow: 0 10px 100px 0 rgba(0, 0, 0, 0.9);
-  box-shadow: 0 10px 100px 0 rgba(0, 0, 0, 0.9);
-
+  -webkit-box-shadow: 0 10px 20px 0 #00000080;
+  -moz-box-shadow: 0 10px 20px 0 #00000080;
+  box-shadow: 0 10px 20px 0 #00000080;
   border-radius: 0 0 20px 20px;
+}
+
+footer {
+  bottom: 0;
+  -webkit-box-shadow: 0 -10px 20px 0 #00000080;
+  -moz-box-shadow: 0 -10px 20px 0 #00000080;
+  box-shadow: 0 -10px 20px 0 #00000080;
+  border-radius: 20px 20px 0 0;
 }
 
 #logo {
@@ -177,15 +183,6 @@ header {
   gap: 10px;
 }
 
-footer {
-  bottom: 0;
-
-  -webkit-box-shadow: 0 -50px 100px 0 rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0 -50px 100px 0 rgba(0, 0, 0, 0.75);
-  box-shadow: 0 -50px 100px 0 rgba(0, 0, 0, 0.75);
-
-  border-radius: 20px 20px 0 0;
-}
 
 main {
   z-index: 0;
@@ -252,6 +249,13 @@ main {
   height: 100%;
 }
 
+.path {
+  position: "absolute";
+  justify-self: center;
+  left: 0;
+  right: 0;
+}
+
 @keyframes human-levitation {
   0% {
     top: var(--animation-start-top);
@@ -281,9 +285,37 @@ main {
   }
 }
 
+@media (max-height: 640px) {
+  header, footer {
+    height: 60px;
+  }
+
+  main {
+    margin: 60px 0;
+    height: calc(100% - 120px);
+  }
+
+  .path {
+    position: relative;
+  }
+
+  #logo {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
 @media (max-width: 1440px) {
   .page-center {
     justify-self: flex-end;
+  }
+}
+
+@media (max-width: 425px) {
+  .path {
+    display: none;
   }
 }
 
@@ -291,7 +323,7 @@ main {
   footer,
   header {
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
   }
 
   #animation-button {

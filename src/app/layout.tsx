@@ -3,12 +3,16 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { useState } from "react";
+
 import { Logo } from "components/logo/thevoid";
+// import SpaceAnimation from "components/space";
+
 import { Api } from "api";
 
+import { usePathname } from "next/navigation";
+
 import "./globals.css";
-import SpaceAnimation from "@/components/space";
-import { useEffect, useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +36,8 @@ const RootLayout = ({
 }>) => {
   const [ animationEnabled, setAnimationEnabled ] = useState<boolean>(false);
 
+  const path = usePathname();
+
   return (
     <html lang="ru">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
@@ -46,6 +52,10 @@ const RootLayout = ({
         <header>
           <Logo head={<h1 id="main-logo">FOCKUSTY</h1>} links={Api.fockusty} />
   
+          <h2 className="path">
+            {Api.paths[path] || "404"}
+          </h2>
+
           <button
             id="animation-button"
             onClick={(event) => {
@@ -67,7 +77,6 @@ const RootLayout = ({
           </button>
         </header>
 
-        <SpaceAnimation enabled={animationEnabled}>
           <div className="human-container">
             <Image
               width={597}
@@ -81,7 +90,8 @@ const RootLayout = ({
           <main>
             {children}
           </main>
-        </SpaceAnimation>
+        {/* <SpaceAnimation enabled={animationEnabled}> */}
+        {/* </SpaceAnimation> */}
         <footer>
           <Logo head={<h2>© {date} The Void</h2>} links={Api.the_void} />
         </footer>
