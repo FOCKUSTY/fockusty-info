@@ -1,4 +1,4 @@
-.animation {
+.group, .links {
   display: flex;
   flex-direction: column;
 
@@ -6,15 +6,15 @@
   justify-content: center;
 
   gap: 10px;
-
-  height: 100%;
-  width: 100%;
 }
 
-.animation * {
-  cursor: pointer;
-  position: relative;
+.links {
+  flex-direction: column;
+  gap: 2.5px;
+}
 
-  top: 0;
-  left: 0;
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5px;
 }

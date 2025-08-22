@@ -5,13 +5,15 @@ import { SlGlobe } from "react-icons/sl";
 
 export const Logo = ({
   links,
-  head
+  head,
+  id
 }: {
   links: Record<keyof typeof Api.fockusty, string>,
-  head: React.ReactNode
+  head: React.ReactNode,
+  id?: string
 }) => {
   return (
-    <div id="logo">
+    <div id={id} className="logo">
       {head}
       
       <div className="links">

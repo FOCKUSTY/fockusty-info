@@ -1,0 +1,34 @@
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summary {
+  cursor: pointer;
+}
+
+.content {
+  position: fixed;
+
+  z-index: 100;
+
+  min-width: 160px;
+  height: fit-content;
+
+  flex-direction: column;
+
+  padding: 0.25em 0.75em;
+
+  background-color: var(--component-color);
+  border-radius: 0.5em;
+}
+
+.content * {
+  display: flex;
+
+  padding: 0.5em 1em;
+  
+  text-decoration: none;
+  color: var(--foreground);
+}

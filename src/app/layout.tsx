@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { Logo } from "components/logo/thevoid";
@@ -13,6 +14,7 @@ import { Api } from "api";
 import { usePathname } from "next/navigation";
 
 import "./globals.css";
+import useMediaQuery from "@/hooks/media.hook";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +37,7 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   const [ animationEnabled, setAnimationEnabled ] = useState<boolean>(false);
+  const isLessThanMinimal = useMediaQuery("(max-width: 425px)")
 
   const path = usePathname();
 
@@ -50,7 +53,7 @@ const RootLayout = ({
         />
 
         <header>
-          <Logo head={<h1 id="main-logo">FOCKUSTY</h1>} links={Api.fockusty} />
+          <Logo head={<Link href={"/"}><h1 id="main-logo">FOCKUSTY</h1></Link>} links={Api.fockusty} />
   
           <h2 className="path">
             {Api.paths[path] || "404"}
@@ -93,7 +96,14 @@ const RootLayout = ({
           </main>
         </SpaceAnimation>
         <footer>
-          <Logo head={<h2>© {date} The Void</h2>} links={Api.the_void} />
+          <Logo
+            id="footer-logo"
+            head={<h2>© {date} The Void</h2>}
+            links={isLessThanMinimal
+              ? Api.fockusty
+              : Api.the_void
+            }
+          />
         </footer>
       </body>
     </html>
