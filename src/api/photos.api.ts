@@ -23,7 +23,8 @@ const PHOTO_REG_EXP = /(\d{4}-\d{2}-\d{2})_(.*)\.(top|right|center|left|bottom)\
 export default async function readPhotos() {
   const global = await fs.readdir(join("."));
 
-  console.log(await fs.readdir(join(".", global.includes("public") ? "public" : ".next")));
+  console.log({global});
+  console.log({test: await fs.readdir(join(".", global.includes("public") ? "public" : ".next"))});
 
   const photosPath = join(".", global.includes("public") ? "public" : ".next", "photos");
   const categories = await fs.readdir(photosPath);
