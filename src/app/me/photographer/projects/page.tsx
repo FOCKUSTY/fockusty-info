@@ -9,6 +9,7 @@ import { useDropdown } from "components/dropdown";
 import readPhotos from "api/photos.api";
 
 import styles from "./page.module.css";
+import useMediaQuery from "@/hooks/media.hook";
 
 type Photos = { [key: string]: { [photo: string]: Photo } }
 
@@ -58,6 +59,7 @@ const ModalPhoto = ({
   photo: Photo,
 }) => {
   const { id, path } = resolvePhoto(photo);
+  const isLessThan = useMediaQuery("(max-width: 1000px)")
 
   return (
     <div
@@ -68,8 +70,8 @@ const ModalPhoto = ({
         <Image
           src={path}
           alt={photo.title}
-          width={600}
-          height={400}
+          width={isLessThan ? 600 : 1000}
+          height={isLessThan ? 400 : 1000}
           className={styles.modal__photo_image}
           style={{
             objectPosition: photo.position
