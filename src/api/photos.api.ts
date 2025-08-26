@@ -24,7 +24,7 @@ export default async function readPhotos() {
   const global = await fs.readdir(join("."));
 
   console.log({global});
-  console.log({netlify: await fs.readdir(join(".", ".netlify"))});
+  console.log({netlify: await fs.readdir(join(".", ".netlify", "dist"))});
   console.log({test: await fs.readdir(join(".", global.includes("public") ? "public" : ".next"))});
 
   const photosPath = join(".", global.includes("public") ? "public" : ".next", "photos");
