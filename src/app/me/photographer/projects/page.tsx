@@ -40,6 +40,9 @@ const Photo = ({
         width={300}
         height={200}
         className={styles.image}
+        style={{
+          objectPosition: photo.position
+        }}
       />
       <div className={styles.info}>
         <h3>{photo.title}</h3>
@@ -68,6 +71,9 @@ const ModalPhoto = ({
           width={600}
           height={400}
           className={styles.modal__photo_image}
+          style={{
+            objectPosition: photo.position
+          }}
         />
         <span className={styles.modal__photo_camera}>Камера: {photo.camera}</span>
       </div>

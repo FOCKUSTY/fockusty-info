@@ -9,5 +9,6 @@ export interface Settings {
 
 export type Photo = Required<Settings> & {
   category: string,
-  name: string
+  name: string,
+  position: string
 }

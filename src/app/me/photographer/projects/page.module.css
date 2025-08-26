@@ -124,7 +124,8 @@
 
 .modal__photo_image {
   position: relative;
-  height: 324px;
+  height: auto;
+  max-height: 600px;
 }
 
 .modal__photo_camera {

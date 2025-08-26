@@ -14,10 +14,11 @@ const DEFAULT_SETTINGS: Photo = {
   location: "Россия, г. Уфа",
   description: "Фоточка от Фокусти",
   category: "all",
-  name: "hi"
+  name: "hi",
+  position: "center"
 };
 
-const PHOTO_REG_EXP = /(\d{4}-\d{2}-\d{2})_(.*)\..{3,4}/;
+const PHOTO_REG_EXP = /(\d{4}-\d{2}-\d{2})_(.*)\.(top|right|center|left|bottom)\..{3,4}/;
 
 export default async function readPhotos() {
   const photosPath = join(".", "public", "photos");
@@ -54,7 +55,8 @@ export default async function readPhotos() {
           date: matched[1],
           title: matched[2].replaceAll("_", " "),
           category: category,
-          name: photo
+          name: photo,
+          position: matched[3]
         }
       } catch {
         output[category][photo] = {
@@ -62,7 +64,8 @@ export default async function readPhotos() {
           date: matched[1],
           title: matched[2].replaceAll("_", " "),
           category: category,
-          name: photo
+          name: photo,
+          position: matched[3]
         } as Required<Photo>;
       }
 
