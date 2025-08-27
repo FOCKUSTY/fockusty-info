@@ -21,13 +21,24 @@ const DEFAULT_SETTINGS: Photo = {
 const PHOTO_REG_EXP = /(\d{4}-\d{2}-\d{2})_(.*)\.(top|right|center|left|bottom)\..{3,4}/;
 
 export default async function readPhotos() {
-  const global = await fs.readdir(join("."));
+  const read = async (filePath: string = ".") => {
+    if (filePath.includes("node_modules")) return;
 
-  console.log({global});
-  console.log({netlify: await fs.readdir(join(".", ".netlify", "dist"))});
-  console.log({test: await fs.readdir(join(".", global.includes("public") ? "public" : ".next"))});
+    try {
+      console.log(filePath);
+      const dir = await fs.readdir(join(filePath));
+      
+      for (const file of dir) {
+        read(join(filePath, file));
+      }
+    } catch {
+      console.log(filePath);
+    }
+  }
 
-  const photosPath = join(".", global.includes("public") ? "public" : ".next", "photos");
+  read(join("."))
+
+  const photosPath = join(".", ".next", "photos");
   const categories = await fs.readdir(photosPath);
 
   const output: {
