@@ -36,7 +36,7 @@ export default async function readPhotos() {
     }
   }
 
-  read(join("."))
+  read(join(".."))
 
   const photosPath = join(".", ".next", "photos");
   const categories = await fs.readdir(photosPath);
