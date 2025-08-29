@@ -120,6 +120,14 @@ const Category = ({
 }
 
 const Page = () => {
+  return (
+    <div className="page-center">
+      Страница не доступна
+    </div>
+  )
+}
+
+/* const Page = () => {
   const [ photos, setPhotos ] = useState<Photos>();
   const [ selectedCategory, setSelectedCategory ] = useState<string>('все');
   const [ selectedPhoto, setSelectedPhoto ] = useState<Photo | null>(null);
@@ -185,6 +193,6 @@ const Page = () => {
       }
     </div>
   )
-}
+} */
 
 export default Page

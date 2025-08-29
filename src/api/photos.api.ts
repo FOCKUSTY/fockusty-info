@@ -21,23 +21,6 @@ const DEFAULT_SETTINGS: Photo = {
 const PHOTO_REG_EXP = /(\d{4}-\d{2}-\d{2})_(.*)\.(top|right|center|left|bottom)\..{3,4}/;
 
 export default async function readPhotos() {
-  const read = async (filePath: string = ".") => {
-    if (filePath.includes("node_modules")) return;
-
-    try {
-      console.log(filePath);
-      const dir = await fs.readdir(join(filePath));
-      
-      for (const file of dir) {
-        read(join(filePath, file));
-      }
-    } catch {
-      console.log(filePath);
-    }
-  }
-
-  read(join(".."))
-
   const photosPath = join(".", ".next", "photos");
   const categories = await fs.readdir(photosPath);
 
