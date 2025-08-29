@@ -1,19 +1,16 @@
-type LinkProps = ({
+import { AnchorHTMLAttributes, DetailedHTMLProps } from "react"
+
+type LinkProps = DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>& (({
   children?: undefined,
-  name: string
+  name: string,
 } | {
   children: React.ReactNode,
   name?: undefined
 }) & {
   href: string,
   className?: string
-}
+})
 
-export const Link = ({
-  children,
-  className,
-  href,
-  name
-}: LinkProps) => {
-  return <a className={className} key={href} href={href} target="_blank" rel="noopener noreferrer">{children ?? name}</a>;
+export const Link = (props: LinkProps) => {
+  return <a {...props} target="_blank" rel="noopener noreferrer">{props.children ?? props.name}</a>;
 }
