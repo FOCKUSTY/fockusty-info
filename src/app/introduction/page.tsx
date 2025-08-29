@@ -1,6 +1,6 @@
 import { Link } from "@/components/link";
 
-import { getPathWithoutGroupPrefix, GROUPS, INFO, Russian } from "@/api/paths";
+import { GROUPS, Russian } from "@/api/paths";
 import { Group } from "@/components/paths";
 
 const Page = () => {
