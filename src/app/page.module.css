@@ -1,3 +1,20 @@
+.info,
+.info * {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.info,
+.info h2 {
+  gap: 4px;
+}
+
+.info {
+  flex-direction: column;
+}
+
 .group, .links {
   display: flex;
   flex-direction: column;
