@@ -119,7 +119,7 @@ const Page = () => {
           <Dropdown
             ref={dropdownContent}
             className={styles.dropdown}
-            summary={<button>{Russian[currentGroup].toLocaleLowerCase()}</button>}
+            summary={<button><h3>{Russian[currentGroup].toLocaleLowerCase()}</h3></button>}
           >
             {
               GROUPS.filter(group => group !== currentGroup).map(group => (
@@ -141,7 +141,7 @@ const Page = () => {
         </h2>
       </div>
 
-      <div>
+      <div className={styles.group_info}>
         {INFO[currentGroup]}
       </div>
 
