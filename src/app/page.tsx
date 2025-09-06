@@ -1,10 +1,10 @@
 'use client'
 
 import Link from "next/link";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 import { GROUPS, Russian } from "@/api/paths";
-import { useDropdown } from "@/components/dropdown";
+import { Dropdown } from "@/components/dropdown";
 
 import { INFO, NICKNAME, DATE_OF_BIRTH } from "./page.constants";
 
@@ -68,8 +68,9 @@ const Page = () => {
   const [ currentGroup, setCurrentGroup ] = useState<(typeof GROUPS)[number]>("programmer");
   const [ loaded, setLoaded ] = useState<boolean>(false);
   const [ date, setDate ] = useState<Date>(new Date());
-  const { Dropdown, setActived } = useDropdown({ id: "hobbies", className: styles.dropdown });
 
+  const dropdownContent = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setDate(new Date());
@@ -82,22 +83,6 @@ const Page = () => {
     });
   }, []);
 
-  const GroupsDropdown = () => (
-    <Dropdown summary={<button>{Russian[currentGroup].toLocaleLowerCase()}</button>}>
-      {
-        GROUPS.filter(group => group !== currentGroup).map(group => (
-          <button
-            key={"btn" + group}
-            onClick={() => {
-              setCurrentGroup(group);
-              setActived(false);
-            }}
-          >{Russian[group]}</button>
-        ))
-      }
-    </Dropdown>
-  );
-
   if (!loaded) {
     return (
       <div
@@ -109,7 +94,7 @@ const Page = () => {
       >
         <div className={styles.info}>
           <h2>
-            Привет! Я {NICKNAME}, и я <GroupsDropdown />
+            Привет! Я {NICKNAME}, и я {Russian[currentGroup]}
           </h2>
           <div>
             {INFO[currentGroup]}
@@ -138,11 +123,33 @@ const Page = () => {
     >
       <div className={styles.info}>
         <h2>
-          Привет! Я {NICKNAME}, и я <GroupsDropdown />
+          Мне уже {years} {months} {days} {hours} {minutes} и {seconds}!
         </h2>
 
         <h2>
-          Мне уже {years} {months} {days} {hours} {minutes} и {seconds}!
+          Привет! Я {NICKNAME}, и я
+          <Dropdown
+            ref={dropdownContent}
+            className={styles.dropdown}
+            summary={<button>{Russian[currentGroup].toLocaleLowerCase()}</button>}
+          >
+            {
+              GROUPS.filter(group => group !== currentGroup).map(group => (
+                <button
+                  key={"btn" + group}
+                  onClick={() => {
+                    if (!dropdownContent.current) return;
+                    
+                    dropdownContent.current.style.display = dropdownContent.current.style.display === "flex"
+                      ? "none"
+                      : "flex";
+
+                    setCurrentGroup(group);
+                  }}
+                >{Russian[group]}</button>
+              ))
+            }
+          </Dropdown>
         </h2>
       </div>
 
