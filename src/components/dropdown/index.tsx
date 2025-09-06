@@ -1,5 +1,6 @@
 'use client'
 
+import type { RefObject } from "react";
 import { useRef, useState } from "react";
 
 import styles from "./dropdown.module.css";
@@ -14,7 +15,7 @@ export const useDropdown = ({
   const content = useRef<HTMLDivElement>(null);
   const [ actived, setActived ] = useState<boolean>(false);
 
-  const Dropdown = ({
+  const Dropdown = (({
     children,
     summary,
   }: {
@@ -53,53 +54,49 @@ export const useDropdown = ({
         }
       </div>
     )
-  }
+  });
 
   return { setActived, content, Dropdown } as const;
 };
+
 export const Dropdown = ({
   children,
   summary,
-  id,
+  ref,
   className
 }: {
   children: React.ReactNode;
   summary: React.ReactNode;
-  id: string;
+  ref: RefObject<HTMLDivElement | null>;
   className?: string;
 }) => {
-  const content = useRef<HTMLDivElement>(null);
-  const [ actived, setActived ] = useState<boolean>(false);
-
   return (
     <div className={`${styles.dropdown}`}>
       <div
         className={styles.summary}
         onClick={(event) => {
-          if (!content.current) return;
-
-          setActived(!actived);
+          if (!ref.current) return;
 
           const parent = event.currentTarget.getBoundingClientRect();
+          
+          ref.current.style.display = ref.current.style.display === "flex"
+            ? "none"
+            : "flex";
 
-          content.current.style.top = `${parent.top + parent.height}px`;
-          content.current.style.left = `${parent.left + parent.width - content.current.getBoundingClientRect().width}px`;
+          ref.current.style.top = `${parent.top + parent.height}px`;
+          ref.current.style.left = `${parent.left + parent.width - ref.current.getBoundingClientRect().width}px`;
         }}
       >
         {summary}
       </div>
       {
-        actived
-          ? (
-            <div
-              id={id}
-              className={`${styles.content} ${className}`}
-              ref={content}
-            >
-              {children}
-            </div>
-          )
-          : <div ref={content}></div>
+        <div
+          style={{display: "none"}}
+          className={`${styles.content} ${className}`}
+          ref={ref}
+        >
+          {children}
+        </div>
       }
     </div>
   );

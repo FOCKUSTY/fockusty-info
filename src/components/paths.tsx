@@ -19,3 +19,15 @@ export const Group = ({
 }) => {
   return INFO.map(info => <InfoLink key={group + info} group={group} info={info} />);
 }
+
+export const GroupData = ({
+  group
+}: {
+  group: (typeof GROUPS)[number]
+}) => {
+  return INFO.map(info => {
+    const [ link, name ] = getPathWithoutGroupPrefix(group, info);
+
+    return { link, name } as const;
+  });
+}
