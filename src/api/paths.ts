@@ -7,6 +7,10 @@ export enum Russian {
   "projects"="Проекты",
   "resume"="Резюме",
   "info"="Информация",
+
+  "Проекты"="projects",
+  "Резюме"="resume",
+  "Информация"="info",
 }
 
 export const PREFIX = "/me" as const;
@@ -16,6 +20,12 @@ export const INFO = [
   "resume",
   "info"
 ] as const;
+
+export const ADDITONLA_INFO: Record<(typeof INFO)[number], string> = {
+  info: "Основная информия о том, что я делаю",
+  projects: "Мои проекты, которые я сделал за всё время",
+  resume: "Моё резюме, например для работы или для того, чтобы рассказать кратко о себе"
+}
 
 export const GROUPS = [
   "photographer",

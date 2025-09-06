@@ -2,13 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { GROUPS, Russian } from "@/api/paths";
+import { ADDITONLA_INFO, GROUPS, Russian } from "@/api/paths";
 import { Dropdown } from "@/components/dropdown";
 
 import { INFO, NICKNAME, DATE_OF_BIRTH } from "./page.constants";
 
+import { GroupData } from "@/components/paths";
+
 import styles from "./page.module.css";
 import { ruWords } from "@/api/russian";
+import Link from "next/link";
 
 const dateOfBirth = new Date(DATE_OF_BIRTH.year, DATE_OF_BIRTH.month, DATE_OF_BIRTH.day, DATE_OF_BIRTH.hours, 0, 0);
 
@@ -79,7 +82,7 @@ const Page = () => {
       >
         <div className={styles.info}>
           <h2>
-            Привет! Я {NICKNAME}, и я {Russian[currentGroup]}
+            Привет! Я {NICKNAME}, и я {Russian[currentGroup].toLowerCase()}
           </h2>
           <div>
             {INFO[currentGroup]}
@@ -140,6 +143,18 @@ const Page = () => {
 
       <div>
         {INFO[currentGroup]}
+      </div>
+
+      <div className={styles.groups}>
+        {
+          GroupData({group: currentGroup}).map(data => (
+            <Link href={data.link} key={data.name} className={styles.group_data}>
+              <h3>{data.name}</h3>
+              <hr />
+              <span>{ADDITONLA_INFO[Russian[data.name]]}</span>
+            </Link>
+          ))
+        }
       </div>
     </div>
   )

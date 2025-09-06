@@ -37,6 +37,34 @@
   gap: 2.5px;
 }
 
+.groups {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+}
+
+.group_data {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 12px;
+
+  max-width: 320px;
+
+  background-color: var(--card-color);
+}
+
+.group_data h3 {
+  padding: 0 32px 0 0;
+}
+
 @media (max-width: 768px) {
   .info h2 {
     display: block;
