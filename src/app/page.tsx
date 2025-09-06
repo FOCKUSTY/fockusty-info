@@ -1,7 +1,6 @@
 'use client'
 
-import Link from "next/link";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { GROUPS, Russian } from "@/api/paths";
 import { Dropdown } from "@/components/dropdown";
@@ -9,7 +8,6 @@ import { Dropdown } from "@/components/dropdown";
 import { INFO, NICKNAME, DATE_OF_BIRTH } from "./page.constants";
 
 import styles from "./page.module.css";
-import { Group } from "@/components/paths";
 import { ruWords } from "@/api/russian";
 
 const dateOfBirth = new Date(DATE_OF_BIRTH.year, DATE_OF_BIRTH.month, DATE_OF_BIRTH.day, DATE_OF_BIRTH.hours, 0, 0);
@@ -30,19 +28,6 @@ const MONTH = 31;
 const YEAR = 365;
 const LEAP_YEAR = 4;
 const toYear = toDay * YEAR;
-
-/* const getFullYear = (now: Date) => {
-  const days =
-    (new Time().getMonthDaysFromJanuary(now.getMonth()) + now.getDate())
-    - (time.getMonthDaysFromJanuary(DATE_OF_BIRTH.month) + dateOfBirth.getDate());
-
-  return {
-    years: now.getFullYear() - dateOfBirth.getFullYear(),
-    months: Math.floor(days / 31),
-    days: days % 31,
-    hours: now.getHours() - dateOfBirth.getHours()
-  };
-}; */
 
 const getFullYear = (now: Date) => {
   const timestamp = (now.getTime() - dateOfBirth.getTime()) / SECONDS;
