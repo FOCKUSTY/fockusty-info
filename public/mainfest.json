@@ -1,6 +1,6 @@
 {
-  "short_name": "FOCKUSTY info",
-  "name": "FOCKUSTY Info Site",
+  "short_name": "Portfolio",
+  "name": "FOCKUSTY portfolio site",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,6 +9,7 @@
     }
   ],
   "start_url": ".",
+  "default_locale": "ru",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#000000"

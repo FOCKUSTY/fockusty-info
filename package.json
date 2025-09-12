@@ -8,6 +8,15 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "keywords": [
+    "fockusty",
+    "фокусти",
+    "fockusty info",
+    "сайт фокусти",
+    "fickus",
+    "фикус",
+    "фокус"
+  ],
   "dependencies": {
     "date-fns": "^4.1.0",
     "next": "15.3.5",

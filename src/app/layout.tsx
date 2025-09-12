@@ -44,6 +44,9 @@ const RootLayout = ({
 
   return (
     <html lang="ru">
+      <title>Portfolio</title>
+      <meta name="description" content="FOCKUSTY portfolio site" />
+      <meta name="keywords" content="fockusty,fickus,programmer,photographer,designer,фокусти,фикус,фокус,программист,фотограф,дизайнер" />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Image
           width={1920}
