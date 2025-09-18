@@ -81,7 +81,7 @@ const Page = () => {
         }}
       >
         <div className={styles.info}>
-          <h2>
+          <h2 className={styles.text}>
             Привет! Я {NICKNAME}, и я {Russian[currentGroup].toLowerCase()}
           </h2>
           <div>
@@ -110,11 +110,11 @@ const Page = () => {
       }}
     >
       <div className={styles.info}>
-        <h2>
+        <h2 className={styles.text}>
           Мне уже {years} {months} {days} {hours} {minutes} и {seconds}!
         </h2>
 
-        <h2>
+        <h2 className={styles.text}>
           Привет! Я {NICKNAME}, и я
           <Dropdown
             ref={dropdownContent}

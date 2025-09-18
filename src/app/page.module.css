@@ -2,18 +2,22 @@
 .info * {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 
 .info,
 .info h2 {
   gap: 4px;
-  text-align: center;
+  width: 100%;
 }
 
 .info {
   flex-direction: column-reverse;
+}
+
+.text {
+  text-shadow: -4px 3px 4px #252525;
 }
 
 .group, .links {
@@ -24,6 +28,12 @@
   justify-content: center;
 
   gap: 10px;
+}
+
+.group_info {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 
 .links {
