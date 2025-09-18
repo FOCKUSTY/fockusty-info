@@ -1,11 +1,7 @@
 'use server'
 
+import { cache } from "react";
 import type { Photo } from "types/photo.types";
-
-import fs from "node:fs/promises";
-import { join, parse } from "path";
-
-const SETTINGS_FILE_EXTENSION = ".json";
 
 const DEFAULT_SETTINGS: Photo = {
   date: "Cool date",
@@ -18,12 +14,43 @@ const DEFAULT_SETTINGS: Photo = {
   position: "center"
 };
 
-const PHOTO_REG_EXP = /(\d{4}-\d{2}-\d{2})_(.*)\.(top|right|center|left|bottom)\..{3,4}/;
+const resolveName = (fileName: string) => {
+  const [ date, name ] = fileName.split(".");
+
+  return {
+    date,
+    name,
+    title: name
+  };
+}
+
+const getPhotosJson = cache(async (): Promise<string[]> => {
+  return await (await fetch(process.env.THIS_URL + "/photos/photos.json", {
+    next: {
+      revalidate: 3000,
+    },
+    cache: "force-cache"
+  })).json();
+});
+
+const getCategory = cache(async (category: string): Promise<{
+  [key: string]: {
+    description: string
+    categories: string[]
+    position: string
+    camera: string
+    location: string
+  }
+}> => {
+  return await (await fetch(`${process.env.THIS_URL}/photos/${category}/${category}.json`, {
+    next: {
+      revalidate: 3000,
+    },
+    cache: "force-cache"
+  })).json();
+})
 
 export default async function readPhotos() {
-  const photosPath = join(".", ".next", "photos");
-  const categories = await fs.readdir(photosPath);
-
   const output: {
     [key: string]: {
       [photo: string]: Required<Photo>
@@ -32,46 +59,33 @@ export default async function readPhotos() {
 
   output["все"] = {};
 
+  const categories = await getPhotosJson();
+
   for (const category of categories) {
-    const path = join(photosPath, category);
-  
     output[category] = {};
+    
+    const data: {
+      [key: string]: {
+        description: string
+        categories: string[]
+        position: string
+        camera: string
+        location: string
+      }
+    } = await getCategory(category)
 
-    const photos = await fs.readdir(path);
-
-    for (const photo of photos) {
-      if (photo.endsWith(SETTINGS_FILE_EXTENSION)) continue;
-
-      const { name } = parse(photo)
-      const matched = photo.match(PHOTO_REG_EXP);
-      if (!matched) continue;
-
-      try {
-        const settings = JSON.parse(await fs.readFile(name + SETTINGS_FILE_EXTENSION, "utf-8"));
-        
-        output[category][photo] = {
-          ...DEFAULT_SETTINGS,
-          ...settings,
-          date: matched[1],
-          title: matched[2].replaceAll("_", " "),
-          category: category,
-          name: photo,
-          position: matched[3]
-        }
-      } catch {
-        output[category][photo] = {
-          ...DEFAULT_SETTINGS,
-          date: matched[1],
-          title: matched[2].replaceAll("_", " "),
-          category: category,
-          name: photo,
-          position: matched[3]
-        } as Required<Photo>;
+    for (const key in data) {
+      const settings = <Required<Photo>>{
+        ...DEFAULT_SETTINGS,
+        category,
+        ...data[key],
+        ...resolveName(key),
       }
 
-      output["все"][photo] = output[category][photo];
+      output[category][key] = settings;
+      output["все"][key] = settings;
     }
-  };
+  }
 
   return output;
 }

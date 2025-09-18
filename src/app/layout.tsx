@@ -48,13 +48,10 @@ const RootLayout = ({
       <meta name="description" content="FOCKUSTY portfolio site" />
       <meta name="keywords" content="fockusty,fickus,programmer,photographer,designer,фокусти,фикус,фокус,программист,фотограф,дизайнер" />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Image
-          width={1920}
-          height={1080}
+        <div
           className="background"
-          src={"/background.png"}
-          alt="background"
-        />
+        >
+        </div>
 
         <header>
           <Logo head={<Link href={"/"}><h1 id="main-logo">FOCKUSTY</h1></Link>} links={Api.fockusty} />

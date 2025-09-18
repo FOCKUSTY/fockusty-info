@@ -1,19 +1,19 @@
 'use client'
 
-// import type { Photo } from "types/photo.types";
+import type { Photo } from "types/photo.types";
 
-// import { useState, useEffect, Dispatch, SetStateAction } from "react";
-// import Image from "next/image";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import Image from "next/image";
 
-// import { useDropdown } from "components/dropdown";
-// import readPhotos from "api/photos.api";
+import { useDropdown } from "components/dropdown";
+import readPhotos from "api/photos.api";
 
-// import styles from "./page.module.css";
-// import useMediaQuery from "@/hooks/media.hook";
+import styles from "./page.module.css";
+import useMediaQuery from "@/hooks/media.hook";
 
-// type Photos = { [key: string]: { [photo: string]: Photo } }
+type Photos = { [key: string]: { [photo: string]: Photo } }
 
-/* const resolvePhoto = (photo: Photo) => {
+const resolvePhoto = (photo: Photo) => {
   return {
     id: `${photo.date}-${photo.title}`,
     path: `/photos/${photo.category}/${photo.name}`
@@ -117,17 +117,9 @@ const Category = ({
       }
     </div>
   )
-} */
-
-const Page = () => {
-  return (
-    <div className="page-center">
-      Страница не доступна
-    </div>
-  )
 }
 
-/* const Page = () => {
+const Page = () => {
   const [ photos, setPhotos ] = useState<Photos>();
   const [ selectedCategory, setSelectedCategory ] = useState<string>('все');
   const [ selectedPhoto, setSelectedPhoto ] = useState<Photo | null>(null);
@@ -193,6 +185,6 @@ const Page = () => {
       }
     </div>
   )
-} */
+}
 
 export default Page
