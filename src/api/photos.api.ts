@@ -20,7 +20,7 @@ const resolveName = (fileName: string) => {
   return {
     date,
     name,
-    title: name
+    title: name.replaceAll("_", " ")
   };
 }
 

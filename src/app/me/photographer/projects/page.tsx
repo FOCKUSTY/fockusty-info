@@ -170,7 +170,7 @@ const Page = () => {
             setSelectedPhoto(null);
           }}
         >
-          <div>
+          <div className={styles.modal__selected_photo}>
             <button onClick={() => setSelectedPhoto(null)}>
               Вернуть к просмотру
             </button>

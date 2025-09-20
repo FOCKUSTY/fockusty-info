@@ -81,6 +81,7 @@
 
 .modal___photo_info h2,
 .info h3 {
+  text-overflow: ellipsis;
   color: var(--text-color);
 }
 
@@ -164,6 +165,33 @@
 .modal___photo_info p {
   color: var(--foreground);
   font-size: 16px;
+}
+
+@media (max-height: 550px) {
+  .image {
+    height: 160px;
+  }
+}
+
+@media (max-height: 780px) {
+  .modal {
+    padding: 60px 0;
+    height: 100%;
+  }
+
+  .modal__selected_photo {
+    padding: 1.5em 0.25em;
+  }
+
+  .modal__photo_image {
+    max-height: 320px;
+  }
+
+  .modal__photo {
+    height: 100%;
+    padding: 0.25em 0 0.5em 0;
+    overflow-y: auto;
+  }
 }
 
 @media (max-width: 375px) {
