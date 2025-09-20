@@ -10,6 +10,7 @@
 .info h2 {
   gap: 4px;
   width: 100%;
+  padding: 0 0 0.3em 0;
   height: max-content;
 }
 
@@ -82,6 +83,21 @@
 
 .group_data h3 {
   padding: 0 32px 0 0;
+}
+
+@media (max-height: 500px) {
+  .page_center {
+    display: grid;
+    grid-auto-rows: auto auto auto;
+
+    justify-content: none;
+    align-items: normal;
+  }
+
+  .info h2,
+  .group_info span {
+    padding: 0.3em 0;
+  }
 }
 
 @media (max-height: 800px) {

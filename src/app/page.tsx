@@ -103,7 +103,7 @@ const Page = () => {
 
   return (
     <div
-      className="page-center"
+      className={"page-center " + styles.page_center}
       style={{
         justifySelf: "center",
         gap: "10px"
