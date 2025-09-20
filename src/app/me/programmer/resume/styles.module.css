@@ -72,7 +72,7 @@
 }
 
 .data_list .data_list__item::before {
-  content: "▪";
+  content: "\00D7";
   position: absolute;
   left: 0;
 }
