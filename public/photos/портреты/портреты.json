@@ -165,5 +165,17 @@
     "position": "center",
     "camera": "Nikon D3500",
     "location": "Russia, Ufa"
+  },
+
+  "2025-09-17.Кольца_на_пальцах_одногруппника.jpg": {
+    "description": "Фоточка от Фокусти",
+    "categories": [
+      "Люди",
+      "Кольца",
+      "Пальцы"
+    ],
+    "position": "center",
+    "camera": "Samsung A50",
+    "location": "Russia, Ufa"
   }
 }

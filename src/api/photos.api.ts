@@ -63,7 +63,7 @@ export default async function readPhotos() {
 
   for (const category of categories) {
     output[category] = {};
-    
+
     const data: {
       [key: string]: {
         description: string
