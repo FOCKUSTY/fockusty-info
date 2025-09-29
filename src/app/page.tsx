@@ -109,42 +109,44 @@ const Page = () => {
         gap: "10px"
       }}
     >
-      <div className={styles.info}>
-        <h2 className={styles.text}>
-          Мне уже {years} {months} {days} {hours} {minutes} и {seconds}!
-        </h2>
+      <div className={styles.main_info}>
+        <div className={styles.info}>
+          <h2 className={styles.text}>
+            Мне уже {years} {months} {days} {hours} {minutes} и {seconds}!
+          </h2>
 
-        <h2 className={styles.text}>
-          Привет! Я {NICKNAME}, и я
-          <Dropdown
-            ref={dropdownContent}
-            className={styles.dropdown}
-            summary={<button><h3>{Russian[currentGroup].toLocaleLowerCase()}</h3></button>}
-          >
-            {
-              GROUPS.filter(group => group !== currentGroup).map(group => (
-                <button
-                  key={"btn" + group}
-                  onClick={() => {
-                    if (!dropdownContent.current) return;
-                    
-                    dropdownContent.current.style.display = dropdownContent.current.style.display === "flex"
-                      ? "none"
-                      : "flex";
+          <h2 className={styles.text}>
+            Привет! Я {NICKNAME}, и я
+            <Dropdown
+              ref={dropdownContent}
+              className={styles.dropdown}
+              summary={<button><h3>{Russian[currentGroup].toLocaleLowerCase()}</h3></button>}
+            >
+              {
+                GROUPS.filter(group => group !== currentGroup).map(group => (
+                  <button
+                    key={"btn" + group}
+                    onClick={() => {
+                      if (!dropdownContent.current) return;
+                      
+                      dropdownContent.current.style.display = dropdownContent.current.style.display === "flex"
+                        ? "none"
+                        : "flex";
 
-                    setCurrentGroup(group);
-                  }}
-                >{Russian[group]}</button>
-              ))
-            }
-          </Dropdown>
-        </h2>
+                      setCurrentGroup(group);
+                    }}
+                  >{Russian[group]}</button>
+                ))
+              }
+            </Dropdown>
+          </h2>
+        </div>
+
+        <div className={styles.group_info}>
+          {INFO[currentGroup]}
+        </div>
       </div>
-
-      <div className={styles.group_info}>
-        {INFO[currentGroup]}
-      </div>
-
+      
       <div className={styles.groups}>
         {
           GroupData({group: currentGroup}).map(data => (
