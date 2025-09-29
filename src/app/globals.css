@@ -293,13 +293,17 @@ main {
 }
 
 @media (max-height: 640px) {
-  header, footer {
+  footer {
+    display: none;
+  }
+
+  header {
     height: 60px;
   }
 
   main {
-    margin: 60px 0;
-    height: calc(100% - 120px);
+    margin: 60px 0 0 0;
+    height: calc(100% - 60px);
   }
 
   .logo {

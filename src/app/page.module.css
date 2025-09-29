@@ -101,10 +101,6 @@
 }
 
 @media (max-height: 800px) {
-  .groups {
-    max-height: 150px;
-  }
-  
   .info h2 {
     font-size: 18px;
   }
