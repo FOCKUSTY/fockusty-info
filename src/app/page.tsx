@@ -57,58 +57,13 @@ const getFullYear = (now: Date) => {
   };
 };
 
-const Page = () => {
-  const [ currentGroup, setCurrentGroup ] = useState<(typeof GROUPS)[number]>("programmer");
-  const [ loaded, setLoaded ] = useState<boolean>(false);
-  const [ date, setDate ] = useState<Date>(new Date());
-  const [ mainInterval, setMainInterval ] = useState<NodeJS.Timeout|null>(null);
-
-  const dropdownContent = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDate(new Date());
-    }, 100);
-
-    setMainInterval(interval);
-
-    setLoaded(true);
-
-    return (() => {
-      clearInterval(mainInterval || interval);
-    });
-  }, []);
-
-  if (!loaded) {
-    return (
-      <div
-        className="page-center"
-        style={{
-          justifySelf: "center",
-          gap: "10px"
-        }}
-      >
-        <div className={styles.info}>
-          <h2 className={styles.text}>
-            Привет! Я {NICKNAME}, и я {Russian[currentGroup].toLowerCase()}
-          </h2>
-          <div>
-            {INFO[currentGroup]}
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  const age = getFullYear(date);
-
-  const years = `${age.years} ${ruWords(age.years, ["год", "года", "лет"])}`;
-  const months = `${age.months} ${ruWords(age.months, ["месяц", "месяца", "месяцев"])}`;
-  const days = `${age.days} ${ruWords(age.days, ["день", "дня", "дней"])}`;
-  const hours = `${age.hours} ${ruWords(age.hours, ["час", "часа", "часов"])}`;
-  const minutes = `${age.minutes} ${ruWords(age.minutes, ["минута", "минуты", "минут"])}`;
-  const seconds = `${age.seconds} ${ruWords(age.seconds, ["секунда", "секунды", "секунд"])}`;
-
+const Layout = ({
+  children,
+  currentGroup
+}: {
+  children: React.ReactNode,
+  currentGroup: (typeof GROUPS)[number]
+}) => {
   return (
     <>
       <div
@@ -139,73 +94,7 @@ const Page = () => {
           />
         </div>
 
-        <div className={styles.main_info}>
-          <div className={styles.info}>
-            <h2
-              className={[styles.text, styles.info__text__h2].join(" ")}
-              onClick={() => {
-                if (mainInterval) {
-                  clearInterval(mainInterval);
-                  setMainInterval((previous) => {
-                    if (previous) {
-                      clearInterval(previous)
-                    };
-
-                    return null;
-                  })
-                } else {
-                  setMainInterval(setInterval(() => {
-                    setDate(new Date());
-                  }, 100))
-                }
-              }}
-            >
-              Мне уже {years} {months} {days} {hours} {minutes} и {seconds}!
-            </h2>
-
-            <h2 className={styles.text}>
-              Привет! Я {NICKNAME}, и я
-              <Dropdown
-                ref={dropdownContent}
-                className={styles.dropdown}
-                summary={<button><h3>{Russian[currentGroup].toLocaleLowerCase()}</h3></button>}
-              >
-                {
-                  GROUPS.filter(group => group !== currentGroup).map(group => (
-                    <button
-                      key={"btn" + group}
-                      onClick={() => {
-                        if (!dropdownContent.current) return;
-                        
-                        dropdownContent.current.style.display = dropdownContent.current.style.display === "flex"
-                          ? "none"
-                          : "flex";
-
-                        setCurrentGroup(group);
-                      }}
-                    >{Russian[group]}</button>
-                  ))
-                }
-              </Dropdown>
-            </h2>
-          </div>
-
-          <div className={styles.group_info}>
-            {INFO[currentGroup]}
-          </div>
-        </div>
-        
-        <div className={styles.groups}>
-          {
-            GroupData({group: currentGroup}).map(data => (
-              <Link href={data.link} key={data.name} className={styles.group_data}>
-                <h3>{data.name}</h3>
-                <hr />
-                <span>{ADDITONLA_INFO[Russian[data.name]]}</span>
-              </Link>
-            ))
-          }
-        </div>
+        {children}
       </div>
 
       <div className={styles.fockusty}>
@@ -232,6 +121,125 @@ const Page = () => {
         </p>
       </div>
     </>
+  )
+}
+
+const Page = () => {
+  const [ currentGroup, setCurrentGroup ] = useState<(typeof GROUPS)[number]>("programmer");
+  const [ loaded, setLoaded ] = useState<boolean>(false);
+  const [ date, setDate ] = useState<Date>(new Date());
+  const [ mainInterval, setMainInterval ] = useState<NodeJS.Timeout|null>(null);
+
+  const dropdownContent = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDate(new Date());
+    }, 100);
+
+    setMainInterval(interval);
+
+    setLoaded(true);
+
+    return (() => {
+      clearInterval(mainInterval || interval);
+    });
+  }, []);
+
+  if (!loaded) {
+    return (
+      <Layout currentGroup={currentGroup}>
+        <div className={styles.info}>
+          <h2 className={styles.text}>
+            Привет! Я {NICKNAME}, и я {Russian[currentGroup].toLowerCase()}
+          </h2>
+          <div>
+            {INFO[currentGroup]}
+          </div>
+        </div>
+      </Layout>
+    )
+  }
+
+  const age = getFullYear(date);
+
+  const years = `${age.years} ${ruWords(age.years, ["год", "года", "лет"])}`;
+  const months = `${age.months} ${ruWords(age.months, ["месяц", "месяца", "месяцев"])}`;
+  const days = `${age.days} ${ruWords(age.days, ["день", "дня", "дней"])}`;
+  const hours = `${age.hours} ${ruWords(age.hours, ["час", "часа", "часов"])}`;
+  const minutes = `${age.minutes} ${ruWords(age.minutes, ["минута", "минуты", "минут"])}`;
+  const seconds = `${age.seconds} ${ruWords(age.seconds, ["секунда", "секунды", "секунд"])}`;
+
+  return (
+    <Layout currentGroup={currentGroup}>
+      <div className={styles.main_info}>
+        <div className={styles.info}>
+          <h2
+            className={[styles.text, styles.info__text__h2].join(" ")}
+            onClick={() => {
+              if (mainInterval) {
+                clearInterval(mainInterval);
+                setMainInterval((previous) => {
+                  if (previous) {
+                    clearInterval(previous)
+                  };
+
+                  return null;
+                })
+              } else {
+                setMainInterval(setInterval(() => {
+                  setDate(new Date());
+                }, 100))
+              }
+            }}
+          >
+            Мне уже {years} {months} {days} {hours} {minutes} и {seconds}!
+          </h2>
+
+          <h2 className={styles.text}>
+            Привет! Я {NICKNAME}, и я
+            <Dropdown
+              ref={dropdownContent}
+              className={styles.dropdown}
+              summary={<button><h3>{Russian[currentGroup].toLocaleLowerCase()}</h3></button>}
+            >
+              {
+                GROUPS.filter(group => group !== currentGroup).map(group => (
+                  <button
+                    key={"btn" + group}
+                    onClick={() => {
+                      if (!dropdownContent.current) return;
+                      
+                      dropdownContent.current.style.display = dropdownContent.current.style.display === "flex"
+                        ? "none"
+                        : "flex";
+
+                      setCurrentGroup(group);
+                    }}
+                  >{Russian[group]}</button>
+                ))
+              }
+            </Dropdown>
+          </h2>
+        </div>
+
+        <div className={styles.group_info}>
+          {INFO[currentGroup]}
+        </div>
+      </div>
+      
+      <div className={styles.groups}>
+        {
+          GroupData({group: currentGroup}).map(data => (
+            <Link href={data.link} key={data.name} className={styles.group_data}>
+              <h3>{data.name}</h3>
+              <hr />
+              <span>{ADDITONLA_INFO[Russian[data.name]]}</span>
+            </Link>
+          ))
+        }
+      </div>
+    </Layout>
   )
 };
 

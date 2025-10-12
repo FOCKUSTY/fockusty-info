@@ -96,6 +96,7 @@ const RootLayout = ({
             {children}
           </main>
         </SpaceAnimation>
+        
         <footer>
           <Logo
             id="footer-logo"
