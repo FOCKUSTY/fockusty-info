@@ -48,9 +48,6 @@ importers:
       '@types/react':
         specifier: ^19
         version: 19.1.10
-      '@types/react-dom':
-        specifier: ^19
-        version: 19.1.7(@types/react@19.1.10)
       '@types/three':
         specifier: ^0.179.0
         version: 0.179.0
@@ -360,11 +357,6 @@ packages:
 
   '@types/node@20.19.10':
     resolution: {integrity: sha512-iAFpG6DokED3roLSP0K+ybeDdIX6Bc0Vd3mLW5uDqThPWtNos3E+EqOM11mPQHKzfWHqEBuLjIlsBQQ8CsISmQ==}
-
-  '@types/react-dom@19.1.7':
-    resolution: {integrity: sha512-i5ZzwYpqjmrKenzkoLM2Ibzt6mAsM7pxB6BCIouEVVmgiqaMj1TjaK7hnA36hbW5aZv20kx7Lw6hWzPWg0Rurw==}
-    peerDependencies:
-      '@types/react': ^19.0.0
 
   '@types/react@19.1.10':
     resolution: {integrity: sha512-EhBeSYX0Y6ye8pNebpKrwFJq7BoQ8J5SO6NlvNwwHjSj6adXJViPQrKlsyPw7hLBLvckEMO1yxeGdR82YBBlDg==}
@@ -1892,10 +1884,6 @@ snapshots:
   '@types/node@20.19.10':
     dependencies:
       undici-types: 6.21.0
-
-  '@types/react-dom@19.1.7(@types/react@19.1.10)':
-    dependencies:
-      '@types/react': 19.1.10
 
   '@types/react@19.1.10':
     dependencies:

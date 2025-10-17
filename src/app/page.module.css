@@ -101,6 +101,12 @@
   gap: 16px;
 }
 
+.group_data__box {
+  display: flex;
+  position: relative;
+  clip-path: border-box;
+}
+
 .group_data {
   display: flex;
   flex-direction: column;
@@ -112,6 +118,13 @@
   max-width: 320px;
 
   background-color: var(--card-color);
+}
+
+.group_data__image {
+  position: absolute;
+  right: -3em;
+  bottom: -2em;
+  rotate: 10deg;
 }
 
 .group_info span,

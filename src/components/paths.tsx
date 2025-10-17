@@ -1,4 +1,4 @@
-import { getPathWithoutGroupPrefix, GROUPS, INFO } from "@/api/paths";
+import { getPathWithoutGroupPrefix, GROUPS, GROUPS_INFO, INFO } from "@/api/paths";
 import Link from "next/link";
 
 export const InfoLink = ({
@@ -28,6 +28,10 @@ export const GroupData = ({
   return INFO.map(info => {
     const [ link, name ] = getPathWithoutGroupPrefix(group, info);
 
-    return { link, name } as const;
+    return {
+      link,
+      name,
+      info: GROUPS_INFO[group]
+    } as const;
   });
 }

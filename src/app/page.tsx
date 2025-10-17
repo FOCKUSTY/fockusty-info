@@ -8,15 +8,14 @@ import { Link as MyLink } from "@/components/link"
 
 import { INFO, NICKNAME, DATE_OF_BIRTH } from "./page.constants";
 
-import { ADDITONLA_INFO, GROUPS, Russian } from "@/api/paths";
+import { GROUPS, GROUPS_INFO, Russian } from "@/api/paths";
 import { ruWords } from "@/api/russian";
+import { Api } from "@/api";
 
 import Image from "next/image";
 import Link from "next/link";
 
-
 import styles from "./page.module.css";
-import { Api } from "@/api";
 
 const dateOfBirth = new Date(DATE_OF_BIRTH.year, DATE_OF_BIRTH.month, DATE_OF_BIRTH.day, DATE_OF_BIRTH.hours, 0, 0);
 
@@ -78,13 +77,7 @@ const Layout = ({
         >
           <div className={styles.short_info__name}>
             <h3>FOCKUSTY</h3>
-            <h4>
-              {
-                currentGroup === "programmer"
-                  ? "Backend-разработчик"
-                  : "Начинающий фотограф"
-              }
-            </h4>
+            <h4>{GROUPS_INFO[currentGroup].post}</h4>
           </div>
           <Image
             src="/AVATAR--fockusty-2--style-meow.png"
@@ -231,11 +224,20 @@ const Page = () => {
       <div className={styles.groups}>
         {
           GroupData({group: currentGroup}).map(data => (
-            <Link href={data.link} key={data.name} className={styles.group_data}>
-              <h3>{data.name}</h3>
-              <hr />
-              <span>{ADDITONLA_INFO[Russian[data.name]]}</span>
-            </Link>
+            <div key={data.name} className={styles.group_data__box}>
+              <Image
+                src={data.info.covers[Russian[data.name]]}
+                width={200}
+                height={100}
+                className={styles.group_data__image}
+                alt="cover"
+              />
+              <Link href={data.link} className={styles.group_data}>
+                <h3>{data.info[Russian[data.name]]}</h3>
+                <hr />
+                <span>{data.info.descriptions[Russian[data.name]]}</span>
+              </Link>
+            </div>
           ))
         }
       </div>

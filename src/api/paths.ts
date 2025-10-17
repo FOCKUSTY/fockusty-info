@@ -32,6 +32,45 @@ export const GROUPS = [
   "programmer"
 ] as const;
 
+export const GROUPS_INFO: Record<(typeof GROUPS)[number], {
+  post: string,
+  covers: Record<(typeof INFO)[number], string>,
+  descriptions: Record<(typeof INFO)[number], string>
+} & Record<(typeof INFO)[number], string>> = {
+  photographer: {
+    covers: {
+      info: "/photographer.png",
+      projects: "/photographer.png",
+      resume: "/photographer.png"
+    },
+    post: "Начинающий фотограф-любитель",
+
+    descriptions: {
+      ...ADDITONLA_INFO,
+      projects: "Моя галерея фотографий :>"
+    },
+
+    info: Russian.info,
+    projects: "Галерея",
+    resume: Russian.resume,
+  },
+
+  programmer: {
+    covers: {
+      info: "/programmer.png",
+      projects: "/programmer.png",
+      resume: "/programmer.png"
+    },
+    post: "Backend-программист",
+
+    descriptions: ADDITONLA_INFO,
+
+    info: Russian.info,
+    projects: Russian.projects,
+    resume: Russian.resume,
+  }
+}
+
 export const getPathWithoutGroupPrefix = <
   Group extends (typeof GROUPS)[number],
   Info extends (typeof INFO)[number]
