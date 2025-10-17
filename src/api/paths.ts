@@ -80,10 +80,7 @@ export const getPathWithoutGroupPrefix = <
   return [`${PREFIX}/${group}/${info}`, `${Russian[info]}`] as const;
 };
 
-export const getPath = <
-  Group extends GroupType,
-  Info extends InfoType,
->(
+export const getPath = <Group extends GroupType, Info extends InfoType>(
   group: Group,
   info: Info,
 ) => {
@@ -92,9 +89,7 @@ export const getPath = <
   return [link, `${Russian[group]}/${name}`] as const;
 };
 
-export const getPaths = <Group extends GroupType>(
-  group: Group,
-) => {
+export const getPaths = <Group extends GroupType>(group: Group) => {
   return INFO.map((info) => getPath(group, info));
 };
 
