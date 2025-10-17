@@ -1,7 +1,7 @@
 import type { RefObject, SetStateAction } from "react";
 
-import { GROUPS, Russian } from "@/api/paths";
-import { GroupData, GroupDataType } from "./paths";
+import { type GroupType, GROUPS, Russian } from "@/api/paths";
+import { type GroupDataType, GroupData } from "./paths";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -38,7 +38,7 @@ export const GroupComponent = ({
 };
 
 export type GroupsProps = {
-  group: (typeof GROUPS)[number];
+  group: GroupType;
 } & Omit<GroupProps, "data">;
 
 export const GroupsComponent = (props: GroupsProps) => {
@@ -48,9 +48,9 @@ export const GroupsComponent = (props: GroupsProps) => {
 };
 
 export type ChooseGroupProps = {
-  group: (typeof GROUPS)[number];
+  group: GroupType;
   ref: RefObject<HTMLDivElement | null>;
-  set: (value: SetStateAction<(typeof GROUPS)[number]>) => void;
+  set: (value: SetStateAction<GroupType>) => void;
 };
 
 const onGroupClick = (props: ChooseGroupProps) => {

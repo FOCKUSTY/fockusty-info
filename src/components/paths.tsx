@@ -1,6 +1,7 @@
 import {
+  type GroupType,
+  type InfoType,
   getPathWithoutGroupPrefix,
-  GROUPS,
   GROUPS_INFO,
   INFO,
 } from "@/api/paths";
@@ -10,8 +11,8 @@ export const InfoLink = ({
   group,
   info,
 }: {
-  group: (typeof GROUPS)[number];
-  info: (typeof INFO)[number];
+  group: GroupType;
+  info: InfoType;
 }) => {
   const [link, name] = getPathWithoutGroupPrefix(group, info);
   return (
@@ -21,13 +22,13 @@ export const InfoLink = ({
   );
 };
 
-export const Group = ({ group }: { group: (typeof GROUPS)[number] }) => {
+export const Group = ({ group }: { group: GroupType }) => {
   return INFO.map((info) => (
     <InfoLink key={group + info} group={group} info={info} />
   ));
 };
 
-export const GroupData = ({ group }: { group: (typeof GROUPS)[number] }) => {
+export const GroupData = ({ group }: { group: GroupType }) => {
   return INFO.map((info) => {
     const [link, name] = getPathWithoutGroupPrefix(group, info);
 

@@ -16,8 +16,9 @@ export enum Russian {
 export const PREFIX = "/me" as const;
 
 export const INFO = ["projects", "resume", "info"] as const;
+export type InfoType = (typeof INFO)[number];
 
-export const ADDITONLA_INFO: Record<(typeof INFO)[number], string> = {
+export const ADDITONLA_INFO: Record<InfoType, string> = {
   info: "Основная информия о том, что я делаю",
   projects: "Мои проекты, которые я сделал за всё время",
   resume:
@@ -25,14 +26,15 @@ export const ADDITONLA_INFO: Record<(typeof INFO)[number], string> = {
 };
 
 export const GROUPS = ["photographer", "programmer"] as const;
+export type GroupType = (typeof GROUPS)[number];
 
 export const GROUPS_INFO: Record<
-  (typeof GROUPS)[number],
+  GroupType,
   {
     post: string;
-    covers: Record<(typeof INFO)[number], string>;
-    descriptions: Record<(typeof INFO)[number], string>;
-  } & Record<(typeof INFO)[number], string>
+    covers: Record<InfoType, string>;
+    descriptions: Record<InfoType, string>;
+  } & Record<InfoType, string>
 > = {
   photographer: {
     covers: {
@@ -69,8 +71,8 @@ export const GROUPS_INFO: Record<
 };
 
 export const getPathWithoutGroupPrefix = <
-  Group extends (typeof GROUPS)[number],
-  Info extends (typeof INFO)[number],
+  Group extends GroupType,
+  Info extends InfoType,
 >(
   group: Group,
   info: Info,
@@ -79,8 +81,8 @@ export const getPathWithoutGroupPrefix = <
 };
 
 export const getPath = <
-  Group extends (typeof GROUPS)[number],
-  Info extends (typeof INFO)[number],
+  Group extends GroupType,
+  Info extends InfoType,
 >(
   group: Group,
   info: Info,
@@ -90,7 +92,7 @@ export const getPath = <
   return [link, `${Russian[group]}/${name}`] as const;
 };
 
-export const getPaths = <Group extends (typeof GROUPS)[number]>(
+export const getPaths = <Group extends GroupType>(
   group: Group,
 ) => {
   return INFO.map((info) => getPath(group, info));
