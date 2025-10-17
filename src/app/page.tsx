@@ -6,55 +6,16 @@ import { Dropdown } from "@/components/dropdown";
 import { GroupData } from "@/components/paths";
 import { Link as MyLink } from "@/components/link"
 
-import { INFO, NICKNAME, DATE_OF_BIRTH } from "./page.constants";
+import { INFO, NICKNAME } from "./page.constants";
 
 import { GROUPS, GROUPS_INFO, Russian } from "@/api/paths";
-import { ruWords } from "@/api/russian";
 import { Api } from "@/api";
 
 import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./page.module.css";
-
-const dateOfBirth = new Date(DATE_OF_BIRTH.year, DATE_OF_BIRTH.month, DATE_OF_BIRTH.day, DATE_OF_BIRTH.hours, 0, 0);
-
-const SECONDS = 1000;
-
-const MINUTE = 60;
-const toMinutes = MINUTE;
-
-const HOUR  = 60;
-const toHours = toMinutes * HOUR;
-
-const DAY = 24;
-const toDay = toHours * DAY
-
-const MONTH = 31;
-
-const YEAR = 365;
-const LEAP_YEAR = 4;
-const toYear = toDay * YEAR;
-
-const getFullYear = (now: Date) => {
-  const timestamp = (now.getTime() - dateOfBirth.getTime()) / SECONDS;
-
-  const years = Math.floor(timestamp / toYear);
-  const days = Math.floor(timestamp / toDay - (years * YEAR) - (years / LEAP_YEAR));
-  const months = Math.floor(days / MONTH);
-  const hours = Math.floor(timestamp / toHours) - (Math.floor(timestamp / toDay) * DAY);
-  const minutes = Math.floor(timestamp / toMinutes) - (Math.floor(timestamp / toHours) * HOUR);
-  const seconds = Math.floor((timestamp - (Math.floor(timestamp / toMinutes) * MINUTE)) * 10) / 10;
-
-  return {
-    years,
-    months,
-    days: days - (months * 31),
-    hours,
-    minutes,
-    seconds
-  };
-};
+import { formatAge, formatedAgeToString, getFullAge } from "@/api/date.api";
 
 const Layout = ({
   children,
@@ -154,14 +115,22 @@ const Page = () => {
     )
   }
 
-  const age = getFullYear(date);
+  const handleIntervalOnClick = () => {
+    if (!mainInterval) {
+      return setMainInterval(setInterval(() => {
+        setDate(new Date());
+      }, 100));
+    };
 
-  const years = `${age.years} ${ruWords(age.years, ["год", "года", "лет"])}`;
-  const months = `${age.months} ${ruWords(age.months, ["месяц", "месяца", "месяцев"])}`;
-  const days = `${age.days} ${ruWords(age.days, ["день", "дня", "дней"])}`;
-  const hours = `${age.hours} ${ruWords(age.hours, ["час", "часа", "часов"])}`;
-  const minutes = `${age.minutes} ${ruWords(age.minutes, ["минута", "минуты", "минут"])}`;
-  const seconds = `${age.seconds} ${ruWords(age.seconds, ["секунда", "секунды", "секунд"])}`;
+    clearInterval(mainInterval);
+    setMainInterval((previous) => {
+      if (previous) {
+        clearInterval(previous)
+      }
+
+      return null;
+    });
+  }
 
   return (
     <Layout currentGroup={currentGroup}>
@@ -169,24 +138,9 @@ const Page = () => {
         <div className={styles.info}>
           <h2
             className={[styles.text, styles.info__text__h2].join(" ")}
-            onClick={() => {
-              if (mainInterval) {
-                clearInterval(mainInterval);
-                setMainInterval((previous) => {
-                  if (previous) {
-                    clearInterval(previous)
-                  };
-
-                  return null;
-                })
-              } else {
-                setMainInterval(setInterval(() => {
-                  setDate(new Date());
-                }, 100))
-              }
-            }}
+            onClick={handleIntervalOnClick}
           >
-            Мне уже {years} {months} {days} {hours} {minutes} и {seconds}!
+            Мне уже {formatedAgeToString(formatAge(getFullAge(date)))}!
           </h2>
 
           <h2 className={styles.text}>
