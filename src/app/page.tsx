@@ -8,6 +8,7 @@ import { Link as MyLink } from "@/components/link"
 
 import { INFO, NICKNAME } from "./page.constants";
 
+import { formatAge, formatedAgeToString, getFullAge } from "@/api/date.api";
 import { GROUPS, GROUPS_INFO, Russian } from "@/api/paths";
 import { Api } from "@/api";
 
@@ -15,7 +16,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./page.module.css";
-import { formatAge, formatedAgeToString, getFullAge } from "@/api/date.api";
 
 const Layout = ({
   children,
@@ -115,7 +115,7 @@ const Page = () => {
     )
   }
 
-  const handleIntervalOnClick = () => {
+  const onIntervalClick = () => {
     if (!mainInterval) {
       return setMainInterval(setInterval(() => {
         setDate(new Date());
@@ -125,11 +125,21 @@ const Page = () => {
     clearInterval(mainInterval);
     setMainInterval((previous) => {
       if (previous) {
-        clearInterval(previous)
-      }
+        clearInterval(previous);
+      };
 
       return null;
     });
+  }
+
+  const onGroupClick = (group: typeof currentGroup) => {
+    if (!dropdownContent.current) return;
+    
+    dropdownContent.current.style.display = dropdownContent.current.style.display === "flex"
+      ? "none"
+      : "flex";
+
+    setCurrentGroup(group);
   }
 
   return (
@@ -138,7 +148,7 @@ const Page = () => {
         <div className={styles.info}>
           <h2
             className={[styles.text, styles.info__text__h2].join(" ")}
-            onClick={handleIntervalOnClick}
+            onClick={onIntervalClick}
           >
             Мне уже {formatedAgeToString(formatAge(getFullAge(date)))}!
           </h2>
@@ -148,21 +158,13 @@ const Page = () => {
             <Dropdown
               ref={dropdownContent}
               className={styles.dropdown}
-              summary={<button><h3>{Russian[currentGroup].toLocaleLowerCase()}</h3></button>}
+              summary={<button><h3>{Russian[currentGroup].toLowerCase()}</h3></button>}
             >
               {
-                GROUPS.filter(group => group !== currentGroup).map(group => (
+                GROUPS.filter(group => group !== currentGroup).map((group, index) => (
                   <button
-                    key={"btn" + group}
-                    onClick={() => {
-                      if (!dropdownContent.current) return;
-                      
-                      dropdownContent.current.style.display = dropdownContent.current.style.display === "flex"
-                        ? "none"
-                        : "flex";
-
-                      setCurrentGroup(group);
-                    }}
+                    key={index}
+                    onClick={() => onGroupClick(group)}
                   >{Russian[group]}</button>
                 ))
               }

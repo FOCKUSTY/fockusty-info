@@ -63,7 +63,7 @@ export const getFullAge = (now: Date, accuracy: 1|10|100|1000 = 10): Age => {
 
 export const formatAge = (age: Age): RecordAge<string> => {
   return Object.fromEntries((Object.keys(age) as AgeKeys[]).map(key => [
-    key, ruWords(age[key], RUSSIAN_WORDS_FOR_AGE[key])])) as RecordAge<string>;
+    key, `${age[key]} ${ruWords(age[key], RUSSIAN_WORDS_FOR_AGE[key])}`])) as RecordAge<string>;
 }
 
 export const formatedAgeToString = (age: RecordAge<string>) => Object.values(age).join(" ");
