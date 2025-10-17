@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { ChooseGroupComponent, GroupsComponent } from "@/components/groups.component";
+import {
+  ChooseGroupComponent,
+  GroupsComponent,
+} from "@/components/groups.component";
 import { Dropdown } from "@/components/dropdown";
 import { Link as MyLink } from "@/components/link";
 

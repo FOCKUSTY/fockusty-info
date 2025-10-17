@@ -39,4 +39,8 @@ export const GroupData = ({ group }: { group: (typeof GROUPS)[number] }) => {
   });
 };
 
-export type GroupDataType = (typeof GroupData extends (...data: any[]) => infer U ? U : never)[number];
+export type GroupDataType = (typeof GroupData extends (
+  ...data: any[]
+) => infer U
+  ? U
+  : never)[number];

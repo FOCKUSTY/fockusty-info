@@ -7,13 +7,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 export type GroupProps = {
-  data: GroupDataType,
-  className: string,
-  imageClassName: string,
-  linkClassName: string
+  data: GroupDataType;
+  className: string;
+  imageClassName: string;
+  linkClassName: string;
 };
 
-export const GroupComponent = ({ data, className, imageClassName, linkClassName }: GroupProps) => {
+export const GroupComponent = ({
+  data,
+  className,
+  imageClassName,
+  linkClassName,
+}: GroupProps) => {
   return (
     <div className={className}>
       <Image
@@ -29,7 +34,7 @@ export const GroupComponent = ({ data, className, imageClassName, linkClassName 
         <span>{data.info.descriptions[Russian[data.name]]}</span>
       </Link>
     </div>
-  )
+  );
 };
 
 export type GroupsProps = {
@@ -37,20 +42,16 @@ export type GroupsProps = {
 } & Omit<GroupProps, "data">;
 
 export const GroupsComponent = (props: GroupsProps) => {
-  return GroupData({ group: props.group }).map((data, index) => 
-    <GroupComponent
-      key={index}
-      data={data}
-      {...props}
-    />
-  );
+  return GroupData({ group: props.group }).map((data, index) => (
+    <GroupComponent key={index} data={data} {...props} />
+  ));
 };
 
 export type ChooseGroupProps = {
   group: (typeof GROUPS)[number];
-  ref: RefObject<HTMLDivElement | null>,
-  set: (value: SetStateAction<(typeof GROUPS)[number]>) => void
-}
+  ref: RefObject<HTMLDivElement | null>;
+  set: (value: SetStateAction<(typeof GROUPS)[number]>) => void;
+};
 
 const onGroupClick = (props: ChooseGroupProps) => {
   if (!props.ref.current) return;
@@ -65,15 +66,20 @@ export const ChooseGroupComponent = (props: ChooseGroupProps) => {
   return GROUPS.map((group, index) => {
     if (group === props.group) {
       return <></>;
-    };
+    }
 
     return (
-      <button key={index} onClick={() => onGroupClick({
-        ...props,
-        group
-      })}>
+      <button
+        key={index}
+        onClick={() =>
+          onGroupClick({
+            ...props,
+            group,
+          })
+        }
+      >
         {Russian[group]}
       </button>
-    )
+    );
   });
-}
+};
