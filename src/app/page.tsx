@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { ChooseGroupComponent, GroupsComponent } from "@/components/groups.component";
 import { Dropdown } from "@/components/dropdown";
-import { GroupData } from "@/components/paths";
 import { Link as MyLink } from "@/components/link";
 
 import { INFO, NICKNAME } from "./page.constants";
@@ -13,7 +13,6 @@ import { GROUPS, GROUPS_INFO, Russian } from "@/api/paths";
 import { Api } from "@/api";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import styles from "./page.module.css";
 
@@ -139,15 +138,6 @@ const Page = () => {
     });
   };
 
-  const onGroupClick = (group: typeof currentGroup) => {
-    if (!dropdownContent.current) return;
-
-    dropdownContent.current.style.display =
-      dropdownContent.current.style.display === "flex" ? "none" : "flex";
-
-    setCurrentGroup(group);
-  };
-
   return (
     <Layout currentGroup={currentGroup}>
       <div className={styles.main_info}>
@@ -170,13 +160,11 @@ const Page = () => {
                 </button>
               }
             >
-              {GROUPS.filter((group) => group !== currentGroup).map(
-                (group, index) => (
-                  <button key={index} onClick={() => onGroupClick(group)}>
-                    {Russian[group]}
-                  </button>
-                ),
-              )}
+              <ChooseGroupComponent
+                group={currentGroup}
+                ref={dropdownContent}
+                set={setCurrentGroup}
+              />
             </Dropdown>
           </h2>
         </div>
@@ -185,22 +173,12 @@ const Page = () => {
       </div>
 
       <div className={styles.groups}>
-        {GroupData({ group: currentGroup }).map((data) => (
-          <div key={data.name} className={styles.group_data__box}>
-            <Image
-              src={data.info.covers[Russian[data.name]]}
-              width={200}
-              height={100}
-              className={styles.group_data__image}
-              alt="cover"
-            />
-            <Link href={data.link} className={styles.group_data}>
-              <h3>{data.info[Russian[data.name]]}</h3>
-              <hr />
-              <span>{data.info.descriptions[Russian[data.name]]}</span>
-            </Link>
-          </div>
-        ))}
+        <GroupsComponent
+          group={currentGroup}
+          className={styles.group_data__box}
+          imageClassName={styles.group_data__image}
+          linkClassName={styles.group_data}
+        />
       </div>
     </Layout>
   );

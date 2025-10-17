@@ -40,7 +40,7 @@ export const GROUPS_INFO: Record<
       projects: "/photographer.png",
       resume: "/photographer.png",
     },
-    post: "Начинающий фотограф-любитель",
+    post: "Фотограф-любитель",
 
     descriptions: {
       ...ADDITONLA_INFO,
