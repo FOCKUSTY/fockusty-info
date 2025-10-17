@@ -1,18 +1,25 @@
 import { DATE_OF_BIRTH } from "@/app/page.constants";
 import { ruWords } from "./russian";
 
-const dateOfBirth = new Date(DATE_OF_BIRTH.year, DATE_OF_BIRTH.month, DATE_OF_BIRTH.day, DATE_OF_BIRTH.hours, 0, 0);
+const dateOfBirth = new Date(
+  DATE_OF_BIRTH.year,
+  DATE_OF_BIRTH.month,
+  DATE_OF_BIRTH.day,
+  DATE_OF_BIRTH.hours,
+  0,
+  0,
+);
 
 const SECONDS = 1000;
 
 const MINUTE = 60;
 const toMinutes = MINUTE;
 
-const HOUR  = 60;
+const HOUR = 60;
 const toHours = toMinutes * HOUR;
 
 const DAY = 24;
-const toDay = toHours * DAY
+const toDay = toHours * DAY;
 
 const MONTH = 31;
 
@@ -41,29 +48,42 @@ const RUSSIAN_WORDS_FOR_AGE: Record<keyof Age, [string, string, string]> = {
   seconds: ["секунда", "секунды", "секунд"],
 } as const;
 
-export const getFullAge = (now: Date, accuracy: 1|10|100|1000 = 10): Age => {
+export const getFullAge = (
+  now: Date,
+  accuracy: 1 | 10 | 100 | 1000 = 10,
+): Age => {
   const timestamp = (now.getTime() - dateOfBirth.getTime()) / SECONDS;
 
   const years = Math.floor(timestamp / toYear);
-  const days = Math.floor((timestamp / toDay) - (years * YEAR) - (years / LEAP_YEAR));
+  const days = Math.floor(timestamp / toDay - years * YEAR - years / LEAP_YEAR);
   const months = Math.floor(days / MONTH);
-  const hours = Math.floor(timestamp / toHours) - (Math.floor(timestamp / toDay) * DAY);
-  const minutes = Math.floor(timestamp / toMinutes) - (Math.floor(timestamp / toHours) * HOUR);
-  const seconds = Math.floor((timestamp - (Math.floor(timestamp / toMinutes) * MINUTE)) * accuracy) / accuracy;
+  const hours =
+    Math.floor(timestamp / toHours) - Math.floor(timestamp / toDay) * DAY;
+  const minutes =
+    Math.floor(timestamp / toMinutes) - Math.floor(timestamp / toHours) * HOUR;
+  const seconds =
+    Math.floor(
+      (timestamp - Math.floor(timestamp / toMinutes) * MINUTE) * accuracy,
+    ) / accuracy;
 
   return {
     years,
     months,
-    days: days - (months * 31),
+    days: days - months * 31,
     hours,
     minutes,
-    seconds
+    seconds,
   };
 };
 
 export const formatAge = (age: Age): RecordAge<string> => {
-  return Object.fromEntries((Object.keys(age) as AgeKeys[]).map(key => [
-    key, `${age[key]} ${ruWords(age[key], RUSSIAN_WORDS_FOR_AGE[key])}`])) as RecordAge<string>;
-}
+  return Object.fromEntries(
+    (Object.keys(age) as AgeKeys[]).map((key) => [
+      key,
+      `${age[key]} ${ruWords(age[key], RUSSIAN_WORDS_FOR_AGE[key])}`,
+    ]),
+  ) as RecordAge<string>;
+};
 
-export const formatedAgeToString = (age: RecordAge<string>) => Object.values(age).join(" ");
+export const formatedAgeToString = (age: RecordAge<string>) =>
+  Object.values(age).join(" ");

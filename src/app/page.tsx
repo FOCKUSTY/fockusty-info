@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 
 import { Dropdown } from "@/components/dropdown";
 import { GroupData } from "@/components/paths";
-import { Link as MyLink } from "@/components/link"
+import { Link as MyLink } from "@/components/link";
 
 import { INFO, NICKNAME } from "./page.constants";
 
@@ -19,10 +19,10 @@ import styles from "./page.module.css";
 
 const Layout = ({
   children,
-  currentGroup
+  currentGroup,
 }: {
-  children: React.ReactNode,
-  currentGroup: (typeof GROUPS)[number]
+  children: React.ReactNode;
+  currentGroup: (typeof GROUPS)[number];
 }) => {
   return (
     <>
@@ -30,12 +30,10 @@ const Layout = ({
         className={"page-center " + styles.page_center}
         style={{
           justifySelf: "center",
-          gap: "10px"
+          gap: "10px",
         }}
       >
-        <div
-          className={[styles.short_info, "noselect"].join(" ")}
-        >
+        <div className={[styles.short_info, "noselect"].join(" ")}>
           <div className={styles.short_info__name}>
             <h3>FOCKUSTY</h3>
             <h4>{GROUPS_INFO[currentGroup].post}</h4>
@@ -54,38 +52,47 @@ const Layout = ({
       <div className={styles.fockusty}>
         <h2 id="im">Я как человек</h2>
         <p>
-          На самом деле я являюсь очень интересной личностью, например в своём <MyLink href={Api.the_void.telegram_url} name="Telegram канале" /> я
-          каждый день пишу что-нибудь, общаюсь в чате и люблю писать рецензии на некоторые видео и не только!
-          Кстати! Этот сайт я написал полностью сам (хотя иногда и спрашивал совета у своего друга <MyLink href="https://lanvalird.ru" name="Валентина (клик)" />)
+          На самом деле я являюсь очень интересной личностью, например в своём{" "}
+          <MyLink href={Api.the_void.telegram_url} name="Telegram канале" /> я
+          каждый день пишу что-нибудь, общаюсь в чате и люблю писать рецензии на
+          некоторые видео и не только! Кстати! Этот сайт я написал полностью сам
+          (хотя иногда и спрашивал совета у своего друга{" "}
+          <MyLink href="https://lanvalird.ru" name="Валентина (клик)" />)
         </p>
         <p>
-          Вообще, если быть честным, то я не самый нормальный человек, который вообще существует на этой планете
-          могу сказать, что я очень странный, ведь меня не всегда понимают люди, да и я людей не всегда-то понимаю
+          Вообще, если быть честным, то я не самый нормальный человек, который
+          вообще существует на этой планете могу сказать, что я очень странный,
+          ведь меня не всегда понимают люди, да и я людей не всегда-то понимаю
           впрочем интересно получается даже
         </p>
         <p>
-          Также я бывают довольно депрессивным в некоторое время, особенно если мне долго не дают побыть в одиночестве
-          если такое случается, то я становлюсь слишком депрессивным и уставшим, также меня начинают раздражать люди ещё больше
+          Также я бывают довольно депрессивным в некоторое время, особенно если
+          мне долго не дают побыть в одиночестве если такое случается, то я
+          становлюсь слишком депрессивным и уставшим, также меня начинают
+          раздражать люди ещё больше
         </p>
         <p>
-          Несмотря на всё выше перечисленное, я вообще душка и милашка, потому что кажусь себе добрым, да и другим тоже. Раньше
-          я отнекивался от этого, однако со временем я и сам начал себя называть добрым, вот так вот,
-          хотя, если быть честным, то на самом деле я считаю себе злым, угрюмым, уродливым, страшным, ненавистным и
-          все другие оскорбления, которые вы только можете придумать :)
+          Несмотря на всё выше перечисленное, я вообще душка и милашка, потому
+          что кажусь себе добрым, да и другим тоже. Раньше я отнекивался от
+          этого, однако со временем я и сам начал себя называть добрым, вот так
+          вот, хотя, если быть честным, то на самом деле я считаю себе злым,
+          угрюмым, уродливым, страшным, ненавистным и все другие оскорбления,
+          которые вы только можете придумать :)
         </p>
       </div>
     </>
-  )
-}
+  );
+};
 
 const Page = () => {
-  const [ currentGroup, setCurrentGroup ] = useState<(typeof GROUPS)[number]>("programmer");
-  const [ loaded, setLoaded ] = useState<boolean>(false);
-  const [ date, setDate ] = useState<Date>(new Date());
-  const [ mainInterval, setMainInterval ] = useState<NodeJS.Timeout|null>(null);
+  const [currentGroup, setCurrentGroup] =
+    useState<(typeof GROUPS)[number]>("programmer");
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [date, setDate] = useState<Date>(new Date());
+  const [mainInterval, setMainInterval] = useState<NodeJS.Timeout | null>(null);
 
   const dropdownContent = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
       setDate(new Date());
@@ -95,9 +102,9 @@ const Page = () => {
 
     setLoaded(true);
 
-    return (() => {
+    return () => {
       clearInterval(mainInterval || interval);
-    });
+    };
   }, []);
 
   if (!loaded) {
@@ -107,40 +114,39 @@ const Page = () => {
           <h2 className={styles.text}>
             Привет! Я {NICKNAME}, и я {Russian[currentGroup].toLowerCase()}
           </h2>
-          <div>
-            {INFO[currentGroup]}
-          </div>
+          <div>{INFO[currentGroup]}</div>
         </div>
       </Layout>
-    )
+    );
   }
 
   const onIntervalClick = () => {
     if (!mainInterval) {
-      return setMainInterval(setInterval(() => {
-        setDate(new Date());
-      }, 100));
-    };
+      return setMainInterval(
+        setInterval(() => {
+          setDate(new Date());
+        }, 100),
+      );
+    }
 
     clearInterval(mainInterval);
     setMainInterval((previous) => {
       if (previous) {
         clearInterval(previous);
-      };
+      }
 
       return null;
     });
-  }
+  };
 
   const onGroupClick = (group: typeof currentGroup) => {
     if (!dropdownContent.current) return;
-    
-    dropdownContent.current.style.display = dropdownContent.current.style.display === "flex"
-      ? "none"
-      : "flex";
+
+    dropdownContent.current.style.display =
+      dropdownContent.current.style.display === "flex" ? "none" : "flex";
 
     setCurrentGroup(group);
-  }
+  };
 
   return (
     <Layout currentGroup={currentGroup}>
@@ -158,47 +164,46 @@ const Page = () => {
             <Dropdown
               ref={dropdownContent}
               className={styles.dropdown}
-              summary={<button><h3>{Russian[currentGroup].toLowerCase()}</h3></button>}
-            >
-              {
-                GROUPS.filter(group => group !== currentGroup).map((group, index) => (
-                  <button
-                    key={index}
-                    onClick={() => onGroupClick(group)}
-                  >{Russian[group]}</button>
-                ))
+              summary={
+                <button>
+                  <h3>{Russian[currentGroup].toLowerCase()}</h3>
+                </button>
               }
+            >
+              {GROUPS.filter((group) => group !== currentGroup).map(
+                (group, index) => (
+                  <button key={index} onClick={() => onGroupClick(group)}>
+                    {Russian[group]}
+                  </button>
+                ),
+              )}
             </Dropdown>
           </h2>
         </div>
 
-        <div className={styles.group_info}>
-          {INFO[currentGroup]}
-        </div>
+        <div className={styles.group_info}>{INFO[currentGroup]}</div>
       </div>
-      
+
       <div className={styles.groups}>
-        {
-          GroupData({group: currentGroup}).map(data => (
-            <div key={data.name} className={styles.group_data__box}>
-              <Image
-                src={data.info.covers[Russian[data.name]]}
-                width={200}
-                height={100}
-                className={styles.group_data__image}
-                alt="cover"
-              />
-              <Link href={data.link} className={styles.group_data}>
-                <h3>{data.info[Russian[data.name]]}</h3>
-                <hr />
-                <span>{data.info.descriptions[Russian[data.name]]}</span>
-              </Link>
-            </div>
-          ))
-        }
+        {GroupData({ group: currentGroup }).map((data) => (
+          <div key={data.name} className={styles.group_data__box}>
+            <Image
+              src={data.info.covers[Russian[data.name]]}
+              width={200}
+              height={100}
+              className={styles.group_data__image}
+              alt="cover"
+            />
+            <Link href={data.link} className={styles.group_data}>
+              <h3>{data.info[Russian[data.name]]}</h3>
+              <hr />
+              <span>{data.info.descriptions[Russian[data.name]]}</span>
+            </Link>
+          </div>
+        ))}
       </div>
     </Layout>
-  )
+  );
 };
 
 export default Page;

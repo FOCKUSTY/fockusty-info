@@ -10,30 +10,33 @@ import {
   FaFacebook,
   FaInstagram,
   FaVk,
-  FaSteam
-} from "react-icons/fa"
+  FaSteam,
+} from "react-icons/fa";
 
 import { Link } from "@/components/link";
 
 const SOCIALS: {
-  [name: string]: [string, IconType]
+  [name: string]: [string, IconType];
 } = {
   site: ["https://fockusty.netlify.app/", SlGlobe],
   X: ["https://x.com/fockusty", FaXTwitter],
   Pinterest: ["https://ru.pinterest.com/fockusty", FaPinterest],
-  BlueSky: ["https://bsky.app/profile/fockusty.bsky.social", FaBluesky ],
+  BlueSky: ["https://bsky.app/profile/fockusty.bsky.social", FaBluesky],
   Gravatar: ["https://gravatar.com/fockusty", TbBrandGravatar],
   GitHub: ["https://github.com/FOCKUSTY", FaGithub],
   Patreon: ["https://patreon.com/FOCKUSTY", FaPatreon],
-  Facebook: ["https://www.facebook.com/profile.php?id=61567429765302", FaFacebook],
+  Facebook: [
+    "https://www.facebook.com/profile.php?id=61567429765302",
+    FaFacebook,
+  ],
   Instagram: ["https://www.instagram.com/fockusty", FaInstagram],
   Vkontakte: ["https://vk.com/fockusty", FaVk],
-  Steam: ["https://steamcommunity.com/id/fockusty/", FaSteam]
-}
+  Steam: ["https://steamcommunity.com/id/fockusty/", FaSteam],
+};
 
 const Page = () => {
   return (
-    <div className="page-center" style={{justifySelf: "center"}}>
+    <div className="page-center" style={{ justifySelf: "center" }}>
       Мои соцсети!
       <div
         style={{
@@ -43,33 +46,31 @@ const Page = () => {
           gap: "2px",
           width: "200px",
           height: "300px",
-          overflowY: "auto"
+          overflowY: "auto",
         }}
       >
-        {
-          Object.keys(SOCIALS).map(social => {
-            const [ link, Icon ] = SOCIALS[social];
-            
-            return (
-              <Link
-                key={link}
-                href={link}
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: "5px",
-                  width: "100%"
-                }}
-              >
-                <Icon size={24} /> {social}
-              </Link>
-            )
-          })
-        }
+        {Object.keys(SOCIALS).map((social) => {
+          const [link, Icon] = SOCIALS[social];
+
+          return (
+            <Link
+              key={link}
+              href={link}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "5px",
+                width: "100%",
+              }}
+            >
+              <Icon size={24} /> {social}
+            </Link>
+          );
+        })}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Page;

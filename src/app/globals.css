@@ -6,8 +6,8 @@
   --component-color: #c4c4c4;
   --card-color: #ffffff30;
   --smooth-background-color: #cccccc50;
-  
-  --mini-text-color: #000000
+
+  --mini-text-color: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,12 +15,12 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --text-color: #ededed;
-    
+
     --component-color: #272727;
     --card-color: #27272790;
     --smooth-background-color: #111111;
 
-    --mini-text-color: #ededed40
+    --mini-text-color: #ededed40;
   }
 }
 
@@ -33,7 +33,7 @@ body {
 body {
   color: var(--text-color);
   background: var(--background);
-  
+
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -55,7 +55,7 @@ body {
 
 *::-webkit-scrollbar-track {
   border-radius: 10px;
-  
+
   background: var(--smooth-background-color);
 }
 
@@ -76,11 +76,11 @@ a {
   0% {
     text-shadow: #ffbaba 0px 0px 8px;
   }
-  
+
   50% {
     text-shadow: #ffbaba 0px 0px 0px;
   }
-  
+
   100% {
     text-shadow: #ffbaba 0px 0px 8px;
   }
@@ -108,7 +108,7 @@ textarea {
 
   padding: 0.25em 0.5em;
   border-radius: 0.25em 0.5em;
-  
+
   width: 10em;
 
   max-width: 30em;
@@ -117,7 +117,7 @@ textarea {
 
 textarea {
   width: 10em;
-  
+
   max-width: 30em;
   max-height: 10em;
   min-height: 3em;
@@ -186,7 +186,6 @@ footer {
 
   gap: 10px;
 }
-
 
 main {
   z-index: 0;

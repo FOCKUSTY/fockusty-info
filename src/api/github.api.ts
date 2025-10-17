@@ -1,13 +1,13 @@
 export class GithubApi {
   public static readonly url = "https://api.github.com/";
-  
-  public static fetchRepositories = (type: "orgs"|"users", name: string) => {
+
+  public static fetchRepositories = (type: "orgs" | "users", name: string) => {
     return fetch(GithubApi.url + type + "/" + name + "/repos", {
       method: "GET",
       next: {
         revalidate: 1200,
       },
-      cache: "force-cache"
+      cache: "force-cache",
     });
-  }
+  };
 }

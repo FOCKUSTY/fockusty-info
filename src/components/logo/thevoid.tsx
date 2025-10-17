@@ -1,4 +1,4 @@
-import { Api } from "api"
+import { Api } from "api";
 
 import { FaDiscord, FaGithub, FaTelegram } from "react-icons/fa";
 import { SlGlobe } from "react-icons/sl";
@@ -6,16 +6,16 @@ import { SlGlobe } from "react-icons/sl";
 export const Logo = ({
   links,
   head,
-  id
+  id,
 }: {
-  links: Record<keyof typeof Api.fockusty, string>,
-  head: React.ReactNode,
-  id?: string
+  links: Record<keyof typeof Api.fockusty, string>;
+  head: React.ReactNode;
+  id?: string;
 }) => {
   return (
     <div id={id} className="logo">
       {head}
-      
+
       <div className="links">
         <a href={links.discord_url} target="_blank">
           <FaDiscord size={24} />
@@ -31,5 +31,5 @@ export const Logo = ({
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
