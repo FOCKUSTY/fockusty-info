@@ -1,17 +1,16 @@
 "use client";
 
-import type { Photo, Settings } from "types/photo.types";
+import type { Photo } from "types/photo.types";
+import type { Dispatch, SetStateAction } from "react";
 
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { useDropdown } from "components/dropdown";
-import getCategoriedPhotos from "api/photos.api";
+import { useDropdown } from "@/components/dropdown";
+import useMediaQuery from "@/hooks/media.hook";
+import getCategoriedPhotos from "@/api/photos.api";
 
 import styles from "./page.module.css";
-import useMediaQuery from "@/hooks/media.hook";
-
-type Photos = { [key: string]: { [photo: string]: Photo } };
 
 const resolvePhoto = (photo: Photo) => {
   return {
@@ -86,11 +85,9 @@ const ModalPhoto = ({ photo }: { photo: Photo }) => {
 
 const Category = ({
   photos,
-  name,
   set,
 }: {
   photos: Photo[];
-  name: string;
   set: Dispatch<SetStateAction<Photo | null>>;
 }) => {
   return (
@@ -135,7 +132,6 @@ const Page = () => {
       style={{ justifySelf: "normal", flexDirection: "column-reverse" }}
     >
       <Category
-        name={selectedCategory}
         photos={photos}
         set={setSelectedPhoto}
       />
@@ -157,7 +153,7 @@ const Page = () => {
             >
               {category}
             </span>
-          ))}
+        ))}
       </Dropdown>
 
       {selectedPhoto && (
@@ -168,8 +164,9 @@ const Page = () => {
             if (
               (e.target as HTMLElement).id !==
               "photographer__projects__selected_photo_modal"
-            )
+            ) {
               return;
+            }
 
             setSelectedPhoto(null);
           }}
