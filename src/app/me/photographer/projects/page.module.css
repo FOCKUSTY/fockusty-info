@@ -37,73 +37,6 @@
   gap: 10px;
 }
 
-.category {
-  display: flex;
-
-  height: 80%;
-  overflow-y: auto;
-
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-
-  min-width: 240px;
-  max-width: 1200px;
-  width: 100%;
-
-  padding: 1em 0;
-
-  gap: 1.5em;
-}
-
-.card {
-  background: var(--card-color);
-
-  min-width: 240px;
-  max-width: 400px;
-
-  max-height: max-content;
-
-  border-radius: 1em;
-
-  overflow: hidden;
-  cursor: pointer;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.modal___photo_info,
-.info {
-  padding: 0.5em;
-}
-
-.modal___photo_info h2,
-.info h3 {
-  text-overflow: ellipsis;
-  color: var(--text-color);
-}
-
-.modal___photo_info p,
-.info p {
-  color: var(--mini-text-color);
-  font-size: 14px;
-}
-
-.modal__photo_image,
-.image {
-  border-radius: 1em;
-
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-}
-
 .modal {
   position: fixed;
 
@@ -127,56 +60,6 @@
   position: relative;
 }
 
-.modal__photo_image {
-  position: relative;
-  height: auto;
-  max-height: 600px;
-}
-
-.modal__photo_camera {
-  position: absolute;
-
-  top: 0;
-  left: 0;
-
-  font-size: 16px;
-
-  background-color: var(--card-color);
-  opacity: 0.25;
-
-  border: 0;
-
-  transition: 1s;
-
-  -webkit-box-shadow: 2px 2px 10px 10px var(--card-color);
-  -moz-box-shadow: 2px 2px 10px 10px var(--card-color);
-  box-shadow: 2px 2px 10px 10px var(--card-color);
-
-  border-radius: 0.5em;
-  padding: 0.25em 0.5em;
-
-  z-index: 1;
-}
-
-.modal__photo_camera:hover {
-  -webkit-box-shadow: 0px 0px 10px 5px var(--card-color);
-  -moz-box-shadow: 0px 0px 10px 5px var(--card-color);
-  box-shadow: 0px 0px 10px 5px var(--card-color);
-
-  opacity: 1;
-}
-
-.modal___photo_info p {
-  color: var(--foreground);
-  font-size: 16px;
-}
-
-@media (max-height: 550px) {
-  .image {
-    height: 160px;
-  }
-}
-
 @media (max-height: 780px) {
   .modal {
     padding: 60px 0;
@@ -185,21 +68,5 @@
 
   .modal__selected_photo {
     padding: 1.5em 0.25em;
-  }
-
-  .modal__photo_image {
-    max-height: 320px;
-  }
-
-  .modal__photo {
-    height: 100%;
-    padding: 0.25em 0 0.5em 0;
-    overflow-y: auto;
-  }
-}
-
-@media (max-width: 375px) {
-  .image {
-    height: 140px;
   }
 }
