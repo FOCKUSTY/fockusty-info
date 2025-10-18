@@ -8,42 +8,49 @@ import Image from "next/image";
 import styles from "./photo.module.css";
 
 type Props = {
-  photo: Photo;
-  set: Dispatch<SetStateAction<Photo | null>>;
+  photos: Photo[];
+  index: number;
+  set: Dispatch<SetStateAction<number | null>>;
   html?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 }
 
-export const PhotoComponent = (props: Props) => {
-  const { id, path } = resolvePhoto(props.photo);
+export const PhotoComponent = ({
+  index,
+  photos,
+  set,
+  html
+}: Props) => {
+  const photo = photos[index];
+  const { id, path } = resolvePhoto(photo);
 
   return (
     <div
-      {...props.html}
+      {...html}
       className={[
-        props.html?.className,
+        html?.className,
         styles.card
       ].join(" ")}
       key={id}
-      onClick={() => props.set(props.photo)}
+      onClick={() => set(index)}
     >
       <Image
         src={path}
-        alt={props.photo.title}
+        alt={photo.title}
         key={1+id}
         width={300}
         height={200}
         className={styles.image}
         style={{
-          objectPosition: props.photo.position,
+          objectPosition: photo.position,
         }}
       />
       <div
         className={styles.info}
         key={2+id}
       >
-        <h3>{props.photo.title}</h3>
+        <h3>{photo.title}</h3>
         <p>
-          {props.photo.location} • {props.photo.date}
+          {photo.location} • {photo.date}
         </p>
       </div>
     </div>
@@ -55,14 +62,15 @@ export const CategoryComponent = ({
   set,
 }: {
   photos: Photo[];
-  set: Dispatch<SetStateAction<Photo | null>>;
+  set: Dispatch<SetStateAction<number | null>>;
 }) => {
   return (
     <div className={styles.category}>
-      {photos.map((photo, index) => (
+      {photos.map((_, index) => (
         <PhotoComponent
           key={index}
-          photo={photo}
+          photos={photos}
+          index={index}
           set={set}
         />
       ))}

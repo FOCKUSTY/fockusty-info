@@ -8,10 +8,12 @@ import Image from "next/image";
 import styles from "./photo-modal.module.css";
 
 type Props = {
-  photo: Photo
+  index: number;
+  photos: Photo[];
 }
 
-export const PhotoModal = ({ photo }: Props) => {
+export const PhotoModal = ({ photos, index }: Props) => {
+  const photo = photos[index];
   const { id, path } = resolvePhoto(photo);
   const isLessThan = useMediaQuery("(max-width: 1000px)");
 

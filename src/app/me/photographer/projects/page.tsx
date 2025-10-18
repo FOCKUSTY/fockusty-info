@@ -1,28 +1,22 @@
 "use client";
 
 import type { Photo } from "types/photo.types";
-import type { Dispatch, SetStateAction } from "react";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
-import { useDropdown } from "@/components/dropdown";
-import useMediaQuery from "@/hooks/media.hook";
+import { CategoryComponent } from "@/components/photos/photo.component";
+import { PhotoModal } from "@/components/photos/photo-modal.component";
+import { ChooseComponent } from "@/components/dropdown/choose.component";
+
 import getCategoriedPhotos from "@/api/photos.api";
 
 import styles from "./page.module.css";
-import { CategoryComponent } from "@/components/photos/photo.component";
-import { PhotoModal } from "@/components/photos/photo-modal.component";
 
 const Page = () => {
   const [photos, setPhotos] = useState<Photo[]>();
   const [categories, setCategories] = useState<string[]>();
   const [selectedCategory, setSelectedCategory] = useState<string>("Все");
-  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
-  const { Dropdown, setActived } = useDropdown({
-    id: "photographer__projects__choose",
-    className: styles.dropdown,
-  });
+  const [selectedPhoto, setSelectedPhoto] = useState<number|null>(null);
 
   useEffect(() => {
     (async () => {
@@ -36,7 +30,7 @@ const Page = () => {
   if (!photos || !categories) {
     return <>Ждите</>;
   }
-
+  
   return (
     <div
       className="page-center"
@@ -46,28 +40,18 @@ const Page = () => {
         photos={photos}
         set={setSelectedPhoto}
       />
-      <Dropdown
-        summary={
-          <button>Выберите категорию (Сейчас: {selectedCategory})</button>
-        }
-      >
-        {categories
-          .filter((category) => category != selectedCategory)
-          .map((category) => (
-            <span
-              key={"categorty_" + category}
-              onClick={async () => {
-                setSelectedCategory(category);
-                setPhotos((await getCategoriedPhotos(category)).photos);
-                setActived(false);
-              }}
-            >
-              {category}
-            </span>
-        ))}
-      </Dropdown>
+      <ChooseComponent
+        dropdown={{
+          id: "photographer__projects__choose",
+          className: styles.dropdown,
+          summary: <button>Выберите категорию (Сейчас: {selectedCategory})</button>
+        }}
+        onChange={(number) => setSelectedCategory(categories[number])}
+        currentIndex={categories.indexOf(selectedCategory)}
+        components={categories}
+      />
 
-      {selectedPhoto && (
+      {selectedPhoto !== null && (
         <div
           id="photographer__projects__selected_photo_modal"
           className={styles.modal}
@@ -86,7 +70,7 @@ const Page = () => {
             <button onClick={() => setSelectedPhoto(null)}>
               Вернуть к просмотру
             </button>
-            <PhotoModal photo={selectedPhoto} />
+            <PhotoModal index={selectedPhoto} photos={photos} />
           </div>
         </div>
       )}
