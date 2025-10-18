@@ -1,8 +1,13 @@
-'use server';
+"use server";
 
 import { cache } from "react";
 
-import { DEFAULT_SETTINGS, generateOrGetCategories, getPhotosJson, resolvePhotoFileName } from "./photos-functions";
+import {
+  DEFAULT_SETTINGS,
+  generateOrGetCategories,
+  getPhotosJson,
+  resolvePhotoFileName,
+} from "./photos-functions";
 
 export const getPhotosByYear = cache(async (year: string) => {
   const categories = await generateOrGetCategories();
@@ -10,11 +15,11 @@ export const getPhotosByYear = cache(async (year: string) => {
 
   const photosByYear = categories[year];
 
-  return photosByYear.map(name => ({
+  return photosByYear.map((name) => ({
     ...DEFAULT_SETTINGS,
     ...photos[name],
-    ...resolvePhotoFileName(name)
-  }))
+    ...resolvePhotoFileName(name),
+  }));
 });
 
 export default getPhotosByYear;

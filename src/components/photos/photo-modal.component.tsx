@@ -10,7 +10,7 @@ import styles from "./photo-modal.module.css";
 type Props = {
   index: number;
   photos: Photo[];
-}
+};
 
 export const PhotoModal = ({ photos, index }: Props) => {
   const photo = photos[index];

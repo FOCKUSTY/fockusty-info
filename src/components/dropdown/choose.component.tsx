@@ -1,52 +1,48 @@
 import { useDropdown } from "./index";
 
 type DropdownProps = {
-  id: string,
-  summary: React.ReactNode
-  className?: string,
-  mainClassName?: string,
-  summaryClassName?: string,
-  elementClassName?: string,
-}
+  id: string;
+  summary: React.ReactNode;
+  className?: string;
+  mainClassName?: string;
+  summaryClassName?: string;
+  elementClassName?: string;
+};
 
 export type Props = {
-  components: React.ReactNode[],
+  components: React.ReactNode[];
   currentIndex: number;
-  onChange: (current: number) => unknown,
-  dropdown: DropdownProps
+  onChange: (current: number) => unknown;
+  dropdown: DropdownProps;
 };
 
 export const ChooseComponent = ({
   components,
   currentIndex,
   onChange,
-  dropdown
+  dropdown,
 }: Props) => {
   const { Dropdown, setActived } = useDropdown({
     id: dropdown.id,
-    className: dropdown.className
+    className: dropdown.className,
   });
 
   return (
-    <Dropdown
-      summary={dropdown.summary}
-    >
-      {
-        components.map((component, componentIndex) => (
-          componentIndex === currentIndex
-            ? null
-            : (
-              <button
-                key={componentIndex}
-                className={dropdown.elementClassName}
-                onClick={() => {
-                  setActived(false);
-                  onChange(componentIndex);
-                }}
-              >{component}</button>
-            )
-        ))
-      }      
+    <Dropdown summary={dropdown.summary}>
+      {components.map((component, componentIndex) =>
+        componentIndex === currentIndex ? null : (
+          <button
+            key={componentIndex}
+            className={dropdown.elementClassName}
+            onClick={() => {
+              setActived(false);
+              onChange(componentIndex);
+            }}
+          >
+            {component}
+          </button>
+        ),
+      )}
     </Dropdown>
-  )
+  );
 };

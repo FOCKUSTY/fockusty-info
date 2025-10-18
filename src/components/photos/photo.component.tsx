@@ -1,5 +1,10 @@
 import type { Photo } from "@/types/photo.types";
-import type { DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction } from "react";
+import type {
+  DetailedHTMLProps,
+  Dispatch,
+  HTMLAttributes,
+  SetStateAction,
+} from "react";
 
 import { resolvePhoto } from "./resolve-photo";
 
@@ -11,32 +16,24 @@ type Props = {
   photos: Photo[];
   index: number;
   set: Dispatch<SetStateAction<number | null>>;
-  html?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-}
+  html?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+};
 
-export const PhotoComponent = ({
-  index,
-  photos,
-  set,
-  html
-}: Props) => {
+export const PhotoComponent = ({ index, photos, set, html }: Props) => {
   const photo = photos[index];
   const { id, path } = resolvePhoto(photo);
 
   return (
     <div
       {...html}
-      className={[
-        html?.className,
-        styles.card
-      ].join(" ")}
+      className={[html?.className, styles.card].join(" ")}
       key={id}
       onClick={() => set(index)}
     >
       <Image
         src={path}
         alt={photo.title}
-        key={1+id}
+        key={1 + id}
         width={300}
         height={200}
         className={styles.image}
@@ -44,10 +41,7 @@ export const PhotoComponent = ({
           objectPosition: photo.position,
         }}
       />
-      <div
-        className={styles.info}
-        key={2+id}
-      >
+      <div className={styles.info} key={2 + id}>
         <h3>{photo.title}</h3>
         <p>
           {photo.location} • {photo.date}
@@ -67,12 +61,7 @@ export const CategoryComponent = ({
   return (
     <div className={styles.category}>
       {photos.map((_, index) => (
-        <PhotoComponent
-          key={index}
-          photos={photos}
-          index={index}
-          set={set}
-        />
+        <PhotoComponent key={index} photos={photos} index={index} set={set} />
       ))}
     </div>
   );

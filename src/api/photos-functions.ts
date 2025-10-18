@@ -12,7 +12,7 @@ export const DEFAULT_SETTINGS: Photo = {
   description: "Фоточка от Фокусти",
   categories: ["all"],
   position: "center",
-  name: "hihihih"
+  name: "hihihih",
 };
 
 export const resolvePhotoFileName = (fileName: string) => {
@@ -25,14 +25,16 @@ export const resolvePhotoFileName = (fileName: string) => {
   };
 };
 
-export const getPhotosJson = cache(async (): Promise<Record<string, JsonPhoto>> => {
-  return fetch(process.env.THIS_URL + "/photos/photos.json", {
-    next: {
-      revalidate: 3000,
-    },
-    cache: "force-cache",
-  }).then(data => data.json());
-});
+export const getPhotosJson = cache(
+  async (): Promise<Record<string, JsonPhoto>> => {
+    return fetch(process.env.THIS_URL + "/photos/photos.json", {
+      next: {
+        revalidate: 3000,
+      },
+      cache: "force-cache",
+    }).then((data) => data.json());
+  },
+);
 
 export const getCategories = cache(async (): Promise<JsonCategories> => {
   return fetch(process.env.THIS_URL + "/photos/categories.json", {
@@ -40,38 +42,46 @@ export const getCategories = cache(async (): Promise<JsonCategories> => {
       revalidate: 3000,
     },
     cache: "force-cache",
-  }).then(data => data.json());
+  }).then((data) => data.json());
 });
 
-export const generateOrGetCategories = cache(async (): Promise<JsonCategories> => {
-  if (process.env.NODE_ENV !== "development") {
-    return getCategories();
-  };
+export const generateOrGetCategories = cache(
+  async (): Promise<JsonCategories> => {
+    if (process.env.NODE_ENV !== "development") {
+      return getCategories();
+    }
 
-  const photos: Record<string, JsonPhoto> = JSON.parse(await readFile(process.env.PHOTOS_PATH + "/photos.json", "utf8"));
-  const categories: JsonCategories = {};
-  
-  categories["Все"] = [];
+    const photos: Record<string, JsonPhoto> = JSON.parse(
+      await readFile(process.env.PHOTOS_PATH + "/photos.json", "utf8"),
+    );
+    const categories: JsonCategories = {};
 
-  for (const name in photos) {
-    const photo = photos[name];
-    
-    photo.categories.forEach(category => {
-      if (!categories[category]) {
-        categories[category] = [];
-      };
+    categories["Все"] = [];
 
-      if (!categories["Все"].includes(name)) {
-        categories["Все"].push(name)
-      }
-      
-      if (!categories[category].includes(name)) {
-        categories[category].push(name);
-      }
-    });
-  };
+    for (const name in photos) {
+      const photo = photos[name];
 
-  await writeFile(process.env.PHOTOS_PATH + "/categories.json", JSON.stringify(categories, undefined, 2), "utf8");
-  
-  return categories;
-});
+      photo.categories.forEach((category) => {
+        if (!categories[category]) {
+          categories[category] = [];
+        }
+
+        if (!categories["Все"].includes(name)) {
+          categories["Все"].push(name);
+        }
+
+        if (!categories[category].includes(name)) {
+          categories[category].push(name);
+        }
+      });
+    }
+
+    await writeFile(
+      process.env.PHOTOS_PATH + "/categories.json",
+      JSON.stringify(categories, undefined, 2),
+      "utf8",
+    );
+
+    return categories;
+  },
+);

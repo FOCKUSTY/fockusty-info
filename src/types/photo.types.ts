@@ -11,8 +11,8 @@ export interface JsonPhoto {
   location: string;
   position?: string;
   camera?: string;
-};
+}
 
-export type JsonCategories = Record<string, string[]>; 
+export type JsonCategories = Record<string, string[]>;
 
 export type Photo = Required<Settings & JsonPhoto>;

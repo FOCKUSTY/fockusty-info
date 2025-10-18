@@ -16,12 +16,13 @@ const Page = () => {
   const [photos, setPhotos] = useState<Photo[]>();
   const [categories, setCategories] = useState<string[]>();
   const [selectedCategory, setSelectedCategory] = useState<string>("Все");
-  const [selectedPhoto, setSelectedPhoto] = useState<number|null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
 
   useEffect(() => {
     (async () => {
-      const { photos, categories } = await getCategoriedPhotos(selectedCategory);
-      
+      const { photos, categories } =
+        await getCategoriedPhotos(selectedCategory);
+
       setCategories(categories);
       setPhotos(photos);
     })();
@@ -30,21 +31,20 @@ const Page = () => {
   if (!photos || !categories) {
     return <>Ждите</>;
   }
-  
+
   return (
     <div
       className="page-center"
       style={{ justifySelf: "normal", flexDirection: "column-reverse" }}
     >
-      <CategoryComponent
-        photos={photos}
-        set={setSelectedPhoto}
-      />
+      <CategoryComponent photos={photos} set={setSelectedPhoto} />
       <ChooseComponent
         dropdown={{
           id: "photographer__projects__choose",
           className: styles.dropdown,
-          summary: <button>Выберите категорию (Сейчас: {selectedCategory})</button>
+          summary: (
+            <button>Выберите категорию (Сейчас: {selectedCategory})</button>
+          ),
         }}
         onChange={(index) => setSelectedCategory(categories[index])}
         currentIndex={categories.indexOf(selectedCategory)}
