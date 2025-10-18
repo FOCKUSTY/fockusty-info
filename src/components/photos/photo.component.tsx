@@ -10,16 +10,17 @@ import styles from "./photo.module.css";
 type Props = {
   photo: Photo;
   set: Dispatch<SetStateAction<Photo | null>>;
-} & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+  html?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+}
 
 export const PhotoComponent = (props: Props) => {
   const { id, path } = resolvePhoto(props.photo);
 
   return (
     <div
-      {...props}
+      {...props.html}
       className={[
-        props.className,
+        props.html?.className,
         styles.card
       ].join(" ")}
       key={id}
@@ -28,6 +29,7 @@ export const PhotoComponent = (props: Props) => {
       <Image
         src={path}
         alt={props.photo.title}
+        key={1+id}
         width={300}
         height={200}
         className={styles.image}
@@ -35,7 +37,10 @@ export const PhotoComponent = (props: Props) => {
           objectPosition: props.photo.position,
         }}
       />
-      <div className={styles.info}>
+      <div
+        className={styles.info}
+        key={2+id}
+      >
         <h3>{props.photo.title}</h3>
         <p>
           {props.photo.location} • {props.photo.date}
