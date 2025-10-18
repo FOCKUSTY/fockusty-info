@@ -46,7 +46,7 @@ const Page = () => {
           className: styles.dropdown,
           summary: <button>Выберите категорию (Сейчас: {selectedCategory})</button>
         }}
-        onChange={(number) => setSelectedCategory(categories[number])}
+        onChange={(index) => setSelectedCategory(categories[index])}
         currentIndex={categories.indexOf(selectedCategory)}
         components={categories}
       />
