@@ -1,12 +1,12 @@
 "use client";
 
-import type { Photo } from "types/photo.types";
+import type { Photo, Settings } from "types/photo.types";
 
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 
 import { useDropdown } from "components/dropdown";
-import readPhotos from "api/photos.api";
+import getCategoriedPhotos from "api/photos.api";
 
 import styles from "./page.module.css";
 import useMediaQuery from "@/hooks/media.hook";
@@ -16,7 +16,7 @@ type Photos = { [key: string]: { [photo: string]: Photo } };
 const resolvePhoto = (photo: Photo) => {
   return {
     id: `${photo.date}-${photo.title}`,
-    path: `/photos/${photo.category}/${photo.name}`,
+    path: `/photos/${photo.date}.${photo.name}.jpg`,
   };
 };
 
@@ -89,22 +89,16 @@ const Category = ({
   name,
   set,
 }: {
-  photos: Photos;
+  photos: Photo[];
   name: string;
   set: Dispatch<SetStateAction<Photo | null>>;
 }) => {
-  const data = photos[name];
-  const keys = Object.keys(data);
-
   return (
     <div className={styles.category}>
-      {keys.map((key) => (
+      {photos.map((photo, index) => (
         <Photo
-          key={key}
-          photo={{
-            ...data[key],
-            name: key,
-          }}
+          key={index}
+          photo={photo}
           set={set}
         />
       ))}
@@ -113,8 +107,9 @@ const Category = ({
 };
 
 const Page = () => {
-  const [photos, setPhotos] = useState<Photos>();
-  const [selectedCategory, setSelectedCategory] = useState<string>("все");
+  const [photos, setPhotos] = useState<Photo[]>();
+  const [categories, setCategories] = useState<string[]>();
+  const [selectedCategory, setSelectedCategory] = useState<string>("Все");
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const { Dropdown, setActived } = useDropdown({
     id: "photographer__projects__choose",
@@ -123,11 +118,14 @@ const Page = () => {
 
   useEffect(() => {
     (async () => {
-      setPhotos(await readPhotos());
+      const { photos, categories } = await getCategoriedPhotos(selectedCategory);
+      
+      setCategories(categories);
+      setPhotos(photos);
     })();
   }, []);
 
-  if (!photos) {
+  if (!photos || !categories) {
     return <>Ждите</>;
   }
 
@@ -146,13 +144,14 @@ const Page = () => {
           <button>Выберите категорию (Сейчас: {selectedCategory})</button>
         }
       >
-        {Object.keys(photos)
+        {categories
           .filter((category) => category != selectedCategory)
           .map((category) => (
             <span
               key={"categorty_" + category}
-              onClick={() => {
+              onClick={async () => {
                 setSelectedCategory(category);
+                setPhotos((await getCategoriedPhotos(category)).photos);
                 setActived(false);
               }}
             >
@@ -180,10 +179,7 @@ const Page = () => {
               Вернуть к просмотру
             </button>
             <ModalPhoto
-              photo={{
-                ...selectedPhoto,
-                category: selectedPhoto.category,
-              }}
+              photo={selectedPhoto}
             />
           </div>
         </div>

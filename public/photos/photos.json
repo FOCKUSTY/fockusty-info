@@ -1,1 +1,134 @@
-["портреты", "вещи", "еда"]
+{
+  "2025-05-22.Брелок.jpg": {
+    "categories": ["Предметы", "С размытием"],
+    "position": "center",
+    "camera": "Samsung A50",
+    "location": "Russia"
+  },
+
+  "2025-08-30.Розовый_съедобный_мишка.jpg": {
+    "categories": ["Еда", "Сладости", "В помещении"],
+    "position": "top",
+    "camera": "Samsung A50",
+    "location": "Russia, Ufa, Cafe"
+  },
+
+  "2025-08-22.Чашка_в_кафе.jpg": {
+    "categories": ["Еда", "Напитки", "Предметы", "В помещении"],
+    "position": "center",
+    "camera": "Samsung A50",
+    "location": "Russia, Ufa, Cafe"
+  },
+
+  "2025-07-10.Мороженное_в_руках.jpg": {
+    "categories": ["Еда", "В помещении"],
+    "position": "center",
+    "camera": "Samsung A50",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_вблизи.jpg": {
+    "categories": ["Люди", "На улице", "Девушки", "С размытием"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_гладит_кота.jpg": {
+    "categories": ["Люди", "На улице", "Девушки", "Животные"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_на_лавочке.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_на_площадке.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_прикрывшаяся_рукой.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_с_браслетом_№2.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_с_браслетом.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_с_кольцами_№2.jpg": {
+    "categories": ["Люди", "На улице", "Девушки", "Кольца", "Пальцы"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_с_кольцами.jpg": {
+    "categories": ["Люди", "На улице", "Девушки", "Кольца", "Пальцы"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_с_распущенными_волосами_смотрит_в_сторону.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_с_распущенными_волосами.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_сидит.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_смотрит_в_камеру.jpg": {
+    "categories": ["Люди", "На улице", "Девушки"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-08-18.Карина_улыбается_на_фоне_дома_и_неба.jpg": {
+    "categories": ["Люди", "На улице", "Девушки", "С улыбкой"],
+    "position": "center",
+    "camera": "Nikon D3500",
+    "location": "Russia, Ufa"
+  },
+
+  "2025-09-17.Кольца_на_пальцах_одногруппника.jpg": {
+    "categories": ["Люди", "Кольца", "Пальцы"],
+    "position": "center",
+    "camera": "Samsung A50",
+    "location": "Russia, Ufa"
+  }
+}

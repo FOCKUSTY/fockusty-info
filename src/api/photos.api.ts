@@ -1,7 +1,8 @@
 "use server";
 
+import type { JsonCategories, JsonPhoto, Photo, Settings } from "types/photo.types";
 import { cache } from "react";
-import type { Photo } from "types/photo.types";
+import { readFile, writeFile } from "fs/promises";
 
 const DEFAULT_SETTINGS: Photo = {
   date: "Cool date",
@@ -9,9 +10,9 @@ const DEFAULT_SETTINGS: Photo = {
   camera: "Nikon D3500",
   location: "Россия, г. Уфа",
   description: "Фоточка от Фокусти",
-  category: "all",
-  name: "hi",
+  categories: ["all"],
   position: "center",
+  name: "hihihih"
 };
 
 const resolveName = (fileName: string) => {
@@ -24,79 +25,72 @@ const resolveName = (fileName: string) => {
   };
 };
 
-const getPhotosJson = cache(async (): Promise<string[]> => {
-  return await (
-    await fetch(process.env.THIS_URL + "/photos/photos.json", {
-      next: {
-        revalidate: 3000,
-      },
-      cache: "force-cache",
-    })
-  ).json();
+const getPhotosJson = cache(async (): Promise<Record<string, JsonPhoto>> => {
+  return fetch(process.env.THIS_URL + "/photos/photos.json", {
+    next: {
+      revalidate: 3000,
+    },
+    cache: "force-cache",
+  }).then(data => data.json());
 });
 
-const getCategory = cache(
-  async (
-    category: string,
-  ): Promise<{
-    [key: string]: {
-      description: string;
-      categories: string[];
-      position: string;
-      camera: string;
-      location: string;
-    };
-  }> => {
-    return await (
-      await fetch(
-        `${process.env.THIS_URL}/photos/${category}/${category}.json`,
-        {
-          next: {
-            revalidate: 3000,
-          },
-          cache: "force-cache",
-        },
-      )
-    ).json();
-  },
-);
+const getCategories = cache(async (): Promise<JsonCategories> => {
+  return fetch(process.env.THIS_URL + "/photos/categories.json", {
+    next: {
+      revalidate: 3000,
+    },
+    cache: "force-cache",
+  }).then(data => data.json());
+});
 
-export default async function readPhotos() {
-  const output: {
-    [key: string]: {
-      [photo: string]: Required<Photo>;
-    };
-  } = {};
+const generateOrGetCategories = cache(async (): Promise<JsonCategories> => {
+  if (process.env.NODE_ENV !== "development") {
+    return getCategories();
+  };
 
-  output["все"] = {};
+  const photos: Record<string, JsonPhoto> = JSON.parse(await readFile(process.env.PHOTOS_PATH + "/photos.json", "utf8"));
+  const categories: JsonCategories = {};
+  
+  categories["Все"] = [];
 
-  const categories = await getPhotosJson();
-
-  for (const category of categories) {
-    output[category] = {};
-
-    const data: {
-      [key: string]: {
-        description: string;
-        categories: string[];
-        position: string;
-        camera: string;
-        location: string;
-      };
-    } = await getCategory(category);
-
-    for (const key in data) {
-      const settings = <Required<Photo>>{
-        ...DEFAULT_SETTINGS,
-        category,
-        ...data[key],
-        ...resolveName(key),
+  for (const name in photos) {
+    const photo = photos[name];
+    
+    photo.categories.forEach(category => {
+      if (!categories[category]) {
+        categories[category] = [];
       };
 
-      output[category][key] = settings;
-      output["все"][key] = settings;
-    }
-  }
+      if (!categories["Все"].includes(name)) {
+        categories["Все"].push(name)
+      }
+      
+      if (!categories[category].includes(name)) {
+        categories[category].push(name);
+      }
+    });
+  };
 
-  return output;
+  await writeFile(process.env.PHOTOS_PATH + "/categories.json", JSON.stringify(categories, undefined, 2), "utf8");
+  
+  return categories;
+});
+
+export default async function getCategoriedPhotos(category: string): Promise<{
+  categories: string[],
+  photos: Photo[]
+}> {
+  const categories = await generateOrGetCategories();
+  const photos = await getPhotosJson();
+
+  const categoriedPhotos = categories[category];
+
+  return {
+    categories: Object.keys(categories),
+    photos: categoriedPhotos.map(categoriedPhoto => (<Photo>{
+      ...DEFAULT_SETTINGS,
+      ...photos[categoriedPhoto],
+      ...resolveName(categoriedPhoto)
+    })),
+  };
 }
