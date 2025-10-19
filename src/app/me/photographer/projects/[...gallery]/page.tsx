@@ -16,7 +16,7 @@ import styles from "../page.module.css";
 
 const Page = () => {
   const { gallery: encodedGallery } = useParams<{gallery: string[]}>();
-  const gallery = decodeURIComponent(encodedGallery.join("/"));
+  const gallery = decodeURIComponent(encodedGallery.join("/")).toLowerCase();
 
   const [photos, setPhotos] = useState<Photo[]>();
   const [categories, setCategories] = useState<string[]>();

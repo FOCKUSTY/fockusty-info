@@ -20,13 +20,15 @@ export default async function getCategoriedPhotos(category: string): Promise<{
 
   return {
     categories: Object.keys(categories),
-    photos: categoriedPhotos.map(
-      (categoriedPhoto) =>
-        <Photo>{
-          ...DEFAULT_SETTINGS,
-          ...photos[categoriedPhoto],
-          ...resolvePhotoFileName(categoriedPhoto),
-        },
-    ),
+    photos: !categories[category]
+      ? []
+      : categoriedPhotos.map(
+        (categoriedPhoto) =>
+          <Photo>{
+            ...DEFAULT_SETTINGS,
+            ...photos[categoriedPhoto],
+            ...resolvePhotoFileName(categoriedPhoto),
+          },
+      ),
   };
 }
