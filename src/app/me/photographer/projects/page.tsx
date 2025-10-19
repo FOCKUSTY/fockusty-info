@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { CategoryComponent } from "@/components/photos/photo.component";
 import { PhotoModal } from "@/components/photos/photo-modal.component";
 import { ChooseComponent } from "@/components/dropdown/choose.component";
+import { ModalComponent } from "@/components/modal/modal.component";
 
 import getCategoriedPhotos from "@/api/photos.api";
 
@@ -51,29 +52,21 @@ const Page = () => {
         components={categories}
       />
 
-      {selectedPhoto !== null && (
-        <div
-          id="photographer__projects__selected_photo_modal"
-          className={styles.modal}
-          onClick={(e) => {
-            if (
-              (e.target as HTMLElement).id !==
-              "photographer__projects__selected_photo_modal"
-            ) {
-              return;
-            }
-
-            setSelectedPhoto(null);
-          }}
-        >
-          <div className={styles.modal__selected_photo}>
-            <button onClick={() => setSelectedPhoto(null)}>
-              Вернуть к просмотру
-            </button>
-            <PhotoModal index={selectedPhoto} photos={photos} />
-          </div>
+      <ModalComponent
+        id="photographer__projects__selected_photo_modal"
+        actived={selectedPhoto !== null}
+        onClick={() => setSelectedPhoto(null)}
+        html={{
+          className: styles.modal
+        }}
+      >
+        <div className={styles.modal__selected_photo}>
+          <button onClick={() => setSelectedPhoto(null)}>
+            Вернуть к просмотру
+          </button>
+          <PhotoModal index={selectedPhoto as number} photos={photos} />
         </div>
-      )}
+      </ModalComponent>
     </div>
   );
 };

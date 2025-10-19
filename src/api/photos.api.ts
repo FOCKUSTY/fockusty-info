@@ -11,15 +11,28 @@ import {
 
 export default async function getCategoriedPhotos(category: string): Promise<{
   categories: string[];
+  specialCategories: string[];
   photos: Photo[];
 }> {
   const categories = await generateOrGetCategories();
   const photos = await getPhotosJson();
 
   const categoriedPhotos = categories[category];
+  
+  const defaultCategories: string[] = [];
+  const specialCategories: string[] = [];
+  
+  Object.keys(categories).forEach(category => {
+    if (category.startsWith("!")) {
+      return specialCategories.push(category);
+    }
 
+    return defaultCategories.push(category);
+  });
+  
   return {
-    categories: Object.keys(categories),
+    categories: defaultCategories,
+    specialCategories,
     photos: !categories[category]
       ? []
       : categoriedPhotos.map(
