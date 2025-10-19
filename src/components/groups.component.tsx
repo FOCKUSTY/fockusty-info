@@ -65,7 +65,7 @@ const onGroupClick = (props: ChooseGroupProps) => {
 export const ChooseGroupComponent = (props: ChooseGroupProps) => {
   return GROUPS.map((group, index) => {
     if (group === props.group) {
-      return <></>;
+      return null;
     }
 
     return (
