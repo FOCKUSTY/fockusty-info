@@ -56,7 +56,7 @@ export const generateOrGetCategories = cache(
     );
     const categories: JsonCategories = {};
 
-    categories["Все"] = [];
+    categories["все"] = [];
 
     for (const name in photos) {
       const photo = photos[name];
@@ -66,8 +66,8 @@ export const generateOrGetCategories = cache(
           categories[category] = [];
         }
 
-        if (!categories["Все"].includes(name)) {
-          categories["Все"].push(name);
+        if (!categories["все"].includes(name)) {
+          categories["все"].push(name);
         }
 
         if (!categories[category].includes(name)) {

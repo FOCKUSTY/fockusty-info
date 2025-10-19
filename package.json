@@ -33,6 +33,7 @@
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
+    "@types/react-dom": "^19.2.2",
     "@types/three": "^0.179.0",
     "eslint-config-next": "15.3.5",
     "typescript": "^5.9.2"

@@ -3,6 +3,7 @@
 import type { DetailedHTMLProps, HTMLAttributes } from "react"
 
 import { useState } from "react"
+import { createPortal } from "react-dom";
 
 type HtmlProps = Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "id"|"onClick">;
 type Props = {
@@ -24,7 +25,7 @@ export const ModalComponent = ({
     return null;
   }
 
-  return (
+  return createPortal(
     <div
       {...html}
       id={id}
@@ -38,8 +39,9 @@ export const ModalComponent = ({
       }}
     >
       {children}
-    </div>
-  )
+    </div>,
+    document.body
+  );
 }
 
 type HookProps = {
@@ -56,7 +58,7 @@ export const useModal = ({
     actived,
     ModalComponent: (props: HtmlProps) => (
       actived
-        ? (
+        ? createPortal(
           <div
             {...props}
             id={id}
@@ -70,7 +72,8 @@ export const useModal = ({
             }}
           >
             {props.children}
-          </div>
+          </div>,
+          document.body
         )
         : null
     )

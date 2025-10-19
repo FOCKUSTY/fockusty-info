@@ -2,45 +2,60 @@
 
 import type { Photo } from "types/photo.types";
 
-import { useParams } from "next/navigation";
-
+import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 import { CategoryComponent } from "@/components/photos/photo.component";
 import { PhotoModal } from "@/components/photos/photo-modal.component";
+import { useModal } from "@/components/modal/modal.component";
 import { ChooseComponent } from "@/components/dropdown/choose.component";
 
 import getCategoriedPhotos from "@/api/photos.api";
 
 import styles from "../page.module.css";
+import { PATH } from "../page.constants";
 
 const Page = () => {
+  const router = useRouter();
+
   const { gallery: encodedGallery } = useParams<{gallery: string[]}>();
   const gallery = decodeURIComponent(encodedGallery.join("/")).toLowerCase();
 
-  const [photos, setPhotos] = useState<Photo[]>();
-  const [categories, setCategories] = useState<string[]>();
-  const [selectedCategory, setSelectedCategory] = useState<string>("Все");
+  const [photos, setPhotos] = useState<Photo[]|null>(null);
+  const [categories, setCategories] = useState<string[]|null>(null);
+  const [specialCategories, setSpecialCategories] = useState<string[]|null>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
+
+  const [loaded, setLoaded] = useState<boolean>(false);
+  
+  const { ModalComponent, setActived } = useModal({ id: "gallery__choose_category" })
 
   useEffect(() => {
     (async () => {
-      setSelectedCategory(gallery);
-
-      const { photos, categories } =
+      const { photos, specialCategories, categories } =
         await getCategoriedPhotos(gallery);
 
+      setSpecialCategories(specialCategories);
       setCategories(categories);
       setPhotos(photos);
+
+      setLoaded(true);
     })();
   }, [gallery]);
 
-  if (!photos || !categories) {
-    return <>Ждите</>;
+  if (!loaded) {
+    return <>Загрузка...</>;
   }
 
-  if (!categories.includes(gallery)) {
-    return <>Не было найдено такой категориии</>
+  const isStatesNull = !categories || !specialCategories || !photos;
+  if (isStatesNull) {
+    return <>Произошла какая-то ошибка</>
+  }
+
+  const isSpecialCategory = gallery.startsWith("!");
+  const specialCategoryExists = !isSpecialCategory || specialCategories.includes(gallery);
+  if (!specialCategoryExists) {
+    return <>Не было найдено такой категориии</>;
   }
 
   return (
@@ -49,18 +64,37 @@ const Page = () => {
       style={{ justifySelf: "normal", flexDirection: "column-reverse" }}
     >
       <CategoryComponent photos={photos} set={setSelectedPhoto} />
-{/*       <ChooseComponent
-        dropdown={{
-          id: "photographer__projects__choose",
-          className: styles.dropdown,
-          summary: (
-            <button>Выберите категорию (Сейчас: {selectedCategory})</button>
-          ),
-        }}
-        onChange={(index) => setSelectedCategory(categories[index])}
-        currentIndex={categories.indexOf(selectedCategory)}
-        components={categories}
-      /> */}
+      <div
+        style={{display: "flex", gap: "0.75em"}}
+      >
+        <button
+          onClick={() => setActived(true)}
+        >Выбрать особую категорию</button>
+        <ModalComponent
+          className={styles.modal}
+        >
+          {specialCategories.map(category => (
+            <button
+              key={category}
+              onClick={() => router.push(PATH+category)}
+            >
+              {category.slice(1)}
+            </button>
+          ))}
+        </ModalComponent>
+        <ChooseComponent
+          dropdown={{
+            id: "photographer__projects__choose",
+            className: styles.dropdown,
+            summary: (
+              <button>Выберите категорию</button>
+            ),
+          }}
+          onChange={() => router.push(PATH)}
+          currentIndex={0}
+          components={categories}
+        />
+      </div>
 
       {selectedPhoto !== null && (
         <div
