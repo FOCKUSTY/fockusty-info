@@ -68,22 +68,7 @@ body {
 
 a {
   color: inherit;
-  text-decoration: none;
-  animation: shadow 10s infinite ease-in-out;
-}
-
-@keyframes shadow {
-  0% {
-    text-shadow: #ffbaba 0px 0px 8px;
-  }
-
-  50% {
-    text-shadow: #ffbaba 0px 0px 0px;
-  }
-
-  100% {
-    text-shadow: #ffbaba 0px 0px 8px;
-  }
+  text-decoration: underline;
 }
 
 span,
