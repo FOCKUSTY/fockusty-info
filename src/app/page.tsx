@@ -101,13 +101,12 @@ const Page = () => {
     }, 100);
 
     setMainInterval(interval);
-
     setLoaded(true);
 
     return () => {
       clearInterval(mainInterval || interval);
     };
-  }, []);
+  }, [mainInterval]);
 
   if (!loaded) {
     return (

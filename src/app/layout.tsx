@@ -9,7 +9,7 @@ import { useState } from "react";
 import SpaceAnimation from "components/space";
 import useMediaQuery from "@/hooks/media.hook";
 import { Logo } from "components/logo/thevoid";
-import { PATHS, resolvePathName } from "@/api/paths";
+import { resolvePathName } from "@/api/paths";
 
 import { Api } from "api";
 
