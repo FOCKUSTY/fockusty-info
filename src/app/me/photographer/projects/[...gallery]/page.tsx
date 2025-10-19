@@ -63,7 +63,7 @@ const Page = () => {
       className="page-center"
       style={{ justifySelf: "normal", flexDirection: "column-reverse" }}
     >
-      <CategoryComponent photos={photos} set={setSelectedPhoto} />
+      <CategoryComponent uniqueEnabled photos={photos} set={setSelectedPhoto} />
       <div
         style={{display: "flex", gap: "0.75em"}}
       >

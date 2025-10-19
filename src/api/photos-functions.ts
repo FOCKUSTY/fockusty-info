@@ -10,17 +10,31 @@ export const DEFAULT_SETTINGS: Photo = {
   camera: "Nikon D3500",
   location: "Россия, г. Уфа",
   description: "Фоточка от Фокусти",
+  unique: false,
   categories: ["all"],
   position: "center",
   name: "hihihih",
 };
 
 export const resolvePhotoFileName = (fileName: string) => {
+  if (fileName.includes("/")) {
+    const path = fileName.split("/");
+  
+    const name = path[path.length-1];
+    const [date, title] = name.split(".");
+    
+    return {
+      date,
+      title: title.replaceAll("_", " "),
+      name: fileName,
+    };
+  }
+
   const [date, name] = fileName.split(".");
 
   return {
     date,
-    name,
+    name: fileName,
     title: name.replaceAll("_", " "),
   };
 };
@@ -65,7 +79,7 @@ export const generateOrGetCategories = cache(
         if (!categories[category]) {
           categories[category] = [];
         }
-
+        
         if (!categories["все"].includes(name)) {
           categories["все"].push(name);
         }
