@@ -9,11 +9,11 @@ import { useState } from "react";
 import SpaceAnimation from "components/space";
 import useMediaQuery from "@/hooks/media.hook";
 import { Logo } from "components/logo/thevoid";
-import { PATHS } from "@/api/paths";
+import { PATHS, resolvePathName } from "@/api/paths";
 
 import { Api } from "api";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useParams } from "next/navigation";
 
 import "./globals.css";
 
@@ -39,6 +39,7 @@ const RootLayout = ({
   const isLessThanMinimal = useMediaQuery("(max-width: 425px)");
 
   const path = usePathname();
+  const params: Record<string, string> = useParams();
 
   return (
     <html lang="ru">
@@ -61,7 +62,7 @@ const RootLayout = ({
             links={Api.fockusty}
           />
 
-          <h2 className="path">{PATHS[path] || "404"}</h2>
+          <h2 className="path">{resolvePathName(path, params)}</h2>
 
           <button
             id="animation-button"

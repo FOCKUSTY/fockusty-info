@@ -104,3 +104,21 @@ export const PATHS: { [key: string]: string | undefined } = {
     GROUPS.flatMap((group) => INFO.map((info) => getPath(group, info))),
   ),
 };
+
+export const PARAMS: Record<string, string|undefined> = {
+  "gallery": "Галерея"
+};
+
+export const resolvePathName = (path: string, params: Record<string, string>) => {
+  const defaultName = PATHS[path];
+  if (defaultName) {
+    return defaultName;
+  }
+
+  const keys = Object.keys(params);
+  if (keys.length === 0) {
+    return "404";
+  }
+
+  return keys.filter(key => PARAMS[key]).map(key => PARAMS[key]).join("/");
+}
