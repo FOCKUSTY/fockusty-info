@@ -17,8 +17,8 @@ import getCategoriedPhotos from "@/api/photos.api";
 import styles from "./page.module.css";
 
 type Props = {
-  uniqueEnabled?: boolean
-}
+  uniqueEnabled?: boolean;
+};
 
 export const Gallery = ({ uniqueEnabled }: Props) => {
   const router = useRouter();
@@ -27,9 +27,11 @@ export const Gallery = ({ uniqueEnabled }: Props) => {
   const queryCategory = query.get("category");
 
   const { gallery: encodedGallery } = useParams<{ gallery?: string[] }>();
-  const gallery = (encodedGallery
-    ? decodeURIComponent(encodedGallery.join("/"))
-    : queryCategory || "все").toLowerCase();
+  const gallery = (
+    encodedGallery
+      ? decodeURIComponent(encodedGallery.join("/"))
+      : queryCategory || "все"
+  ).toLowerCase();
 
   const [photos, setPhotos] = useState<Photo[] | null>(null);
   const [categories, setCategories] = useState<string[] | null>(null);
@@ -71,7 +73,8 @@ export const Gallery = ({ uniqueEnabled }: Props) => {
     return <>Произошла какая-то ошибка</>;
   }
 
-  const categoryExists = categories.includes(gallery) || specialCategories.includes(gallery);
+  const categoryExists =
+    categories.includes(gallery) || specialCategories.includes(gallery);
   if (!categoryExists) {
     return <>Не было найдено такой категориии</>;
   }
@@ -81,7 +84,11 @@ export const Gallery = ({ uniqueEnabled }: Props) => {
       className="page-center"
       style={{ justifySelf: "normal", flexDirection: "column-reverse" }}
     >
-      <CategoryComponent uniqueEnabled={uniqueEnabled} photos={photos} set={setSelectedPhoto} />
+      <CategoryComponent
+        uniqueEnabled={uniqueEnabled}
+        photos={photos}
+        set={setSelectedPhoto}
+      />
       <div style={{ display: "flex", gap: "0.75em" }}>
         <button onClick={() => setActived(true)}>
           Выбрать особую категорию
@@ -105,11 +112,13 @@ export const Gallery = ({ uniqueEnabled }: Props) => {
             }
 
             const newCatergory = categories[index];
-            
+
             set(await getCategoriedPhotos(newCatergory));
             setSelectedCategory(newCatergory);
           }}
-          currentIndex={encodedGallery ? 0 : categories.indexOf(selectedCategory)}
+          currentIndex={
+            encodedGallery ? 0 : categories.indexOf(selectedCategory)
+          }
           components={categories}
         />
       </div>

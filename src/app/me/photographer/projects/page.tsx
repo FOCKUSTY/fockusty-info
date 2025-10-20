@@ -1,7 +1,7 @@
 import { Gallery } from "./gallery";
 
 const Page = () => {
-  return <Gallery />
+  return <Gallery />;
 };
 
 export default Page;

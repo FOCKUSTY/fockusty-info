@@ -98,8 +98,8 @@ const Page = () => {
   useEffect(() => {
     if (mainInterval) {
       clearInterval(mainInterval);
-    };
-    
+    }
+
     const interval = setInterval(() => {
       setDate(new Date());
     }, 100);
