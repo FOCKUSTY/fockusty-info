@@ -96,17 +96,27 @@ const Page = () => {
   const dropdownContent = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (mainInterval) {
+      clearInterval(mainInterval);
+    };
+    
     const interval = setInterval(() => {
       setDate(new Date());
     }, 100);
 
-    setMainInterval(interval);
+    if (!mainInterval) {
+      setMainInterval(interval);
+    }
     setLoaded(true);
 
     return () => {
-      clearInterval(mainInterval || interval);
+      if (mainInterval) {
+        clearInterval(mainInterval);
+      }
+
+      clearInterval(interval);
     };
-  }, [mainInterval]);
+  }, []);
 
   if (!loaded) {
     return (
@@ -130,7 +140,6 @@ const Page = () => {
       );
     }
 
-    clearInterval(mainInterval);
     setMainInterval((previous) => {
       if (previous) {
         clearInterval(previous);
