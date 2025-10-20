@@ -2,7 +2,7 @@
 
 import type { Photo } from "types/photo.types";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 import { PATH } from "./page.constants";
@@ -23,10 +23,13 @@ type Props = {
 export const Gallery = ({ uniqueEnabled }: Props) => {
   const router = useRouter();
 
+  const query = useSearchParams();
+  const queryCategory = query.get("category");
+
   const { gallery: encodedGallery } = useParams<{ gallery?: string[] }>();
-  const gallery = encodedGallery
-    ? decodeURIComponent(encodedGallery.join("/")).toLowerCase()
-    : "все";
+  const gallery = (encodedGallery
+    ? decodeURIComponent(encodedGallery.join("/"))
+    : queryCategory || "все").toLowerCase();
 
   const [photos, setPhotos] = useState<Photo[] | null>(null);
   const [categories, setCategories] = useState<string[] | null>(null);
@@ -68,13 +71,9 @@ export const Gallery = ({ uniqueEnabled }: Props) => {
     return <>Произошла какая-то ошибка</>;
   }
 
-  if (encodedGallery) {
-    const isSpecialCategory = gallery.startsWith("!");
-    const specialCategoryExists =
-      !isSpecialCategory || specialCategories.includes(gallery);
-    if (!specialCategoryExists) {
-      return <>Не было найдено такой категориии</>;
-    }
+  const categoryExists = categories.includes(gallery) || specialCategories.includes(gallery);
+  if (!categoryExists) {
+    return <>Не было найдено такой категориии</>;
   }
 
   return (
@@ -102,7 +101,7 @@ export const Gallery = ({ uniqueEnabled }: Props) => {
           }}
           onChange={async (index) => {
             if (encodedGallery) {
-              return router.push(PATH);
+              return router.push(PATH + "?category=" + categories[index]);
             }
 
             const newCatergory = categories[index];
@@ -110,7 +109,7 @@ export const Gallery = ({ uniqueEnabled }: Props) => {
             set(await getCategoriedPhotos(newCatergory));
             setSelectedCategory(newCatergory);
           }}
-          currentIndex={encodedGallery ? categories.indexOf(selectedCategory) : 0}
+          currentIndex={encodedGallery ? 0 : categories.indexOf(selectedCategory)}
           components={categories}
         />
       </div>
