@@ -63,10 +63,13 @@ export const CategoryComponent = ({
   return (
     <div className={styles.category}>
       {photos
-        .filter((photo) => !photo.unique && uniqueEnabled)
-        .map((_, index) => (
-          <PhotoComponent key={index} photos={photos} index={index} set={set} />
-        ))}
+        .map((photo, index) => {
+          if (photo.unique && !uniqueEnabled) {
+            return null;
+          }
+
+          return <PhotoComponent key={index} photos={photos} index={index} set={set} />;
+        })}
     </div>
   );
 };
