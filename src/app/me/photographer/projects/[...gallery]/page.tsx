@@ -18,17 +18,21 @@ import { PATH } from "../page.constants";
 const Page = () => {
   const router = useRouter();
 
-  const { gallery: encodedGallery } = useParams<{gallery: string[]}>();
+  const { gallery: encodedGallery } = useParams<{ gallery: string[] }>();
   const gallery = decodeURIComponent(encodedGallery.join("/")).toLowerCase();
 
-  const [photos, setPhotos] = useState<Photo[]|null>(null);
-  const [categories, setCategories] = useState<string[]|null>(null);
-  const [specialCategories, setSpecialCategories] = useState<string[]|null>(null);
+  const [photos, setPhotos] = useState<Photo[] | null>(null);
+  const [categories, setCategories] = useState<string[] | null>(null);
+  const [specialCategories, setSpecialCategories] = useState<string[] | null>(
+    null,
+  );
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
 
   const [loaded, setLoaded] = useState<boolean>(false);
-  
-  const { ModalComponent, setActived } = useModal({ id: "gallery__choose_category" })
+
+  const { ModalComponent, setActived } = useModal({
+    id: "gallery__choose_category",
+  });
 
   useEffect(() => {
     (async () => {
@@ -49,11 +53,12 @@ const Page = () => {
 
   const isStatesNull = !categories || !specialCategories || !photos;
   if (isStatesNull) {
-    return <>Произошла какая-то ошибка</>
+    return <>Произошла какая-то ошибка</>;
   }
 
   const isSpecialCategory = gallery.startsWith("!");
-  const specialCategoryExists = !isSpecialCategory || specialCategories.includes(gallery);
+  const specialCategoryExists =
+    !isSpecialCategory || specialCategories.includes(gallery);
   if (!specialCategoryExists) {
     return <>Не было найдено такой категориии</>;
   }
@@ -64,20 +69,13 @@ const Page = () => {
       style={{ justifySelf: "normal", flexDirection: "column-reverse" }}
     >
       <CategoryComponent uniqueEnabled photos={photos} set={setSelectedPhoto} />
-      <div
-        style={{display: "flex", gap: "0.75em"}}
-      >
-        <button
-          onClick={() => setActived(true)}
-        >Выбрать особую категорию</button>
-        <ModalComponent
-          className={styles.modal}
-        >
-          {specialCategories.map(category => (
-            <button
-              key={category}
-              onClick={() => router.push(PATH+category)}
-            >
+      <div style={{ display: "flex", gap: "0.75em" }}>
+        <button onClick={() => setActived(true)}>
+          Выбрать особую категорию
+        </button>
+        <ModalComponent className={styles.modal}>
+          {specialCategories.map((category) => (
+            <button key={category} onClick={() => router.push(PATH + category)}>
               {category.slice(1)}
             </button>
           ))}
@@ -86,9 +84,7 @@ const Page = () => {
           dropdown={{
             id: "photographer__projects__choose",
             className: styles.dropdown,
-            summary: (
-              <button>Выберите категорию</button>
-            ),
+            summary: <button>Выберите категорию</button>,
           }}
           onChange={() => router.push(PATH)}
           currentIndex={0}

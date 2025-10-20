@@ -1,25 +1,28 @@
-'use client'
+"use client";
 
-import type { DetailedHTMLProps, HTMLAttributes } from "react"
+import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
-import { useState } from "react"
+import { useState } from "react";
 import { createPortal } from "react-dom";
 
-type HtmlProps = Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "id"|"onClick">;
+type HtmlProps = Omit<
+  DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  "id" | "onClick"
+>;
 type Props = {
-  actived: boolean,
-  onClick: () => void,
-  id: string
-  html: HtmlProps,
-  children: React.ReactNode
-}
+  actived: boolean;
+  onClick: () => void;
+  id: string;
+  html: HtmlProps;
+  children: React.ReactNode;
+};
 
 export const ModalComponent = ({
   actived,
   onClick,
   html,
   children,
-  id
+  id,
 }: Props) => {
   if (!actived) {
     return null;
@@ -40,42 +43,39 @@ export const ModalComponent = ({
     >
       {children}
     </div>,
-    document.body
+    document.body,
   );
-}
+};
 
 type HookProps = {
-  id: string
-}
+  id: string;
+};
 
-export const useModal = ({
-  id  
-}: HookProps) => {
-  const [ actived, setActived ] = useState<boolean>(false);
+export const useModal = ({ id }: HookProps) => {
+  const [actived, setActived] = useState<boolean>(false);
 
   return {
     setActived,
     actived,
-    ModalComponent: (props: HtmlProps) => (
+    ModalComponent: (props: HtmlProps) =>
       actived
         ? createPortal(
-          <div
-            {...props}
-            id={id}
-            onClick={(event) => {
-              const div = event.target as HTMLDivElement;
-              if (div.id !== id) {
-                return;
-              }
+            <div
+              {...props}
+              id={id}
+              onClick={(event) => {
+                const div = event.target as HTMLDivElement;
+                if (div.id !== id) {
+                  return;
+                }
 
-              setActived((actived) => !actived);
-            }}
-          >
-            {props.children}
-          </div>,
-          document.body
-        )
-        : null
-    )
-  }
-}
+                setActived((actived) => !actived);
+              }}
+            >
+              {props.children}
+            </div>,
+            document.body,
+          )
+        : null,
+  };
+};

@@ -54,17 +54,19 @@ export const PhotoComponent = ({ index, photos, set, html }: Props) => {
 export const CategoryComponent = ({
   photos,
   set,
-  uniqueEnabled
+  uniqueEnabled,
 }: {
   photos: Photo[];
   set: Dispatch<SetStateAction<number | null>>;
-  uniqueEnabled?: boolean
+  uniqueEnabled?: boolean;
 }) => {
   return (
     <div className={styles.category}>
-      {photos.filter(photo => !photo.unique && uniqueEnabled).map((_, index) => (
-        <PhotoComponent key={index} photos={photos} index={index} set={set} />
-      ))}
+      {photos
+        .filter((photo) => !photo.unique && uniqueEnabled)
+        .map((_, index) => (
+          <PhotoComponent key={index} photos={photos} index={index} set={set} />
+        ))}
     </div>
   );
 };

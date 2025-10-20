@@ -105,11 +105,14 @@ export const PATHS: { [key: string]: string | undefined } = {
   ),
 };
 
-export const PARAMS: Record<string, string|undefined> = {
-  "gallery": "Галерея"
+export const PARAMS: Record<string, string | undefined> = {
+  gallery: "Галерея",
 };
 
-export const resolvePathName = (path: string, params: Record<string, string>) => {
+export const resolvePathName = (
+  path: string,
+  params: Record<string, string>,
+) => {
   const defaultName = PATHS[path];
   if (defaultName) {
     return defaultName;
@@ -120,5 +123,8 @@ export const resolvePathName = (path: string, params: Record<string, string>) =>
     return "404";
   }
 
-  return keys.filter(key => PARAMS[key]).map(key => PARAMS[key]).join("/");
-}
+  return keys
+    .filter((key) => PARAMS[key])
+    .map((key) => PARAMS[key])
+    .join("/");
+};

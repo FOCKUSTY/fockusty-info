@@ -19,10 +19,10 @@ export const DEFAULT_SETTINGS: Photo = {
 export const resolvePhotoFileName = (fileName: string) => {
   if (fileName.includes("/")) {
     const path = fileName.split("/");
-  
-    const name = path[path.length-1];
+
+    const name = path[path.length - 1];
     const [date, title] = name.split(".");
-    
+
     return {
       date,
       title: title.replaceAll("_", " "),
@@ -79,7 +79,7 @@ export const generateOrGetCategories = cache(
         if (!categories[category]) {
           categories[category] = [];
         }
-        
+
         if (!categories["все"].includes(name)) {
           categories["все"].push(name);
         }

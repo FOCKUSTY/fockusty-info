@@ -11,7 +11,7 @@ export interface JsonPhoto {
   location: string;
   position?: string;
   camera?: string;
-  unique?: boolean
+  unique?: boolean;
 }
 
 export type JsonCategories = Record<string, string[]>;

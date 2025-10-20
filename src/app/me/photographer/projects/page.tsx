@@ -19,26 +19,28 @@ const Page = () => {
   const router = useRouter();
 
   const [photos, setPhotos] = useState<Photo[]>();
-  
+
   const [categories, setCategories] = useState<string[]>();
   const [specialCategories, setSpecialCategories] = useState<string[]>();
-  
+
   const [selectedCategory, setSelectedCategory] = useState<string>("все");
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
 
   const [loaded, setLoaded] = useState<boolean>(false);
 
-  const { ModalComponent: Modal, setActived } = useModal({ id: "gallery__choose_category" });
+  const { ModalComponent: Modal, setActived } = useModal({
+    id: "gallery__choose_category",
+  });
 
   const set = (data: {
     categories: string[];
     specialCategories: string[];
     photos: Photo[];
   }) => {
-    setSpecialCategories(data.specialCategories)
+    setSpecialCategories(data.specialCategories);
     setCategories(data.categories);
     setPhotos(data.photos);
-  }
+  };
 
   useEffect(() => {
     (async () => {
@@ -54,7 +56,7 @@ const Page = () => {
 
   const isStatesNull = !categories || !specialCategories || !photos;
   if (isStatesNull) {
-    return <>Произошла какая-то ошибка</>
+    return <>Произошла какая-то ошибка</>;
   }
 
   return (
@@ -64,17 +66,12 @@ const Page = () => {
     >
       <CategoryComponent photos={photos} set={setSelectedPhoto} />
       <div style={{ display: "flex", gap: "0.75em" }}>
-        <button
-          onClick={() => setActived(true)}
-        >Выбрать особую категорию</button>
-        <Modal
-          className={styles.modal}
-        >
-          {specialCategories.map(category => (
-            <button
-              key={category}
-              onClick={() => router.push(PATH + category)}
-            >
+        <button onClick={() => setActived(true)}>
+          Выбрать особую категорию
+        </button>
+        <Modal className={styles.modal}>
+          {specialCategories.map((category) => (
+            <button key={category} onClick={() => router.push(PATH + category)}>
               {category.slice(1)}
             </button>
           ))}
@@ -103,7 +100,7 @@ const Page = () => {
         actived={selectedPhoto !== null}
         onClick={() => setSelectedPhoto(null)}
         html={{
-          className: styles.modal
+          className: styles.modal,
         }}
       >
         <div className={styles.modal__selected_photo}>
