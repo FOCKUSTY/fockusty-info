@@ -2,8 +2,8 @@
 
 import type { Photo } from "types/photo.types";
 
-import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect, use } from "react";
 
 import { PATH } from "./page.constants";
 
@@ -18,13 +18,13 @@ import styles from "./page.module.css";
 
 type Props = {
   uniqueEnabled?: boolean;
+  query: Promise<{ category?: string }>
 };
 
-export const Gallery = ({ uniqueEnabled }: Props) => {
+export const Gallery = ({ uniqueEnabled, query }: Props) => {
   const router = useRouter();
 
-  const query = useSearchParams();
-  const queryCategory = query.get("category");
+  const { category: queryCategory } = use(query);
 
   const { gallery: encodedGallery } = useParams<{ gallery?: string[] }>();
   const gallery = (

@@ -1,7 +1,18 @@
-import { Gallery } from "../gallery";
+'use client'
 
-const Page = () => {
-  return <Gallery uniqueEnabled />;
+import { Gallery } from "../gallery";
+import { Suspense } from "react";
+
+const Page = ({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>
+}) => {
+  return (
+    <Suspense fallback={<>...</>}>
+      <Gallery uniqueEnabled query={searchParams} />
+    </Suspense>
+  );
 };
 
 export default Page;
