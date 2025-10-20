@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 import { CategoryComponent } from "@/components/photos/photo.component";
 import { PhotoModal } from "@/components/photos/photo-modal.component";
-import { useModal } from "@/components/modal/modal.component";
+import { ModalComponent, useModal } from "@/components/modal/modal.component";
 import { ChooseComponent } from "@/components/dropdown/choose.component";
 
 import getCategoriedPhotos from "@/api/photos.api";
@@ -30,7 +30,7 @@ const Page = () => {
 
   const [loaded, setLoaded] = useState<boolean>(false);
 
-  const { ModalComponent, setActived } = useModal({
+  const { ModalComponent: Modal, setActived } = useModal({
     id: "gallery__choose_category",
   });
 
@@ -73,13 +73,13 @@ const Page = () => {
         <button onClick={() => setActived(true)}>
           Выбрать особую категорию
         </button>
-        <ModalComponent className={styles.modal}>
+        <Modal className={styles.modal}>
           {specialCategories.map((category) => (
             <button key={category} onClick={() => router.push(PATH + category)}>
               {category.slice(1)}
             </button>
           ))}
-        </ModalComponent>
+        </Modal>
         <ChooseComponent
           dropdown={{
             id: "photographer__projects__choose",
@@ -92,29 +92,21 @@ const Page = () => {
         />
       </div>
 
-      {selectedPhoto !== null && (
-        <div
-          id="photographer__projects__selected_photo_modal"
-          className={styles.modal}
-          onClick={(e) => {
-            if (
-              (e.target as HTMLElement).id !==
-              "photographer__projects__selected_photo_modal"
-            ) {
-              return;
-            }
-
-            setSelectedPhoto(null);
-          }}
-        >
-          <div className={styles.modal__selected_photo}>
-            <button onClick={() => setSelectedPhoto(null)}>
-              Вернуть к просмотру
-            </button>
-            <PhotoModal index={selectedPhoto} photos={photos} />
-          </div>
+      <ModalComponent
+        id="photographer__projects__selected_photo_modal"
+        actived={selectedPhoto !== null}
+        onClick={() => setSelectedPhoto(null)}
+        html={{
+          className: styles.modal,
+        }}
+      >
+        <div className={styles.modal__selected_photo}>
+          <button onClick={() => setSelectedPhoto(null)}>
+            Вернуть к просмотру
+          </button>
+          <PhotoModal index={selectedPhoto as number} photos={photos} />
         </div>
-      )}
+      </ModalComponent>
     </div>
   );
 };
