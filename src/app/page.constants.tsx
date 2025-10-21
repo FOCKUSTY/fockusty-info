@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { GROUPS } from "@/api/paths";
+import type { GroupType } from "@/api/paths";
 
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ export const DATE_OF_BIRTH = {
 } as const;
 export const NICKNAME: ReactNode = "FOCKUSTY";
 
-export const INFO: Record<(typeof GROUPS)[number], ReactNode> = {
+export const INFO: Record<GroupType, ReactNode> = {
   photographer: (
     <span>
       Я являюсь фотографом-любителем, обычно просто фотографировал{" "}

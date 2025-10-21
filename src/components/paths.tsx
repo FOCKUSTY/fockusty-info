@@ -1,10 +1,11 @@
+import type { GroupType, InfoType } from "@/api/paths";
+
 import {
-  type GroupType,
-  type InfoType,
   getPathWithoutGroupPrefix,
   GROUPS_INFO,
   INFO,
 } from "@/api/paths";
+
 import Link from "next/link";
 
 export const InfoLink = ({

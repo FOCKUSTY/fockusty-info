@@ -6,15 +6,17 @@ import { PERSONAL_INFO, CONTACT_INFO, SKILLS, EXPERIENCE } from "./constants";
 
 import styles from "./styles.module.css";
 
+type ContentProps = {
+  summary: ReactNode;
+  children: ReactNode;
+  contentClassName?: string;
+}
+
 const Content = ({
   children,
   summary,
   contentClassName,
-}: {
-  summary: ReactNode;
-  children: ReactNode;
-  contentClassName?: string;
-}) => {
+}: ContentProps) => {
   return (
     <section className={styles.content}>
       <h3 className={styles.content__summary}>{summary}</h3>

@@ -11,7 +11,9 @@ export interface SkillCategory {
   items: ReactNode[];
 }
 
-const PackageLinks = ({ packages }: { packages: string[] }) => {
+type PackageProps = { packages: string[] };
+
+const PackageLinks = ({ packages }: PackageProps) => {
   return packages.map((name) => (
     <a
       key={name + packages.length}
