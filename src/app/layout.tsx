@@ -1,64 +1,65 @@
-'use client'
+"use client";
 
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-import Link from "next/link";
+import type { ReactNode } from "react";
 import { useState } from "react";
 
-import SpaceAnimation from "components/space";
+import { usePathname, useParams } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+
+import SpaceAnimation from "@/components/space";
+import { Logo } from "@/components/logo/thevoid";
+import { resolvePathName } from "@/api/paths";
 import useMediaQuery from "@/hooks/media.hook";
-import { Logo } from "components/logo/thevoid";
-import { PATHS } from "@/api/paths";
 
 import { Api } from "api";
 
-import { usePathname } from "next/navigation";
-
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const now = `${new Date().getFullYear()}`;
-const date = "2025" === now
-  ? now
-  : "2025-" + now;
+const date = "2025" === now ? now : "2025-" + now;
+
+const paths: Record<string, string> = {
+  "/": "Главная",
+  "/introduction": "Вступление",
+  "/me/socials": "Мои соцсети",
+  "/me/info": "Информация обо мне",
+};
 
 const RootLayout = ({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) => {
-  const [ animationEnabled, setAnimationEnabled ] = useState<boolean>(false);
-  const isLessThanMinimal = useMediaQuery("(max-width: 425px)")
+  const [animationEnabled, setAnimationEnabled] = useState<boolean>(false);
+  const isLessThanMinimal = useMediaQuery("(max-width: 425px)");
+  const isLessThanMinimalTabletop = useMediaQuery("(max-width: 768px)");
 
   const path = usePathname();
+  const params: Record<string, string> = useParams();
 
   return (
     <html lang="ru">
       <title>Portfolio</title>
       <meta name="description" content="FOCKUSTY portfolio site" />
-      <meta name="keywords" content="fockusty,fickus,programmer,photographer,designer,фокусти,фикус,фокус,программист,фотограф,дизайнер" />
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div
-          className="background"
-        >
-        </div>
+      <meta
+        name="keywords"
+        content={Api.key_words.join(",")}
+      />
+      <body>
+        <div className="background"></div>
 
         <header>
-          <Logo head={<Link href={"/"}><h1 id="main-logo">FOCKUSTY</h1></Link>} links={Api.fockusty} />
-  
-          <h2 className="path">
-            {PATHS[path] || "404"}
-          </h2>
+          <Logo
+            head={
+              <Link href={"/"}>
+                <h1 id="main-logo">FOCKUSTY</h1>
+              </Link>
+            }
+            links={Api.fockusty}
+          />
+
+          <h2 className="path">{resolvePathName(path, params)}</h2>
 
           <button
             id="animation-button"
@@ -67,7 +68,7 @@ const RootLayout = ({
 
               if (event.currentTarget.disabled) {
                 return;
-              };
+              }
 
               const button = event.currentTarget;
 
@@ -89,27 +90,38 @@ const RootLayout = ({
               className="human noselect"
               src="/human.png"
               alt="human"
-              />
+            />
           </div>
-          
-          <main>
-            {children}
-          </main>
+
+          <main>{children}</main>
         </SpaceAnimation>
-        
+
         <footer>
           <Logo
             id="footer-logo"
             head={<h2>© {date} The Void</h2>}
-            links={isLessThanMinimal
-              ? Api.fockusty
-              : Api.the_void
-            }
+            links={isLessThanMinimal ? Api.fockusty : Api.the_void}
           />
+
+          <div
+            style={{
+              display: "flex",
+              gap: "0.5em",
+              flexDirection: isLessThanMinimalTabletop ? "column" : "row"
+            }}
+          >
+            {Object.keys(paths).map((key) => {
+              if (path === key) {
+                return null;
+              }
+
+              return <Link key={key} href={key}>{paths[key]}</Link>
+            })}
+          </div>
         </footer>
       </body>
     </html>
   );
-}
+};
 
 export default RootLayout;

@@ -1,16 +1,16 @@
 import { Link } from "@/components/link";
 
-import { GROUPS, Russian } from "@/api/paths";
-import { Group } from "@/components/paths";
+import { GROUPS } from "@/api/paths";
+import { GroupComponent } from "@/components/intro/group.component";
 
 const Page = () => {
   return (
-    <div className="page-center" style={{justifySelf: "center"}}>
+    <div className="page-center" style={{ justifySelf: "center" }}>
       Привет! На этой странице я расскажу о том, что имеется на данном сайте!
       <div
         style={{
           display: "flex",
-          flexDirection: "column"
+          flexDirection: "column",
         }}
       >
         <Link href="/me/info" name="Информация обо мне" />
@@ -20,29 +20,19 @@ const Page = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "10px"
+            gap: "10px",
           }}
         >
-          {
-            GROUPS.map(group => (
-              <div
-                key={group}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <span>Я, как {Russian[group].toLowerCase()}:</span>
-                <Group group={group} />
-              </div>
-            ))
-          }
+          {GROUPS.map((group) =>
+            <GroupComponent
+              group={group}
+              key={group}
+            />
+          )}
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default Page;

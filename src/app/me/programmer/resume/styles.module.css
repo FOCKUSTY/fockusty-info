@@ -16,7 +16,7 @@
 .header {
   align-items: center;
   justify-content: center;
-  
+
   gap: 0;
 }
 
@@ -99,7 +99,7 @@
   .content {
     display: flex;
     flex-direction: column;
-    
+
     max-width: 80%;
     padding: 0;
   }
