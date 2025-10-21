@@ -7,8 +7,6 @@ import { usePathname, useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Geist, Geist_Mono } from "next/font/google";
-
 import SpaceAnimation from "@/components/space";
 import { Logo } from "@/components/logo/thevoid";
 import { resolvePathName } from "@/api/paths";
@@ -17,16 +15,6 @@ import useMediaQuery from "@/hooks/media.hook";
 import { Api } from "api";
 
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const now = `${new Date().getFullYear()}`;
 const date = "2025" === now ? now : "2025-" + now;
@@ -48,9 +36,9 @@ const RootLayout = ({
       <meta name="description" content="FOCKUSTY portfolio site" />
       <meta
         name="keywords"
-        content="fockusty,fickus,programmer,photographer,designer,фокусти,фикус,фокус,программист,фотограф,дизайнер"
+        content={Api.key_words.join(",")}
       />
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <div className="background"></div>
 
         <header>

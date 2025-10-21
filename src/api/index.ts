@@ -13,6 +13,20 @@ export class Api {
     site: "https://fockusty.netlify.app",
   } as const;
 
+  public static readonly key_words = [
+    "fockusty",
+    "fickus",
+    "programmer",
+    "photographer",
+    "designer",
+    "фокусти",
+    "фикус",
+    "фокус",
+    "программист",
+    "фотограф",
+    "дизайнер",
+  ];
+
   public static random = (min: number, max: number) => {
     return Math.round(Math.random() * (max - min) + min);
   };
