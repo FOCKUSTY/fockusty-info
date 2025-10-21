@@ -1,6 +1,6 @@
 "use client";
 
-import type { DetailedHTMLProps, HTMLAttributes } from "react";
+import type { ReactNode, DetailedHTMLProps, HTMLAttributes } from "react";
 
 import { useState } from "react";
 import { createPortal } from "react-dom";
@@ -14,7 +14,7 @@ type Props = {
   onClick: () => void;
   id: string;
   html: HtmlProps;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export const ModalComponent = ({

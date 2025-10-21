@@ -1,12 +1,14 @@
+import type { ReactNode } from "react";
+
 import { Api } from "@/api";
-import styles from "./styles.module.css";
-import React from "react";
 import { Link } from "@/components/link";
+
+import styles from "./styles.module.css";
 
 export interface SkillCategory {
   id: string;
-  title: React.ReactNode;
-  items: React.ReactNode[];
+  title: ReactNode;
+  items: ReactNode[];
 }
 
 const PackageLinks = ({ packages }: { packages: string[] }) => {
@@ -30,7 +32,7 @@ export const PERSONAL_INFO = {
 
 export const CONTACT_INFO: {
   name: string;
-  content: React.ReactNode;
+  content: ReactNode;
 }[] = [
   {
     name: "Email",
@@ -182,10 +184,10 @@ export const SKILLS: SkillCategory[] = [
 ];
 
 export const EXPERIENCE: {
-  position: React.ReactNode;
-  company?: React.ReactNode;
-  period?: React.ReactNode;
-  responsibilities: React.ReactNode[];
+  position: ReactNode;
+  company?: ReactNode;
+  period?: ReactNode;
+  responsibilities: ReactNode[];
 }[] = [
   {
     company: (

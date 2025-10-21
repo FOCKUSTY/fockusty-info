@@ -1,19 +1,20 @@
 "use client";
 
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-import Link from "next/link";
+import type { ReactNode } from "react";
 import { useState } from "react";
 
-import SpaceAnimation from "components/space";
-import useMediaQuery from "@/hooks/media.hook";
-import { Logo } from "components/logo/thevoid";
+import { usePathname, useParams } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+
+import { Geist, Geist_Mono } from "next/font/google";
+
+import SpaceAnimation from "@/components/space";
+import { Logo } from "@/components/logo/thevoid";
 import { resolvePathName } from "@/api/paths";
+import useMediaQuery from "@/hooks/media.hook";
 
 import { Api } from "api";
-
-import { usePathname, useParams } from "next/navigation";
 
 import "./globals.css";
 
@@ -33,7 +34,7 @@ const date = "2025" === now ? now : "2025-" + now;
 const RootLayout = ({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) => {
   const [animationEnabled, setAnimationEnabled] = useState<boolean>(false);
   const isLessThanMinimal = useMediaQuery("(max-width: 425px)");

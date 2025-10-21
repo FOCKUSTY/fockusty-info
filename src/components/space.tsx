@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import type { ReactNode } from "react";
+
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 function getRandomColor() {
@@ -18,7 +20,7 @@ const SpaceAnimation = ({
   children,
   enabled,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   enabled: boolean;
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);

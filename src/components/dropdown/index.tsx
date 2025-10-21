@@ -1,6 +1,6 @@
 "use client";
 
-import type { RefObject } from "react";
+import type { RefObject, ReactNode } from "react";
 import { useRef, useState } from "react";
 
 import styles from "./dropdown.module.css";
@@ -19,8 +19,8 @@ export const useDropdown = ({
     children,
     summary,
   }: {
-    children: React.ReactNode;
-    summary: React.ReactNode;
+    children: ReactNode;
+    summary: ReactNode;
   }) => {
     return (
       <div className={`${styles.dropdown}`}>
@@ -63,8 +63,8 @@ export const Dropdown = ({
   ref,
   className,
 }: {
-  children: React.ReactNode;
-  summary: React.ReactNode;
+  children: ReactNode;
+  summary: ReactNode;
   ref: RefObject<HTMLDivElement | null>;
   className?: string;
 }) => {

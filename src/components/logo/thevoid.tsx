@@ -1,7 +1,9 @@
-import { Api } from "api";
+import type { ReactNode } from "react";
 
 import { FaDiscord, FaGithub, FaTelegram } from "react-icons/fa";
 import { SlGlobe } from "react-icons/sl";
+
+import { Api } from "api";
 
 export const Logo = ({
   links,
@@ -9,7 +11,7 @@ export const Logo = ({
   id,
 }: {
   links: Record<keyof typeof Api.fockusty, string>;
-  head: React.ReactNode;
+  head: ReactNode;
   id?: string;
 }) => {
   return (

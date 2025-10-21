@@ -1,8 +1,9 @@
+import type { ReactNode } from "react";
 import { useDropdown } from "./index";
 
 type DropdownProps = {
   id: string;
-  summary: React.ReactNode;
+  summary: ReactNode;
   className?: string;
   mainClassName?: string;
   summaryClassName?: string;
@@ -10,7 +11,7 @@ type DropdownProps = {
 };
 
 export type Props = {
-  components: React.ReactNode[];
+  components: ReactNode[];
   currentIndex: number;
   onChange: (current: number) => unknown;
   dropdown: DropdownProps;

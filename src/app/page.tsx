@@ -1,5 +1,7 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -23,7 +25,7 @@ const Layout = ({
   children,
   currentGroup,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   currentGroup: (typeof GROUPS)[number];
 }) => {
   return (

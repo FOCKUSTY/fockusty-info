@@ -1,4 +1,6 @@
-import React from "react";
+'use client'
+
+import type { ReactNode } from "react";
 
 import { PERSONAL_INFO, CONTACT_INFO, SKILLS, EXPERIENCE } from "./constants";
 
@@ -9,8 +11,8 @@ const Content = ({
   summary,
   contentClassName,
 }: {
-  summary: React.ReactNode;
-  children: React.ReactNode;
+  summary: ReactNode;
+  children: ReactNode;
   contentClassName?: string;
 }) => {
   return (
