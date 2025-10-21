@@ -1,7 +1,7 @@
 import { Link } from "@/components/link";
 
-import { GROUPS, Russian } from "@/api/paths";
-import { Group } from "@/components/paths";
+import { GROUPS } from "@/api/paths";
+import { GroupComponent } from "@/components/intro/group.component";
 
 const Page = () => {
   return (
@@ -23,20 +23,12 @@ const Page = () => {
             gap: "10px",
           }}
         >
-          {GROUPS.map((group) => (
-            <div
+          {GROUPS.map((group) =>
+            <GroupComponent
+              group={group}
               key={group}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <span>Я, как {Russian[group].toLowerCase()}:</span>
-              <Group group={group} />
-            </div>
-          ))}
+            />
+          )}
         </div>
       </div>
     </div>
