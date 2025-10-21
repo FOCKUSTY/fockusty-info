@@ -19,6 +19,13 @@ import "./globals.css";
 const now = `${new Date().getFullYear()}`;
 const date = "2025" === now ? now : "2025-" + now;
 
+const paths: Record<string, string> = {
+  "/": "Главная",
+  "/introduction": "Вступление",
+  "/me/socials": "Мои соцсети",
+  "/me/info": "Информация обо мне",
+};
+
 const RootLayout = ({
   children,
 }: Readonly<{
@@ -26,6 +33,7 @@ const RootLayout = ({
 }>) => {
   const [animationEnabled, setAnimationEnabled] = useState<boolean>(false);
   const isLessThanMinimal = useMediaQuery("(max-width: 425px)");
+  const isLessThanMinimalTabletop = useMediaQuery("(max-width: 768px)");
 
   const path = usePathname();
   const params: Record<string, string> = useParams();
@@ -94,6 +102,22 @@ const RootLayout = ({
             head={<h2>© {date} The Void</h2>}
             links={isLessThanMinimal ? Api.fockusty : Api.the_void}
           />
+
+          <div
+            style={{
+              display: "flex",
+              gap: "0.5em",
+              flexDirection: isLessThanMinimalTabletop ? "column" : "row"
+            }}
+          >
+            {Object.keys(paths).map((key) => {
+              if (path === key) {
+                return null;
+              }
+
+              return <Link key={key} href={key}>{paths[key]}</Link>
+            })}
+          </div>
         </footer>
       </body>
     </html>
