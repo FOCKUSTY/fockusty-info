@@ -117,7 +117,7 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
             setSelectedCategory(newCatergory);
           }}
           currentIndex={
-            encodedGallery ? 0 : categories.indexOf(selectedCategory)
+            encodedGallery ? null : categories.indexOf(selectedCategory)
           }
           components={categories}
         />
@@ -135,7 +135,24 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
           <button onClick={() => setSelectedPhoto(null)}>
             Вернуть к просмотру
           </button>
-          <PhotoModal index={selectedPhoto as number} photos={photos} />
+          <PhotoModal
+            index={selectedPhoto as number}
+            photos={photos}
+            setNextPhoto={(position) => setSelectedPhoto((previous) => {
+              const current = previous || 0;
+              const newPhotoIndex = current + position;
+
+              if (newPhotoIndex > photos.length-1) {
+                return 0;
+              }
+
+              if (newPhotoIndex < 0) {
+                return photos.length-1+newPhotoIndex;
+              }
+
+              return newPhotoIndex;
+            })}
+          />
         </div>
       </ModalComponent>
     </div>

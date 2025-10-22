@@ -1,5 +1,7 @@
 import type { Photo } from "@/types/photo.types";
 
+import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
+
 import { resolvePhoto } from "./resolve-photo";
 
 import useMediaQuery from "@/hooks/media.hook";
@@ -10,9 +12,10 @@ import styles from "./photo-modal.module.css";
 type Props = {
   index: number;
   photos: Photo[];
+  setNextPhoto: (position: 1|-1) => void
 };
 
-export const PhotoModal = ({ photos, index }: Props) => {
+export const PhotoModal = ({ photos, index, setNextPhoto }: Props) => {
   const photo = photos[index];
   const { id, path } = resolvePhoto(photo);
   const isLessThan = useMediaQuery("(max-width: 1000px)");
@@ -33,6 +36,19 @@ export const PhotoModal = ({ photos, index }: Props) => {
         <span className={styles.modal__photo_camera}>
           Камера: {photo.camera}
         </span>
+
+        <div className={styles.modal__chevrons}>
+          <BsChevronLeft
+            className={styles.modal__chevron}
+            size={24}
+            onClick={() => setNextPhoto(-1)}
+          />
+          <BsChevronRight
+            className={styles.modal__chevron}
+            size={24}
+            onClick={() => setNextPhoto(1)}
+          />
+        </div>
       </div>
 
       <div className={styles.modal___photo_info}>

@@ -12,7 +12,7 @@ type DropdownProps = {
 
 export type Props = {
   components: ReactNode[];
-  currentIndex: number;
+  currentIndex: number|null;
   onChange: (current: number) => unknown;
   dropdown: DropdownProps;
 };
