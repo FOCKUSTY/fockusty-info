@@ -79,6 +79,31 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
     return <>Не было найдено такой категориии</>;
   }
 
+  const setNewCategory = async (newCategory: number|string) => {
+    if (typeof newCategory === "string") {
+      if (specialCategories.includes(newCategory)) {
+        return router.push(PATH + "/" + newCategory);
+      }
+      
+      if (categories.includes(newCategory)) {
+      return router.push(PATH + "?category=" + newCategory);
+      }
+    };
+    
+    let category: string = typeof newCategory === "string"
+      ? newCategory
+      : categories[newCategory];
+
+    if (encodedGallery) {
+      return router.push(PATH + "?category=" + category);
+    }
+
+    setSelectedPhoto(null);
+
+    set(await getCategoriedPhotos(category));
+    setSelectedCategory(category);
+  }
+
   return (
     <div
       className="page-center"
@@ -106,16 +131,7 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
             className: styles.dropdown,
             summary: <button>Выберите категорию</button>,
           }}
-          onChange={async (index) => {
-            if (encodedGallery) {
-              return router.push(PATH + "?category=" + categories[index]);
-            }
-
-            const newCatergory = categories[index];
-
-            set(await getCategoriedPhotos(newCatergory));
-            setSelectedCategory(newCatergory);
-          }}
+          onChange={setNewCategory}
           currentIndex={
             encodedGallery ? null : categories.indexOf(selectedCategory)
           }
@@ -138,6 +154,7 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
           <PhotoModal
             index={selectedPhoto as number}
             photos={photos}
+            setNewCategory={setNewCategory}
             setNextPhoto={(position) => setSelectedPhoto((previous) => {
               const current = previous || 0;
               const newPhotoIndex = current + position;

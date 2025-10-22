@@ -1,3 +1,21 @@
+.category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  gap: 0.25em;
+  padding: 0.25em 0;
+
+  max-width: 300px;
+}
+
+.category_name {
+  cursor: pointer;
+  background-color: var(--card-color);
+  padding: 0.2em 0.4em;
+  border-radius: 0.4em;
+}
+
 .modal__chevrons {
   display: flex;
   position: absolute;
