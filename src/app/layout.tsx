@@ -42,10 +42,7 @@ const RootLayout = ({
     <html lang="ru">
       <title>Portfolio</title>
       <meta name="description" content="FOCKUSTY portfolio site" />
-      <meta
-        name="keywords"
-        content={Api.key_words.join(",")}
-      />
+      <meta name="keywords" content={Api.key_words.join(",")} />
       <body>
         <div className="background"></div>
 
@@ -107,7 +104,7 @@ const RootLayout = ({
             style={{
               display: "flex",
               gap: "0.5em",
-              flexDirection: isLessThanMinimalTabletop ? "column" : "row"
+              flexDirection: isLessThanMinimalTabletop ? "column" : "row",
             }}
           >
             {Object.keys(paths).map((key) => {
@@ -115,7 +112,11 @@ const RootLayout = ({
                 return null;
               }
 
-              return <Link key={key} href={key}>{paths[key]}</Link>
+              return (
+                <Link key={key} href={key}>
+                  {paths[key]}
+                </Link>
+              );
             })}
           </div>
         </footer>

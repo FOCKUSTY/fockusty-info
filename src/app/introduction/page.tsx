@@ -23,12 +23,9 @@ const Page = () => {
             gap: "10px",
           }}
         >
-          {GROUPS.map((group) =>
-            <GroupComponent
-              group={group}
-              key={group}
-            />
-          )}
+          {GROUPS.map((group) => (
+            <GroupComponent group={group} key={group} />
+          ))}
         </div>
       </div>
     </div>

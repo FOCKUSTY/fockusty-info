@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import type { ReactNode } from "react";
 
@@ -10,13 +10,9 @@ type ContentProps = {
   summary: ReactNode;
   children: ReactNode;
   contentClassName?: string;
-}
+};
 
-const Content = ({
-  children,
-  summary,
-  contentClassName,
-}: ContentProps) => {
+const Content = ({ children, summary, contentClassName }: ContentProps) => {
   return (
     <section className={styles.content}>
       <h3 className={styles.content__summary}>{summary}</h3>

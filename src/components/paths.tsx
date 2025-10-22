@@ -1,10 +1,6 @@
 import type { GroupType, InfoType } from "@/api/paths";
 
-import {
-  getPathWithoutGroupPrefix,
-  GROUPS_INFO,
-  INFO,
-} from "@/api/paths";
+import { getPathWithoutGroupPrefix, GROUPS_INFO, INFO } from "@/api/paths";
 
 import Link from "next/link";
 

@@ -4,8 +4,8 @@ import { Russian } from "@/api/paths";
 import { Group } from "@/components/paths";
 
 type Props = {
-  group: GroupType
-}
+  group: GroupType;
+};
 
 export const GroupComponent = ({ group }: Props) => {
   return (
@@ -20,5 +20,5 @@ export const GroupComponent = ({ group }: Props) => {
       <span>Я, как {Russian[group].toLowerCase()}:</span>
       <Group group={group} />
     </div>
-  )
+  );
 };

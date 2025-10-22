@@ -12,18 +12,18 @@ import styles from "./photo-modal.module.css";
 type Props = {
   index: number;
   photos: Photo[];
-  setNextPhoto: (position: 1|-1) => unknown,
-  setNewCategory: (index: number|string) => unknown
+  setNextPhoto: (position: 1 | -1) => unknown;
+  setNewCategory: (index: number | string) => unknown;
 };
 
 type CategoriesProps = {
-  photo: Photo
+  photo: Photo;
 } & Pick<Props, "setNewCategory">;
 
 const Categories = ({ photo, setNewCategory }: CategoriesProps) => {
   return (
     <div className={styles.category}>
-      {photo.categories.map(category => (
+      {photo.categories.map((category) => (
         <span
           className={styles.category_name}
           key={category}
@@ -33,14 +33,14 @@ const Categories = ({ photo, setNewCategory }: CategoriesProps) => {
         </span>
       ))}
     </div>
-  )
+  );
 };
 
 export const PhotoModal = ({
   photos,
   index,
   setNextPhoto,
-  setNewCategory
+  setNewCategory,
 }: Props) => {
   const photo = photos[index];
   const { id, path } = resolvePhoto(photo);
@@ -79,10 +79,7 @@ export const PhotoModal = ({
 
       <div className={styles.modal___photo_info}>
         <h2>{photo.title}</h2>
-        <Categories
-          photo={photo}
-          setNewCategory={setNewCategory}
-        />
+        <Categories photo={photo} setNewCategory={setNewCategory} />
         <p>
           {photo.location} • {photo.date}
         </p>

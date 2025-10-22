@@ -18,7 +18,7 @@ import styles from "./page.module.css";
 
 type Props = {
   uniqueEnabled?: boolean;
-  query: Promise<{ category?: string }>
+  query: Promise<{ category?: string }>;
 };
 
 export const Gallery = ({ uniqueEnabled, query }: Props) => {
@@ -79,20 +79,19 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
     return <>Не было найдено такой категориии</>;
   }
 
-  const setNewCategory = async (newCategory: number|string) => {
+  const setNewCategory = async (newCategory: number | string) => {
     if (typeof newCategory === "string") {
       if (specialCategories.includes(newCategory)) {
         return router.push(PATH + "/" + newCategory);
       }
-      
+
       if (categories.includes(newCategory)) {
-      return router.push(PATH + "?category=" + newCategory);
+        return router.push(PATH + "?category=" + newCategory);
       }
-    };
-    
-    let category: string = typeof newCategory === "string"
-      ? newCategory
-      : categories[newCategory];
+    }
+
+    let category: string =
+      typeof newCategory === "string" ? newCategory : categories[newCategory];
 
     if (encodedGallery) {
       return router.push(PATH + "?category=" + category);
@@ -102,7 +101,7 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
 
     set(await getCategoriedPhotos(category));
     setSelectedCategory(category);
-  }
+  };
 
   return (
     <div
@@ -155,20 +154,22 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
             index={selectedPhoto as number}
             photos={photos}
             setNewCategory={setNewCategory}
-            setNextPhoto={(position) => setSelectedPhoto((previous) => {
-              const current = previous || 0;
-              const newPhotoIndex = current + position;
+            setNextPhoto={(position) =>
+              setSelectedPhoto((previous) => {
+                const current = previous || 0;
+                const newPhotoIndex = current + position;
 
-              if (newPhotoIndex > photos.length-1) {
-                return 0;
-              }
+                if (newPhotoIndex > photos.length - 1) {
+                  return 0;
+                }
 
-              if (newPhotoIndex < 0) {
-                return photos.length-1+newPhotoIndex;
-              }
+                if (newPhotoIndex < 0) {
+                  return photos.length - 1 + newPhotoIndex;
+                }
 
-              return newPhotoIndex;
-            })}
+                return newPhotoIndex;
+              })
+            }
           />
         </div>
       </ModalComponent>

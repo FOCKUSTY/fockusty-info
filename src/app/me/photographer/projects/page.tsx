@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Gallery } from "./gallery";
 import { Suspense } from "react";
@@ -6,7 +6,7 @@ import { Suspense } from "react";
 const Page = ({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>
+  searchParams: Promise<{ category?: string }>;
 }) => {
   return (
     <Suspense fallback={<>...</>}>
