@@ -18,10 +18,16 @@
     "фокус"
   ],
   "dependencies": {
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
     "@next/env": "^15.5.3",
+    "@next/mdx": "^16.0.0",
+    "@types/mdx": "^2.0.13",
     "date-fns": "^4.1.0",
     "next": "15.3.5",
     "next-armored": "^1.0.0",
+    "nextra": "^4.6.0",
+    "nextra-theme-docs": "^4.6.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
