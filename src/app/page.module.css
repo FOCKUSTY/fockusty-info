@@ -4,6 +4,8 @@
   justify-content: center;
   gap: 1em;
   height: 100%;
+
+  margin: 0 0 1em 0;
 }
 
 .short_info {

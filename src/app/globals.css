@@ -1,27 +1,13 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
   --text-color: #ededed;
 
-  --component-color: #c4c4c4;
-  --card-color: #ffffff30;
-  --smooth-background-color: #cccccc50;
+  --component-color: #272727;
+  --card-color: #27272790;
+  --smooth-background-color: #111111;
 
-  --mini-text-color: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --text-color: #ededed;
-
-    --component-color: #272727;
-    --card-color: #27272790;
-    --smooth-background-color: #111111;
-
-    --mini-text-color: #ededed40;
-  }
+  --mini-text-color: #ededed40;
 }
 
 html,
