@@ -90,7 +90,7 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
       }
     }
 
-    let category: string =
+    const category: string =
       typeof newCategory === "string" ? newCategory : categories[newCategory];
 
     if (encodedGallery) {
