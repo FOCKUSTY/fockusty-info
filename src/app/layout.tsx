@@ -47,79 +47,83 @@ const RootLayout = ({
         <div className="background"></div>
 
         <header>
-          <Logo
-            head={
-              <Link href={"/"}>
-                <h1 id="main-logo">FOCKUSTY</h1>
-              </Link>
-            }
-            links={Api.fockusty}
-          />
-
-          <h2 className="path">{resolvePathName(path, params)}</h2>
-
-          <button
-            id="animation-button"
-            onClick={(event) => {
-              setAnimationEnabled(!animationEnabled);
-
-              if (event.currentTarget.disabled) {
-                return;
+            <Logo
+              head={
+                <Link href={"/"}>
+                  <h1 id="main-logo">FOCKUSTY</h1>
+                </Link>
               }
+              links={Api.fockusty}
+            />
 
-              const button = event.currentTarget;
+            <h2 className="path">{resolvePathName(path, params)}</h2>
 
-              button.disabled = true;
-              setTimeout(() => {
-                button.disabled = false;
-              }, 10000);
-            }}
-          >
-            В{animationEnabled ? "ы" : ""}ключить анимации?
-          </button>
+            <button
+              id="animation-button"
+              onClick={(event) => {
+                setAnimationEnabled(!animationEnabled);
+
+                if (event.currentTarget.disabled) {
+                  return;
+                }
+
+                const button = event.currentTarget;
+
+                button.disabled = true;
+                setTimeout(() => {
+                  button.disabled = false;
+                }, 10000);
+              }}
+            >
+              В{animationEnabled ? "ы" : ""}ключить анимации?
+            </button>
         </header>
 
         <SpaceAnimation enabled={animationEnabled}>
-          <div className="human-container">
-            <Image
-              width={597}
-              height={935}
-              className="human noselect"
-              src="/human.png"
-              alt="human"
-            />
-          </div>
+            <div className="human-container">
+              <Image
+                width={597}
+                height={935}
+                className="human noselect"
+                src="/human.png"
+                alt="human"
+              />
+            </div>
 
-          <main>{children}</main>
+            <main>
+              <div className="children-wrapper">
+                {children}
+              </div>
+
+                <footer>
+                    <Logo
+                      id="footer-logo"
+                      head={<h2>© {date} The Void</h2>}
+                      links={isLessThanMinimal ? Api.fockusty : Api.the_void}
+                    />
+
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "0.5em",
+                        flexDirection: isLessThanMinimalTabletop ? "column" : "row",
+                      }}
+                    >
+                      {Object.keys(paths).map((key) => {
+                        if (path === key) {
+                          return null;
+                        }
+
+                        return (
+                          <Link key={key} href={key}>
+                            {paths[key]}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                </footer>
+            </main>
         </SpaceAnimation>
-
-        <footer>
-          <Logo
-            id="footer-logo"
-            head={<h2>© {date} The Void</h2>}
-            links={isLessThanMinimal ? Api.fockusty : Api.the_void}
-          />
-
-          <div
-            style={{
-              display: "flex",
-              gap: "0.5em",
-              flexDirection: isLessThanMinimalTabletop ? "column" : "row",
-            }}
-          >
-            {Object.keys(paths).map((key) => {
-              if (path === key) {
-                return null;
-              }
-
-              return (
-                <Link key={key} href={key}>
-                  {paths[key]}
-                </Link>
-              );
-            })}
-          </div>
-        </footer>
       </body>
     </html>
   );
