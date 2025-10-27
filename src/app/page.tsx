@@ -31,7 +31,7 @@ const Layout = ({
   return (
     <>
       <div
-        className={"page-center " + styles.page_center}
+        className={styles.page_center}
         style={{
           justifySelf: "center",
           gap: "10px",
