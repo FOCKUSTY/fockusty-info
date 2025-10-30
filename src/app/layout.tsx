@@ -89,10 +89,10 @@ const RootLayout = ({
         <SpaceAnimation enabled={animationEnabled}>
           <div className="human-container">
             <Image
-              width={597}
-              height={935}
-              className="human noselect"
-              src="/human.png"
+              width={halloweenEnabled ? 3086 : 597}
+              height={halloweenEnabled ? 2500 : 935}
+              className={["human noselect", halloweenEnabled ? "hallowen-human" : ""].join(" ")}
+              src={halloweenEnabled ? "/ghost.png" : "/human.png"}
               alt="human"
             />
           </div>
