@@ -6,7 +6,9 @@
     "dev": "set NODE_ENV=development&&next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,tsx,css,md,json}\""
   },
   "keywords": [
     "fockusty",

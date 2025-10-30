@@ -43,8 +43,6 @@ const RootLayout = ({
   const path = usePathname();
   const params: Record<string, string> = useParams();
 
-  
-
   return (
     <html lang="ru">
       <title>Portfolio</title>
@@ -54,100 +52,98 @@ const RootLayout = ({
         <div className="background"></div>
 
         <header>
-            <Logo
-              head={
-                <Link href={"/"}>
-                  <h1 id="main-logo">FOCKUSTY</h1>
-                </Link>
+          <Logo
+            head={
+              <Link href={"/"}>
+                <h1 id="main-logo">FOCKUSTY</h1>
+              </Link>
+            }
+            links={Api.fockusty}
+          />
+
+          <h2 className="path">{resolvePathName(path, params)}</h2>
+
+          <button
+            id="animation-button"
+            onClick={(event) => {
+              setAnimationEnabled(!animationEnabled);
+
+              if (event.currentTarget.disabled) {
+                return;
               }
-              links={Api.fockusty}
-            />
 
-            <h2 className="path">{resolvePathName(path, params)}</h2>
+              const button = event.currentTarget;
 
-            <button
-              id="animation-button"
-              onClick={(event) => {
-                setAnimationEnabled(!animationEnabled);
-
-                if (event.currentTarget.disabled) {
-                  return;
-                }
-
-                const button = event.currentTarget;
-
-                button.disabled = true;
-                setTimeout(() => {
-                  button.disabled = false;
-                }, 10000);
-              }}
-            >
-              В{animationEnabled ? "ы" : ""}ключить анимации?
-            </button>
+              button.disabled = true;
+              setTimeout(() => {
+                button.disabled = false;
+              }, 10000);
+            }}
+          >
+            В{animationEnabled ? "ы" : ""}ключить анимации?
+          </button>
         </header>
 
-  {halloweenEnabled ? <Banner /> : null}
+        {halloweenEnabled ? <Banner /> : null}
 
         <SpaceAnimation enabled={animationEnabled}>
-            <div className="human-container">
-              <Image
-                width={597}
-                height={935}
-                className="human noselect"
-                src="/human.png"
-                alt="human"
+          <div className="human-container">
+            <Image
+              width={597}
+              height={935}
+              className="human noselect"
+              src="/human.png"
+              alt="human"
+            />
+          </div>
+
+          <main>
+            <div className="children-wrapper">{children}</div>
+
+            <footer>
+              <Logo
+                id="footer-logo"
+                head={<h2>© {date} The Void</h2>}
+                links={isLessThanMinimal ? Api.fockusty : Api.the_void}
               />
-            </div>
 
-            <main>
-              <div className="children-wrapper">
-                {children}
+              <div
+                style={{
+                  display: "flex",
+                  gap: "0.5em",
+                  flexDirection: isLessThanMinimalTabletop ? "column" : "row",
+                }}
+              >
+                {Object.keys(paths).map((key) => {
+                  if (path === key) {
+                    return null;
+                  }
+
+                  return (
+                    <Link key={key} href={key}>
+                      {paths[key]}
+                    </Link>
+                  );
+                })}
               </div>
-
-                <footer>
-                    <Logo
-                      id="footer-logo"
-                      head={<h2>© {date} The Void</h2>}
-                      links={isLessThanMinimal ? Api.fockusty : Api.the_void}
-                    />
-
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "0.5em",
-                        flexDirection: isLessThanMinimalTabletop ? "column" : "row",
-                      }}
-                    >
-                      {Object.keys(paths).map((key) => {
-                        if (path === key) {
-                          return null;
-                        }
-
-                        return (
-                          <Link key={key} href={key}>
-                            {paths[key]}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                      <div>
-                        <button
-                          className="halloween-toggle"
-                          onClick={() => {
-                            try {
-                              const next = !halloweenEnabled;
-                              setHalloweenEnabled(next);
-                              localStorage.setItem("halloween_enabled", next ? "1" : "0");
-                            } catch (e) {
+              <div>
+                <button
+                  className="halloween-toggle"
+                  onClick={() => {
+                    try {
+                      const next = !halloweenEnabled;
+                      setHalloweenEnabled(next);
+                      localStorage.setItem("halloween_enabled", next ? "1" : "0");
+                            } catch {
                               setHalloweenEnabled(!halloweenEnabled);
                             }
-                          }}
-                        >
-                          {halloweenEnabled ? "Откл. Halloween" : "Вкл. Halloween"}
-                        </button>
-                      </div>
-                </footer>
-            </main>
+                  }}
+                >
+                  {halloweenEnabled ? "Откл. Halloween" : "Вкл. Halloween"}
+                </button>
+              </div>
+            </footer>
+          </main>
         </SpaceAnimation>
       </body>
     </html>
