@@ -230,13 +230,48 @@ main {
 
   position: relative;
 
-  height: 40em;
-  width: 25em;
+  /* keep a similar footprint but a bit smaller for the ghost */
+  height: 28em;
+  width: 18em;
 
   top: var(--animation-start-top);
 
-  animation: 3s ease-in-out infinite forwards;
-  animation-name: human-levitation;
+  /* hide original raster image, show SVG ghost via pseudo-element */
+  opacity: 0;
+
+  animation: 3.5s ease-in-out infinite forwards;
+  animation-name: ghost-bob;
+}
+
+/* Render the ghost SVG in place of the original image using ::after */
+.human::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-image: url("/images/ghost.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  opacity: 0.98;
+  pointer-events: none;
+}
+
+@keyframes ghost-bob {
+  0% {
+    top: var(--animation-start-top);
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    top: 1.25em;
+    transform: translateY(-6px) rotate(1deg);
+  }
+
+  100% {
+    top: var(--animation-start-top);
+    transform: translateY(0) rotate(-1deg);
+  }
 }
 
 .page-center {

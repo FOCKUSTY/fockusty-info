@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <!-- simple ghost shape -->
+    <path d="M100 12c-30 0-54 24-54 54v40c0 6 4 10 10 10h88c6 0 10-4 10-10v-40c0-30-24-54-54-54z" fill="url(#g)" stroke="#00000022" stroke-width="2" />
+    <!-- wavy bottom -->
+    <path d="M46 116c6 6 12 6 18 0s12 6 18 0 12 6 18 0 12 6 18 0v-6H46v6z" fill="#ffffff" opacity="0.9" />
+    <!-- eyes -->
+    <circle cx="78" cy="84" r="6" fill="#000" opacity="0.9" />
+    <circle cx="122" cy="84" r="6" fill="#000" opacity="0.9" />
+  </g>
+</svg>
