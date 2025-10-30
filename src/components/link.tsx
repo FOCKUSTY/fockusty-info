@@ -1,6 +1,9 @@
 import type { ReactNode, AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 
-type LinkProps = DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> &
+type LinkProps = DetailedHTMLProps<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  HTMLAnchorElement
+> &
   ((
     | {
         children?: undefined;
@@ -15,10 +18,10 @@ type LinkProps = DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTML
     className?: string;
   });
 
-export const Link = (props: LinkProps) => {
+export const Link = ({ children, name, ...props }: LinkProps) => {
   return (
     <a {...props} target="_blank" rel="noopener noreferrer">
-      {props.children ?? props.name}
+      {children ?? name}
     </a>
   );
 };

@@ -17,7 +17,13 @@ type Props = {
   children: ReactNode;
 };
 
-export const ModalComponent = ({ actived, onClick, html, children, id }: Props) => {
+export const ModalComponent = ({
+  actived,
+  onClick,
+  html,
+  children,
+  id,
+}: Props) => {
   if (!actived) {
     return null;
   }
@@ -37,7 +43,7 @@ export const ModalComponent = ({ actived, onClick, html, children, id }: Props) 
     >
       {children}
     </div>,
-    document.body
+    document.body,
   );
 };
 
@@ -68,7 +74,7 @@ export const useModal = ({ id }: HookProps) => {
             >
               {props.children}
             </div>,
-            document.body
+            document.body,
           )
         : null,
   };

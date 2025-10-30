@@ -1,7 +1,10 @@
 import type { RefObject, SetStateAction } from "react";
 
-import { type GroupType, GROUPS, Russian } from "@/api/paths";
-import { type GroupDataType, GroupData } from "./paths";
+import type { GroupType } from "@/api/paths";
+import type { GroupDataType } from "./paths";
+
+import { GroupData } from "./paths";
+import { GROUPS, Russian } from "@/api/paths";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +16,12 @@ export type GroupProps = {
   linkClassName: string;
 };
 
-export const GroupComponent = ({ data, className, imageClassName, linkClassName }: GroupProps) => {
+export const GroupComponent = ({
+  data,
+  className,
+  imageClassName,
+  linkClassName,
+}: GroupProps) => {
   return (
     <div className={className}>
       <Image
@@ -51,7 +59,8 @@ export type ChooseGroupProps = {
 const onGroupClick = (props: ChooseGroupProps) => {
   if (!props.ref.current) return;
 
-  props.ref.current.style.display = props.ref.current.style.display === "flex" ? "none" : "flex";
+  props.ref.current.style.display =
+    props.ref.current.style.display === "flex" ? "none" : "flex";
 
   props.set(props.group);
 };

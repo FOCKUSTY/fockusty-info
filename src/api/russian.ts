@@ -9,7 +9,11 @@ export const ruWords = (num: number, stage: Stage) => {
     return stage[0];
   }
 
-  if ((firstChar === 1 && secondChar === 1) || firstChar === 0 || secondChar === 1) {
+  if (
+    (firstChar === 1 && secondChar === 1) ||
+    firstChar === 0 ||
+    secondChar === 1
+  ) {
     return stage[2] || stage[1];
   }
 

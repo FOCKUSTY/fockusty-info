@@ -25,7 +25,10 @@ const SOCIALS: {
   Gravatar: ["https://gravatar.com/fockusty", TbBrandGravatar],
   GitHub: ["https://github.com/FOCKUSTY", FaGithub],
   Patreon: ["https://patreon.com/FOCKUSTY", FaPatreon],
-  Facebook: ["https://www.facebook.com/profile.php?id=61567429765302", FaFacebook],
+  Facebook: [
+    "https://www.facebook.com/profile.php?id=61567429765302",
+    FaFacebook,
+  ],
   Instagram: ["https://www.instagram.com/fockusty", FaInstagram],
   Vkontakte: ["https://vk.com/fockusty", FaVk],
   Steam: ["https://steamcommunity.com/id/fockusty/", FaSteam],

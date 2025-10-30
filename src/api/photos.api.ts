@@ -41,7 +41,7 @@ export default async function getCategoriedPhotos(category: string): Promise<{
               ...DEFAULT_SETTINGS,
               ...photos[categoriedPhoto],
               ...resolvePhotoFileName(categoriedPhoto),
-            }
+            },
         ),
   };
 }

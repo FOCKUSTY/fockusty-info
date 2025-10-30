@@ -7,18 +7,18 @@ import { usePathname, useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
+import Banner from "@/components/halloween/banner";
 import SpaceAnimation from "@/components/space";
 import { Logo } from "@/components/logo/thevoid";
-import { resolvePathName } from "@/api/paths";
-import useMediaQuery from "@/hooks/media.hook";
 
+import useMediaQuery from "@/hooks/media.hook";
+import useHalloweenEnabled from "@/hooks/halloween.hook";
+
+import { resolvePathName } from "@/api/paths";
 import { Api } from "api";
 
 import "./globals.css";
 import "./halloween.css";
-
-import Banner from "@/components/halloween/banner";
-import useHalloweenEnabled from "@/hooks/halloween.hook";
 
 const now = `${new Date().getFullYear()}`;
 const date = "2025" === now ? now : "2025-" + now;
@@ -133,7 +133,10 @@ const RootLayout = ({
                     try {
                       const next = !halloweenEnabled;
                       setHalloweenEnabled(next);
-                      localStorage.setItem("halloween_enabled", next ? "1" : "0");
+                      localStorage.setItem(
+                        "halloween_enabled",
+                        next ? "1" : "0",
+                      );
                     } catch {
                       setHalloweenEnabled(!halloweenEnabled);
                     }

@@ -16,7 +16,13 @@ function getRandomColor() {
   return color;
 }
 
-const SpaceAnimation = ({ children, enabled }: { children: ReactNode; enabled: boolean }) => {
+const SpaceAnimation = ({
+  children,
+  enabled,
+}: {
+  children: ReactNode;
+  enabled: boolean;
+}) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const childrenRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +39,7 @@ const SpaceAnimation = ({ children, enabled }: { children: ReactNode; enabled: b
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -62,7 +68,7 @@ const SpaceAnimation = ({ children, enabled }: { children: ReactNode; enabled: b
       star.userData.velocity = new THREE.Vector3(
         (Math.random() - 0.5) * 0.005,
         (Math.random() - 0.5) * 0.005,
-        (Math.random() - 0.5) * 0.001
+        (Math.random() - 0.5) * 0.001,
       );
 
       if (!enabled) {
@@ -77,7 +83,11 @@ const SpaceAnimation = ({ children, enabled }: { children: ReactNode; enabled: b
     const asteroids: any[] = [];
 
     for (let i = 0; i < 50; i++) {
-      const asteroidGeometry = new THREE.SphereGeometry((0.5 * (i + 1)) / 5, 16, 16);
+      const asteroidGeometry = new THREE.SphereGeometry(
+        (0.5 * (i + 1)) / 5,
+        16,
+        16,
+      );
       const asteroidMaterial = new THREE.MeshBasicMaterial({
         color: getRandomColor(),
       });
@@ -90,7 +100,7 @@ const SpaceAnimation = ({ children, enabled }: { children: ReactNode; enabled: b
       asteroid.userData.velocity = new THREE.Vector3(
         (Math.random() - 0.5) * 0.1,
         (Math.random() - 0.5) * 0.1,
-        (Math.random() - 0.5) * 0.1
+        (Math.random() - 0.5) * 0.1,
       );
 
       if (!enabled) {

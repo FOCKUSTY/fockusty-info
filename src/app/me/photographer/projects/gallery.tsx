@@ -28,12 +28,16 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
 
   const { gallery: encodedGallery } = useParams<{ gallery?: string[] }>();
   const gallery = (
-    encodedGallery ? decodeURIComponent(encodedGallery.join("/")) : queryCategory || "все"
+    encodedGallery
+      ? decodeURIComponent(encodedGallery.join("/"))
+      : queryCategory || "все"
   ).toLowerCase();
 
   const [photos, setPhotos] = useState<Photo[] | null>(null);
   const [categories, setCategories] = useState<string[] | null>(null);
-  const [specialCategories, setSpecialCategories] = useState<string[] | null>(null);
+  const [specialCategories, setSpecialCategories] = useState<string[] | null>(
+    null,
+  );
   const [selectedCategory, setSelectedCategory] = useState<string>(gallery);
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
 
@@ -43,7 +47,11 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
     id: "gallery__choose_category",
   });
 
-  const set = (data: { categories: string[]; specialCategories: string[]; photos: Photo[] }) => {
+  const set = (data: {
+    categories: string[];
+    specialCategories: string[];
+    photos: Photo[];
+  }) => {
     setSpecialCategories(data.specialCategories);
     setCategories(data.categories);
     setPhotos(data.photos);
@@ -65,7 +73,8 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
     return <>Произошла какая-то ошибка</>;
   }
 
-  const categoryExists = categories.includes(gallery) || specialCategories.includes(gallery);
+  const categoryExists =
+    categories.includes(gallery) || specialCategories.includes(gallery);
   if (!categoryExists) {
     return <>Не было найдено такой категориии</>;
   }
@@ -95,10 +104,19 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
   };
 
   return (
-    <div className="page-center" style={{ justifySelf: "normal", flexDirection: "column-reverse" }}>
-      <CategoryComponent uniqueEnabled={uniqueEnabled} photos={photos} set={setSelectedPhoto} />
+    <div
+      className="page-center"
+      style={{ justifySelf: "normal", flexDirection: "column-reverse" }}
+    >
+      <CategoryComponent
+        uniqueEnabled={uniqueEnabled}
+        photos={photos}
+        set={setSelectedPhoto}
+      />
       <div style={{ display: "flex", gap: "0.75em" }}>
-        <button onClick={() => setActived(true)}>Выбрать особую категорию</button>
+        <button onClick={() => setActived(true)}>
+          Выбрать особую категорию
+        </button>
         <Modal className={styles.modal}>
           {specialCategories.map((category) => (
             <button key={category} onClick={() => router.push(PATH + category)}>
@@ -113,7 +131,9 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
             summary: <button>Выберите категорию</button>,
           }}
           onChange={setNewCategory}
-          currentIndex={encodedGallery ? null : categories.indexOf(selectedCategory)}
+          currentIndex={
+            encodedGallery ? null : categories.indexOf(selectedCategory)
+          }
           components={categories}
         />
       </div>
@@ -127,7 +147,9 @@ export const Gallery = ({ uniqueEnabled, query }: Props) => {
         }}
       >
         <div className={styles.modal__selected_photo}>
-          <button onClick={() => setSelectedPhoto(null)}>Вернуть к просмотру</button>
+          <button onClick={() => setSelectedPhoto(null)}>
+            Вернуть к просмотру
+          </button>
           <PhotoModal
             index={selectedPhoto as number}
             photos={photos}
