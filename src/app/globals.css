@@ -71,6 +71,10 @@ button {
   padding: 0.25em 0.5em;
   border-radius: 0.5em;
   background-color: var(--card-color);
+  background-image: url("/images/card-texture.svg");
+  background-blend-mode: overlay;
+  background-size: 200px 200px;
+  background-repeat: repeat;
 }
 
 input,

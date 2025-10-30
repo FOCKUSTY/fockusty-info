@@ -12,6 +12,10 @@
 .category_name {
   cursor: pointer;
   background-color: var(--card-color);
+  background-image: url("/images/card-texture.svg");
+  background-blend-mode: overlay;
+  background-size: 200px 200px;
+  background-repeat: repeat;
   padding: 0.2em 0.4em;
   border-radius: 0.4em;
 }
@@ -56,6 +60,11 @@
   opacity: 0.25;
 
   border: 0;
+
+  background-image: url("/images/card-texture.svg");
+  background-blend-mode: overlay;
+  background-size: 220px 220px;
+  background-repeat: repeat;
 
   transition: 1s;
 

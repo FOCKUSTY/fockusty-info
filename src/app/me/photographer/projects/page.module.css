@@ -52,6 +52,10 @@
   height: 100%;
 
   background: color-mix(in srgb, var(--card-color) 40%, #000000 60%);
+  background-image: url("/images/card-texture.svg");
+  background-blend-mode: overlay;
+  background-size: 600px 600px;
+  background-repeat: repeat;
   z-index: 1000;
   padding: 1em;
 }

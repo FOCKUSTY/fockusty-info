@@ -23,7 +23,10 @@
 }
 
 .projectCard {
-  background: var(--card-color);
+  background: var(--card-color) url("/images/card-texture.svg");
+  background-blend-mode: overlay;
+  background-size: 360px 360px;
+  background-repeat: repeat;
   border-radius: 12px;
   padding: 1.5rem;
   gap: 10px;

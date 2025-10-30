@@ -14,7 +14,6 @@ body.halloween {
   border-radius: 0.5em;
 }
 
-/* Banner */
 .halloween-banner {
   width: 100%;
   display: flex;
@@ -76,7 +75,6 @@ body.halloween {
   }
 }
 
-/* Flying bats background using multiple layers */
 .halloween .background::after {
   content: "";
   position: absolute;
@@ -105,14 +103,12 @@ body.halloween {
   }
 }
 
-/* Make sure main contrasts well */
 body.halloween main,
 body.halloween header,
 body.halloween footer {
   color: var(--text-color);
 }
 
-/* Footer toggle button style */
 .halloween-toggle {
   pointer-events: auto;
   background: transparent;
