@@ -5,6 +5,11 @@
 
   --component-color: #272727;
   --card-color: #27272790;
+  /* Card background texture settings (centralized) */
+  --card-bg-image: url("/images/card-texture.svg");
+  --card-bg-blend: overlay;
+  --card-bg-size: 300px 300px;
+  --card-bg-repeat: repeat;
   --smooth-background-color: #111111;
 
   --mini-text-color: #ededed40;
@@ -71,10 +76,10 @@ button {
   padding: 0.25em 0.5em;
   border-radius: 0.5em;
   background-color: var(--card-color);
-  background-image: url("/images/card-texture.svg");
-  background-blend-mode: overlay;
-  background-size: 200px 200px;
-  background-repeat: repeat;
+  background-image: var(--card-bg-image);
+  background-blend-mode: var(--card-bg-blend);
+  background-size: var(--card-bg-size);
+  background-repeat: var(--card-bg-repeat);
 }
 
 input,

@@ -12,10 +12,10 @@
 .category_name {
   cursor: pointer;
   background-color: var(--card-color);
-  background-image: url("/images/card-texture.svg");
-  background-blend-mode: overlay;
+  background-image: var(--card-bg-image);
+  background-blend-mode: var(--card-bg-blend);
   background-size: 200px 200px;
-  background-repeat: repeat;
+  background-repeat: var(--card-bg-repeat);
   padding: 0.2em 0.4em;
   border-radius: 0.4em;
 }
@@ -61,10 +61,10 @@
 
   border: 0;
 
-  background-image: url("/images/card-texture.svg");
-  background-blend-mode: overlay;
+  background-image: var(--card-bg-image);
+  background-blend-mode: var(--card-bg-blend);
   background-size: 220px 220px;
-  background-repeat: repeat;
+  background-repeat: var(--card-bg-repeat);
 
   transition: 1s;
 

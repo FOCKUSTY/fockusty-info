@@ -18,10 +18,10 @@
 }
 
 .card {
-  background: var(--card-color) url("/images/card-texture.svg");
-  background-blend-mode: overlay;
-  background-size: 300px 300px;
-  background-repeat: repeat;
+  background: var(--card-color) var(--card-bg-image);
+  background-blend-mode: var(--card-bg-blend);
+  background-size: var(--card-bg-size);
+  background-repeat: var(--card-bg-repeat);
 
   min-width: 240px;
   max-width: 400px;
