@@ -20,8 +20,8 @@ import { GROUPS_INFO, Russian } from "@/api/paths";
 import { Api } from "@/api";
 
 import Image from "next/image";
-import PageCenter from "@/components/layout/PageCenter";
-import ShortInfo from "@/components/layout/ShortInfo";
+import PageCenter from "@/components/layout/page-center";
+import ShortInfo from "@/components/layout/short-info";
 
 import styles from "./page.module.css";
 

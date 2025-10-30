@@ -12,9 +12,9 @@ import SpaceAnimation from "@/components/space";
 import useMediaQuery from "@/hooks/media.hook";
 import useHalloweenEnabled from "@/hooks/halloween.hook";
 
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import Human from "@/components/layout/Human";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import Human from "@/components/layout/human";
 
 import { PATHS_MAP } from "@/lib/layout/constants";
 import { resolvePathName } from "@/api/paths";

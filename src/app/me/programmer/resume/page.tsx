@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { PERSONAL_INFO, CONTACT_INFO, SKILLS, EXPERIENCE } from "./constants";
 
 import styles from "./styles.module.css";
-import PageCenter from "@/components/layout/PageCenter";
+import PageCenter from "@/components/layout/page-center";
 
 type ContentProps = {
   summary: ReactNode;

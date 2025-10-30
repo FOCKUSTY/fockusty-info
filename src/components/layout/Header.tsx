@@ -1,3 +1,6 @@
+// Deprecated duplicate module kept for Windows case-insensitive filesystem compatibility.
+// The real implementation lives in `src/components/layout/header.tsx` (kebab-case).
+export {};
 "use client";
 
 import Link from "next/link";

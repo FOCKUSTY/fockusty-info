@@ -1,5 +1,5 @@
 import { Link } from "@/components/link";
-import PageCenter from "@/components/layout/PageCenter";
+import PageCenter from "@/components/layout/page-center";
 
 const Page = () => {
   return (
