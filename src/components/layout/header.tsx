@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Logo } from "@/components/logo/thevoid";
 import { Api } from "api";
 import { resolvePathName } from "@/api/paths";
-// useMediaQuery removed — not used in this component at the moment.
 
 type Props = {
   animationEnabled: boolean;
@@ -14,8 +13,6 @@ type Props = {
 };
 
 export const Header = ({ animationEnabled, setAnimationEnabled, path, params }: Props) => {
-  // responsive flag removed: not used
-
   return (
     <header>
       <Logo

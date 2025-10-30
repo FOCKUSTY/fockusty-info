@@ -4,7 +4,6 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 
 import { usePathname, useParams } from "next/navigation";
-// Image and Link are not used in this file; keep layout imports minimal.
 
 import Banner from "@/components/halloween/banner";
 import SpaceAnimation from "@/components/space";

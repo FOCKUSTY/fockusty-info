@@ -19,7 +19,6 @@ import { formatAge, formatedAgeToString, getFullAge } from "@/api/date.api";
 import { GROUPS_INFO, Russian } from "@/api/paths";
 import { Api } from "@/api";
 
-// Image not used in this module; removed to satisfy linter.
 import PageCenter from "@/components/layout/page-center";
 import ShortInfo from "@/components/layout/short-info";
 
@@ -34,12 +33,15 @@ const Layout = ({
 }) => {
   return (
     <>
-      <PageCenter className={styles.page_center} style={{ justifySelf: "center", gap: "10px" }}>
-        <ShortInfo>
+        <ShortInfo
+          infoClassName={styles.short_info}
+          imageClassName={styles.short_info__name}
+        >
           <h3>FOCKUSTY</h3>
           <h4>{GROUPS_INFO[currentGroup].post}</h4>
         </ShortInfo>
 
+      <PageCenter className={styles.page_center} style={{ justifySelf: "center", gap: "8px" }}>
         {children}
       </PageCenter>
 
