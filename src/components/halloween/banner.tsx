@@ -12,7 +12,7 @@ const Banner = () => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       setClosed(saved === "1");
-    } catch (e) {
+    } catch {
       /* empty */
     }
   }, []);
@@ -20,7 +20,7 @@ const Banner = () => {
   const close = () => {
     try {
       localStorage.setItem(STORAGE_KEY, "1");
-    } catch (e) {
+    } catch {
       /* empty */
     }
 

@@ -4,12 +4,10 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 
 import { usePathname, useParams } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
+// Image and Link are not used in this file; keep layout imports minimal.
 
 import Banner from "@/components/halloween/banner";
 import SpaceAnimation from "@/components/space";
-import useMediaQuery from "@/hooks/media.hook";
 import useHalloweenEnabled from "@/hooks/halloween.hook";
 
 import Header from "@/components/layout/header";
@@ -17,9 +15,7 @@ import Footer from "@/components/layout/footer";
 import Human from "@/components/layout/human";
 
 import { PATHS_MAP } from "@/lib/layout/constants";
-import { resolvePathName } from "@/api/paths";
 import { Api } from "api";
-
 import "./globals.css";
 import "./halloween.css";
 

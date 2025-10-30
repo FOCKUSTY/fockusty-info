@@ -27,7 +27,10 @@ const SpaceAnimation = ({
   const childrenRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!mountRef.current) return;
+  const mount = mountRef.current;
+  const childrenEl = childrenRef.current;
+
+  if (!mount) return;
 
     const scene = new THREE.Scene();
     const background = new THREE.TextureLoader().load("/background.png");
@@ -48,8 +51,8 @@ const SpaceAnimation = ({
     });
     renderer.setClearColor(0x000000, 0);
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    mountRef.current.appendChild(renderer.domElement);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  mount.appendChild(renderer.domElement);
 
     const stars: any[] = [];
 
@@ -157,15 +160,15 @@ const SpaceAnimation = ({
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!enabled) return;
-      if (!mountRef.current) return;
-      if (!childrenRef.current) return;
+  if (!enabled) return;
+  if (!mount) return;
+  if (!childrenEl) return;
 
       const x = e.clientX / window.innerWidth;
       const y = e.clientY / window.innerHeight;
 
-      mountRef.current.style.transform = `scale(1.1) translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)`;
-      childrenRef.current.style.transform = `translate(-50%, -50%) translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)`;
+  mount.style.transform = `scale(1.1) translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)`;
+  childrenEl.style.transform = `translate(-50%, -50%) translate(${(x - 0.5) * 20}px, ${(y - 0.5) * 20}px)`;
     };
 
     if (!enabled) {
@@ -181,9 +184,9 @@ const SpaceAnimation = ({
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrame);
-      mountRef.current?.removeChild(renderer.domElement);
+      mount?.removeChild(renderer.domElement);
     };
-  }, [enabled, mountRef, childrenRef]);
+  }, [enabled]);
 
   return (
     <div

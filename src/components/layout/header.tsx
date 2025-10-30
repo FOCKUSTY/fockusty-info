@@ -1,13 +1,10 @@
-// Deprecated duplicate module kept for Windows case-insensitive filesystem compatibility.
-// The real implementation lives in `src/components/layout/header.tsx` (kebab-case).
-export {};
 "use client";
 
 import Link from "next/link";
 import { Logo } from "@/components/logo/thevoid";
 import { Api } from "api";
 import { resolvePathName } from "@/api/paths";
-import useMediaQuery from "@/hooks/media.hook";
+// useMediaQuery removed — not used in this component at the moment.
 
 type Props = {
   animationEnabled: boolean;
@@ -17,7 +14,7 @@ type Props = {
 };
 
 export const Header = ({ animationEnabled, setAnimationEnabled, path, params }: Props) => {
-  const isLessThanMinimal = useMediaQuery("(max-width: 425px)");
+  // responsive flag removed: not used
 
   return (
     <header>

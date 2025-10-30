@@ -19,7 +19,7 @@ import { formatAge, formatedAgeToString, getFullAge } from "@/api/date.api";
 import { GROUPS_INFO, Russian } from "@/api/paths";
 import { Api } from "@/api";
 
-import Image from "next/image";
+// Image not used in this module; removed to satisfy linter.
 import PageCenter from "@/components/layout/page-center";
 import ShortInfo from "@/components/layout/short-info";
 
@@ -108,6 +108,7 @@ const Page = () => {
 
       clearInterval(interval);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!loaded) {
