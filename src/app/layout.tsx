@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { usePathname, useParams } from "next/navigation";
 import Image from "next/image";
@@ -18,6 +18,7 @@ import "./globals.css";
 import "./halloween.css";
 
 import Banner from "@/components/halloween/banner";
+import useHalloweenEnabled from "@/hooks/halloween.hook";
 
 const now = `${new Date().getFullYear()}`;
 const date = "2025" === now ? now : "2025-" + now;
@@ -35,33 +36,14 @@ const RootLayout = ({
   children: ReactNode;
 }>) => {
   const [animationEnabled, setAnimationEnabled] = useState<boolean>(false);
-  const [halloweenEnabled, setHalloweenEnabled] = useState<boolean>(false);
+  const [halloweenEnabled, setHalloweenEnabled] = useHalloweenEnabled();
   const isLessThanMinimal = useMediaQuery("(max-width: 425px)");
   const isLessThanMinimalTabletop = useMediaQuery("(max-width: 768px)");
 
   const path = usePathname();
   const params: Record<string, string> = useParams();
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("halloween_enabled");
-
-      if (saved !== null) {
-        setHalloweenEnabled(saved === "1");
-        return;
-      }
-
-      const nowDate = new Date();
-      const month = nowDate.getMonth(); // 0-based: Oct = 9
-      const day = nowDate.getDate();
-
-      const inRange = (month === 9 && day >= 25) || (month === 10 && day <= 2);
-
-      setHalloweenEnabled(inRange);
-    } catch (e) {
-      // ignore localStorage errors
-    }
-  }, []);
+  
 
   return (
     <html lang="ru">
