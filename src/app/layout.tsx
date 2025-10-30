@@ -9,11 +9,14 @@ import Link from "next/link";
 
 import Banner from "@/components/halloween/banner";
 import SpaceAnimation from "@/components/space";
-import { Logo } from "@/components/logo/thevoid";
-
 import useMediaQuery from "@/hooks/media.hook";
 import useHalloweenEnabled from "@/hooks/halloween.hook";
 
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import Human from "@/components/layout/Human";
+
+import { PATHS_MAP } from "@/lib/layout/constants";
 import { resolvePathName } from "@/api/paths";
 import { Api } from "api";
 
@@ -23,13 +26,6 @@ import "./halloween.css";
 const now = `${new Date().getFullYear()}`;
 const date = "2025" === now ? now : "2025-" + now;
 
-const paths: Record<string, string> = {
-  "/": "Главная",
-  "/introduction": "Вступление",
-  "/me/socials": "Мои соцсети",
-  "/me/info": "Информация обо мне",
-};
-
 const RootLayout = ({
   children,
 }: Readonly<{
@@ -37,8 +33,6 @@ const RootLayout = ({
 }>) => {
   const [animationEnabled, setAnimationEnabled] = useState<boolean>(false);
   const [halloweenEnabled, setHalloweenEnabled] = useHalloweenEnabled();
-  const isLessThanMinimal = useMediaQuery("(max-width: 425px)");
-  const isLessThanMinimalTabletop = useMediaQuery("(max-width: 768px)");
 
   const path = usePathname();
   const params: Record<string, string> = useParams();
@@ -51,101 +45,17 @@ const RootLayout = ({
       <body className={halloweenEnabled ? "halloween" : ""}>
         <div className="background"></div>
 
-        <header>
-          <Logo
-            head={
-              <Link href={"/"}>
-                <h1 id="main-logo">FOCKUSTY</h1>
-              </Link>
-            }
-            links={Api.fockusty}
-          />
-
-          <h2 className="path">{resolvePathName(path, params)}</h2>
-
-          <button
-            id="animation-button"
-            onClick={(event) => {
-              setAnimationEnabled(!animationEnabled);
-
-              if (event.currentTarget.disabled) {
-                return;
-              }
-
-              const button = event.currentTarget;
-
-              button.disabled = true;
-              setTimeout(() => {
-                button.disabled = false;
-              }, 10000);
-            }}
-          >
-            В{animationEnabled ? "ы" : ""}ключить анимации?
-          </button>
-        </header>
+        <Header animationEnabled={animationEnabled} setAnimationEnabled={setAnimationEnabled} path={path} params={params} />
 
         {halloweenEnabled ? <Banner /> : null}
 
         <SpaceAnimation enabled={animationEnabled}>
-          <div className="human-container">
-            <Image
-              width={halloweenEnabled ? 3086 : 597}
-              height={halloweenEnabled ? 2500 : 935}
-              className={["human noselect", halloweenEnabled ? "hallowen-human" : ""].join(" ")}
-              src={halloweenEnabled ? "/ghost.png" : "/human.png"}
-              alt="human"
-            />
-          </div>
+          <Human halloweenEnabled={halloweenEnabled} />
 
           <main>
             <div className="children-wrapper">{children}</div>
 
-            <footer>
-              <Logo
-                id="footer-logo"
-                head={<h2>© {date} The Void</h2>}
-                links={isLessThanMinimal ? Api.fockusty : Api.the_void}
-              />
-
-              <div
-                style={{
-                  display: "flex",
-                  gap: "0.5em",
-                  flexDirection: isLessThanMinimalTabletop ? "column" : "row",
-                }}
-              >
-                {Object.keys(paths).map((key) => {
-                  if (path === key) {
-                    return null;
-                  }
-
-                  return (
-                    <Link key={key} href={key}>
-                      {paths[key]}
-                    </Link>
-                  );
-                })}
-              </div>
-              <div>
-                <button
-                  className="halloween-toggle"
-                  onClick={() => {
-                    try {
-                      const next = !halloweenEnabled;
-                      setHalloweenEnabled(next);
-                      localStorage.setItem(
-                        "halloween_enabled",
-                        next ? "1" : "0",
-                      );
-                    } catch {
-                      setHalloweenEnabled(!halloweenEnabled);
-                    }
-                  }}
-                >
-                  {halloweenEnabled ? "Откл. Halloween" : "Вкл. Halloween"}
-                </button>
-              </div>
-            </footer>
+            <Footer halloweenEnabled={halloweenEnabled} setHalloweenEnabled={setHalloweenEnabled} date={date} paths={PATHS_MAP} currentPath={path} params={params} />
           </main>
         </SpaceAnimation>
       </body>
