@@ -22,7 +22,7 @@ body.halloween {
   gap: 1rem;
   padding: 0.5em 2em;
   justify-content: center;
-  background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(0,0,0,0));
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
   position: fixed;
   top: 120px;
   left: 0;
@@ -42,15 +42,13 @@ body.halloween {
 
 .halloween-banner .text {
   color: var(--text-color);
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   font-weight: 700;
   pointer-events: auto;
 }
 
 .halloween-banner .banner-close {
   pointer-events: auto;
-  position: absolute;
-  right: 1rem;
   top: 0.25rem;
   background: transparent;
   border: 0;
@@ -67,9 +65,15 @@ body.halloween {
 }
 
 @keyframes pumpkin-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08) translateY(-3px); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08) translateY(-3px);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Flying bats background using multiple layers */
@@ -77,7 +81,7 @@ body.halloween {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('/halloween/bat.svg');
+  background-image: url("/halloween/bat.svg");
   background-repeat: repeat-x;
   background-size: 120px 60px;
   opacity: 0.12;
@@ -87,14 +91,18 @@ body.halloween {
 
 /* Replace base background image when halloween is enabled */
 .halloween .background {
-  background-image: url('/halloween/background.svg');
+  background-image: url("/halloween/background.svg");
   background-size: cover;
   background-position: center;
 }
 
 @keyframes bats-fly {
-  from { background-position-x: 0; }
-  to { background-position-x: -2400px; }
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -2400px;
+  }
 }
 
 /* Make sure main contrasts well */

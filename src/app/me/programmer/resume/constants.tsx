@@ -71,16 +71,8 @@ export const SKILLS: SkillCategory[] = [
       <Link key={"f1"} href="https://nextra.site/" name="Nextra" />,
       <Link key={"f2"} href="https://nextjs.org/" name="Next.js" />,
       <Link key={"f3"} href="https://react.dev/" name="React.js" />,
-      <Link
-        key={"f4"}
-        href="https://developer.mozilla.org/en-US/docs/Web/HTML"
-        name="HTML"
-      />,
-      <Link
-        key={"f5"}
-        href="https://developer.mozilla.org/en-US/docs/Web/CSS"
-        name="CSS"
-      />,
+      <Link key={"f4"} href="https://developer.mozilla.org/en-US/docs/Web/HTML" name="HTML" />,
+      <Link key={"f5"} href="https://developer.mozilla.org/en-US/docs/Web/CSS" name="CSS" />,
     ],
   },
   {
@@ -122,37 +114,17 @@ export const SKILLS: SkillCategory[] = [
     title: <h3>Базы данных</h3>,
     items: [
       <Link key={"db1"} href="https://www.mongodb.com/" name="MongoDB" />,
-      <Link
-        key={"db2"}
-        href="https://www.sqlite.org/index.html"
-        name="SQLite"
-      />,
+      <Link key={"db2"} href="https://www.sqlite.org/index.html" name="SQLite" />,
     ],
   },
   {
     id: "Инструменты",
     title: <h3>Инструменты</h3>,
     items: [
-      <Link
-        key={"i1"}
-        href="https://code.visualstudio.com/"
-        name="Visual Studio Code"
-      />,
-      <Link
-        key={"i2"}
-        href="https://visualstudio.microsoft.com/"
-        name="Visual Studio"
-      />,
-      <Link
-        key={"i3"}
-        href="https://www.adobe.com/products/photoshop.html"
-        name="Photoshop"
-      />,
-      <Link
-        key={"i4"}
-        href="https://desktop.github.com/"
-        name="GitHub Desktop"
-      />,
+      <Link key={"i1"} href="https://code.visualstudio.com/" name="Visual Studio Code" />,
+      <Link key={"i2"} href="https://visualstudio.microsoft.com/" name="Visual Studio" />,
+      <Link key={"i3"} href="https://www.adobe.com/products/photoshop.html" name="Photoshop" />,
+      <Link key={"i4"} href="https://desktop.github.com/" name="GitHub Desktop" />,
       <Link key={"i5"} href="https://about.gitlab.com/" name="GitLab" />,
       <Link key={"i6"} href="https://github.com/" name="GitHub" />,
       <Link key={"i7"} href="https://git-scm.com/" name="Git" />,
@@ -165,16 +137,8 @@ export const SKILLS: SkillCategory[] = [
     title: <h3>Языки программирования</h3>,
     items: [
       <Link key={"pl1"} href="https://javascript.info/" name="JavaScript" />,
-      <Link
-        key={"pl2"}
-        href="https://www.typescriptlang.org/docs/"
-        name="TypeScript"
-      />,
-      <Link
-        key={"pl3"}
-        href="https://docs.python.org/3/tutorial/"
-        name="Python"
-      />,
+      <Link key={"pl2"} href="https://www.typescriptlang.org/docs/" name="TypeScript" />,
+      <Link key={"pl3"} href="https://docs.python.org/3/tutorial/" name="Python" />,
       <Link
         key={"pl4"}
         href="https://learn.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/"
@@ -208,14 +172,11 @@ export const EXPERIENCE: {
       "Управление командой",
       "Ревью кода",
       <span key={"exp-laf-1"}>
-        Разработка своей бэкенд-архитектуры <PackageLinks packages={["BAD"]} />{" "}
-        А также библиотеки для неё: <PackageLinks packages={["bad-fockarch"]} />
+        Разработка своей бэкенд-архитектуры <PackageLinks packages={["BAD"]} /> А также библиотеки
+        для неё: <PackageLinks packages={["bad-fockarch"]} />
       </span>,
       "Описание проектов и создание документаций",
-      <div
-        key={"exp-laf-2"}
-        style={{ display: "flex", flexDirection: "column" }}
-      >
+      <div key={"exp-laf-2"} style={{ display: "flex", flexDirection: "column" }}>
         <span>Разработка REST API (CRUD) с использованием</span>
         <div className={styles.data_list}>
           <PackageLinks
@@ -227,11 +188,7 @@ export const EXPERIENCE: {
               "cors",
             ]}
           />
-          <Link
-            className={styles.data_list__item}
-            href="https://www.mongodb.com/"
-            name="MongoDB"
-          />
+          <Link className={styles.data_list__item} href="https://www.mongodb.com/" name="MongoDB" />
           <span className={styles.data_list__item}>Кэширования</span>
         </div>
       </div>,
@@ -260,10 +217,7 @@ export const EXPERIENCE: {
     position: "Личные достижения",
     responsibilities: [
       "Управление своей командой: Lazy And Focused",
-      <div
-        key={"exp-my-1"}
-        style={{ display: "flex", flexDirection: "column", gap: "7.5px" }}
-      >
+      <div key={"exp-my-1"} style={{ display: "flex", flexDirection: "column", gap: "7.5px" }}>
         <span>Создание библиотек для упрощения работы:</span>
         <div className={styles.data_list}>
           {

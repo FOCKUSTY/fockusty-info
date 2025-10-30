@@ -44,21 +44,15 @@ export const ProjectComponent = ({
         {project.is_template && <span className={styles.demoLink}>Шаблон</span>}
       </div>
 
-      {project.description && (
-        <p className={styles.description}>{project.description}</p>
-      )}
+      {project.description && <p className={styles.description}>{project.description}</p>}
 
       <div className={styles.meta}>
-        {project.language && (
-          <span className={styles.language}>{project.language}</span>
-        )}
+        {project.language && <span className={styles.language}>{project.language}</span>}
         <span className={styles.stars}>⭐ {project.stargazers_count}</span>
         <span className={styles.forks}>🍴 {project.forks_count}</span>
       </div>
 
-      <div className={styles.footer}>
-        Обновлено: {formatDate(project.updated_at)}
-      </div>
+      <div className={styles.footer}>Обновлено: {formatDate(project.updated_at)}</div>
     </div>
   );
 };

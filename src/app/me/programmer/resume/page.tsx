@@ -16,9 +16,7 @@ const Content = ({ children, summary, contentClassName }: ContentProps) => {
   return (
     <section className={styles.content}>
       <h3 className={styles.content__summary}>{summary}</h3>
-      <div className={`${contentClassName} ${styles.content__children}`}>
-        {children}
-      </div>
+      <div className={`${contentClassName} ${styles.content__children}`}>{children}</div>
     </section>
   );
 };
@@ -47,9 +45,7 @@ const Page = () => {
             {SKILLS.map((category) => (
               <div key={category.id} className={styles.skills}>
                 <span className={styles.skills__title}>{category.title}</span>
-                <div
-                  className={`${styles.skills__content} ${styles.data_list}`}
-                >
+                <div className={`${styles.skills__content} ${styles.data_list}`}>
                   {category.items.map((skill, index) => (
                     <span className={styles.data_list__item} key={index}>
                       {skill}

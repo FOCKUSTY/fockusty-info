@@ -36,12 +36,7 @@ const Categories = ({ photo, setNewCategory }: CategoriesProps) => {
   );
 };
 
-export const PhotoModal = ({
-  photos,
-  index,
-  setNextPhoto,
-  setNewCategory,
-}: Props) => {
+export const PhotoModal = ({ photos, index, setNextPhoto, setNewCategory }: Props) => {
   const photo = photos[index];
   const { id, path } = resolvePhoto(photo);
   const isLessThan = useMediaQuery("(max-width: 1000px)");
@@ -59,9 +54,7 @@ export const PhotoModal = ({
             objectPosition: photo.position,
           }}
         />
-        <span className={styles.modal__photo_camera}>
-          Камера: {photo.camera}
-        </span>
+        <span className={styles.modal__photo_camera}>Камера: {photo.camera}</span>
 
         <div className={styles.modal__chevrons}>
           <BsChevronLeft

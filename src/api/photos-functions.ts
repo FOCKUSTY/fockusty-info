@@ -39,16 +39,14 @@ export const resolvePhotoFileName = (fileName: string) => {
   };
 };
 
-export const getPhotosJson = cache(
-  async (): Promise<Record<string, JsonPhoto>> => {
-    return fetch(process.env.THIS_URL + "/photos/photos.json", {
-      next: {
-        revalidate: 3000,
-      },
-      cache: "force-cache",
-    }).then((data) => data.json());
-  },
-);
+export const getPhotosJson = cache(async (): Promise<Record<string, JsonPhoto>> => {
+  return fetch(process.env.THIS_URL + "/photos/photos.json", {
+    next: {
+      revalidate: 3000,
+    },
+    cache: "force-cache",
+  }).then((data) => data.json());
+});
 
 export const getCategories = cache(async (): Promise<JsonCategories> => {
   return fetch(process.env.THIS_URL + "/photos/categories.json", {
@@ -59,43 +57,41 @@ export const getCategories = cache(async (): Promise<JsonCategories> => {
   }).then((data) => data.json());
 });
 
-export const generateOrGetCategories = cache(
-  async (): Promise<JsonCategories> => {
-    if (process.env.NODE_ENV !== "development") {
-      return getCategories();
-    }
+export const generateOrGetCategories = cache(async (): Promise<JsonCategories> => {
+  if (process.env.NODE_ENV !== "development") {
+    return getCategories();
+  }
 
-    const photos: Record<string, JsonPhoto> = JSON.parse(
-      await readFile(process.env.PHOTOS_PATH + "/photos.json", "utf8"),
-    );
-    const categories: JsonCategories = {};
+  const photos: Record<string, JsonPhoto> = JSON.parse(
+    await readFile(process.env.PHOTOS_PATH + "/photos.json", "utf8")
+  );
+  const categories: JsonCategories = {};
 
-    categories["все"] = [];
+  categories["все"] = [];
 
-    for (const name in photos) {
-      const photo = photos[name];
+  for (const name in photos) {
+    const photo = photos[name];
 
-      photo.categories.forEach((category) => {
-        if (!categories[category]) {
-          categories[category] = [];
-        }
+    photo.categories.forEach((category) => {
+      if (!categories[category]) {
+        categories[category] = [];
+      }
 
-        if (!categories["все"].includes(name)) {
-          categories["все"].push(name);
-        }
+      if (!categories["все"].includes(name)) {
+        categories["все"].push(name);
+      }
 
-        if (!categories[category].includes(name)) {
-          categories[category].push(name);
-        }
-      });
-    }
+      if (!categories[category].includes(name)) {
+        categories[category].push(name);
+      }
+    });
+  }
 
-    await writeFile(
-      process.env.PHOTOS_PATH + "/categories.json",
-      JSON.stringify(categories, undefined, 2),
-      "utf8",
-    );
+  await writeFile(
+    process.env.PHOTOS_PATH + "/categories.json",
+    JSON.stringify(categories, undefined, 2),
+    "utf8"
+  );
 
-    return categories;
-  },
-);
+  return categories;
+});

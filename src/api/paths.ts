@@ -21,8 +21,7 @@ export type InfoType = (typeof INFO)[number];
 export const ADDITONLA_INFO: Record<InfoType, string> = {
   info: "Основная информия о том, что я делаю",
   projects: "Мои проекты, которые я сделал за всё время",
-  resume:
-    "Моё резюме, например для работы или для того, чтобы рассказать кратко о себе",
+  resume: "Моё резюме, например для работы или для того, чтобы рассказать кратко о себе",
 };
 
 export const GROUPS = ["photographer", "programmer"] as const;
@@ -70,19 +69,16 @@ export const GROUPS_INFO: Record<
   },
 };
 
-export const getPathWithoutGroupPrefix = <
-  Group extends GroupType,
-  Info extends InfoType,
->(
+export const getPathWithoutGroupPrefix = <Group extends GroupType, Info extends InfoType>(
   group: Group,
-  info: Info,
+  info: Info
 ) => {
   return [`${PREFIX}/${group}/${info}`, `${Russian[info]}`] as const;
 };
 
 export const getPath = <Group extends GroupType, Info extends InfoType>(
   group: Group,
-  info: Info,
+  info: Info
 ) => {
   const [link, name] = getPathWithoutGroupPrefix(group, info);
 
@@ -100,19 +96,14 @@ export const PATHS: { [key: string]: string | undefined } = {
   "/me/socials": "Мои соцсети",
   "/me/info": "Моя информация",
 
-  ...Object.fromEntries(
-    GROUPS.flatMap((group) => INFO.map((info) => getPath(group, info))),
-  ),
+  ...Object.fromEntries(GROUPS.flatMap((group) => INFO.map((info) => getPath(group, info)))),
 };
 
 export const PARAMS: Record<string, string | undefined> = {
   gallery: "Галерея",
 };
 
-export const resolvePathName = (
-  path: string,
-  params: Record<string, string>,
-) => {
+export const resolvePathName = (path: string, params: Record<string, string>) => {
   const defaultName = PATHS[path];
   if (defaultName) {
     return defaultName;

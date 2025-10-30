@@ -1,9 +1,6 @@
 import type { ReactNode, AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 
-type LinkProps = DetailedHTMLProps<
-  AnchorHTMLAttributes<HTMLAnchorElement>,
-  HTMLAnchorElement
-> &
+type LinkProps = DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> &
   ((
     | {
         children?: undefined;

@@ -7,7 +7,6 @@ const STORAGE_KEY = "halloween_enabled";
 export default function useHalloweenEnabled() {
   const [enabled, setEnabled] = useState<boolean>(false);
 
-  // initialize from localStorage or date range
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -18,23 +17,22 @@ export default function useHalloweenEnabled() {
       }
 
       const nowDate = new Date();
-      const month = nowDate.getMonth(); // 0-based: Oct = 9
+      const month = nowDate.getMonth();
       const day = nowDate.getDate();
 
       const inRange = (month === 9 && day >= 25) || (month === 10 && day <= 2);
 
       setEnabled(inRange);
-    } catch (e) {
-      // ignore localStorage errors
+    } catch {
+      /* empty */
     }
   }, []);
 
-  // persist whenever it changes
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, enabled ? "1" : "0");
-    } catch (e) {
-      // ignore
+    } catch {
+      /* empty */
     }
   }, [enabled]);
 

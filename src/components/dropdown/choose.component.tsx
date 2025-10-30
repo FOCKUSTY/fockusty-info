@@ -17,12 +17,7 @@ export type Props = {
   dropdown: DropdownProps;
 };
 
-export const ChooseComponent = ({
-  components,
-  currentIndex,
-  onChange,
-  dropdown,
-}: Props) => {
+export const ChooseComponent = ({ components, currentIndex, onChange, dropdown }: Props) => {
   const { Dropdown, setActived } = useDropdown({
     id: dropdown.id,
     className: dropdown.className,
@@ -42,7 +37,7 @@ export const ChooseComponent = ({
           >
             {component}
           </button>
-        ),
+        )
       )}
     </Dropdown>
   );

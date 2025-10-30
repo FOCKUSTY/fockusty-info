@@ -1,10 +1,5 @@
 import type { Photo } from "@/types/photo.types";
-import type {
-  DetailedHTMLProps,
-  Dispatch,
-  HTMLAttributes,
-  SetStateAction,
-} from "react";
+import type { DetailedHTMLProps, Dispatch, HTMLAttributes, SetStateAction } from "react";
 
 import { resolvePhoto } from "./resolve-photo";
 
@@ -67,9 +62,7 @@ export const CategoryComponent = ({
           return null;
         }
 
-        return (
-          <PhotoComponent key={index} photos={photos} index={index} set={set} />
-        );
+        return <PhotoComponent key={index} photos={photos} index={index} set={set} />;
       })}
     </div>
   );

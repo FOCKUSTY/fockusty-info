@@ -25,15 +25,7 @@ const russian: Record<string, string> = {
   stars: "Звезды",
 };
 
-const sort = ({
-  p1,
-  p2,
-  sorting,
-}: {
-  p1: Project;
-  p2: Project;
-  sorting: SortingType;
-}) => {
+const sort = ({ p1, p2, sorting }: { p1: Project; p2: Project; sorting: SortingType }) => {
   const [v1, v2] = [p1[sortToKey[sorting]], p2[sortToKey[sorting]]];
 
   if (v1 === null || v2 === null) {
@@ -43,9 +35,7 @@ const sort = ({
   if (sorting === "name") {
     return p1.name.localeCompare(p2.name);
   } else if (sorting === "date") {
-    return (
-      new Date(v2.toString()).getTime() - new Date(v1.toString()).getTime()
-    );
+    return new Date(v2.toString()).getTime() - new Date(v1.toString()).getTime();
   } else {
     const output = +v2 - +v1;
 
@@ -79,10 +69,7 @@ const Page = () => {
               }
 
               return (
-                <button
-                  key={key}
-                  onClick={() => setSorting(key as SortingType)}
-                >
+                <button key={key} onClick={() => setSorting(key as SortingType)}>
                   {russian[key]}
                 </button>
               );
@@ -94,11 +81,7 @@ const Page = () => {
           {projects
             .sort((p1, p2) => sort({ p1, p2, sorting }))
             .map((project) => (
-              <ProjectComponent
-                key={project.id}
-                project={project}
-                styles={styles}
-              />
+              <ProjectComponent key={project.id} project={project} styles={styles} />
             ))}
         </div>
       </div>

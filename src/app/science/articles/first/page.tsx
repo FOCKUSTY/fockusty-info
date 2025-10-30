@@ -7,7 +7,7 @@ const Page = () => {
         <Mdx />
       </div>
     </div>
-  )
+  );
 };
 
 export default Page;

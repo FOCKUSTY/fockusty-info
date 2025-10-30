@@ -134,9 +134,9 @@ const RootLayout = ({
                       const next = !halloweenEnabled;
                       setHalloweenEnabled(next);
                       localStorage.setItem("halloween_enabled", next ? "1" : "0");
-                            } catch {
-                              setHalloweenEnabled(!halloweenEnabled);
-                            }
+                    } catch {
+                      setHalloweenEnabled(!halloweenEnabled);
+                    }
                   }}
                 >
                   {halloweenEnabled ? "Откл. Halloween" : "Вкл. Halloween"}
