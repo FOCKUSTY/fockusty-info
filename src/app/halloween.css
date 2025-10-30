@@ -1,0 +1,86 @@
+body.halloween {
+  --background: linear-gradient(180deg, #071019 0%, #10040a 100%);
+  --foreground: #ffedd6;
+  --text-color: #ffd89b;
+  --component-color: #2b0f05;
+  --card-color: #3a1506cc;
+  --mini-text-color: #ffd89b66;
+}
+
+/* Banner */
+.halloween-banner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5em 2em;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(0,0,0,0.15), rgba(0,0,0,0));
+  position: fixed;
+  top: 120px;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.halloween-banner img {
+  width: 36px;
+  height: 36px;
+  transform-origin: center;
+  animation: pumpkin-pulse 2.5s ease-in-out infinite;
+}
+
+.halloween-banner .text {
+  color: var(--text-color);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  font-weight: 700;
+  pointer-events: auto;
+}
+
+@keyframes pumpkin-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08) translateY(-3px); }
+  100% { transform: scale(1); }
+}
+
+/* Flying bats background using multiple layers */
+.halloween .background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/halloween/bat.svg');
+  background-repeat: repeat-x;
+  background-size: 120px 60px;
+  opacity: 0.12;
+  animation: bats-fly 20s linear infinite;
+  pointer-events: none;
+}
+
+/* Replace base background image when halloween is enabled */
+.halloween .background {
+  background-image: url('/halloween/background.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+@keyframes bats-fly {
+  from { background-position-x: 0; }
+  to { background-position-x: -2400px; }
+}
+
+/* Make sure main contrasts well */
+body.halloween main,
+body.halloween header,
+body.halloween footer {
+  color: var(--text-color);
+}
+
+/* Footer toggle button style */
+.halloween-toggle {
+  pointer-events: auto;
+  background: transparent;
+  border: 1px solid var(--mini-text-color);
+  color: var(--text-color);
+  padding: 0.25em 0.5em;
+  border-radius: 6px;
+}
