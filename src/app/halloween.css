@@ -27,7 +27,10 @@ body.halloween {
   top: 120px;
   left: 0;
   z-index: 5;
-  pointer-events: none;
+  pointer-events: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
 }
 
 .halloween-banner img {
@@ -42,6 +45,25 @@ body.halloween {
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
   font-weight: 700;
   pointer-events: auto;
+}
+
+.halloween-banner .banner-close {
+  pointer-events: auto;
+  position: absolute;
+  right: 1rem;
+  top: 0.25rem;
+  background: transparent;
+  border: 0;
+  color: var(--text-color);
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  opacity: 0.85;
+}
+
+.halloween-banner .banner-close:hover {
+  opacity: 1;
 }
 
 @keyframes pumpkin-pulse {
