@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { PERSONAL_INFO, CONTACT_INFO, SKILLS, EXPERIENCE } from "./constants";
 
 import styles from "./styles.module.css";
+import PageCenter from "@/components/layout/PageCenter";
 
 type ContentProps = {
   summary: ReactNode;
@@ -25,7 +26,7 @@ const Content = ({ children, summary, contentClassName }: ContentProps) => {
 
 const Page = () => {
   return (
-    <div className="page-center">
+    <PageCenter>
       <div className={styles.page}>
         <div className={styles.header}>
           <h2 className={styles.header__name}>{PERSONAL_INFO.name}</h2>
@@ -83,7 +84,7 @@ const Page = () => {
           </Content>
         </div>
       </div>
-    </div>
+    </PageCenter>
   );
 };
 

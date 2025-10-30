@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 
 import { Link } from "@/components/link";
+import PageCenter from "@/components/layout/PageCenter";
 
 const SOCIALS: {
   [name: string]: [string, IconType];
@@ -36,7 +37,7 @@ const SOCIALS: {
 
 const Page = () => {
   return (
-    <div className="page-center" style={{ justifySelf: "center" }}>
+    <PageCenter style={{ justifySelf: "center" }}>
       Мои соцсети!
       <div
         style={{
@@ -69,7 +70,7 @@ const Page = () => {
           );
         })}
       </div>
-    </div>
+    </PageCenter>
   );
 };
 

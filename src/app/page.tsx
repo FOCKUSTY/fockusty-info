@@ -20,6 +20,8 @@ import { GROUPS_INFO, Russian } from "@/api/paths";
 import { Api } from "@/api";
 
 import Image from "next/image";
+import PageCenter from "@/components/layout/PageCenter";
+import ShortInfo from "@/components/layout/ShortInfo";
 
 import styles from "./page.module.css";
 
@@ -32,28 +34,14 @@ const Layout = ({
 }) => {
   return (
     <>
-      <div
-        className={styles.page_center}
-        style={{
-          justifySelf: "center",
-          gap: "10px",
-        }}
-      >
-        <div className={[styles.short_info, "noselect"].join(" ")}>
-          <div className={[styles.short_info__name, "short_info"].join(" ")}>
-            <h3>FOCKUSTY</h3>
-            <h4>{GROUPS_INFO[currentGroup].post}</h4>
-          </div>
-          <Image
-            src="/AVATAR--fockusty-2--style-meow.png"
-            height={128}
-            width={128}
-            alt="fockusty avatar"
-          />
-        </div>
+      <PageCenter className={styles.page_center} style={{ justifySelf: "center", gap: "10px" }}>
+        <ShortInfo>
+          <h3>FOCKUSTY</h3>
+          <h4>{GROUPS_INFO[currentGroup].post}</h4>
+        </ShortInfo>
 
         {children}
-      </div>
+      </PageCenter>
 
       <div className={styles.fockusty}>
         <h2 id="im">Я как человек</h2>
