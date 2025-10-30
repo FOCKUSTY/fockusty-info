@@ -38,7 +38,7 @@ const Layout = ({
         }}
       >
         <div className={[styles.short_info, "noselect"].join(" ")}>
-          <div className={styles.short_info__name}>
+          <div className={[styles.short_info__name, "short_info"].join(" ")}>
             <h3>FOCKUSTY</h3>
             <h4>{GROUPS_INFO[currentGroup].post}</h4>
           </div>

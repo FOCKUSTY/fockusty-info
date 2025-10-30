@@ -7,6 +7,13 @@ body.halloween {
   --mini-text-color: #ffd89b66;
 }
 
+.short_info {
+  background-color: var(--card-color);
+
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+}
+
 /* Banner */
 .halloween-banner {
   width: 100%;
