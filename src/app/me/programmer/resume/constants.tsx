@@ -29,7 +29,7 @@ const PackageLinks = ({ packages }: PackageProps) => {
 
 export const PERSONAL_INFO = {
   name: "Айдар Рустемович Башаров",
-  position: "Backend разработчик (Nest.js)",
+  position: "Веб-разработчик (Next.js/Nest.js)",
 };
 
 export const CONTACT_INFO: {
@@ -127,6 +127,7 @@ export const SKILLS: SkillCategory[] = [
         href="https://www.sqlite.org/index.html"
         name="SQLite"
       />,
+      <Link key={"db3"} href="https://www.prisma.io/docs/postgres" name="Prisma (postgres)" />
     ],
   },
   {
@@ -183,6 +184,22 @@ export const SKILLS: SkillCategory[] = [
       <Link key={"pl5"} href="https://go.dev/learn/" name="GoLang" />,
     ],
   },
+  {
+    id: "Разработка ботов",
+    title: <h3>Разработка ботов</h3>,
+    items: [
+      <Link key={"bd1"} href="https://telegraf.js.org" name="Telegaf.js" />,
+      <Link key={"bd1"} href="https://discord.js.org" name="Discord.js" />,
+    ]
+  },
+  {
+    id: "API",
+    title: <h3>API</h3>,
+    items: [
+      <Link key={"api1"} href="https://discord.com/developers/docs/intro" name="Discord API" />,
+      <Link key={"api2"} href="https://docs.bsky.app/docs/get-started" name="Bluesky API" />,
+    ]
+  }
 ];
 
 export const EXPERIENCE: {
@@ -197,7 +214,6 @@ export const EXPERIENCE: {
         href="https://github.com/Lazy-And-Focused"
         target="_blank"
         rel="noopener noreferrer"
-        style={{ animation: "0" }}
       >
         Lazy And Focused (my command)
       </a>
