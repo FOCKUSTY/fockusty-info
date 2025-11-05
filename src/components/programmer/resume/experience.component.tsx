@@ -1,4 +1,7 @@
-import type { ExperienceEntry, Responsibility as ResponsibilityType } from "types/resume.types";
+import type {
+  ExperienceEntry,
+  Responsibility as ResponsibilityType,
+} from "types/resume.types";
 import { Link } from "@/components/link";
 
 import styles from "../styles.module.css";
@@ -27,20 +30,24 @@ const Job = ({ experience }: ExperienceItemProps) => {
     return <></>;
   }
 
-  const period = experience.period
-    ? `· ${experience.period}`
-    : "";
+  const period = experience.period ? `· ${experience.period}` : "";
 
-  const company = experience.company.href
-    ? <Link key={experience.company.name} href={experience.company.href} name={experience.company.name} />
-    : experience.company.name;
+  const company = experience.company.href ? (
+    <Link
+      key={experience.company.name}
+      href={experience.company.href}
+      name={experience.company.name}
+    />
+  ) : (
+    experience.company.name
+  );
 
   return (
     <p className={styles.job__company}>
       {company} {period}
     </p>
-  )
-}
+  );
+};
 
 type ResponsibilityProps = {
   responsibility: ResponsibilityType;
@@ -48,44 +55,62 @@ type ResponsibilityProps = {
 };
 
 const Responsibility = ({ responsibility, isItem }: ResponsibilityProps) => {
-  const className = isItem
-    ? styles.data_list__item
-    : ""
+  const className = isItem ? styles.data_list__item : "";
 
   if (responsibility.type === "text") {
     return <span className={className}>{responsibility.text}</span>;
   }
 
   if (responsibility.type === "link") {
-    const Child = () => <Link className={className} href={responsibility.href} name={responsibility.name} />
+    const Child = () => (
+      <Link
+        className={className}
+        href={responsibility.href}
+        name={responsibility.name}
+      />
+    );
     const Parent = responsibility.label
-      ? () => <span className={className}>{responsibility.label}: <Child/></span>
-      : () => <Child/>;
+      ? () => (
+          <span className={className}>
+            {responsibility.label}: <Child />
+          </span>
+        )
+      : () => <Child />;
 
-    return <Parent/>;
+    return <Parent />;
   }
 
   if (responsibility.type === "packages") {
-    return <PackageLinks packages={responsibility.packages}/>
+    return <PackageLinks packages={responsibility.packages} />;
   }
 
   if (responsibility.type === "group") {
-    return <div className={className}>
-      <span>{responsibility.title}</span>
-      <div className={styles.data_list}>
-        <ResponsibilityList responsibilities={responsibility.items} />
+    return (
+      <div className={className}>
+        <span>{responsibility.title}</span>
+        <div className={styles.data_list}>
+          <ResponsibilityList responsibilities={responsibility.items} />
+        </div>
       </div>
-    </div>;
+    );
   }
 
   return null;
-}
+};
 
-const ResponsibilityList = ({ responsibilities }: { responsibilities: ResponsibilityType[] }) => {
+const ResponsibilityList = ({
+  responsibilities,
+}: {
+  responsibilities: ResponsibilityType[];
+}) => {
   return (
     <>
       {responsibilities.map((item, index) => (
-        <Responsibility key={index} responsibility={item} isItem={item.type !== "group"} />
+        <Responsibility
+          key={index}
+          responsibility={item}
+          isItem={item.type !== "group"}
+        />
       ))}
     </>
   );
@@ -96,17 +121,17 @@ const ExperienceItem = ({ experience: job }: ExperienceItemProps) => {
     <div className={styles.job}>
       <h4 className={styles.job__position}>{job.position}</h4>
       <Job experience={job} />
-      
+
       <div className={styles.job__responsibilities}>
         <ResponsibilityList responsibilities={job.responsibilities} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 type Props = {
-  items: ExperienceEntry[]
-}
+  items: ExperienceEntry[];
+};
 
 export const Experience = ({ items }: Props) => {
   return (
@@ -116,4 +141,4 @@ export const Experience = ({ items }: Props) => {
       ))}
     </>
   );
-}
+};

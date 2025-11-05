@@ -6,13 +6,13 @@ export const ShortInfo = ({
   alt = "avatar",
   children,
   infoClassName,
-  imageClassName
+  imageClassName,
 }: {
   imgSrc?: string;
   alt?: string;
   children?: ReactNode;
-  infoClassName: string,
-  imageClassName: string
+  infoClassName: string;
+  imageClassName: string;
 }) => {
   return (
     <div className={[infoClassName, "noselect"].join(" ")}>

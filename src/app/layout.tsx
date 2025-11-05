@@ -40,7 +40,12 @@ const RootLayout = ({
       <body className={halloweenEnabled ? "halloween" : ""}>
         <div className="background"></div>
 
-        <Header animationEnabled={animationEnabled} setAnimationEnabled={setAnimationEnabled} path={path} params={params} />
+        <Header
+          animationEnabled={animationEnabled}
+          setAnimationEnabled={setAnimationEnabled}
+          path={path}
+          params={params}
+        />
 
         {halloweenEnabled ? <Banner /> : null}
 
@@ -50,7 +55,14 @@ const RootLayout = ({
           <main>
             <div className="children-wrapper">{children}</div>
 
-            <Footer halloweenEnabled={halloweenEnabled} setHalloweenEnabled={setHalloweenEnabled} date={date} paths={PATHS_MAP} currentPath={path} params={params} />
+            <Footer
+              halloweenEnabled={halloweenEnabled}
+              setHalloweenEnabled={setHalloweenEnabled}
+              date={date}
+              paths={PATHS_MAP}
+              currentPath={path}
+              params={params}
+            />
           </main>
         </SpaceAnimation>
       </body>

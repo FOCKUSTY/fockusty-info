@@ -18,7 +18,7 @@ export type SkillCategoryData = {
 export type LinkItem = { name: string; href?: string };
 export type ResponsibilityLink = {
   type: "link";
-  label?: string
+  label?: string;
 } & Required<LinkItem>;
 
 export type Responsibility =

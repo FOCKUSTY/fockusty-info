@@ -12,12 +12,17 @@ type Props = {
   params: Record<string, string>;
 };
 
-export const Header = ({ animationEnabled, setAnimationEnabled, path, params }: Props) => {
+export const Header = ({
+  animationEnabled,
+  setAnimationEnabled,
+  path,
+  params,
+}: Props) => {
   return (
     <header>
       <Logo
         head={
-          <Link href={'/'}>
+          <Link href={"/"}>
             <h1 id="main-logo">FOCKUSTY</h1>
           </Link>
         }

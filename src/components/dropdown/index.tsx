@@ -12,7 +12,7 @@ export const useDropdown = ({
   id: string;
   className?: string;
 }) => {
-  const content = useRef<HTMLDivElement|null>(null);
+  const content = useRef<HTMLDivElement | null>(null);
   const [actived, setActived] = useState<boolean>(false);
 
   const Dropdown = ({

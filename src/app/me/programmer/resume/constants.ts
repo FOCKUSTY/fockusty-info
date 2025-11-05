@@ -1,5 +1,8 @@
-import { ContactItem, ExperienceEntry, SkillCategoryData } from "@/types/resume.types";
-
+import {
+  ContactItem,
+  ExperienceEntry,
+  SkillCategoryData,
+} from "@/types/resume.types";
 
 export const PERSONAL_INFO = {
   name: "Айдар Рустемович Башаров",
@@ -198,7 +201,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
         type: "link",
         href: "https://www.npmjs.com/package/@thevoidcommunity/the-void-database",
         label: "Разработка единой системы базы данных (ЕСБД)",
-        name: "npm-пакет"
+        name: "npm-пакет",
       },
       {
         type: "text",

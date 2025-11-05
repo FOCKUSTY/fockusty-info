@@ -33,15 +33,18 @@ const Layout = ({
 }) => {
   return (
     <>
-        <ShortInfo
-          infoClassName={styles.short_info}
-          imageClassName={styles.short_info__name}
-        >
-          <h3>FOCKUSTY</h3>
-          <h4>{GROUPS_INFO[currentGroup].post}</h4>
-        </ShortInfo>
+      <ShortInfo
+        infoClassName={styles.short_info}
+        imageClassName={styles.short_info__name}
+      >
+        <h3>FOCKUSTY</h3>
+        <h4>{GROUPS_INFO[currentGroup].post}</h4>
+      </ShortInfo>
 
-      <PageCenter className={styles.page_center} style={{ justifySelf: "center", gap: "8px" }}>
+      <PageCenter
+        className={styles.page_center}
+        style={{ justifySelf: "center", gap: "8px" }}
+      >
         {children}
       </PageCenter>
 
@@ -81,8 +84,7 @@ const Layout = ({
 };
 
 const Page = () => {
-  const [currentGroup, setCurrentGroup] =
-    useState<GroupType>("programmer");
+  const [currentGroup, setCurrentGroup] = useState<GroupType>("programmer");
   const [loaded, setLoaded] = useState<boolean>(false);
   const [date, setDate] = useState<Date>(new Date());
   const [mainInterval, setMainInterval] = useState<NodeJS.Timeout | null>(null);
@@ -110,7 +112,7 @@ const Page = () => {
 
       clearInterval(interval);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!loaded) {
