@@ -1,8 +1,7 @@
+import type { ExperienceEntry, Responsibility as ResponsibilityType } from "types/resume.types";
 import { Link } from "@/components/link";
-import type { ExperienceEntry, Responsibility as ResponsibilityType } from "../constants";
 
 import styles from "../styles.module.css";
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
 type PackageProps = { packages: string[] };
 const PackageLinks = ({ packages }: PackageProps) => {

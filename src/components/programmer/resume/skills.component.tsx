@@ -1,4 +1,4 @@
-import type { SkillCategoryData } from "../constants";
+import type { SkillCategoryData } from "types/resume.types";
 
 import styles from "../styles.module.css";
 

@@ -1,5 +1,5 @@
+import type { ContactItem } from "types/resume.types";
 import { Link } from "@/components/link";
-import type { ContactItem } from "../constants";
 
 type Props = {
   items: ContactItem[];
