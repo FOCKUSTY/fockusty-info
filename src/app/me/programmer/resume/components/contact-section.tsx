@@ -8,13 +8,13 @@ import styles from "../styles.module.css";
 export const ContactSection = ({ items }: { items: ContactItem[] }) => {
   return (
     <div className={styles.contact_list}>
-      {items.map((it) => (
-        <span key={it.name} className={styles.contact_item}>
-          <strong>{it.name}:</strong>{" "}
-          {it.href ? (
-            <MyLink href={it.href} name={it.label ?? it.href} />
+      {items.map((contactItem: ContactItem) => (
+        <span key={contactItem.name} className={styles.contact_item}>
+          <strong>{contactItem.name}:</strong>{" "}
+          {contactItem.href ? (
+            <MyLink href={contactItem.href} name={contactItem.label ?? contactItem.href} />
           ) : (
-            <span>{it.text}</span>
+            <span>{contactItem.text}</span>
           )}
         </span>
       ))}

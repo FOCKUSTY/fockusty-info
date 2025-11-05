@@ -5,40 +5,56 @@ import type { ExperienceEntry, Responsibility } from "../constants";
 import styles from "../styles.module.css";
 import { Link as MyLink } from "@/components/link";
 
-const renderResponsibility = (r: Responsibility, key: string | number) => {
-  if ((r as any).type === "text") {
-    return <span key={key}>{(r as any).text}</span>;
+function hasTypeField(value: unknown): value is { type: unknown } {
+  return !!value && typeof value === "object" && Object.prototype.hasOwnProperty.call(value, "type");
+}
+
+function isTextResponsibility(responsibility: Responsibility): responsibility is { type: "text"; text: string } {
+  return hasTypeField(responsibility) && (responsibility as any).type === "text";
+}
+
+function isPackagesResponsibility(responsibility: Responsibility): responsibility is { type: "packages"; packages: string[] } {
+  return hasTypeField(responsibility) && (responsibility as any).type === "packages";
+}
+
+function isGroupResponsibility(responsibility: Responsibility): responsibility is { type: "group"; title?: string; items: any[] } {
+  return hasTypeField(responsibility) && (responsibility as any).type === "group";
+}
+
+const renderResponsibility = (responsibility: Responsibility, key: string | number) => {
+  if (isTextResponsibility(responsibility)) {
+    return <span key={key}>{responsibility.text}</span>;
   }
 
-  if ((r as any).type === "packages") {
-    const pk = (r as any).packages as string[];
+  if (isPackagesResponsibility(responsibility)) {
+    const packageNames = responsibility.packages;
     return (
       <div key={key} className={styles.data_list}>
-        {pk.map((p) => (
-          <a key={p} className={styles.data_list__item} href={`https://www.npmjs.com/package/${p}`} target="_blank" rel="noopener noreferrer">
-            {p}
+        {packageNames.map((packageName) => (
+          <a key={packageName} className={styles.data_list__item} href={`https://www.npmjs.com/package/${packageName}`} target="_blank" rel="noopener noreferrer">
+            {packageName}
           </a>
         ))}
       </div>
     );
   }
 
-  if ((r as any).type === "group") {
-    const g = r as any;
+  if (isGroupResponsibility(responsibility)) {
+    const group = responsibility as any;
     return (
       <div key={key} style={{ display: "flex", flexDirection: "column", gap: "7.5px" }}>
-        {g.title ? <span>{g.title}</span> : null}
+        {group.title ? <span>{group.title}</span> : null}
         <div className={styles.data_list}>
-          {g.items.map((it: any, idx: number) => {
-            if (typeof it === "string") return <span key={idx}>{it}</span>;
-            if ((it as any).type === "text") return <span key={idx}>{(it as any).text}</span>;
-            if ((it as any).type === "packages")
-              return (it as any).packages.map((p: string) => (
-                <a key={p} className={styles.data_list__item} href={`https://www.npmjs.com/package/${p}`} target="_blank" rel="noopener noreferrer">
-                  {p}
+          {group.items.map((groupItem: any, groupItemIndex: number) => {
+            if (typeof groupItem === "string") return <span key={groupItemIndex}>{groupItem}</span>;
+            if (hasTypeField(groupItem) && (groupItem as any).type === "text") return <span key={groupItemIndex}>{(groupItem as any).text}</span>;
+            if (hasTypeField(groupItem) && (groupItem as any).type === "packages")
+              return (groupItem as any).packages.map((packageName: string) => (
+                <a key={packageName} className={styles.data_list__item} href={`https://www.npmjs.com/package/${packageName}`} target="_blank" rel="noopener noreferrer">
+                  {packageName}
                 </a>
               ));
-            if ((it as any).href) return <MyLink key={idx} href={(it as any).href} name={(it as any).name} className={styles.data_list__item} />;
+            if ((groupItem as any).href) return <MyLink key={groupItemIndex} href={(groupItem as any).href} name={(groupItem as any).name} className={styles.data_list__item} />;
 
             return null;
           })}
@@ -47,19 +63,19 @@ const renderResponsibility = (r: Responsibility, key: string | number) => {
     );
   }
 
-  // link-like
-  if ((r as any).href) {
-    return <MyLink key={key} href={(r as any).href} name={(r as any).name} />;
+  // link-like object without 'type' field
+  if ((responsibility as any).href) {
+    return <MyLink key={key} href={(responsibility as any).href} name={(responsibility as any).name} />;
   }
 
   return null;
 };
 
-export const ExperienceSection = ({ entries }: { entries: any }) => {
+export const ExperienceSection = ({ entries }: { entries: ExperienceEntry[] }) => {
   return (
     <div className={styles.experience_list}>
-      {entries.map((job: any, idx: number) => (
-        <div key={idx} className={styles.job}>
+      {entries.map((job: ExperienceEntry, jobIndex: number) => (
+        <div key={jobIndex} className={styles.job}>
           <h4 className={styles.job__position}>{job.position}</h4>
           {job.company ? (
             <p className={styles.job__company}>
@@ -75,8 +91,8 @@ export const ExperienceSection = ({ entries }: { entries: any }) => {
           ) : null}
 
           <div className={styles.job__responsibilities}>
-            {job.responsibilities.map((r: any, i: number) => (
-              <div key={i}>{renderResponsibility(r, i)}</div>
+            {job.responsibilities.map((responsibility: Responsibility, responsibilityIndex: number) => (
+              <div key={responsibilityIndex}>{renderResponsibility(responsibility, responsibilityIndex)}</div>
             ))}
           </div>
         </div>

@@ -1,20 +1,20 @@
 "use client";
 
 import React from "react";
-import type { SkillCategoryData } from "../constants";
+import type { SkillCategoryData, SkillItem } from "../constants";
 import styles from "../styles.module.css";
 import { Link as MyLink } from "@/components/link";
 
-export const SkillsSection = ({ categories }: { categories: any }) => {
+export const SkillsSection = ({ categories }: { categories: SkillCategoryData[] }) => {
   return (
     <div className={styles.skills_list}>
-      {categories.map((cat: any) => (
-        <div key={cat.id} className={styles.skills}>
-          <span className={styles.skills__title}>{cat.title}</span>
+      {categories.map((category: SkillCategoryData) => (
+        <div key={category.id} className={styles.skills}>
+          <span className={styles.skills__title}>{category.title}</span>
           <div className={`${styles.skills__content} ${styles.data_list}`}>
-            {cat.items.map((it: any, idx: number) => (
-              <span className={styles.data_list__item} key={cat.id + idx}>
-                {it.href ? <MyLink href={it.href} name={it.name} /> : it.name}
+            {category.items.map((skillItem: SkillItem, skillIndex: number) => (
+              <span className={styles.data_list__item} key={`${category.id}-${skillIndex}`}>
+                {skillItem.href ? <MyLink href={skillItem.href} name={skillItem.name} /> : skillItem.name}
               </span>
             ))}
           </div>
