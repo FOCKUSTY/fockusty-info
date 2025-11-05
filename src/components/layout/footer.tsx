@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { Logo } from "@/components/logo/thevoid";
 import { Api } from "api";
+import { PathsSection } from "./sections";
 import useMediaQuery from "@/hooks/media.hook";
 
 type Props = {
@@ -22,23 +22,11 @@ export const Footer = ({ halloweenEnabled, setHalloweenEnabled, date, paths, cur
 		<footer>
 			<Logo id="footer-logo" head={<h2>© {date} The Void</h2>} links={isLessThanMinimal ? Api.fockusty : Api.the_void} />
 
-			<div
-				style={{
-					display: "flex",
-					gap: "0.5em",
-					flexDirection: isLessThanMinimalTabletop ? "column" : "row",
-				}}
-			>
-				{Object.keys(paths).map((key) => {
-					if (currentPath === key) return null;
-
-					return (
-						<Link key={key} href={key}>
-							{paths[key]}
-						</Link>
-					);
-				})}
-			</div>
+					<PathsSection
+						paths={paths}
+						currentPath={currentPath}
+						className={isLessThanMinimalTabletop ? "paths-vertical" : "paths-horizontal"}
+					/>
 
 			<div>
 				<button

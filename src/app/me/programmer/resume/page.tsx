@@ -3,6 +3,9 @@
 import type { ReactNode } from "react";
 
 import { PERSONAL_INFO, CONTACT_INFO, SKILLS, EXPERIENCE } from "./constants";
+import ContactSection from "./components/contact-section";
+import SkillsSection from "./components/skills-section";
+import ExperienceSection from "./components/experience-section";
 
 import styles from "./styles.module.css";
 import PageCenter from "@/components/layout/page-center";
@@ -35,52 +38,19 @@ const Page = () => {
 
         <div className={styles.container}>
           <Content summary="Контактная информация">
-            {CONTACT_INFO.map((info, index) => (
-              <span key={info.name + index}>
-                {info.name}: {info.content}
-              </span>
-            ))}
+            <ContactSection items={CONTACT_INFO} />
           </Content>
 
           <hr />
 
           <Content contentClassName={styles.content__skils} summary="Навыки">
-            {SKILLS.map((category) => (
-              <div key={category.id} className={styles.skills}>
-                <span className={styles.skills__title}>{category.title}</span>
-                <div
-                  className={`${styles.skills__content} ${styles.data_list}`}
-                >
-                  {category.items.map((skill, index) => (
-                    <span className={styles.data_list__item} key={index}>
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+            <SkillsSection categories={SKILLS} />
           </Content>
 
           <hr />
 
           <Content contentClassName={styles.content__job} summary="Опыт">
-            {EXPERIENCE.map((job, index) => (
-              <div key={index} className={styles.job}>
-                <h4 className={styles.job__position}>{job.position}</h4>
-                {job.company ? (
-                  <p className={styles.job__company}>
-                    {job.company} {job.period ? <>· {job.period}</> : <></>}
-                  </p>
-                ) : (
-                  <></>
-                )}
-                <div className={styles.job__responsibilities}>
-                  {job.responsibilities.map((item, index) => (
-                    <span key={index}>{item}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
+            <ExperienceSection entries={EXPERIENCE} />
           </Content>
         </div>
       </div>
