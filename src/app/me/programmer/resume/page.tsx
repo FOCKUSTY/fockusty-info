@@ -3,9 +3,9 @@
 import type { ReactNode } from "react";
 
 import { PERSONAL_INFO, CONTACT_INFO, SKILLS, EXPERIENCE } from "./constants";
-import ContactSection from "./components/contact-section";
-import SkillsSection from "./components/skills-section";
-import ExperienceSection from "./components/experience-section";
+import { Contacts } from "./_components/contacts.component";
+import { Skills } from "./_components/skills.component";
+import { Experience } from "./_components/experience.component";
 
 import styles from "./styles.module.css";
 import PageCenter from "@/components/layout/page-center";
@@ -38,19 +38,19 @@ const Page = () => {
 
         <div className={styles.container}>
           <Content summary="Контактная информация">
-            <ContactSection items={CONTACT_INFO} />
+            <Contacts items={CONTACT_INFO} />
           </Content>
 
           <hr />
 
           <Content contentClassName={styles.content__skils} summary="Навыки">
-            <SkillsSection categories={SKILLS} />
+            <Skills items={SKILLS} />
           </Content>
 
           <hr />
 
           <Content contentClassName={styles.content__job} summary="Опыт">
-            <ExperienceSection entries={EXPERIENCE} />
+            <Experience items={EXPERIENCE} />
           </Content>
         </div>
       </div>
