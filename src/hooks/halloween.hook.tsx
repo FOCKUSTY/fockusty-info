@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-const STORAGE_KEY = "halloween_enabled";
-
 export default function useHalloweenEnabled() {
   const [enabled, setEnabled] = useState<boolean>(false);
 
@@ -20,14 +18,6 @@ export default function useHalloweenEnabled() {
       /* empty */
     }
   }, []);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(STORAGE_KEY, enabled ? "1" : "0");
-    } catch {
-      /* empty */
-    }
-  }, [enabled]);
 
   return [enabled, setEnabled] as const;
 }

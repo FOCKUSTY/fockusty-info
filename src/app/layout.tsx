@@ -27,7 +27,7 @@ const RootLayout = ({
   children: ReactNode;
 }>) => {
   const [animationEnabled, setAnimationEnabled] = useState<boolean>(false);
-  const [halloweenEnabled, setHalloweenEnabled] = useHalloweenEnabled();
+  const [halloweenEnabled] = useHalloweenEnabled();
 
   const path = usePathname();
   const params: Record<string, string> = useParams();
@@ -56,8 +56,6 @@ const RootLayout = ({
             <div className="children-wrapper">{children}</div>
 
             <Footer
-              halloweenEnabled={halloweenEnabled}
-              setHalloweenEnabled={setHalloweenEnabled}
               date={date}
               paths={PATHS_MAP}
               currentPath={path}

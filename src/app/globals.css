@@ -5,7 +5,6 @@
 
   --component-color: #272727;
   --card-color: #27272790;
-  /* Card background texture settings (centralized) */
   --card-bg-image: url("/images/card-texture.svg");
   --card-bg-blend: overlay;
   --card-bg-size: 300px 300px;
@@ -277,6 +276,20 @@ main {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.paths-horizontal,
+.paths-vertical {
+  display: flex;
+  gap: 4px;
+}
+
+.paths-horizontal {
+  flex-direction: row;
+}
+
+.paths-vertical {
+  flex-direction: column;
 }
 
 @media (prefers-color-scheme: dark) {
