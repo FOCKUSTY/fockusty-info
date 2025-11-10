@@ -4,7 +4,7 @@ import type {
 } from "types/resume.types";
 import { Link } from "@/components/link";
 
-import styles from "../styles.module.css";
+import styles from "@/app/me/programmer/resume/styles.module.css";
 
 type PackageProps = { packages: string[] };
 const PackageLinks = ({ packages }: PackageProps) => {

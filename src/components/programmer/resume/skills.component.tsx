@@ -1,6 +1,6 @@
 import type { SkillCategoryData } from "types/resume.types";
 
-import styles from "../styles.module.css";
+import styles from "@/app/me/programmer/resume/styles.module.css";
 
 type SkillProps = {
   category: SkillCategoryData;
