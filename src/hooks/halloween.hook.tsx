@@ -9,13 +9,6 @@ export default function useHalloweenEnabled() {
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-
-      if (saved !== null) {
-        setEnabled(saved === "1");
-        return;
-      }
-
       const nowDate = new Date();
       const month = nowDate.getMonth();
       const day = nowDate.getDate();
