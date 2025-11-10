@@ -12,11 +12,7 @@ type Props = {
   params: Record<string, string>;
 };
 
-export const Footer = ({
-  date,
-  paths,
-  currentPath,
-}: Props) => {
+export const Footer = ({ date, paths, currentPath }: Props) => {
   const isLessThanMinimal = useMediaQuery("(max-width: 425px)");
   const isLessThanMinimalTabletop = useMediaQuery("(max-width: 768px)");
 

@@ -1,12 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useState } from "react";
 
 import { usePathname, useParams } from "next/navigation";
 
 import Banner from "@/components/halloween/banner";
-import SpaceAnimation from "@/components/space";
 import useHalloweenEnabled from "@/hooks/halloween.hook";
 
 import Header from "@/components/layout/header";
@@ -26,7 +24,6 @@ const RootLayout = ({
 }: Readonly<{
   children: ReactNode;
 }>) => {
-  const [animationEnabled, setAnimationEnabled] = useState<boolean>(false);
   const [halloweenEnabled] = useHalloweenEnabled();
 
   const path = usePathname();
@@ -40,29 +37,21 @@ const RootLayout = ({
       <body className={halloweenEnabled ? "halloween" : ""}>
         <div className="background"></div>
 
-        <Header
-          animationEnabled={animationEnabled}
-          setAnimationEnabled={setAnimationEnabled}
-          path={path}
-          params={params}
-        />
+        <Header path={path} params={params} />
 
         {halloweenEnabled ? <Banner /> : null}
 
-        <SpaceAnimation enabled={animationEnabled}>
-          <Human halloweenEnabled={halloweenEnabled} />
+        <Human halloweenEnabled={halloweenEnabled} />
 
-          <main>
-            <div className="children-wrapper">{children}</div>
-
-            <Footer
-              date={date}
-              paths={PATHS_MAP}
-              currentPath={path}
-              params={params}
-            />
-          </main>
-        </SpaceAnimation>
+        <main>
+          <div className="children-wrapper">{children}</div>
+          <Footer
+            date={date}
+            paths={PATHS_MAP}
+            currentPath={path}
+            params={params}
+          />
+        </main>
       </body>
     </html>
   );
