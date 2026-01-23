@@ -1,50 +1,213 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 fockusty-info
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.5-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.1.0-blue)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-blue)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-First, run the development server:
+**Персональный мультиролевой сайт-портфолио** FOCKUSTY, демонстрирующий многогранность как программиста, ученого и творческой личности.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Особенности
+
+### 🎭 Динамическая мультиролевая система
+- **Интерактивная визитка** с live-таймером возраста (с точностью до 0.1 секунды)
+- **Переключение между ролями**: программист, ученый, писатель и другие
+- **Контекстно-зависимый контент** для каждой роли
+
+### 💼 Раздел "Программист"
+- **Автоматическая загрузка проектов** с GitHub API
+- **Умная сортировка** по звездам, дате обновления, форкам и названию
+- **Интерактивное резюме** с категоризированными навыками
+- **Подробный опыт работы** с описанием технологий и ответственности
+
+### 📷 Раздел "Фотограф"
+- **Галлерея** всех фотографий с разбивкой на категории
+- **Удобный просмотр** отдельных фотографий с их описанием
+
+### 🧪 Раздел "Ученый"
+- **Научные статьи в формате MDX** с полной двуязычной поддержкой (русский/английский)
+- **Академический стиль** с аннотациями, ключевыми словами и списком литературы
+- **Интерактивные элементы** внутри статей (ссылки, код, сноски)
+
+### 🎨 Технологические изюминки
+- **Адаптивные слайдеры** на Swiper
+- **Строгая типизация** всех компонентов и данных
+- **Производительная сборка** с Turbopack
+
+## 🛠 Технологический стек
+
+| Категория | Технологии |
+|-----------|------------|
+| **Фреймворк** | Next.js 15, React 19, TypeScript 5.9 |
+| **UI & Документация** | Nextra 4, MDX, CSS Modules |
+| **Анимация & Графика** | Swiper, React Icons |
+| **Утилиты** | date-fns, next-armored |
+| **Инструменты** | ESLint, Prettier, Turbopack |
+
+## 📁 Структура проекта
+
+```
+fockusty-info/
+├── app/                    # App Router Next.js
+│   ├── page.tsx           # Главная страница (динамическая визитка)
+│   ├── programmer/        # Раздел программиста
+│   │   ├── projects/      # Проекты с GitHub
+│   │   └── resume/        # Интерактивное резюме
+│   └── sience/            # Научный раздел
+│       └── article/       # Статьи в формате MDX
+├── components/            # Переиспользуемые компоненты
+│   ├── groups.component   # Компоненты для ролей
+│   ├── dropdown/         # Кастомные UI элементы
+│   ├── project.component # Карточки проектов
+│   └── layout/           # Макетные компоненты
+├── api/                  # API утилиты и типы
+│   ├── date.api         # Логика работы с датами
+│   └── paths.ts         # Типы и константы путей
+├── services/            # Бизнес-логика
+│   └── get-repositories # Сервис загрузки проектов
+├── types/              # TypeScript определения
+└── public/             # Статические ресурсы
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser
-to see the result.
+## 🚀 Быстрый старт
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+### Установка зависимостей
+```bash
+npm install
+```
 
-This project uses
-[`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
-to automatically optimize and load [Geist](https://vercel.com/font), a
-new font family for Vercel.
+### Разработка
+```bash
+npm run dev
+```
+Приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000)
 
-## Learn More
+### Сборка для production
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Code Quality
+```bash
+# Проверка кода
+npm run lint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about
-  Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js
-  tutorial.
+# Автоматическое исправление ошибок
+npm run lint:fix
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js) -
-your feedback and contributions are welcome!
+# Форматирование кода
+npm run format
+```
 
-## Deploy on Vercel
+## 🎯 Ключевые компоненты
 
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+### Главная страница (`app/page.tsx`)
+- **Динамический возраст**: Live-таймер с возможностью паузы
+- **Интерактивное переключение ролей**: Выпадающий список с анимацией
+- **Адаптивная структура**: Различный контент для каждой роли
 
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
-for more details.
+### Проекты (`app/programmer/projects/page.tsx`)
+```typescript
+// Автоматическая загрузка и сортировка проектов
+const [projects, setProjects] = useState<Project[]>([]);
+const [sorting, setSorting] = useState<SortingType>("date");
+
+// 4 вида сортировки: stars, date, forks, name
+```
+
+### Резюме (`app/programmer/resume/page.tsx`)
+- **Структурированные навыки**: 7 категорий (Frontend, Backend, БД и т.д.)
+- **Детальный опыт**: С описанием технологий и ответственности
+- **Контактная информация**: Все способы связи в одном месте
+
+### Научные статьи (`app/sience/article/first/index.mdx`)
+- **Академический формат**: Аннотация, ключевые слова, список литературы
+- **Двуязычность**: Параллельные тексты на русском и английском
+- **Интерактивность**: Ссылки, код, сноски внутри MDX
+
+## 🔧 Конфигурация
+
+### package.json highlights
+```json
+{
+  "scripts": {
+    "dev": "set NODE_ENV=development&&next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,tsx,css,md,json}\""
+  },
+  "dependencies": {
+    "next": "15.3.5",
+    "nextra": "^4.6.0",
+    "three": "^0.179.1",
+    "swiper": "^11.2.10"
+  }
+}
+```
+
+### TypeScript конфигурация
+- Строгий режим (`strict: true`)
+- Абсолютные импорты через `@/`
+- Полная типизация всех компонентов
+
+## 📱 Адаптивность
+
+Проект полностью адаптивен и поддерживает:
+- **Десктоп** (1920px+)
+- **Ноутбуки** (1366px-1920px)
+- **Планшеты** (768px-1366px)
+- **Мобильные устройства** (320px-768px)
+
+## 🎨 Стилизация
+
+- **CSS Modules** для изолированных стилей
+- **Адаптивная типографика** с rem/em единицами
+- **Кастомные свойства CSS** для темизации
+- **Плавные анимации** переходов
+
+## 🔗 Интеграции
+
+- **GitHub API**: Загрузка репозиториев
+- **Telegram/Discord**: Контактные ссылки
+- **MDX**: Гибридный контент (Markdown + JSX)
+- **Three.js**: 3D визуализации
+
+## 📈 Производительность
+
+- **Turbopack** для ultra-fast разработки
+- **Code splitting** автоматически через Next.js
+- **Оптимизированные изображения** Next.js Image
+- **SSG/SSR** гибридный рендеринг
+
+## 🤝 Вклад в проект
+
+1. Форкните репозиторий
+2. Создайте ветку для фичи (`git checkout -b feature/amazing-feature`)
+3. Закоммитьте изменения (`git commit -m 'Add amazing feature'`)
+4. Запушьте ветку (`git push origin feature/amazing-feature`)
+5. Откройте Pull Request
+
+## 📄 Лицензия
+
+Этот проект распространяется под лицензией MIT. Подробнее см. в файле [LICENSE](LICENSE).
+
+## 👤 Автор
+
+**FOCKUSTY**
+- GitHub: [@FOCKUSTY](https://github.com/FOCKUSTY)
+- Telegram: [@FOCKUSTY](https://t.me/FOCKUSTY)
+- Email: viserd.yt@gmail.com
+
+## 🙏 Благодарности
+
+- [Next.js](https://nextjs.org/) команде за отличный фреймворк
+- [Nextra](https://nextra.site/) за мощную систему документации
+- [Валентину](https://lanvalird.ru) за советы по разработке
+- Всем контрибьюторам и пользователям
+
+---
+
+⭐ **Если вам нравится проект, не забудьте поставить звезду!**
