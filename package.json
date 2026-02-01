@@ -1,5 +1,5 @@
 {
-  "name": "src",
+  "name": "fockusty-info",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -22,7 +22,6 @@
     ]
   },
   "private": true,
-  "packageManager": "npm@11.6.0",
   "dependencies": {
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
@@ -32,6 +31,7 @@
     "@angular/platform-server": "^21.1.0",
     "@angular/router": "^21.1.0",
     "@angular/ssr": "^21.1.2",
+    "@lazy-and-focused/prettier-config": "^1.0.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
