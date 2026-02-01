@@ -3,8 +3,7 @@ import { Component, signal } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal<string>('FOCKUSTY');
+  protected readonly text = signal<string>("Hello, World!");
 }

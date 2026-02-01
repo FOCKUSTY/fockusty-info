@@ -1,3 +1,195 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Shantell+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+@import './reset.css';
 
 @import 'tailwindcss';
+
+:root {
+  --bg-default: #0a0a0a;
+  --bg-component: #00000065;
+  --bg-smooth: #111111;
+  --bg-smooth-light: #333333;
+  --bg-smooth-ce: #111111ce;
+  --bg-section: #1a1a1a90;
+  --bg-card: #27272790;
+
+  --image-bg: url('/background.png');
+
+  --fg-default: #ededed;
+  --fg-text: #ededed;
+  --fg-mini-text: #ededed80;
+  --fg-mini-text-30: #ededed30;
+  --fg-card: #4d4d4d90;
+  --fg-component: #272727;
+
+  --btn-default: var(--fg-default);
+  --btn-primary: color-mix(in oklab, var(--fg-default) 80%, #2aff6a 30%);
+  --btn-danger: color-mix(in oklab, var(--fg-default) 60%, #ff0000 50%);
+  --btn-secondary: color-mix(in oklab, var(--fg-default) 80%, #000000 30%);
+  --btn-tetriary: color-mix(in oklab, var(--fg-default) 70%, #000000 40%);
+
+  --fs-h1: 36px;
+  --fs-h2: 32px;
+  --fs-h3: 24px;
+  --fs-h4: 20px;
+  --fs-h5: 18px;
+  --fs-base: 16px;
+  --fs-mini: 14px;
+
+  --animate-indeterminate: indeterminate 1s linear infinite;
+  --animate-indeterminate-1s: indeterminate 1s linear infinite;
+  --animate-indeterminate-2s: indeterminate 2s linear infinite;
+  --animate-indeterminate-3s: indeterminate 3s linear infinite;
+  --animate-indeterminate-4s: indeterminate 4s linear infinite;
+
+  --animate-ellipse: 1.4s ease-in-out 0s infinite both;
+
+  --animate-ellipse-pulse: ellipsePulse var(--animate-ellipse);
+  --animate-ellipse-wave: ellipseWave var(--animate-ellipse);
+  --animate-ellipse-run: ellipseRun var(--animate-ellipse);
+  --animate-ellipse-orbit: ellipseOrbit var(--animate-ellipse);
+  --animate-ellipse-appearance: ellipseAppearance var(--animate-ellipse);
+}
+
+@layer base {
+  .text-base {
+    font-size: var(--fs-base);
+  }
+
+  .text-mini {
+    font-size: var(--fs-mini);
+    color: var(--fg-mini-text);
+  }
+}
+
+@layer components {
+  .page {
+    color: var(--fg-default);
+    font-size: var(--fs-base);
+    font-family: 'Comfortaa', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  height: 100%;
+}
+
+body {
+  color: var(--fg-default);
+  background: var(--bg-default);
+
+  font-family: "Comfortaa", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 0.5em;
+
+  background: var(--bg-smooth);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 0.5em;
+
+  background-color: var(--bg-default);
+  border: 0.1em solid var(--fg-mini-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+span,
+a,
+p,
+button {
+  font-size: 16px;
+}
+
+.page-center {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 100%;
+}
+
+.background {
+  z-index: 0;
+
+  width: 100%;
+  height: 1080px;
+  position: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/background.png");
+}
+
+.human-container {
+  position: fixed;
+  display: flex;
+
+  align-items: center;
+
+  top: 0;
+  left: 0;
+
+  height: 100%;
+  width: 100%;
+}
+
+.human {
+  z-index: 5;
+
+  --animation-start-top: -2em;
+
+  position: relative;
+
+  height: 40em;
+  width: 25em;
+
+  top: var(--animation-start-top);
+
+  animation: 3s ease-in-out infinite forwards;
+  animation-name: human-levitation;
+}
+
+@keyframes human-levitation {
+  0% {
+    top: var(--animation-start-top);
+  }
+
+  50% {
+    top: 2em;
+  }
+
+  100% {
+    top: var(--animation-start-top);
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
