@@ -1,213 +1,59 @@
-# 🚀 fockusty-info
+# Src
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.5-black)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.1.0-blue)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-blue)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
 
-**Персональный мультиролевой сайт-портфолио** FOCKUSTY, демонстрирующий многогранность как программиста, ученого и творческой личности.
+## Development server
 
-## ✨ Особенности
+To start a local development server, run:
 
-### 🎭 Динамическая мультиролевая система
-- **Интерактивная визитка** с live-таймером возраста (с точностью до 0.1 секунды)
-- **Переключение между ролями**: программист, ученый, писатель и другие
-- **Контекстно-зависимый контент** для каждой роли
-
-### 💼 Раздел "Программист"
-- **Автоматическая загрузка проектов** с GitHub API
-- **Умная сортировка** по звездам, дате обновления, форкам и названию
-- **Интерактивное резюме** с категоризированными навыками
-- **Подробный опыт работы** с описанием технологий и ответственности
-
-### 📷 Раздел "Фотограф"
-- **Галлерея** всех фотографий с разбивкой на категории
-- **Удобный просмотр** отдельных фотографий с их описанием
-
-### 🧪 Раздел "Ученый"
-- **Научные статьи в формате MDX** с полной двуязычной поддержкой (русский/английский)
-- **Академический стиль** с аннотациями, ключевыми словами и списком литературы
-- **Интерактивные элементы** внутри статей (ссылки, код, сноски)
-
-### 🎨 Технологические изюминки
-- **Адаптивные слайдеры** на Swiper
-- **Строгая типизация** всех компонентов и данных
-- **Производительная сборка** с Turbopack
-
-## 🛠 Технологический стек
-
-| Категория | Технологии |
-|-----------|------------|
-| **Фреймворк** | Next.js 15, React 19, TypeScript 5.9 |
-| **UI & Документация** | Nextra 4, MDX, CSS Modules |
-| **Анимация & Графика** | Swiper, React Icons |
-| **Утилиты** | date-fns, next-armored |
-| **Инструменты** | ESLint, Prettier, Turbopack |
-
-## 📁 Структура проекта
-
-```
-fockusty-info/
-├── app/                    # App Router Next.js
-│   ├── page.tsx           # Главная страница (динамическая визитка)
-│   ├── programmer/        # Раздел программиста
-│   │   ├── projects/      # Проекты с GitHub
-│   │   └── resume/        # Интерактивное резюме
-│   └── sience/            # Научный раздел
-│       └── article/       # Статьи в формате MDX
-├── components/            # Переиспользуемые компоненты
-│   ├── groups.component   # Компоненты для ролей
-│   ├── dropdown/         # Кастомные UI элементы
-│   ├── project.component # Карточки проектов
-│   └── layout/           # Макетные компоненты
-├── api/                  # API утилиты и типы
-│   ├── date.api         # Логика работы с датами
-│   └── paths.ts         # Типы и константы путей
-├── services/            # Бизнес-логика
-│   └── get-repositories # Сервис загрузки проектов
-├── types/              # TypeScript определения
-└── public/             # Статические ресурсы
-```
-
-## 🚀 Быстрый старт
-
-### Установка зависимостей
 ```bash
-npm install
+ng serve
 ```
 
-### Разработка
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+
 ```bash
-npm run dev
+ng generate component component-name
 ```
-Приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000)
 
-### Сборка для production
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
 ```bash
-npm run build
-npm start
+ng generate --help
 ```
 
-### Code Quality
+## Building
+
+To build the project run:
+
 ```bash
-# Проверка кода
-npm run lint
-
-# Автоматическое исправление ошибок
-npm run lint:fix
-
-# Форматирование кода
-npm run format
+ng build
 ```
 
-## 🎯 Ключевые компоненты
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-### Главная страница (`app/page.tsx`)
-- **Динамический возраст**: Live-таймер с возможностью паузы
-- **Интерактивное переключение ролей**: Выпадающий список с анимацией
-- **Адаптивная структура**: Различный контент для каждой роли
+## Running unit tests
 
-### Проекты (`app/programmer/projects/page.tsx`)
-```typescript
-// Автоматическая загрузка и сортировка проектов
-const [projects, setProjects] = useState<Project[]>([]);
-const [sorting, setSorting] = useState<SortingType>("date");
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
 
-// 4 вида сортировки: stars, date, forks, name
+```bash
+ng test
 ```
 
-### Резюме (`app/programmer/resume/page.tsx`)
-- **Структурированные навыки**: 7 категорий (Frontend, Backend, БД и т.д.)
-- **Детальный опыт**: С описанием технологий и ответственности
-- **Контактная информация**: Все способы связи в одном месте
+## Running end-to-end tests
 
-### Научные статьи (`app/sience/article/first/index.mdx`)
-- **Академический формат**: Аннотация, ключевые слова, список литературы
-- **Двуязычность**: Параллельные тексты на русском и английском
-- **Интерактивность**: Ссылки, код, сноски внутри MDX
+For end-to-end (e2e) testing, run:
 
-## 🔧 Конфигурация
-
-### package.json highlights
-```json
-{
-  "scripts": {
-    "dev": "set NODE_ENV=development&&next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
-    "format": "prettier --write \"src/**/*.{js,ts,tsx,css,md,json}\""
-  },
-  "dependencies": {
-    "next": "15.3.5",
-    "nextra": "^4.6.0",
-    "three": "^0.179.1",
-    "swiper": "^11.2.10"
-  }
-}
+```bash
+ng e2e
 ```
 
-### TypeScript конфигурация
-- Строгий режим (`strict: true`)
-- Абсолютные импорты через `@/`
-- Полная типизация всех компонентов
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## 📱 Адаптивность
+## Additional Resources
 
-Проект полностью адаптивен и поддерживает:
-- **Десктоп** (1920px+)
-- **Ноутбуки** (1366px-1920px)
-- **Планшеты** (768px-1366px)
-- **Мобильные устройства** (320px-768px)
-
-## 🎨 Стилизация
-
-- **CSS Modules** для изолированных стилей
-- **Адаптивная типографика** с rem/em единицами
-- **Кастомные свойства CSS** для темизации
-- **Плавные анимации** переходов
-
-## 🔗 Интеграции
-
-- **GitHub API**: Загрузка репозиториев
-- **Telegram/Discord**: Контактные ссылки
-- **MDX**: Гибридный контент (Markdown + JSX)
-- **Three.js**: 3D визуализации
-
-## 📈 Производительность
-
-- **Turbopack** для ultra-fast разработки
-- **Code splitting** автоматически через Next.js
-- **Оптимизированные изображения** Next.js Image
-- **SSG/SSR** гибридный рендеринг
-
-## 🤝 Вклад в проект
-
-1. Форкните репозиторий
-2. Создайте ветку для фичи (`git checkout -b feature/amazing-feature`)
-3. Закоммитьте изменения (`git commit -m 'Add amazing feature'`)
-4. Запушьте ветку (`git push origin feature/amazing-feature`)
-5. Откройте Pull Request
-
-## 📄 Лицензия
-
-Этот проект распространяется под лицензией MIT. Подробнее см. в файле [LICENSE](LICENSE).
-
-## 👤 Автор
-
-**FOCKUSTY**
-- GitHub: [@FOCKUSTY](https://github.com/FOCKUSTY)
-- Telegram: [@FOCKUSTY](https://t.me/FOCKUSTY)
-- Email: viserd.yt@gmail.com
-
-## 🙏 Благодарности
-
-- [Next.js](https://nextjs.org/) команде за отличный фреймворк
-- [Nextra](https://nextra.site/) за мощную систему документации
-- [Валентину](https://lanvalird.ru) за советы по разработке
-- Всем контрибьюторам и пользователям
-
----
-
-⭐ **Если вам нравится проект, не забудьте поставить звезду!**
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

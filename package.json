@@ -1,50 +1,52 @@
 {
-  "name": "fockusty-info",
-  "version": "0.1.0",
-  "private": true,
+  "name": "src",
+  "version": "0.0.0",
   "scripts": {
-    "dev": "set NODE_ENV=development&&next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
-    "format": "prettier --write \"src/**/*.{js,ts,tsx,css,md,json}\""
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "serve:ssr:src": "node dist/src/server/server.mjs"
   },
-  "keywords": [
-    "fockusty",
-    "фокусти",
-    "fockusty info",
-    "сайт фокусти",
-    "fickus",
-    "фикус",
-    "фокус"
-  ],
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@11.6.0",
   "dependencies": {
-    "@mdx-js/loader": "^3.1.1",
-    "@mdx-js/react": "^3.1.1",
-    "@next/env": "^15.5.3",
-    "@next/mdx": "^16.0.0",
-    "@types/mdx": "^2.0.13",
-    "date-fns": "^4.1.0",
-    "next": "15.3.5",
-    "next-armored": "^1.0.0",
-    "nextra": "^4.6.0",
-    "nextra-theme-docs": "^4.6.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-icons": "^5.5.0",
-    "swiper": "^11.2.10",
-    "three": "^0.179.1",
-    "three.js": "^0.77.1"
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/platform-server": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@angular/ssr": "^21.1.2",
+    "express": "^5.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@lazy-and-focused/prettier-config": "^1.0.0",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19.2.2",
-    "@types/three": "^0.179.0",
-    "eslint-config-next": "15.3.5",
-    "typescript": "^5.9.2"
+    "@angular/build": "^21.1.2",
+    "@angular/cli": "^21.1.2",
+    "@angular/compiler-cli": "^21.1.0",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/express": "^5.0.1",
+    "@types/node": "^20.17.19",
+    "jsdom": "^27.1.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.12",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
   }
 }

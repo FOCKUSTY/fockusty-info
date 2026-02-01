@@ -1,1 +1,0 @@
-export const PATH = "/me/photographer/projects/";
