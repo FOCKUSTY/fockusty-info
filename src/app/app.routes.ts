@@ -4,20 +4,16 @@ import { NgModule } from '@angular/core';
 import { useLayout } from '@/utils/use-layout';
 
 import { Layouts } from './layouts';
-import { HomeRoute } from './home';
+import { PAGES_ROUTES } from './pages';
 
 export const routes: Routes = [
   useLayout({
     layout: Layouts.DefaultLayout,
-    routes: [HomeRoute]
+    routes: PAGES_ROUTES
   }),
   useLayout({
     layout: Layouts.NoLayout,
-    routes: []
-  }),
-  useLayout({
-    layout: Layouts.NoLayout,
-    routes: [HomeRoute],
+    routes: PAGES_ROUTES,
     route: {
       path: "nolayout"
     }
