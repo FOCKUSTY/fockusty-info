@@ -1,1 +1,1 @@
-export * from "./404.route";
+export * from './404.route';

@@ -3,25 +3,25 @@ import { NgIcon } from '@ng-icons/core';
 
 export const LINKS = {
   discord: {
-    href: "https://discord.gg/97J8mnn4Gr",
-    icon: "bootstrapDiscord"
+    href: 'https://discord.gg/97J8mnn4Gr',
+    icon: 'bootstrapDiscord',
   },
 
   telegram: {
-    href: "http://t.me/fockusty",
-    icon: "bootstrapTelegram",
+    href: 'http://t.me/fockusty',
+    icon: 'bootstrapTelegram',
   },
 
   github: {
-    href: "http://github.com/fockusty",
-    icon: "bootstrapGithub"
+    href: 'http://github.com/fockusty',
+    icon: 'bootstrapGithub',
   },
 
   site: {
-    href: "http://fockusty.netlify.app",
-    icon: "heroGlobeAlt",
-  }
-} as const satisfies Record<string, { href: string, icon: string }>
+    href: 'http://fockusty.netlify.app',
+    icon: 'heroGlobeAlt',
+  },
+} as const satisfies Record<string, { href: string; icon: string }>;
 
 @Component({
   selector: 'icon-link',

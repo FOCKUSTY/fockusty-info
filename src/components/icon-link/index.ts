@@ -1,1 +1,1 @@
-export * from "./icon-link.component";
+export * from './icon-link.component';

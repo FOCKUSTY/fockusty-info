@@ -22,6 +22,6 @@ export class TvButton {
 
     if (this.href) {
       this.router.navigate([this.href]);
-    };
+    }
   }
 }

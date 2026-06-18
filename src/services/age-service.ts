@@ -4,7 +4,7 @@ export const DATE_OF_BIRTH = {
   day: 1,
   hours: 4,
 } as const;
-import { ruWords } from "./russian";
+import { ruWords } from './russian';
 
 const dateOfBirth = new Date(
   DATE_OF_BIRTH.year,
@@ -45,31 +45,24 @@ type AgeKeys = keyof Age;
 type RecordAge<T> = Record<AgeKeys, T>;
 
 const RUSSIAN_WORDS_FOR_AGE: Record<keyof Age, [string, string, string]> = {
-  years: ["год", "года", "лет"],
-  months: ["месяц", "месяца", "месяцев"],
-  days: ["день", "дня", "дней"],
-  hours: ["час", "часа", "часов"],
-  minutes: ["минута", "минуты", "минут"],
-  seconds: ["секунда", "секунды", "секунд"],
+  years: ['год', 'года', 'лет'],
+  months: ['месяц', 'месяца', 'месяцев'],
+  days: ['день', 'дня', 'дней'],
+  hours: ['час', 'часа', 'часов'],
+  minutes: ['минута', 'минуты', 'минут'],
+  seconds: ['секунда', 'секунды', 'секунд'],
 } as const;
 
-export const getFullAge = (
-  now: Date,
-  accuracy: 1 | 10 | 100 | 1000 = 10,
-): Age => {
+export const getFullAge = (now: Date, accuracy: 1 | 10 | 100 | 1000 = 10): Age => {
   const timestamp = (now.getTime() - dateOfBirth.getTime()) / SECONDS;
 
   const years = Math.floor(timestamp / toYear);
   const days = Math.floor(timestamp / toDay - years * YEAR - years / LEAP_YEAR);
   const months = Math.floor(days / MONTH);
-  const hours =
-    Math.floor(timestamp / toHours) - Math.floor(timestamp / toDay) * DAY;
-  const minutes =
-    Math.floor(timestamp / toMinutes) - Math.floor(timestamp / toHours) * HOUR;
+  const hours = Math.floor(timestamp / toHours) - Math.floor(timestamp / toDay) * DAY;
+  const minutes = Math.floor(timestamp / toMinutes) - Math.floor(timestamp / toHours) * HOUR;
   const seconds =
-    Math.floor(
-      (timestamp - Math.floor(timestamp / toMinutes) * MINUTE) * accuracy,
-    ) / accuracy;
+    Math.floor((timestamp - Math.floor(timestamp / toMinutes) * MINUTE) * accuracy) / accuracy;
 
   return {
     years,
@@ -90,9 +83,8 @@ export const formatAge = (age: Age): RecordAge<string> => {
   ) as RecordAge<string>;
 };
 
-export const formatedAgeToString = (age: RecordAge<string>) =>
-  Object.values(age).join(" ");
+export const formatedAgeToString = (age: RecordAge<string>) => Object.values(age).join(' ');
 
 export const getMyAge = (date: Date, accuracy: 1 | 10 | 100 | 1000 = 10) => {
   return formatedAgeToString(formatAge(getFullAge(date, accuracy)));
-}
+};

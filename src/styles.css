@@ -86,7 +86,7 @@ body {
   color: var(--fg-default);
   background: var(--bg-default);
 
-  font-family: "Comfortaa", sans-serif;
+  font-family: 'Comfortaa', sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;

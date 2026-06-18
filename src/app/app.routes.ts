@@ -9,15 +9,15 @@ import { PAGES_ROUTES } from './pages';
 export const routes: Routes = [
   useLayout({
     layout: Layouts.DefaultLayout,
-    routes: PAGES_ROUTES
+    routes: PAGES_ROUTES,
   }),
   useLayout({
     layout: Layouts.NoLayout,
     routes: PAGES_ROUTES,
     route: {
-      path: "nolayout"
-    }
-  })
+      path: 'nolayout',
+    },
+  }),
 ];
 
 @NgModule({
