@@ -1,0 +1,13 @@
+<button
+  (click)="onClick($event)"
+  class="
+    px-4 py-2 w-fit rounded-lg duration-200
+    bg-(--bg-card) text-(--fg-default)
+    hover:scale-105 hover:bg-[color-mix(in_oklab,var(--bg-card)_80%,white_20%)]
+    active:scale-95
+    cursor-pointer border-none font-inherit text-base
+    inline-flex items-center justify-center gap-2
+  "
+>
+  <ng-content></ng-content>
+</button>

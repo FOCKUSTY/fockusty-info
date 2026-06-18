@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { getMyAge } from '@/services/age-service';
+import { TvButton } from "@/components/tv-button/tv-button.component";
 
 @Component({
   selector: 'home-component',
   templateUrl: './home.html',
-  imports: [],
+  imports: [TvButton],
 })
 export class Home {
   private readonly interval = signal<NodeJS.Timeout | null>(null);

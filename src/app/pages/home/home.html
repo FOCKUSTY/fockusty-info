@@ -1,4 +1,13 @@
-<main class="flex flex-col h-full w-full justify-center items-center">
-  <h2>Привет! Я — FOCKUSTY</h2>
-  <h4>Мне уже {{ age() }}</h4>
+<main class="flex flex-col gap-4 h-full w-full justify-center items-center">
+  <div class="flex flex-col justify-center items-center">
+    <h2>Привет! Я — FOCKUSTY</h2>
+    <h4>Мне уже {{ age() }}</h4>
+  </div>
+
+  <nav class="flex gap-2">
+    <tv-button href="/order">Сделать заказ</tv-button>
+    <tv-button href="/resume">Резюме</tv-button>
+    <tv-button href="/about">Обо мне</tv-button>
+    <tv-button href="/hobby">Мои хобби</tv-button>
+  </nav>
 </main>
