@@ -38,6 +38,15 @@ importers:
       '@lazy-and-focused/prettier-config':
         specifier: ^1.1.0
         version: 1.1.0(prettier@3.8.4)
+      '@ng-icons/bootstrap-icons':
+        specifier: ^33.2.4
+        version: 33.2.4
+      '@ng-icons/core':
+        specifier: ^33.2.4
+        version: 33.2.4(@angular-devkit/schematics@21.2.16(chokidar@5.0.0))(@angular/common@21.2.17(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2))(@schematics/angular@21.2.16(chokidar@5.0.0))(rxjs@7.8.2)
+      '@ng-icons/heroicons':
+        specifier: ^33.2.4
+        version: 33.2.4
       express:
         specifier: ^5.2.1
         version: 5.2.1
@@ -1139,6 +1148,21 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
+
+  '@ng-icons/bootstrap-icons@33.2.4':
+    resolution: {integrity: sha512-KQyX4UYrwomVNFd09qOX5fybvHnuJ/CO8wgtmPDcMIM8WXY7Ha4VCUHLz4EUbUdrgessggVhVBObCDkfJAFwrQ==}
+
+  '@ng-icons/core@33.2.4':
+    resolution: {integrity: sha512-OffFaHXTOoqPidRKTjXyUV2u94lCZUybJiyl0dbXrCyp4zXBE+3GlT/dIwlQI8XboaP01VN78/y060xqnUE6Ow==}
+    peerDependencies:
+      '@angular-devkit/schematics': '>=21.0.0'
+      '@angular/common': '>=21.0.0'
+      '@angular/core': '>=21.0.0'
+      '@schematics/angular': '>=21.0.0'
+      rxjs: ^6.5.3 || ^7.4.0
+
+  '@ng-icons/heroicons@33.2.4':
+    resolution: {integrity: sha512-Gd8h22NINcchfP22QdovHehofea5qf3Z4+0BA3yQwPM1/BnrbTfCZqqKnP58chZzihSjU40ztB/+D1wkpOPd6w==}
 
   '@npmcli/agent@4.0.2':
     resolution: {integrity: sha512-EUEuWAxnL07Sp5/iC/1X6Xj+XThUvnbei9zfRWZdEXa7lss9RTHMhAHBeg+MZ5To9s/gGaSI+UwZTPdYMvKSeg==}
@@ -4072,6 +4096,23 @@ snapshots:
       '@emnapi/runtime': 1.11.1
       '@tybys/wasm-util': 0.10.2
     optional: true
+
+  '@ng-icons/bootstrap-icons@33.2.4':
+    dependencies:
+      tslib: 2.8.1
+
+  '@ng-icons/core@33.2.4(@angular-devkit/schematics@21.2.16(chokidar@5.0.0))(@angular/common@21.2.17(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2))(@schematics/angular@21.2.16(chokidar@5.0.0))(rxjs@7.8.2)':
+    dependencies:
+      '@angular-devkit/schematics': 21.2.16(chokidar@5.0.0)
+      '@angular/common': 21.2.17(@angular/core@21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': 21.2.17(@angular/compiler@21.2.17)(rxjs@7.8.2)
+      '@schematics/angular': 21.2.16(chokidar@5.0.0)
+      rxjs: 7.8.2
+      tslib: 2.8.1
+
+  '@ng-icons/heroicons@33.2.4':
+    dependencies:
+      tslib: 2.8.1
 
   '@npmcli/agent@4.0.2':
     dependencies:

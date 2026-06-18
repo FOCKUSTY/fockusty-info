@@ -1,18 +1,16 @@
-<header class="flex gap-2 py-2 px-4 w-full bg-(--bg-layout) rounded-b-2xl h-[6em]">
+<header class="sticky top-0 flex gap-2 py-2 px-4 w-full bg-(--bg-layout) rounded-b-2xl h-[6em]">
   <div class="flex flex-col items-center">
     <h2>FOCKUSTY</h2>
     <div class="flex flex-row gap-2">
-      <a target="_blank" href="http://github.com/fockusty">GH</a>
-      <a target="_blank" href="https://discord.gg/97J8mnn4Gr">DS</a>
-      <a target="_blank" href="http://t.me/fockusty">TG</a>
-      <a target="_blank" href="http://fockusty.netlify.app">GL</a>
+      <icon-link link="telegram" />
+      <icon-link link="discord" />
+      <icon-link link="github" />
+      <icon-link link="site" />
     </div>
   </div>
 </header>
 
-<main class="flex flex-col h-full w-full justify-center items-center">
-  <router-outlet></router-outlet>
-</main>
+<router-outlet />
 
 <footer class="flex gap-2 py-4 px-2 w-full bg-(--bg-layout) rounded-t-2xl h-[4em]">
   <span>
