@@ -5,6 +5,7 @@ import { TvButton } from "@/components/tv-button/tv-button.component";
 @Component({
   selector: 'home-component',
   templateUrl: './home.html',
+  styleUrl: "../../../styles/base-host.style.css",
   imports: [TvButton],
 })
 export class Home {

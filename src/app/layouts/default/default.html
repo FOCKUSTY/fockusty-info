@@ -1,19 +1,21 @@
-<header class="sticky top-0 flex gap-2 py-2 px-4 w-full bg-(--bg-layout) rounded-b-2xl h-[6em]">
-  <div class="flex flex-col items-center">
-    <h2>FOCKUSTY</h2>
-    <div class="flex flex-row gap-2">
-      <icon-link link="telegram" />
-      <icon-link link="discord" />
-      <icon-link link="github" />
-      <icon-link link="site" />
+<div class="flex flex-col min-h-screen">
+  <header class="sticky top-0 flex gap-2 py-2 px-4 w-full bg-(--bg-layout) rounded-b-2xl h-[6em]">
+    <div class="flex flex-col items-center">
+      <h2>FOCKUSTY</h2>
+      <div class="flex flex-row gap-2">
+        <icon-link link="telegram" />
+        <icon-link link="discord" />
+        <icon-link link="github" />
+        <icon-link link="site" />
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<router-outlet />
+  <router-outlet />
 
-<footer class="flex gap-2 py-4 px-2 w-full bg-(--bg-layout) rounded-t-2xl h-[4em]">
-  <span>
-    © 2025-{{ currentYear }} The Void Community
-  </span>
-</footer>
+  <footer class="flex gap-2 py-4 px-2 w-full bg-(--bg-layout) rounded-t-2xl h-[4em]">
+    <span>
+      © 2025-{{ currentYear }} The Void Community
+    </span>
+  </footer>
+</div>
