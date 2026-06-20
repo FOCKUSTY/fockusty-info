@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IconLink } from './icon-link.component';
+import { Order } from './order.component';
 
-describe('IconLink', () => {
-  let component: IconLink;
-  let fixture: ComponentFixture<IconLink>;
+describe('Order', () => {
+  let component: Order;
+  let fixture: ComponentFixture<Order>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconLink],
-    }).compileComponents();
+      imports: [Order]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(IconLink);
+    fixture = TestBed.createComponent(Order);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

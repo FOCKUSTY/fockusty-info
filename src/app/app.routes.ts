@@ -13,10 +13,7 @@ export const routes: Routes = [
   }),
   useLayout({
     layout: Layouts.NoLayout,
-    routes: PAGES_ROUTES,
-    route: {
-      path: 'nolayout',
-    },
+    routes: [],
   }),
 ];
 
