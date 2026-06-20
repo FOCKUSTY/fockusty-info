@@ -1,0 +1,31 @@
+<div
+  class="fixed inset-0 z-999 flex items-center justify-center backdrop-blur-sm"
+  (click)="onOverlayClick($event)"
+>
+  <div
+    class="relative w-full max-w-md rounded-2xl border border-white/20
+      bg-(--bg-section) p-8 shadow-(--shadow-lg) backdrop-blur-md"
+  >
+    <tv-button
+      class="absolute top-3 right-4"
+      (click)="onClose()"
+    >
+      ×
+    </tv-button>
+
+    <div class="flex flex-col items-center gap-2">
+      <div class="flex flex-col items-center">
+        <h3>Заказ: {{ order.name }}</h3>
+        <span>{{ order.description }}</span>
+        <span>Цена: {{ order.payment }}</span>
+      </div>
+
+      <details class="cursor-pointer">
+        <summary>Подробности</summary>
+        <tv-button>Предложить свою цену</tv-button>
+      </details>
+
+      <tv-button>Отправить</tv-button>
+    </div>
+  </div>
+</div>

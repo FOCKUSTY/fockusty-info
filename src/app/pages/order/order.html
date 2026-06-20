@@ -13,6 +13,7 @@
             bg-(--bg-card) py-1 px-2 rounded-lg
             flex flex-col items-center
             w-60 min-h-20"
+          (click)="selectOrder(order)"
         >
           <h3 class="self-start">{{ order.name }}</h3>
           <span class="text-mini">{{ order.description }}</span>
@@ -22,3 +23,10 @@
     </div>
   </div>
 </main>
+
+@if (selectedOrder() && orderModalOpened()) {
+  <order-modal
+    [order]="selectedOrder()!"
+    (close)="closeOrderModal()"
+  />
+}
