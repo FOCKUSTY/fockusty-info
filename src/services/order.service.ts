@@ -24,7 +24,7 @@ export class OrderService {
   }
 
   private fetch() {
-    const observable = this.http.get<OrderType[]>("/api/orders");
+    const observable = this.http.get<OrderType[]>("/api/orders", { responseType: "json" });
     return observable;
   }
 
