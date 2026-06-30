@@ -1,3 +1,4 @@
+import type { OrderType } from './types';
 import { HttpStatusCode } from '@angular/common/http';
 import {
   AngularNodeAppEngine,
@@ -8,12 +9,15 @@ import {
 
 import express from 'express';
 import { join } from 'node:path';
-import { OrderType } from './types';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 export const app = express();
-const angularApp = new AngularNodeAppEngine();
+const angularApp = new AngularNodeAppEngine({
+  trustProxyHeaders: [
+    'x-forwarded-host', 'x-forwarded-proto'
+  ]
+});
 
 app.use(
   express.static(browserDistFolder, {
