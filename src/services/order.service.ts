@@ -2,7 +2,7 @@ import type { OrderType } from "@/types";
 
 import { HttpClient } from "@angular/common/http";
 import { Injectable, makeStateKey, TransferState } from "@angular/core";
-import { map, of } from "rxjs";
+import { of } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class OrderService {
