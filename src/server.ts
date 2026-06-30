@@ -14,9 +14,7 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 
 export const app = express();
 const angularApp = new AngularNodeAppEngine({
-  trustProxyHeaders: [
-    'x-forwarded-host', 'x-forwarded-proto'
-  ]
+  trustProxyHeaders: true
 });
 
 app.use(

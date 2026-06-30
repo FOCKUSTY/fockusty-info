@@ -17,12 +17,6 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "security": {
-              "allowedHosts": [
-                "*.vercel.app",
-                "fockusty.laf-team.ru"
-              ]
-            },
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
