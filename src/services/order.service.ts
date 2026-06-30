@@ -2,7 +2,7 @@ import type { OrderType } from "@/types";
 
 import { HttpClient } from "@angular/common/http";
 import { Injectable, makeStateKey, TransferState } from "@angular/core";
-import { of } from "rxjs";
+import { map, of } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 export class OrderService {
@@ -25,7 +25,11 @@ export class OrderService {
 
   private fetch() {
     const observable = this.http.get("/api/orders", { responseType: "text" });
-    return observable;
+    const orders = observable.pipe(map((json) => {
+      return JSON.parse(json) as OrderType[];
+    }));
+
+    return orders;
   }
 
   private getFromState() {
