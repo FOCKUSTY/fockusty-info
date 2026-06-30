@@ -56,12 +56,7 @@ const MOCK_ORDERS: OrderType[] = [
 ];
 
 app.get("/api/orders", async (_, res) => {
-  const promise = new Promise<OrderType[]>((res) => {
-    setTimeout(() => res(MOCK_ORDERS), 50); /* эмуляция фетчинга */
-  });
-
-  const orders = await promise;
-  return res.json(orders);
+  return res.json(MOCK_ORDERS);
 });
 
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
