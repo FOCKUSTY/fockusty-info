@@ -12,7 +12,7 @@ import { OrderType } from './types';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
-const app = express();
+export const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 app.use(
@@ -74,4 +74,4 @@ if (isMainModule(import.meta.url) || process.env['pm_id']) {
   });
 }
 
-export const reqHandler = createNodeRequestHandler(app);
+export const requestHandler = createNodeRequestHandler(app);
