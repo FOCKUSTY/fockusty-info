@@ -19,7 +19,9 @@
           "options": {
             "security": {
               "allowedHosts": [
-                "fockusty.vercel.app"
+                "fockusty-git-main-migrate-to-134641-fockustys-projects-610a8612.vercel.app",
+                "fockusty.vercel.app",
+                "fockusty.laf-team.ru"
               ]
             },
             "browser": "src/main.ts",
