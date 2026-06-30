@@ -60,9 +60,8 @@ app.get("/api/orders", async (_, res) => {
     setTimeout(() => res(MOCK_ORDERS), 50); /* эмуляция фетчинга */
   });
 
-  promise
-    .then((orders) => res.send(orders))
-    .catch(() => res.sendStatus(HttpStatusCode.InternalServerError));
+  const orders = await promise;
+  return res.json(orders);
 });
 
 if (isMainModule(import.meta.url) || process.env['pm_id']) {
