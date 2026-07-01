@@ -1,8 +1,8 @@
 import { ResumesService } from '@/services/resumes.service';
 import { Component, inject, signal } from '@angular/core';
-import { MarkdownComponent, MarkdownService } from "ngx-markdown";
+import { MarkdownComponent, MarkdownService } from 'ngx-markdown';
 import { Resume as ResumeType } from '@/types/resume.type';
-import { TvButton } from "@/app/components/tv-button/tv-button.component";
+import { TvButton } from '@/app/components/tv-button/tv-button.component';
 import { Api } from '@/enums/api.enum';
 
 @Component({
@@ -16,9 +16,7 @@ export class Resume {
   public readonly resumes = signal<ResumeType[]>([]);
   public readonly content = signal<string | null>(null);
 
-  public constructor(
-    private markdownService: MarkdownService,
-  ) {}
+  public constructor(private markdownService: MarkdownService) {}
 
   public ngOnInit() {
     const observable = this.resumesService.execute();

@@ -1,5 +1,5 @@
-import type { OnDestroy,OnInit } from '@angular/core';
-import { Component,signal } from '@angular/core';
+import type { OnDestroy, OnInit } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 import { TvButton } from '@/app/components/tv-button/tv-button.component';
 import { getMyAge } from '@/services/age-service';

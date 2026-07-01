@@ -1,1 +1,1 @@
-export * from "./order.route";
+export * from './order.route';

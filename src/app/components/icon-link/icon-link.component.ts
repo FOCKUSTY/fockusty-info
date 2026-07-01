@@ -1,5 +1,5 @@
 import type { InputSignal } from '@angular/core';
-import { Component, Input,input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 export const LINKS = {

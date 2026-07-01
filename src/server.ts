@@ -14,31 +14,31 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 
 export const app = express();
 const angularApp = new AngularNodeAppEngine({
-  trustProxyHeaders: true
+  trustProxyHeaders: true,
 });
 
-app.use(Api.base, express.json())
+app.use(Api.base, express.json());
 
 const MOCK_ORDERS: OrderType[] = [
   {
-    name: "Сайт",
-    description: "Создание сайта под ключ",
-    payment: "$4 за час"
+    name: 'Сайт',
+    description: 'Создание сайта под ключ',
+    payment: '$4 за час',
   },
   {
-    name: "Игра",
-    description: "Создание игры",
-    payment: "$10 за час"
+    name: 'Игра',
+    description: 'Создание игры',
+    payment: '$10 за час',
   },
   {
-    name: "Бот",
-    description: "Создание Телеграм бота",
-    payment: "$500 за проект"
+    name: 'Бот',
+    description: 'Создание Телеграм бота',
+    payment: '$500 за проект',
   },
   {
-    name: "Фотосессия",
-    description: "Фотосессия на улице или в студии",
-    payment: "$3 за час"
+    name: 'Фотосессия',
+    description: 'Фотосессия на улице или в студии',
+    payment: '$3 за час',
   },
 ];
 

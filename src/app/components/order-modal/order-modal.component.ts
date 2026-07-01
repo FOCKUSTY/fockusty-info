@@ -1,6 +1,6 @@
 import type { OrderType } from '@/types';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TvButton } from "@/app/components/tv-button/tv-button.component";
+import { TvButton } from '@/app/components/tv-button/tv-button.component';
 
 @Component({
   selector: 'order-modal',

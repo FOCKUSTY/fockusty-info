@@ -3,15 +3,9 @@
   (click)="onOverlayClick($event)"
 >
   <div
-    class="relative w-full max-w-md rounded-2xl border border-white/20
-      bg-(--bg-section) p-8 shadow-(--shadow-lg) backdrop-blur-md"
+    class="relative w-full max-w-md rounded-2xl border border-white/20 bg-(--bg-section) p-8 shadow-(--shadow-lg) backdrop-blur-md"
   >
-    <tv-button
-      class="absolute top-3 right-4"
-      (click)="onClose()"
-    >
-      ×
-    </tv-button>
+    <tv-button class="absolute top-3 right-4" (click)="onClose()"> × </tv-button>
 
     <div class="flex flex-col items-center gap-2">
       <div class="flex flex-col items-center">

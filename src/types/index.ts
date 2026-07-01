@@ -1,1 +1,1 @@
-export * from "./order.type";
+export * from './order.type';

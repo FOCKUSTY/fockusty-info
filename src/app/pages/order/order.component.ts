@@ -2,7 +2,7 @@ import type { OrderType } from '@/types';
 import type { OnInit } from '@angular/core';
 import { Component, inject, signal } from '@angular/core';
 
-import { OrderModal } from "@/app/components/order-modal";
+import { OrderModal } from '@/app/components/order-modal';
 import { OrderService } from '@/services/order.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class Order implements OnInit {
 
   public ngOnInit() {
     const observable = this.orderService.execute();
-    observable.subscribe(orders => {
+    observable.subscribe((orders) => {
       this.orders.set(orders);
     });
   }

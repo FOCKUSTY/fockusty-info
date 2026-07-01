@@ -1,14 +1,14 @@
-import type { OrderType } from "@/types";
+import type { OrderType } from '@/types';
 
-import { TransferState } from "@angular/core";
-import { Injectable, makeStateKey } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { of } from "rxjs";
-import { Api } from "@/enums/api.enum";
+import { TransferState } from '@angular/core';
+import { Injectable, makeStateKey } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { of } from 'rxjs';
+import { Api } from '@/enums/api.enum';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class OrderService {
-  private static readonly STATE_KEY = makeStateKey<OrderType[]>("orders");
+  private static readonly STATE_KEY = makeStateKey<OrderType[]>('orders');
 
   constructor(
     private readonly transferState: TransferState,
@@ -28,8 +28,8 @@ export class OrderService {
   private fetch() {
     const observable = this.http.get<OrderType[]>(Api.orders, {
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
     return observable;
   }

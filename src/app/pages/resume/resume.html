@@ -1,9 +1,7 @@
 <main class="flex-1 flex flex-col py-8 px-12 gap-4 h-full w-full justify-center items-center">
   <div class="top-30 w-full justify-end sticky flex gap-2">
     @for (resume of resumes(); track resume.title) {
-      <tv-button
-        (clicked)="fetchResume(resume.fileName)"
-      >{{ resume.title }}</tv-button>
+      <tv-button (clicked)="fetchResume(resume.fileName)">{{ resume.title }}</tv-button>
     }
   </div>
 

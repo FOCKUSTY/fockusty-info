@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { bootstrapDiscord,bootstrapGithub, bootstrapTelegram } from '@ng-icons/bootstrap-icons';
+import { bootstrapDiscord, bootstrapGithub, bootstrapTelegram } from '@ng-icons/bootstrap-icons';
 import { provideIcons } from '@ng-icons/core';
 import { heroGlobeAlt } from '@ng-icons/heroicons/outline';
 
