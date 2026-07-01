@@ -1,10 +1,11 @@
+import { ruWords } from './russian';
+
 export const DATE_OF_BIRTH = {
   year: 2009,
   month: 7,
   day: 1,
   hours: 4,
 } as const;
-import { ruWords } from './russian';
 
 const dateOfBirth = new Date(
   DATE_OF_BIRTH.year,

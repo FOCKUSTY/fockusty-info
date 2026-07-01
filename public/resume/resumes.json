@@ -1,0 +1,13 @@
+{
+  "$schema": "./resumes.schema.json",
+  "info": [
+    {
+      "title": "Веб-разработчик Node.js",
+      "fileName": "nodejs.md"
+    },
+    {
+      "title": "Фотограф",
+      "fileName": "photograph.md"
+    }
+  ]
+}

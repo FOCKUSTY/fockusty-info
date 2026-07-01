@@ -1,6 +1,7 @@
-import { RouterModule, Routes } from '@angular/router';
-
+import type { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+
 import { useLayout } from '@/utils/use-layout';
 
 import { Layouts } from './layouts';

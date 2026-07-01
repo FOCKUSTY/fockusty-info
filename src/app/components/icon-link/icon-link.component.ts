@@ -1,4 +1,5 @@
-import { Component, input, Input, InputSignal } from '@angular/core';
+import type { InputSignal } from '@angular/core';
+import { Component, Input,input } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
 
 export const LINKS = {
@@ -35,5 +36,5 @@ export class IconLink {
   public link!: keyof typeof LINKS;
   public size: InputSignal<number> = input<number>(24);
 
-  public constructor() {}
+  constructor() {}
 }

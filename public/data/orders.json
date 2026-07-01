@@ -1,0 +1,27 @@
+{
+  "$schema": "./orders.schema.json",
+  "programming": [
+    {
+      "name": "Сайт",
+      "description": "Создание сайта под ключ",
+      "payment": "$4 за час"
+    },
+    {
+      "name": "Игра",
+      "description": "Создание игры",
+      "payment": "$10 за час"
+    },
+    {
+      "name": "Бот",
+      "description": "Создание Телеграм бота",
+      "payment": "$500 за проект"
+    }
+  ],
+  "photographing": [
+    {
+      "name": "Фотосессия",
+      "description": "Фотосессия на улице или в студии",
+      "payment": "$3 за час"
+    }
+  ]
+}

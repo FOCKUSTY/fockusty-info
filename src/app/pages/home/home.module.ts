@@ -1,11 +1,13 @@
+import type { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
 import { Home } from './home.component';
+import { Pages } from '@/enums/pages.enum';
 
 const routes: Routes = [
   {
-    path: '',
+    path: Pages.home,
     component: Home,
   },
 ];

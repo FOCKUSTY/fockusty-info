@@ -1,6 +1,6 @@
-import { OrderType } from '@/types';
+import type { OrderType } from '@/types';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TvButton } from "@/components/tv-button/tv-button.component";
+import { TvButton } from "@/app/components/tv-button/tv-button.component";
 
 @Component({
   selector: 'order-modal',
@@ -14,7 +14,7 @@ export class OrderModal {
   @Output()
   public close = new EventEmitter<void>();
 
-  public constructor() {}
+  constructor() {}
 
   public onClose() {
     this.close.emit();

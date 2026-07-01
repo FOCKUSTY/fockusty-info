@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: '../../../styles/base-host.style.css',
 })
 export class NotFound {
-  public constructor() {}
+  constructor() {}
 }

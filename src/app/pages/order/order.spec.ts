@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import type { ComponentFixture } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { Order } from './order.component';
 
@@ -10,7 +11,7 @@ describe('Order', () => {
     await TestBed.configureTestingModule({
       imports: [Order]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(Order);
     component = fixture.componentInstance;

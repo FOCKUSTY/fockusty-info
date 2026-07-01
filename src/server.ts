@@ -1,13 +1,14 @@
 import type { OrderType } from './types';
+import { Api } from './enums/api.enum';
+
+import express from 'express';
+import { join } from 'node:path';
 import {
   AngularNodeAppEngine,
   createNodeRequestHandler,
   isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
-
-import express from 'express';
-import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -16,7 +17,7 @@ const angularApp = new AngularNodeAppEngine({
   trustProxyHeaders: true
 });
 
-app.use('/api', express.json())
+app.use(Api.base, express.json())
 
 const MOCK_ORDERS: OrderType[] = [
   {
@@ -41,7 +42,7 @@ const MOCK_ORDERS: OrderType[] = [
   },
 ];
 
-app.get("/api/orders", async (_, res) => {
+app.get(Api.orders, async (_, res) => {
   return res.json(MOCK_ORDERS);
 });
 

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, inject } from '@angular/core';
+import { Component, EventEmitter, inject,Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class TvButton {
   @Input()
   public href?: string;
 
-  public constructor() {}
+  constructor() {}
 
   public onClick(event: MouseEvent): void {
     this.clicked.emit(event);

@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import type { OnDestroy,OnInit } from '@angular/core';
+import { Component,signal } from '@angular/core';
+
+import { TvButton } from '@/app/components/tv-button/tv-button.component';
 import { getMyAge } from '@/services/age-service';
-import { TvButton } from '@/components/tv-button/tv-button.component';
 
 @Component({
   selector: 'home-component',
@@ -8,11 +10,11 @@ import { TvButton } from '@/components/tv-button/tv-button.component';
   styleUrl: '../../../styles/base-host.style.css',
   imports: [TvButton],
 })
-export class Home {
+export class Home implements OnInit, OnDestroy {
   private readonly interval = signal<NodeJS.Timeout | null>(null);
   protected readonly age = signal<string>(getMyAge(new Date()));
 
-  public constructor() {}
+  constructor() {}
 
   public ngOnInit() {
     const interval = setInterval(() => {
