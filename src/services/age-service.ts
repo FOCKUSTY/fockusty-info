@@ -1,3 +1,4 @@
+import { dateTimeDiff } from 'date-differencer';
 import { ruWords } from './russian';
 
 export const DATE_OF_BIRTH = {
@@ -7,31 +8,9 @@ export const DATE_OF_BIRTH = {
   hours: 4,
 } as const;
 
-const dateOfBirth = new Date(
-  DATE_OF_BIRTH.year,
-  DATE_OF_BIRTH.month,
-  DATE_OF_BIRTH.day,
-  DATE_OF_BIRTH.hours,
-  0,
-  0,
+const BIRTH_DATE = new Date(
+  Date.UTC(DATE_OF_BIRTH.year, DATE_OF_BIRTH.month, DATE_OF_BIRTH.day, DATE_OF_BIRTH.hours, 0, 0),
 );
-
-const SECONDS = 1000;
-
-const MINUTE = 60;
-const toMinutes = MINUTE;
-
-const HOUR = 60;
-const toHours = toMinutes * HOUR;
-
-const DAY = 24;
-const toDay = toHours * DAY;
-
-const MONTH = 31;
-
-const YEAR = 365;
-const LEAP_YEAR = 4;
-const toYear = toDay * YEAR;
 
 export type Age = {
   years: number;
@@ -45,7 +24,7 @@ export type Age = {
 type AgeKeys = keyof Age;
 type RecordAge<T> = Record<AgeKeys, T>;
 
-const RUSSIAN_WORDS_FOR_AGE: Record<keyof Age, [string, string, string]> = {
+const RUSSIAN_WORDS_FOR_AGE: Record<AgeKeys, [string, string, string]> = {
   years: ['год', 'года', 'лет'],
   months: ['месяц', 'месяца', 'месяцев'],
   days: ['день', 'дня', 'дней'],
@@ -55,24 +34,19 @@ const RUSSIAN_WORDS_FOR_AGE: Record<keyof Age, [string, string, string]> = {
 } as const;
 
 export const getFullAge = (now: Date, accuracy: 1 | 10 | 100 | 1000 = 10): Age => {
-  const timestamp = (now.getTime() - dateOfBirth.getTime()) / SECONDS;
-
-  const years = Math.floor(timestamp / toYear);
-  const days = Math.floor(timestamp / toDay - years * YEAR - years / LEAP_YEAR);
-  const months = Math.floor(days / MONTH);
-  const hours = Math.floor(timestamp / toHours) - Math.floor(timestamp / toDay) * DAY;
-  const minutes = Math.floor(timestamp / toMinutes) - Math.floor(timestamp / toHours) * HOUR;
-  const seconds =
-    Math.floor((timestamp - Math.floor(timestamp / toMinutes) * MINUTE) * accuracy) / accuracy;
-
-  return {
+  const {
     years,
     months,
-    days: days - months * 31,
+    days,
     hours,
     minutes,
-    seconds,
-  };
+    seconds: sec,
+    milliseconds,
+  } = dateTimeDiff(BIRTH_DATE, now);
+
+  const seconds = sec + Math.round((milliseconds / 1000) * accuracy) / accuracy;
+
+  return { years, months, days, hours, minutes, seconds };
 };
 
 export const formatAge = (age: Age): RecordAge<string> => {
@@ -84,8 +58,8 @@ export const formatAge = (age: Age): RecordAge<string> => {
   ) as RecordAge<string>;
 };
 
-export const formatedAgeToString = (age: RecordAge<string>) => Object.values(age).join(' ');
+export const formattedAgeToString = (age: RecordAge<string>): string =>
+  Object.values(age).join(' ');
 
-export const getMyAge = (date: Date, accuracy: 1 | 10 | 100 | 1000 = 10) => {
-  return formatedAgeToString(formatAge(getFullAge(date, accuracy)));
-};
+export const getMyAge = (date: Date, accuracy: 1 | 10 | 100 | 1000 = 10): string =>
+  formattedAgeToString(formatAge(getFullAge(date, accuracy)));

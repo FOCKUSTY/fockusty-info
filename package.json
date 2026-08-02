@@ -36,6 +36,7 @@
     "@ng-icons/bootstrap-icons": "^33.3.0",
     "@ng-icons/core": "^33.3.0",
     "@ng-icons/heroicons": "^33.3.0",
+    "date-differencer": "^0.4.0",
     "express": "^5.2.1",
     "ngx-markdown": "^22.0.0",
     "rxjs": "~7.8.2",

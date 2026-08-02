@@ -14,7 +14,7 @@ export class Home implements OnInit, OnDestroy {
   private readonly interval = signal<NodeJS.Timeout | null>(null);
   protected readonly age = signal<string>(getMyAge(new Date()));
 
-  constructor() {}
+  public constructor() {}
 
   public ngOnInit() {
     const interval = setInterval(() => {

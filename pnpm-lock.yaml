@@ -46,6 +46,9 @@ importers:
       '@ng-icons/heroicons':
         specifier: ^33.3.0
         version: 33.3.0
+      date-differencer:
+        specifier: ^0.4.0
+        version: 0.4.0
       express:
         specifier: ^5.2.1
         version: 5.2.1
@@ -3012,6 +3015,13 @@ packages:
       }
     engines: { node: '>=20' }
 
+  date-differencer@0.4.0:
+    resolution:
+      {
+        integrity: sha512-JE6YamXh6xCpdAKTb7pNf9ablaIrbchwm9bzXj9Z1HCB2h2QQ5uUSiINo+ZmcrZxT63gvRlnar8rnI40Uama4A==,
+      }
+    engines: { node: '>=20' }
+
   debug@4.4.3:
     resolution:
       {
@@ -5124,6 +5134,13 @@ packages:
       }
     engines: { node: ^20.19.0 || ^22.12.0 || >=23 }
 
+  year-helper@0.3.0:
+    resolution:
+      {
+        integrity: sha512-YEMONcpbIXZ0v8EuCIn5kBWvjvFuR2T9+t8Y2A6bVS/7Ivqv6Dnqv1QcNuwx4bwciDhfPhRTwb/JS9Omg/doIA==,
+      }
+    engines: { node: '>=20' }
+
   yoctocolors-cjs@2.1.3:
     resolution:
       {
@@ -6825,6 +6842,10 @@ snapshots:
       whatwg-mimetype: 5.0.0
       whatwg-url: 15.1.0
 
+  date-differencer@0.4.0:
+    dependencies:
+      year-helper: 0.3.0
+
   debug@4.4.3:
     dependencies:
       ms: 2.1.3
@@ -8110,6 +8131,8 @@ snapshots:
       string-width: 7.2.0
       y18n: 5.0.8
       yargs-parser: 22.0.0
+
+  year-helper@0.3.0: {}
 
   yoctocolors-cjs@2.1.3: {}
 
