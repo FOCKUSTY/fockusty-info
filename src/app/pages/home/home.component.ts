@@ -3,6 +3,7 @@ import { Component, signal } from '@angular/core';
 
 import { TvButton } from '@/app/components/tv-button/tv-button.component';
 import { getMyAge } from '@/services/age-service';
+import { isBirthDay, isNewYear } from '@/services/date-service';
 
 @Component({
   selector: 'home-component',
@@ -13,6 +14,9 @@ import { getMyAge } from '@/services/age-service';
 export class Home implements OnInit, OnDestroy {
   private readonly interval = signal<NodeJS.Timeout | null>(null);
   protected readonly age = signal<string>(getMyAge(new Date()));
+
+  protected readonly newYear = isNewYear(new Date()) ? 'С Новым годом!' : null;
+  protected readonly birthDay = isBirthDay(new Date()) ? 'С Днём рождения!' : null;
 
   public constructor() {}
 

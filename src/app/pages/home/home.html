@@ -2,6 +2,13 @@
   <div class="flex flex-col justify-center items-center">
     <h2>Привет! Я — FOCKUSTY</h2>
     <h4>Мне уже {{ age() }}</h4>
+
+    @if (newYear) {
+      <h4>{{ newYear }}</h4>
+    }
+    @if (birthDay) {
+      <h4>{{ birthDay }}</h4>
+    }
   </div>
 
   <nav class="flex gap-2">

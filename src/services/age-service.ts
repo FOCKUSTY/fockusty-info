@@ -5,10 +5,10 @@ export const DATE_OF_BIRTH = {
   year: 2009,
   month: 7,
   day: 1,
-  hours: 4,
+  hours: 0,
 } as const;
 
-const BIRTH_DATE = new Date(
+export const BIRTH_DATE = new Date(
   Date.UTC(DATE_OF_BIRTH.year, DATE_OF_BIRTH.month, DATE_OF_BIRTH.day, DATE_OF_BIRTH.hours, 0, 0),
 );
 
